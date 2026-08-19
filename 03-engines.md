@@ -1,11 +1,10 @@
-# Four engines, measured
+# TensorRT-LLM and SGLang, measured
 
-> **From an earlier study, kept deliberately.** These figures were taken in
-> August 2026 on a different evaluation corpus and an earlier vLLM build, so
-> they do not belong in the same table as `02-results.md`. They are here because
-> the question they answer — *is a third engine worth adding?* — was settled
-> properly, by measuring, and that answer has not changed. Do not mix the
-> numbers; do trust the conclusion.
+> **August 2026, different corpus, earlier vLLM build.** These numbers are not
+> comparable with `02-results.md` and must not be put in the same table. Kept
+> because the question — whether a third engine was worth adding — was settled
+> by measuring, and that answer stands.
+
 
 `dead-ends/conclusions-that-were-wrong.md` argued from documentation that no third engine was
 worth adding. That was half a conclusion: TensorRT-LLM and SGLang were dismissed

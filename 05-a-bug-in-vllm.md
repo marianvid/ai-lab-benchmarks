@@ -1,20 +1,12 @@
 # A bug in vLLM 0.27.1 — Gemma-4 will not load
 
-**Status: found here, diagnosed, patched locally — and fixed upstream
-independently.**
+**Affects vLLM 0.27.1. Fixed upstream; nightly builds load Gemma-4 unpatched.**
 
-On the stable release, 0.27.1, Gemma-4 would not load at all. The cause is
-below, and the patch that fixes it is in `../harness/fix_gemma4.py`.
+Patch in `../harness/fix_gemma4.py`, useful only if pinned to 0.27.1. It edits a
+file inside the installed package, so any upgrade silently reverts it.
 
-Later the same day a vLLM nightly build loaded the same model with no patch and
-measured the same throughput, so the defect is gone from current code. The patch
-is only of use to someone pinned to 0.27.1 — and it is worth keeping in this
-repository as a worked example, because the interesting part was never the patch
-but the diagnosis: the failure looked like a broken model file and was not.
-
-**A patch applied this way is erased by the next upgrade.** It edits a file
-inside an installed package, so `pip install --upgrade` silently replaces it.
-That is a general hazard, not a property of this bug.
+Symptom resembles a corrupt checkpoint; cause is a config attribute change in
+transformers >= 5.15.
 
 ## Symptom
 

@@ -1,12 +1,7 @@
-# Five ways the measurements lied
+# Measurement errors
 
-Every one of these produced numbers that looked entirely convincing and were
-wrong. They are recorded because the next person — quite possibly the same
-person with no memory of this — will hit them again.
-
-The common shape: **the harness was broken, and the model got the blame.**
-
----
+Five cases where the numbers looked right and were wrong. Each is recorded
+with the cause and the corrected figure.
 
 ## 1. A reasoning model scored zero because it was cut off mid-thought
 

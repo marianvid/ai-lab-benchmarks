@@ -1,156 +1,93 @@
-# What it means
+# Findings
 
-What follows from the numbers in `02-results.md`, for someone deciding how to
-use a machine like this one.
+## Engine dominates throughput; model dominates quality
 
-## The short version
+Same weights, both engines:
 
-**The engine is a bigger decision than the model.**
+| Model | Engine | Cls F1 | items/s |
+|---|---|---:|---:|
+| Gemma-4-26B-A4B | llama.cpp | 0.871 | 8.9 |
+| Gemma-4-26B-A4B | vLLM | 0.875 | 51.1 |
+| Qwen3.6-35B-A3B | llama.cpp | 0.895 | 8.0 |
+| Qwen3.6-35B-A3B | vLLM | 0.889 | 53.6 |
 
-The same model, the same weights, measured on both engines:
+F1 delta is within noise (±0.006). Throughput delta is 5.7× and 6.7×.
 
-| | Quality (F1) | Sentences/s | |
-|---|---:|---:|---|
-| Gemma-4-26B-A4B on llama.cpp | 0.871 | 8.9 | |
-| Gemma-4-26B-A4B on vLLM | 0.875 | **51.1** | **5.7× the work** |
-| Qwen3.6-35B-A3B on llama.cpp | 0.895 | 8.0 | |
-| Qwen3.6-35B-A3B on vLLM | 0.889 | **53.6** | **6.7× the work** |
+## Continuous batching accounts for it
 
-**The quality is the same. The throughput is not.** Within noise on the answers,
-six times the work per hour.
+Concurrency 1 → 64, classification:
 
-## The five things worth knowing
+- vLLM: 7.1× – 19.6×
+- llama.cpp: 1.0× – 1.1×
 
-### 1. Continuous batching is still the largest effect
+llama.cpp allocates a fixed slot count and splits the context window between
+them; vLLM uses a shared paged pool with continuous batching. At concurrency 1
+the engines are comparable.
 
-Not quantisation, not model choice, not the card's native number formats.
+## llama.cpp wins on startup
 
-| Engine | Throughput gain, concurrency 1 → 64 |
+| Engine | Load |
 |---|---|
-| vLLM | **7.1× to 19.6×** |
-| llama.cpp | **1.0× to 1.1×** |
+| llama.cpp | 3.3 – 10.8 s |
+| vLLM | 45.1 – 98.3 s |
 
-llama.cpp does not get faster when you send it more work. It has a fixed number
-of slots and divides the context window among them. vLLM keeps a shared pool and
-interleaves requests continuously, so a request that finishes early frees
-capacity at once.
+Unload is 2.0 – 2.6 s for both. For load-ask-unload cycles, llama.cpp finishes
+before vLLM has started. Break-even against vLLM's throughput advantage is
+roughly 90 s of sustained batched work.
 
-**When this does not apply:** if you send one request at a time, the advantage
-mostly disappears — and llama.cpp starts far faster, 3 to 11 seconds against 45
-to 98. For a model you load, ask one question, and unload, llama.cpp wins on the
-clock that matters.
+## A code-specialised model is a poor language model
 
-### 2. A coding model is the wrong tool for language
+Qwen3-Coder-30B-A3B, highest prompt-read rate in the set:
 
-Qwen3-Coder-30B-A3B reads prompts faster than anything else measured. It is also
-last at every language task, by a distance:
-
-| | Best | Qwen3-Coder-30B |
+| | best | Qwen3-Coder-30B |
 |---|---:|---:|
-| Classification F1 | 0.906 | **0.726** |
-| Translation chrF++ | 56.12 | **45.38** |
+| Classification F1 | 0.906 | 0.726 |
+| chrF++ | 56.12 | 45.38 |
 | Comprehension | 0.915 | 0.847 |
+| Coding pass rate | 0.834 | 0.791 |
 
-It is not a bad model. It is a model built for a different job, and the numbers
-say so clearly enough that the mistake is worth avoiding on purpose.
+It is not even the best coder in the set.
 
-### 3. Size buys much less than expected
+## Parameter count buys comprehension, not much else
 
-Gemma-4-E4B is **4.6 GB**. The best model in the set is more than five times
-larger.
+Gemma-4-E4B is 4.6 GB against 20 GB for the leader:
 
-| | 4.6 GB model | Best measured |
+| | E4B (4.6 GB) | best |
 |---|---:|---:|
 | Classification F1 | 0.828 | 0.906 |
-| Coding pass rate | 0.765 | 0.834 |
+| Coding | 0.765 | 0.834 |
 | Comprehension | 0.760 | 0.915 |
 
-It loads in **3.3 seconds**. For work where a wrong answer is cheap and volume
-is high, the small model is not a compromise so much as a different trade.
+Classification and coding are within 8 points. Comprehension is 15.5 points
+down — the MCQ task is the one that separates by capacity.
 
-Comprehension is where size actually shows: 0.760 against 0.915 is a real gap,
-and it is the test that cannot be bluffed.
+## Tokenizer cost is not predicted by script
 
-### 4. Prompt reading and generation are separate problems
+Tokens for identical content, relative to English: Han 1.12, Devanagari 1.31,
+Cyrillic 1.40–1.64, Latin 1.00–1.66.
 
-They do not move together, and a machine can be good at one and ordinary at the
-other. Prompt reading is done in parallel and reaches thousands of tokens per
-second; generation is one token after another and reaches tens.
+Lithuanian (Latin) is the most expensive of the 20; Chinese (Han) the cheapest
+after English. The predictor is tokenizer coverage, not writing system.
 
-Which one matters depends entirely on the work. An agent that re-reads a
-codebase at every step lives or dies on prompt reading. A bulk classifier that
-answers "yes" or "no" barely generates anything at all.
+Consequence: context windows sized on English under-provision for Baltic, Thai
+and Ukrainian by up to 40%.
 
-### 5. A context window is worth less in some languages, and not the ones you would guess
+## Oversize models run if the engine picks the split
 
-The same sentences, counted by the same tokenizer:
+46.2 GB model, 32 GB card, 56.4 tok/s generation, 30 728 MB resident.
+Forcing `--n-gpu-layers` makes llama.cpp abort instead of fitting.
 
-| | Tokens, against English |
-|---|---:|
-| Chinese (Han) | 1.12× |
-| Japanese | 1.24× |
-| Hindi (Devanagari) | 1.31× |
-| Russian (Cyrillic) | 1.40× |
-| Ukrainian (Cyrillic) | 1.64× |
-| Thai | 1.65× |
-| **Lithuanian (Latin)** | **1.66×** |
+## Selection
 
-**It is not the writing system.** Chinese, in Han characters, is the cheapest
-language measured after English. The most expensive is Lithuanian — written in
-the same alphabet as English.
+| Workload | Choice |
+|---|---|
+| Batched multilingual bulk | Gemma-4-26B-A4B on vLLM — 0.875 F1 at 51 items/s |
+| Highest quality, throughput secondary | Qwopus3.6-27B-Coder on vLLM — 0.906 / 0.915, 19.7 items/s |
+| Single request, low latency | any model on llama.cpp |
+| Agent prompt-reading | Qwen3-Coder-30B-A3B; not for prose |
+| Already on Qwen3.6-35B | switch engine before switching model: 6.7× for −0.006 F1 |
 
-What decides the cost is how well the tokenizer knows the language, not how
-exotic it looks. A tokenizer trained mostly on English and Chinese web text
-handles Chinese in one token per character-cluster and chops Lithuanian into
-fragments.
+## Not covered
 
-The practical consequence: **an 8 192-token window holds about 60% as much
-Lithuanian as English.** If you size a context window on English documents and
-then feed it Baltic or Thai text, it will not fit, and the failure will look
-like a model problem rather than an arithmetic one.
-
-### 6. A model larger than the card runs, if you let the engine decide
-
-A 46.2 GB model on a 32 GB card, at **56 tokens per second**, with llama.cpp
-choosing the split between card and system memory itself.
-
-Told to put a fixed number of layers on the card, it refuses to fit and dies
-trying to allocate 34 GB. **Do not force the split.**
-
-AI-Lab refuses this configuration on purpose, because on a GPU attached over
-OCuLink a split model sends every token across the cable. The measurement says
-what that decision costs — and 56 tok/s is not nothing.
-
-## Choosing
-
-**For bulk work in many languages: Gemma-4-26B-A4B on vLLM.** 0.875 F1 at 51
-sentences per second, and 19.6× more throughput as concurrency rises than at
-one request at a time. Nothing else combines that quality with that speed.
-
-**For the best answers, if you can wait: Qwopus3.6-27B-Coder.** Top of both
-language tests — 0.906 F1, 0.915 comprehension — at a third of Gemma's
-throughput.
-
-**For an agent loop: Qwen3-Coder-30B-A3B**, for prompt reading, and for nothing
-that involves prose.
-
-**For one question at a time: llama.cpp**, whatever the model. It is answering
-while vLLM is still starting.
-
-**If you are already running Qwen3.6-35B: change engine before you change
-model.** It is the best or near-best on every language test in this set. Moving
-it from llama.cpp to vLLM multiplies its throughput by 6.7 and costs 0.006 F1.
-
-## What this study does not tell you
-
-**Nothing about long prompts.** These sets are sentences and short passages. The
-prompt-reading figures come from a separate latency test, not from these runs.
-
-**Nothing about how models behave over a long agent task.** Every test here is
-one request and one answer.
-
-**Nothing about languages outside the twenty.** Especially not low-resource
-ones, where the gaps between models are usually much larger.
-
-**These are one run each.** No error bars. Differences smaller than about 0.02
-F1 should be read as "the same".
+Long-context behaviour, multi-turn, agent loops, languages outside the 20,
+error bars.

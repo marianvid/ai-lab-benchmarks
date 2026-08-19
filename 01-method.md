@@ -1,143 +1,109 @@
-# Method — what was measured, how, and what the words mean
+# Method
 
-Four tests, each a script in `harness/`. **The script is the definition of its
-test**; this file explains the intent behind it.
+Each script in `harness/` is the definition of its task. This file records the
+parameters and the rules.
 
-Every test reports two things from the same pass: **how well the model did, and
-how long it took**. That is deliberate. The question this study asks is not
-which model is cleverest — it is how one machine behaves under a given kind of
-work, and a score without a clock answers half of it.
+Every task reports score and throughput from the same pass.
 
-## Vocabulary, once
+## Terms
 
-**Prompt reading** — turning the text you send into numbers the model can work
-with. It happens once per request and can be done for many tokens at a time, so
-it is fast. Also called prefill.
+**Prefill / prompt reading** — encoding the input. Parallel across tokens,
+thousands of tok/s.
 
-**Generation** — writing the answer, one token at a time, each token depending
-on the last. It cannot be parallelised within one request, so it is slow. Also
-called decode.
+**Decode / generation** — producing output tokens serially, tens of tok/s.
 
-**Concurrency** — how many requests are in flight at once. It is the single
-setting that separates the two engines here.
+**Concurrency** — requests in flight simultaneously.
 
-**Continuous batching** — an engine's ability to work on many requests at the
-same time, adding and removing them as they arrive and finish. vLLM does this;
-llama.cpp divides a fixed number of slots instead.
+**Continuous batching** — adding and retiring requests within a running batch.
+vLLM does this; llama.cpp uses fixed slots with the context window divided
+between them.
 
-**F1** — one number combining "of the things it said were X, how many were" and
-"of the things that were X, how many it found". Used instead of accuracy
-because these sets are unbalanced on purpose. On a set where one item in seven
-is a yes, a model that always says no is 86% accurate and useless.
+**F1** — used instead of accuracy because the classification set is 15%
+positive. An always-negative classifier scores 0.85 accuracy, 0.00 F1.
 
-**chrF++** — how much a translation looks like a reference translation, counted
-in character sequences. Mechanical: no judge model, no opinion.
+**chrF++** — character n-gram F-score with word bigrams, `sacrebleu`
+implementation, no judge model.
 
-## Where the data comes from
+## Data
 
-**Nothing is redistributed by this repository.** `harness/get_datasets.py`
-downloads all four sets from the people who published them and writes a
-manifest with their licences. Run it once before anything else.
+`harness/get_datasets.py` fetches all four sets and writes `MANIFEST.json` with
+licences. Nothing is redistributed by this repository.
 
-| Set | What it is | Licence |
+| Set | Source | Licence |
 |---|---|---|
-| **FLORES-200** | The same sentences translated into 200 languages **by people** | CC BY-SA 4.0 |
-| **SIB-200** | Those sentences, each labelled by people with one of seven topics | CC BY-SA 4.0 |
-| **Belebele** | Reading-comprehension questions over the same passages, four options, one right | CC BY-SA 4.0 |
-| **HumanEval+ / MBPP+** | 541 Python problems with test suites large enough to fail plausible wrong answers | Apache 2.0 |
+| FLORES-200 | `dl.fbaipublicfiles.com/nllb/flores200_dataset.tar.gz` | CC BY-SA 4.0 |
+| SIB-200 | `huggingface.co/datasets/Davlan/sib200` | CC BY-SA 4.0 |
+| Belebele | `huggingface.co/datasets/facebook/belebele` | CC BY-SA 4.0 |
+| HumanEval+ / MBPP+ | `huggingface.co/datasets/evalplus/*` | Apache 2.0 |
 
-Three of the four are built on the same FLORES passages. That is why a model
-can be compared across them: it is understanding, categorising and translating
-**the same text**.
+SIB-200 and Belebele are built on FLORES passages, so the same text is
+classified, comprehended and translated.
 
-## Twenty languages, ten writing systems
+The HuggingFace copies of FLORES require an account; the Meta tarball does not,
+which is why it is fetched from there.
 
-English, Chinese, Hindi, Spanish, Arabic, French, Bengali, Portuguese, Russian,
-Japanese, German, Korean, Turkish, Vietnamese, Tamil, Thai, Polish, Ukrainian,
-Romanian, Lithuanian.
+## Languages
 
-Chosen for reach and for variety of script. The variety is not decoration: the
-same sentence costs very different numbers of tokens in Han, Devanagari or
-Latin, and tokens are speed, memory and money at once.
+en, zh, hi, es, ar, fr, bn, pt, ru, ja, de, ko, tr, vi, ta, th, pl, uk, ro, lt.
 
-## Test 1 — Classification (`bench_classify.py`)
+Ten scripts: Latin, Han, Devanagari, Arabic, Bengali, Japanese, Hangul, Tamil,
+Thai, Cyrillic.
 
-Every sentence in SIB-200's test split, in all twenty languages: 4 080 in
-total. The question is one yes-or-no — **is this sentence about politics?** —
-and about one sentence in seven is.
+## Task 1 — Classification (`bench_classify.py`)
 
-Sentences go five to a request, so 816 requests, run at a chosen concurrency.
-The same pass yields **quality** (F1 overall and per language) and
-**throughput** (sentences per second, prompt and generation tokens per second).
-That is the same shape as real bulk work, which is why it is measured that way.
+SIB-200 test split, all 20 languages, 4 080 sentences. Binary: is the topic
+`politics`. 15% positive.
 
-## Test 2 — Comprehension (`bench_comprehension.py`)
+5 sentences per request → 816 requests at the given concurrency. Reports F1
+overall and per language, plus items/s and prefill/decode tok/s.
 
-Belebele: a passage, a question about it, four answers, exactly one correct.
-100 questions per language, always the first 100, so every model is asked the
-same questions. 2 000 in total.
+Per-language F1 is reported as undefined, not 0.0, when a slice contains no
+positives.
 
-**This is the test a model cannot bluff.** Classification can be half-guessed
-from a keyword; a translation can score well while being subtly wrong. Here the
-model has to have understood a passage, and the marking is one letter.
+## Task 2 — Comprehension (`bench_comprehension.py`)
 
-Guessing scores 0.25. A result near that means the model did not read the
-passage, whatever else the number looks like.
+Belebele, first 100 questions per language, 2 000 total. Passage + question +
+4 options, single letter answer. Chance level 0.25.
 
-## Test 3 — Translation (`bench_translate.py`)
+Always the first N, never sampled, so every model sees identical questions.
 
-English into the other nineteen languages, 50 sentences each, 950 translations
-per model. Scored with chrF++ from `sacrebleu` against **FLORES's human
-translations**.
+## Task 3 — Translation (`bench_translate.py`)
 
-That last point matters. An earlier version of this study scored against
-reference translations produced by a model, which meant a good score proved
-agreement with another machine. Here it means agreement with a person.
+FLORES-200 devtest, English → 19 languages, first 50 sentences each, 950
+translations. chrF++ against the human reference.
 
-Two mechanical checks run alongside, because a score can hide a disaster:
-English left untranslated, and numbers that went missing between source and
-output. Both are weak signals meant to find candidates to read, not to score.
+Two mechanical checks alongside: English function words remaining in output,
+and digit counts lost between source and output. Both are weak signals for
+locating candidates to read, not scores. Digit group separators are stripped
+before comparison.
 
-## Test 4 — Coding (`bench_coding.py`)
+## Task 4 — Coding (`bench_coding.py`)
 
-541 Python problems from HumanEval+ and MBPP+. Each answer is pulled out of its
-code block, run against the problem's own tests, and passes or does not.
-Nothing is graded by opinion.
+HumanEval+ (163) and MBPP+ (378), 541 problems. Answer extracted from the code
+block, concatenated with the problem's test suite, executed.
 
-**Why the "+" sets.** The original HumanEval and MBPP ship three or four tests
-per problem — thin enough that wrong solutions pass and most models score near
-the top. EvalPlus regenerated the suites with far more cases. The scores drop
-and start separating models again.
+HumanEval/32 is excluded: its own canonical solution fails its own tests.
+Validation run: 163/164 canonical solutions pass through this harness.
 
-**Contamination is not the concern here.** These problems are old and are
-certainly in every model's training data. That would matter for a study asking
-which model reasons best. This one asks how a machine behaves, so what matters
-is that the work is real, standard, and identical for every model.
+Execution drops to uid 65534 via `setpriv` when running as root, in a temp dir,
+30 s timeout. Interpreter has numpy, scipy, sympy — several EvalPlus tests
+import them.
 
-**One problem is excluded**: HumanEval/32, whose own reference answer fails its
-own tests. Running all 164 reference answers through this harness gives 163
-passes and that one failure, so leaving it in would take a point off every model
-for something none of them can pass. The exclusion is in the code, with the
-reason.
+## Run rules
 
-Generated code runs as `nobody`, in a throwaway directory, with a timeout. It is
-still someone else's code executing on your machine: run this in a container.
+- Warm-up pass discarded (first pass after engine start runs ~40% slow during
+  kernel autotune). Exception: coding, where every problem is distinct.
+- `chat_template_kwargs: {enable_thinking: false}` sent; retried without it on
+  400/422. `<think>` blocks stripped before marking.
+- temperature 0.
+- One model resident at a time.
+- Failures recorded in the result JSON, not suppressed.
 
-## Rules that apply to every test
+## Orchestration
 
-**A warm-up pass is thrown away.** The first pass after an engine starts runs
-about 40% slow while its kernel autotuning settles. Measuring that measures the
-wrong thing. The coding test is the exception: every problem is different, so a
-discarded pass would throw away real answers.
+`harness/run_all.py` loads each model through AI-Lab, waits for `/v1/models`,
+runs the four tasks, then the concurrency sweep (1/8/32/64 on en,ru,zh),
+unloads, and writes `summary.json` after each model. A model that fails to load
+is recorded and the run continues.
 
-**Reasoning is switched off** where the engine allows it, and any scratch work
-the model writes anyway is stripped before marking. A model that thinks out
-loud and then answers correctly should not be marked wrong for the thinking.
-
-**Temperature is 0** everywhere.
-
-**One model on the card at a time.** It is one 32 GB card; there is no
-alternative.
-
-**Failures are recorded, not hidden.** A model that will not start, a test that
-crashes, a request that times out — each appears in the results as a fact.
+`harness/make_report.py` generates `02-results.md` from `results/`.

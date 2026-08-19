@@ -1,20 +1,9 @@
-# A conclusion reached from documentation, and what measuring did to it
+# Conclusion drawn from documentation, corrected by measurement
 
-> **Read this as a record of a mistake, not as advice.**
->
-> This document rejected TensorRT-LLM and SGLang on the strength of throughput
-> figures published by other people, measured on other hardware — the exact
-> mistake `measurements-that-lied.md` warns against, made in the same week it
-> was written.
->
-> Both engines were afterwards run on this card. **The headline conclusion
-> survived: model support really is the constraint.** Two of the specific
-> claims did not. `../03-engines.md` has the measured version, and it is the
-> one to trust.
->
-> It is kept because the reasoning is instructive: everything below sounds
-> convincing, and part of it was wrong anyway. That is what arguing from
-> someone else's benchmark feels like from the inside.
+> **Record of an error.** This rejected TensorRT-LLM and SGLang using
+> throughput figures published on other hardware. Both were later run on this
+> card: the headline conclusion (model support is the binding constraint) held,
+> two specific claims did not. `../03-engines.md` has the measured version.
 
 A day spent trying to add TensorRT-LLM as a third engine produced a finding
 worth more than the benchmark that was intended.
