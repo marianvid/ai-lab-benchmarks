@@ -1,0 +1,275 @@
+{
+  "test": "coding",
+  "set": "HumanEval+ / MBPP+",
+  "label": "text-quality",
+  "model": "qwopus3.6-27b-coder",
+  "concurrency": 8,
+  "problems": 541,
+  "excluded": {
+    "HumanEval/32": "the set's own reference answer fails the set's own tests"
+  },
+  "wall_s": 304.9,
+  "requests": 541,
+  "failed_requests": 0,
+  "prompt_tokens": 63497,
+  "completion_tokens": 71145,
+  "prefill_tok_s": 208.3,
+  "decode_tok_s": 233.3,
+  "items_per_s": 1.77,
+  "passed": 441,
+  "pass_rate": 0.8152,
+  "by_set": {
+    "humanevalplus": {
+      "n": 163,
+      "passed": 152,
+      "pass_rate": 0.9325
+    },
+    "mbppplus": {
+      "n": 378,
+      "passed": 289,
+      "pass_rate": 0.7646
+    }
+  },
+  "failures": [
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/46",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/76",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/91",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/108",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/132",
+      "passed": false,
+      "why": "SyntaxError: invalid syntax"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/134",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/140",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/145",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/152",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/154",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/163",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/7",
+      "passed": false,
+      "why": "AssertionError: out: {'very', 'that', 'with', 'words', 'characters', 'least', 'long.', 'This', 'long', 'string'}, exp: {'very', 'that', 'with', 'words', 'characters', 'least', 'Thi"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/20",
+      "passed": false,
+      "why": "AssertionError: out: False, exp: True"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/63",
+      "passed": false,
+      "why": "AssertionError: out: 6, exp: 7"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/74",
+      "passed": false,
+      "why": "AssertionError: out: True, exp: False"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/84",
+      "passed": false,
+      "why": "AssertionError: out: 10, exp: 6"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/92",
+      "passed": false,
+      "why": "AssertionError: out: False, exp: True"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/99",
+      "passed": false,
+      "why": "AssertionError: out: , exp: -101"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/102",
+      "passed": false,
+      "why": "AssertionError: out: PythonProgram, exp: ___PythonProgram"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/103",
+      "passed": false,
+      "why": "AssertionError: out: 1, exp: 4"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/109",
+      "passed": false,
+      "why": "SyntaxError: invalid syntax"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/113",
+      "passed": false,
+      "why": "AssertionError: out: False, exp: None"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/119",
+      "passed": false,
+      "why": "IndexError: list index out of range"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/124",
+      "passed": false,
+      "why": "TypeError: must be real number, not complex"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/126",
+      "passed": false,
+      "why": "TypeError: sum() missing 1 required positional argument: 'b'"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/137",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/142",
+      "passed": false,
+      "why": "IndexError: list index out of range"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/160",
+      "passed": false,
+      "why": "AssertionError: out: (-7, 7), exp: (2, 1)"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/161",
+      "passed": false,
+      "why": "TypeError: unhashable type: 'list'"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/165",
+      "passed": false,
+      "why": "IndexError: string index out of range"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/223",
+      "passed": false,
+      "why": "IndexError: list index out of range"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/235",
+      "passed": false,
+      "why": "AssertionError: out: 1431655775, exp: 10"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/244",
+      "passed": false,
+      "why": "AssertionError: out: 25, exp: 36"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/260",
+      "passed": false,
+      "why": "AssertionError: out: 73, exp: 7"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/267",
+      "passed": false,
+      "why": "TypeError: 'float' object cannot be interpreted as an integer"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/274",
+      "passed": false,
+      "why": "NameError: name 'math' is not defined. Did you forget to import 'math'?"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/278",
+      "passed": false,
+      "why": "AssertionError: out: 6, exp: 5"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/286",
+      "passed": false,
+      "why": "AssertionError: out: 88, exp: 59"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/294",
+      "passed": false,
+      "why": "AssertionError: out: 7.5, exp: False"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/300",
+      "passed": false,
+      "why": "OverflowError: int too large to convert to float"
+    }
+  ]
+}

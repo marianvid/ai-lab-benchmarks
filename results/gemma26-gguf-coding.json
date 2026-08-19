@@ -1,0 +1,275 @@
+{
+  "test": "coding",
+  "set": "HumanEval+ / MBPP+",
+  "label": "gemma26-gguf",
+  "model": "gemma-4-26B-A4B-it-UD-Q4_K_XL",
+  "concurrency": 8,
+  "problems": 541,
+  "excluded": {
+    "HumanEval/32": "the set's own reference answer fails the set's own tests"
+  },
+  "wall_s": 688.64,
+  "requests": 541,
+  "failed_requests": 0,
+  "prompt_tokens": 65461,
+  "completion_tokens": 86162,
+  "prefill_tok_s": 95.1,
+  "decode_tok_s": 125.1,
+  "items_per_s": 0.79,
+  "passed": 451,
+  "pass_rate": 0.8336,
+  "by_set": {
+    "humanevalplus": {
+      "n": 163,
+      "passed": 155,
+      "pass_rate": 0.9509
+    },
+    "mbppplus": {
+      "n": 378,
+      "passed": 296,
+      "pass_rate": 0.7831
+    }
+  },
+  "failures": [
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/76",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/84",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/86",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/91",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/101",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/103",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/145",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/163",
+      "passed": false,
+      "why": "timeout"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/7",
+      "passed": false,
+      "why": "AssertionError: out: {'This', 'string', 'with', 'long.', 'least', 'words', 'very', 'that', 'characters', 'long'}, exp: {'This', 'string', 'with', 'least', 'words', 'very', 'that', "
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/16",
+      "passed": false,
+      "why": "AssertionError: out: True, exp: False"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/74",
+      "passed": false,
+      "why": "AssertionError: out: False, exp: True"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/84",
+      "passed": false,
+      "why": "AssertionError: out: 16, exp: 6"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/92",
+      "passed": false,
+      "why": "AssertionError: out: False, exp: True"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/99",
+      "passed": false,
+      "why": "AssertionError: out: b101, exp: -101"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/102",
+      "passed": false,
+      "why": "AssertionError: out: PythonProgram, exp: ___PythonProgram"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/103",
+      "passed": false,
+      "why": "AssertionError: out: 1, exp: 0"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/109",
+      "passed": false,
+      "why": "AssertionError: out: 6, exp: 3"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/113",
+      "passed": false,
+      "why": "AssertionError: out: False, exp: None"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/116",
+      "passed": false,
+      "why": "AssertionError: out: 17649, exp: 123456789"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/119",
+      "passed": false,
+      "why": "IndexError: list index out of range"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/124",
+      "passed": false,
+      "why": "TypeError: must be real number, not complex"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/126",
+      "passed": false,
+      "why": "timeout"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/130",
+      "passed": false,
+      "why": "AssertionError: out: 7, exp: 8"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/138",
+      "passed": false,
+      "why": "AssertionError: out: True, exp: False"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/160",
+      "passed": false,
+      "why": "AssertionError: out: (-7, 7), exp: (2, 1)"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/161",
+      "passed": false,
+      "why": "TypeError: unhashable type: 'list'"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/223",
+      "passed": false,
+      "why": "IndexError: list index out of range"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/235",
+      "passed": false,
+      "why": "AssertionError: out: 0, exp: 30"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/244",
+      "passed": false,
+      "why": "ValueError: math domain error"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/260",
+      "passed": false,
+      "why": "SyntaxError: invalid syntax"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/261",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/267",
+      "passed": false,
+      "why": "TypeError: 'float' object cannot be interpreted as an integer"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/278",
+      "passed": false,
+      "why": "AssertionError: out: 0, exp: 3"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/286",
+      "passed": false,
+      "why": "SyntaxError: invalid syntax"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/294",
+      "passed": false,
+      "why": "AssertionError: out: 7.5, exp: False"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/300",
+      "passed": false,
+      "why": "OverflowError: int too large to convert to float"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/301",
+      "passed": false,
+      "why": "AssertionError: out: 3, exp: 2"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/305",
+      "passed": false,
+      "why": "AssertionError: out: (), exp: None"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/310",
+      "passed": false,
+      "why": "numpy._core._exceptions._UFuncNoLoopError: ufunc 'subtract' did not contain a loop with signature matching types (dtype('<U1'), dtype('float64')) -> None"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/311",
+      "passed": false,
+      "why": "AssertionError: out: 31, exp: 15"
+    }
+  ]
+}

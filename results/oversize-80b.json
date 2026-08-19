@@ -1,0 +1,22 @@
+{
+  "test": "oversize",
+  "through_ai_lab": false,
+  "model_path": "/models/gguf/qwen3-coder-next/Qwen3-Coder-Next-UD-Q4_K_XL.gguf",
+  "size_gb": 46.2,
+  "context": 8192,
+  "splits": [
+    {
+      "gpu_layers": "chosen by llama.cpp",
+      "ok": true,
+      "load_s": 10.5,
+      "vram_mb": 30728,
+      "generation": {
+        "ok": true,
+        "seconds": 4.76,
+        "prompt_tokens": 65,
+        "completion_tokens": 200,
+        "decode_tok_s": 42.0
+      }
+    }
+  ]
+}

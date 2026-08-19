@@ -1,0 +1,101 @@
+{
+  "test": "comprehension",
+  "set": "Belebele",
+  "label": "qwen36-nvfp4",
+  "model": "qwen3.6-35b-a3b",
+  "concurrency": 8,
+  "answered": 2000,
+  "of": 2000,
+  "chance_level": 0.25,
+  "wall_s": 65.51,
+  "requests": 2000,
+  "failed_requests": 0,
+  "prompt_tokens": 692294,
+  "completion_tokens": 4000,
+  "prefill_tok_s": 10568.0,
+  "decode_tok_s": 61.1,
+  "items_per_s": 30.53,
+  "accuracy": 0.895,
+  "per_language": {
+    "ar": {
+      "n": 100,
+      "accuracy": 0.94
+    },
+    "bn": {
+      "n": 100,
+      "accuracy": 0.81
+    },
+    "de": {
+      "n": 100,
+      "accuracy": 0.92
+    },
+    "en": {
+      "n": 100,
+      "accuracy": 0.96
+    },
+    "es": {
+      "n": 100,
+      "accuracy": 0.94
+    },
+    "fr": {
+      "n": 100,
+      "accuracy": 0.94
+    },
+    "hi": {
+      "n": 100,
+      "accuracy": 0.8
+    },
+    "ja": {
+      "n": 100,
+      "accuracy": 0.87
+    },
+    "ko": {
+      "n": 100,
+      "accuracy": 0.94
+    },
+    "lt": {
+      "n": 100,
+      "accuracy": 0.85
+    },
+    "pl": {
+      "n": 100,
+      "accuracy": 0.91
+    },
+    "pt": {
+      "n": 100,
+      "accuracy": 0.93
+    },
+    "ro": {
+      "n": 100,
+      "accuracy": 0.92
+    },
+    "ru": {
+      "n": 100,
+      "accuracy": 0.93
+    },
+    "ta": {
+      "n": 100,
+      "accuracy": 0.7
+    },
+    "th": {
+      "n": 100,
+      "accuracy": 0.89
+    },
+    "tr": {
+      "n": 100,
+      "accuracy": 0.88
+    },
+    "uk": {
+      "n": 100,
+      "accuracy": 0.94
+    },
+    "vi": {
+      "n": 100,
+      "accuracy": 0.9
+    },
+    "zh": {
+      "n": 100,
+      "accuracy": 0.93
+    }
+  }
+}

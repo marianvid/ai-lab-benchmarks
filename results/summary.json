@@ -1,0 +1,5214 @@
+{
+  "text-bulk": {
+    "instance": "text-bulk",
+    "model": "Gemma-4-26B-A4B",
+    "engine": "vLLM",
+    "format": "NVFP4",
+    "tested": true,
+    "load": {
+      "ok": true,
+      "load_s": 45.1,
+      "load_ms_reported": 45079
+    },
+    "classification": {
+      "test": "classification",
+      "set": "SIB-200",
+      "label": "text-bulk",
+      "model": "gemma-4-26b-a4b",
+      "topic": "politics",
+      "concurrency": 8,
+      "batch": 5,
+      "answered": 4080,
+      "of": 4080,
+      "wall_s": 79.79,
+      "requests": 816,
+      "failed_requests": 0,
+      "prompt_tokens": 303034,
+      "completion_tokens": 46512,
+      "prefill_tok_s": 3797.8,
+      "decode_tok_s": 582.9,
+      "items_per_s": 51.13,
+      "quality": {
+        "n": 4080,
+        "positives": 600,
+        "accuracy": 0.9635,
+        "precision": 0.8842,
+        "recall": 0.865,
+        "f1": 0.8745
+      },
+      "per_language": {
+        "ar": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9755,
+          "precision": 0.9032,
+          "recall": 0.9333,
+          "f1": 0.918
+        },
+        "bn": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9657,
+          "precision": 0.8966,
+          "recall": 0.8667,
+          "f1": 0.8814
+        },
+        "de": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9559,
+          "precision": 0.8621,
+          "recall": 0.8333,
+          "f1": 0.8475
+        },
+        "en": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9657,
+          "precision": 0.871,
+          "recall": 0.9,
+          "f1": 0.8852
+        },
+        "es": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9755,
+          "precision": 0.9032,
+          "recall": 0.9333,
+          "f1": 0.918
+        },
+        "fr": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.951,
+          "precision": 0.8571,
+          "recall": 0.8,
+          "f1": 0.8276
+        },
+        "hi": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9608,
+          "precision": 0.8929,
+          "recall": 0.8333,
+          "f1": 0.8621
+        },
+        "ja": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9608,
+          "precision": 0.8929,
+          "recall": 0.8333,
+          "f1": 0.8621
+        },
+        "ko": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9559,
+          "precision": 0.8621,
+          "recall": 0.8333,
+          "f1": 0.8475
+        },
+        "lt": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9657,
+          "precision": 0.8966,
+          "recall": 0.8667,
+          "f1": 0.8814
+        },
+        "pl": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9706,
+          "precision": 0.9,
+          "recall": 0.9,
+          "f1": 0.9
+        },
+        "pt": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9657,
+          "precision": 0.8966,
+          "recall": 0.8667,
+          "f1": 0.8814
+        },
+        "ro": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.951,
+          "precision": 0.8571,
+          "recall": 0.8,
+          "f1": 0.8276
+        },
+        "ru": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9657,
+          "precision": 0.8966,
+          "recall": 0.8667,
+          "f1": 0.8814
+        },
+        "ta": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9608,
+          "precision": 0.8667,
+          "recall": 0.8667,
+          "f1": 0.8667
+        },
+        "th": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9657,
+          "precision": 0.8966,
+          "recall": 0.8667,
+          "f1": 0.8814
+        },
+        "tr": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9608,
+          "precision": 0.8929,
+          "recall": 0.8333,
+          "f1": 0.8621
+        },
+        "uk": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9559,
+          "precision": 0.8889,
+          "recall": 0.8,
+          "f1": 0.8421
+        },
+        "vi": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9657,
+          "precision": 0.8485,
+          "recall": 0.9333,
+          "f1": 0.8889
+        },
+        "zh": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9755,
+          "precision": 0.9032,
+          "recall": 0.9333,
+          "f1": 0.918
+        }
+      }
+    },
+    "comprehension": {
+      "test": "comprehension",
+      "set": "Belebele",
+      "label": "text-bulk",
+      "model": "gemma-4-26b-a4b",
+      "concurrency": 8,
+      "answered": 1957,
+      "of": 2000,
+      "chance_level": 0.25,
+      "wall_s": 33.13,
+      "requests": 2000,
+      "failed_requests": 43,
+      "prompt_tokens": 598906,
+      "completion_tokens": 4330,
+      "prefill_tok_s": 18079.6,
+      "decode_tok_s": 130.7,
+      "items_per_s": 59.08,
+      "accuracy": 0.873,
+      "per_language": {
+        "ar": {
+          "n": 97,
+          "accuracy": 0.9175
+        },
+        "bn": {
+          "n": 97,
+          "accuracy": 0.8557
+        },
+        "de": {
+          "n": 100,
+          "accuracy": 0.9
+        },
+        "en": {
+          "n": 98,
+          "accuracy": 0.949
+        },
+        "es": {
+          "n": 98,
+          "accuracy": 0.898
+        },
+        "fr": {
+          "n": 97,
+          "accuracy": 0.9381
+        },
+        "hi": {
+          "n": 98,
+          "accuracy": 0.8265
+        },
+        "ja": {
+          "n": 100,
+          "accuracy": 0.84
+        },
+        "ko": {
+          "n": 98,
+          "accuracy": 0.9388
+        },
+        "lt": {
+          "n": 100,
+          "accuracy": 0.82
+        },
+        "pl": {
+          "n": 98,
+          "accuracy": 0.8878
+        },
+        "pt": {
+          "n": 97,
+          "accuracy": 0.9278
+        },
+        "ro": {
+          "n": 99,
+          "accuracy": 0.9596
+        },
+        "ru": {
+          "n": 98,
+          "accuracy": 0.898
+        },
+        "ta": {
+          "n": 96,
+          "accuracy": 0.8438
+        },
+        "th": {
+          "n": 97,
+          "accuracy": 0.866
+        },
+        "tr": {
+          "n": 96,
+          "accuracy": 0.8854
+        },
+        "uk": {
+          "n": 98,
+          "accuracy": 0.8776
+        },
+        "vi": {
+          "n": 97,
+          "accuracy": 0.9072
+        },
+        "zh": {
+          "n": 98,
+          "accuracy": 0.9082
+        }
+      }
+    },
+    "translation": {
+      "test": "translation",
+      "set": "FLORES-200",
+      "reference": "human translations",
+      "label": "text-bulk",
+      "model": "gemma-4-26b-a4b",
+      "concurrency": 8,
+      "translated": 950,
+      "of": 950,
+      "wall_s": 81.96,
+      "requests": 950,
+      "failed_requests": 0,
+      "prompt_tokens": 79952,
+      "completion_tokens": 42486,
+      "prefill_tok_s": 975.5,
+      "decode_tok_s": 518.4,
+      "items_per_s": 11.59,
+      "chrf_mean": 55.8,
+      "chrf_by_language": {
+        "ar": 58.25,
+        "bn": 46.72,
+        "de": 64.1,
+        "es": 55.29,
+        "fr": 73.38,
+        "hi": 58.42,
+        "ja": 38.12,
+        "ko": 39.2,
+        "lt": 50.82,
+        "pl": 53.98,
+        "pt": 70.86,
+        "ro": 66.81,
+        "ru": 58.34,
+        "ta": 51.99,
+        "th": 52.01,
+        "tr": 60.14,
+        "uk": 58.11,
+        "vi": 63.56,
+        "zh": 40.06
+      },
+      "english_markers_total": 73,
+      "numbers_lost_total": 8
+    },
+    "coding": {
+      "test": "coding",
+      "set": "HumanEval+ / MBPP+",
+      "label": "text-bulk",
+      "model": "gemma-4-26b-a4b",
+      "concurrency": 8,
+      "problems": 541,
+      "excluded": {
+        "HumanEval/32": "the set's own reference answer fails the set's own tests"
+      },
+      "wall_s": 219.86,
+      "requests": 541,
+      "failed_requests": 0,
+      "prompt_tokens": 65461,
+      "completion_tokens": 95031,
+      "prefill_tok_s": 297.7,
+      "decode_tok_s": 432.2,
+      "items_per_s": 2.46,
+      "passed": 447,
+      "pass_rate": 0.8262,
+      "by_set": {
+        "humanevalplus": {
+          "n": 163,
+          "passed": 154,
+          "pass_rate": 0.9448
+        },
+        "mbppplus": {
+          "n": 378,
+          "passed": 293,
+          "pass_rate": 0.7751
+        }
+      },
+      "failures": [
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/76",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/86",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/91",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/108",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/130",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/132",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/140",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/145",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/163",
+          "passed": false,
+          "why": "timeout"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/7",
+          "passed": false,
+          "why": "AssertionError: out: {'long.', 'This', 'words', 'very', 'with', 'characters', 'string', 'long', 'that', 'least'}, exp: {'This', 'words', 'very', 'with', 'characters', 'string', 'lo"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/16",
+          "passed": false,
+          "why": "AssertionError: out: True, exp: False"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/74",
+          "passed": false,
+          "why": "AssertionError: out: False, exp: True"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/84",
+          "passed": false,
+          "why": "SyntaxError: invalid syntax"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/92",
+          "passed": false,
+          "why": "AssertionError: out: True, exp: False"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/99",
+          "passed": false,
+          "why": "AssertionError: out: b101, exp: -101"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/102",
+          "passed": false,
+          "why": "AssertionError: out: PythonProgram, exp: ___PythonProgram"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/109",
+          "passed": false,
+          "why": "AssertionError: out: 6, exp: 3"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/113",
+          "passed": false,
+          "why": "AssertionError: out: False, exp: None"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/116",
+          "passed": false,
+          "why": "AssertionError: out: 17649, exp: 123456789"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/119",
+          "passed": false,
+          "why": "IndexError: list index out of range"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/124",
+          "passed": false,
+          "why": "TypeError: angle_complex() takes 1 positional argument but 2 were given"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/126",
+          "passed": false,
+          "why": "timeout"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/137",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/138",
+          "passed": false,
+          "why": "AssertionError: out: True, exp: False"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/141",
+          "passed": false,
+          "why": "AssertionError: out: [79, 69, 38, 25, 15], exp: [15, 25, 38, 69, 79]"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/160",
+          "passed": false,
+          "why": "AssertionError: out: (-7, 7), exp: (2, 1)"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/161",
+          "passed": false,
+          "why": "TypeError: unhashable type: 'list'"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/223",
+          "passed": false,
+          "why": "IndexError: list index out of range"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/235",
+          "passed": false,
+          "why": "AssertionError: out: 62, exp: 30"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/244",
+          "passed": false,
+          "why": "ValueError: isqrt() argument must be nonnegative"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/260",
+          "passed": false,
+          "why": "SyntaxError: invalid syntax"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/261",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/264",
+          "passed": false,
+          "why": "AssertionError: out: 106, exp: 109"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/267",
+          "passed": false,
+          "why": "TypeError: 'float' object cannot be interpreted as an integer"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/278",
+          "passed": false,
+          "why": "AssertionError: out: 0, exp: 3"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/294",
+          "passed": false,
+          "why": "AssertionError: out: 7.5, exp: False"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/300",
+          "passed": false,
+          "why": "OverflowError: int too large to convert to float"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/301",
+          "passed": false,
+          "why": "AssertionError: out: 3, exp: 2"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/305",
+          "passed": false,
+          "why": "AssertionError: out: (), exp: None"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/306",
+          "passed": false,
+          "why": "AssertionError: out: 0, exp: 1"
+        }
+      ]
+    },
+    "throughput_curve": {
+      "1": {
+        "wall_s": 70.72,
+        "items_per_s": 8.65,
+        "prefill_tok_s": 592.8,
+        "decode_tok_s": 98.7
+      },
+      "8": {
+        "wall_s": 11.25,
+        "items_per_s": 54.38,
+        "prefill_tok_s": 3725.6,
+        "decode_tok_s": 620.1
+      },
+      "32": {
+        "wall_s": 3.72,
+        "items_per_s": 164.65,
+        "prefill_tok_s": 11279.4,
+        "decode_tok_s": 1877.3
+      },
+      "64": {
+        "wall_s": 3.61,
+        "items_per_s": 169.68,
+        "prefill_tok_s": 11624.2,
+        "decode_tok_s": 1934.7
+      }
+    },
+    "unload": {
+      "ok": true,
+      "unload_s": 2.1,
+      "unload_ms_reported": 2006
+    }
+  },
+  "gemma26-gguf": {
+    "instance": "gemma26-gguf",
+    "model": "Gemma-4-26B-A4B",
+    "engine": "llama.cpp",
+    "format": "GGUF",
+    "tested": true,
+    "load": {
+      "ok": true,
+      "load_s": 9.3,
+      "load_ms_reported": 9242
+    },
+    "classification": {
+      "test": "classification",
+      "set": "SIB-200",
+      "label": "gemma26-gguf",
+      "model": "gemma-4-26B-A4B-it-UD-Q4_K_XL",
+      "topic": "politics",
+      "concurrency": 8,
+      "batch": 5,
+      "answered": 4080,
+      "of": 4080,
+      "wall_s": 456.41,
+      "requests": 816,
+      "failed_requests": 0,
+      "prompt_tokens": 302218,
+      "completion_tokens": 46512,
+      "prefill_tok_s": 662.2,
+      "decode_tok_s": 101.9,
+      "items_per_s": 8.94,
+      "quality": {
+        "n": 4080,
+        "positives": 600,
+        "accuracy": 0.9627,
+        "precision": 0.8902,
+        "recall": 0.8517,
+        "f1": 0.8705
+      },
+      "per_language": {
+        "ar": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9657,
+          "precision": 0.9259,
+          "recall": 0.8333,
+          "f1": 0.8772
+        },
+        "bn": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9461,
+          "precision": 0.88,
+          "recall": 0.7333,
+          "f1": 0.8
+        },
+        "de": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9608,
+          "precision": 0.8929,
+          "recall": 0.8333,
+          "f1": 0.8621
+        },
+        "en": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9559,
+          "precision": 0.8621,
+          "recall": 0.8333,
+          "f1": 0.8475
+        },
+        "es": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9755,
+          "precision": 0.9032,
+          "recall": 0.9333,
+          "f1": 0.918
+        },
+        "fr": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9608,
+          "precision": 0.8929,
+          "recall": 0.8333,
+          "f1": 0.8621
+        },
+        "hi": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9559,
+          "precision": 0.8889,
+          "recall": 0.8,
+          "f1": 0.8421
+        },
+        "ja": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9608,
+          "precision": 0.8929,
+          "recall": 0.8333,
+          "f1": 0.8621
+        },
+        "ko": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9608,
+          "precision": 0.8667,
+          "recall": 0.8667,
+          "f1": 0.8667
+        },
+        "lt": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9559,
+          "precision": 0.8889,
+          "recall": 0.8,
+          "f1": 0.8421
+        },
+        "pl": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9804,
+          "precision": 0.9062,
+          "recall": 0.9667,
+          "f1": 0.9355
+        },
+        "pt": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9706,
+          "precision": 0.9,
+          "recall": 0.9,
+          "f1": 0.9
+        },
+        "ro": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9608,
+          "precision": 0.8929,
+          "recall": 0.8333,
+          "f1": 0.8621
+        },
+        "ru": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9657,
+          "precision": 0.8966,
+          "recall": 0.8667,
+          "f1": 0.8814
+        },
+        "ta": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9559,
+          "precision": 0.8621,
+          "recall": 0.8333,
+          "f1": 0.8475
+        },
+        "th": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9657,
+          "precision": 0.9259,
+          "recall": 0.8333,
+          "f1": 0.8772
+        },
+        "tr": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9559,
+          "precision": 0.8621,
+          "recall": 0.8333,
+          "f1": 0.8475
+        },
+        "uk": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9608,
+          "precision": 0.8929,
+          "recall": 0.8333,
+          "f1": 0.8621
+        },
+        "vi": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9657,
+          "precision": 0.871,
+          "recall": 0.9,
+          "f1": 0.8852
+        },
+        "zh": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9755,
+          "precision": 0.9032,
+          "recall": 0.9333,
+          "f1": 0.918
+        }
+      }
+    },
+    "comprehension": {
+      "test": "comprehension",
+      "set": "Belebele",
+      "label": "gemma26-gguf",
+      "model": "gemma-4-26B-A4B-it-UD-Q4_K_XL",
+      "concurrency": 8,
+      "answered": 1957,
+      "of": 2000,
+      "chance_level": 0.25,
+      "wall_s": 207.13,
+      "requests": 2000,
+      "failed_requests": 43,
+      "prompt_tokens": 596906,
+      "completion_tokens": 4324,
+      "prefill_tok_s": 2881.7,
+      "decode_tok_s": 20.9,
+      "items_per_s": 9.45,
+      "accuracy": 0.884,
+      "per_language": {
+        "ar": {
+          "n": 96,
+          "accuracy": 0.9375
+        },
+        "bn": {
+          "n": 97,
+          "accuracy": 0.8763
+        },
+        "de": {
+          "n": 100,
+          "accuracy": 0.92
+        },
+        "en": {
+          "n": 97,
+          "accuracy": 0.9485
+        },
+        "es": {
+          "n": 98,
+          "accuracy": 0.9184
+        },
+        "fr": {
+          "n": 98,
+          "accuracy": 0.9184
+        },
+        "hi": {
+          "n": 98,
+          "accuracy": 0.7959
+        },
+        "ja": {
+          "n": 99,
+          "accuracy": 0.8889
+        },
+        "ko": {
+          "n": 99,
+          "accuracy": 0.9293
+        },
+        "lt": {
+          "n": 100,
+          "accuracy": 0.83
+        },
+        "pl": {
+          "n": 96,
+          "accuracy": 0.9062
+        },
+        "pt": {
+          "n": 97,
+          "accuracy": 0.9278
+        },
+        "ro": {
+          "n": 100,
+          "accuracy": 0.95
+        },
+        "ru": {
+          "n": 97,
+          "accuracy": 0.9381
+        },
+        "ta": {
+          "n": 97,
+          "accuracy": 0.8557
+        },
+        "th": {
+          "n": 97,
+          "accuracy": 0.8866
+        },
+        "tr": {
+          "n": 97,
+          "accuracy": 0.8969
+        },
+        "uk": {
+          "n": 97,
+          "accuracy": 0.9072
+        },
+        "vi": {
+          "n": 98,
+          "accuracy": 0.9082
+        },
+        "zh": {
+          "n": 99,
+          "accuracy": 0.9293
+        }
+      }
+    },
+    "translation": {
+      "test": "translation",
+      "set": "FLORES-200",
+      "reference": "human translations",
+      "label": "gemma26-gguf",
+      "model": "gemma-4-26B-A4B-it-UD-Q4_K_XL",
+      "concurrency": 8,
+      "translated": 950,
+      "of": 950,
+      "wall_s": 350.82,
+      "requests": 950,
+      "failed_requests": 0,
+      "prompt_tokens": 79002,
+      "completion_tokens": 41617,
+      "prefill_tok_s": 225.2,
+      "decode_tok_s": 118.6,
+      "items_per_s": 2.71,
+      "chrf_mean": 56.12,
+      "chrf_by_language": {
+        "ar": 58.08,
+        "bn": 46.89,
+        "de": 64.62,
+        "es": 55.29,
+        "fr": 73.29,
+        "hi": 58.13,
+        "ja": 38.75,
+        "ko": 39.52,
+        "lt": 51.87,
+        "pl": 54.8,
+        "pt": 70.37,
+        "ro": 69.28,
+        "ru": 58.12,
+        "ta": 52.01,
+        "th": 51.88,
+        "tr": 61.71,
+        "uk": 57.25,
+        "vi": 64.38,
+        "zh": 40.03
+      },
+      "english_markers_total": 75,
+      "numbers_lost_total": 5
+    },
+    "coding": {
+      "test": "coding",
+      "set": "HumanEval+ / MBPP+",
+      "label": "gemma26-gguf",
+      "model": "gemma-4-26B-A4B-it-UD-Q4_K_XL",
+      "concurrency": 8,
+      "problems": 541,
+      "excluded": {
+        "HumanEval/32": "the set's own reference answer fails the set's own tests"
+      },
+      "wall_s": 688.64,
+      "requests": 541,
+      "failed_requests": 0,
+      "prompt_tokens": 65461,
+      "completion_tokens": 86162,
+      "prefill_tok_s": 95.1,
+      "decode_tok_s": 125.1,
+      "items_per_s": 0.79,
+      "passed": 451,
+      "pass_rate": 0.8336,
+      "by_set": {
+        "humanevalplus": {
+          "n": 163,
+          "passed": 155,
+          "pass_rate": 0.9509
+        },
+        "mbppplus": {
+          "n": 378,
+          "passed": 296,
+          "pass_rate": 0.7831
+        }
+      },
+      "failures": [
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/76",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/84",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/86",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/91",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/101",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/103",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/145",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/163",
+          "passed": false,
+          "why": "timeout"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/7",
+          "passed": false,
+          "why": "AssertionError: out: {'This', 'string', 'with', 'long.', 'least', 'words', 'very', 'that', 'characters', 'long'}, exp: {'This', 'string', 'with', 'least', 'words', 'very', 'that', "
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/16",
+          "passed": false,
+          "why": "AssertionError: out: True, exp: False"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/74",
+          "passed": false,
+          "why": "AssertionError: out: False, exp: True"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/84",
+          "passed": false,
+          "why": "AssertionError: out: 16, exp: 6"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/92",
+          "passed": false,
+          "why": "AssertionError: out: False, exp: True"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/99",
+          "passed": false,
+          "why": "AssertionError: out: b101, exp: -101"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/102",
+          "passed": false,
+          "why": "AssertionError: out: PythonProgram, exp: ___PythonProgram"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/103",
+          "passed": false,
+          "why": "AssertionError: out: 1, exp: 0"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/109",
+          "passed": false,
+          "why": "AssertionError: out: 6, exp: 3"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/113",
+          "passed": false,
+          "why": "AssertionError: out: False, exp: None"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/116",
+          "passed": false,
+          "why": "AssertionError: out: 17649, exp: 123456789"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/119",
+          "passed": false,
+          "why": "IndexError: list index out of range"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/124",
+          "passed": false,
+          "why": "TypeError: must be real number, not complex"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/126",
+          "passed": false,
+          "why": "timeout"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/130",
+          "passed": false,
+          "why": "AssertionError: out: 7, exp: 8"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/138",
+          "passed": false,
+          "why": "AssertionError: out: True, exp: False"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/160",
+          "passed": false,
+          "why": "AssertionError: out: (-7, 7), exp: (2, 1)"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/161",
+          "passed": false,
+          "why": "TypeError: unhashable type: 'list'"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/223",
+          "passed": false,
+          "why": "IndexError: list index out of range"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/235",
+          "passed": false,
+          "why": "AssertionError: out: 0, exp: 30"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/244",
+          "passed": false,
+          "why": "ValueError: math domain error"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/260",
+          "passed": false,
+          "why": "SyntaxError: invalid syntax"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/261",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/267",
+          "passed": false,
+          "why": "TypeError: 'float' object cannot be interpreted as an integer"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/278",
+          "passed": false,
+          "why": "AssertionError: out: 0, exp: 3"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/286",
+          "passed": false,
+          "why": "SyntaxError: invalid syntax"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/294",
+          "passed": false,
+          "why": "AssertionError: out: 7.5, exp: False"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/300",
+          "passed": false,
+          "why": "OverflowError: int too large to convert to float"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/301",
+          "passed": false,
+          "why": "AssertionError: out: 3, exp: 2"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/305",
+          "passed": false,
+          "why": "AssertionError: out: (), exp: None"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/310",
+          "passed": false,
+          "why": "numpy._core._exceptions._UFuncNoLoopError: ufunc 'subtract' did not contain a loop with signature matching types (dtype('<U1'), dtype('float64')) -> None"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/311",
+          "passed": false,
+          "why": "AssertionError: out: 31, exp: 15"
+        }
+      ]
+    },
+    "throughput_curve": {
+      "1": {
+        "wall_s": 64.9,
+        "items_per_s": 9.43,
+        "prefill_tok_s": 644.2,
+        "decode_tok_s": 107.5
+      },
+      "8": {
+        "wall_s": 64.19,
+        "items_per_s": 9.53,
+        "prefill_tok_s": 651.3,
+        "decode_tok_s": 108.7
+      },
+      "32": {
+        "wall_s": 63.48,
+        "items_per_s": 9.64,
+        "prefill_tok_s": 658.5,
+        "decode_tok_s": 109.9
+      },
+      "64": {
+        "wall_s": 62.76,
+        "items_per_s": 9.75,
+        "prefill_tok_s": 666.0,
+        "decode_tok_s": 111.2
+      }
+    },
+    "unload": {
+      "ok": true,
+      "unload_s": 2.5,
+      "unload_ms_reported": 2456
+    }
+  },
+  "text-quality": {
+    "instance": "text-quality",
+    "model": "Qwopus3.6-27B-Coder",
+    "engine": "vLLM",
+    "format": "NVFP4",
+    "tested": true,
+    "load": {
+      "ok": true,
+      "load_s": 69.6,
+      "load_ms_reported": 69615
+    },
+    "classification": {
+      "test": "classification",
+      "set": "SIB-200",
+      "label": "text-quality",
+      "model": "qwopus3.6-27b-coder",
+      "topic": "politics",
+      "concurrency": 8,
+      "batch": 5,
+      "answered": 4080,
+      "of": 4080,
+      "wall_s": 207.2,
+      "requests": 816,
+      "failed_requests": 0,
+      "prompt_tokens": 317224,
+      "completion_tokens": 46512,
+      "prefill_tok_s": 1531.0,
+      "decode_tok_s": 224.5,
+      "items_per_s": 19.69,
+      "quality": {
+        "n": 4080,
+        "positives": 600,
+        "accuracy": 0.9706,
+        "precision": 0.854,
+        "recall": 0.965,
+        "f1": 0.9061
+      },
+      "per_language": {
+        "ar": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9755,
+          "precision": 0.8571,
+          "recall": 1.0,
+          "f1": 0.9231
+        },
+        "bn": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9755,
+          "precision": 0.8788,
+          "recall": 0.9667,
+          "f1": 0.9206
+        },
+        "de": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9706,
+          "precision": 0.8529,
+          "recall": 0.9667,
+          "f1": 0.9062
+        },
+        "en": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9755,
+          "precision": 0.8788,
+          "recall": 0.9667,
+          "f1": 0.9206
+        },
+        "es": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9706,
+          "precision": 0.8529,
+          "recall": 0.9667,
+          "f1": 0.9062
+        },
+        "fr": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9755,
+          "precision": 0.8788,
+          "recall": 0.9667,
+          "f1": 0.9206
+        },
+        "hi": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9706,
+          "precision": 0.8529,
+          "recall": 0.9667,
+          "f1": 0.9062
+        },
+        "ja": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9706,
+          "precision": 0.875,
+          "recall": 0.9333,
+          "f1": 0.9032
+        },
+        "ko": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9755,
+          "precision": 0.9032,
+          "recall": 0.9333,
+          "f1": 0.918
+        },
+        "lt": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9706,
+          "precision": 0.8529,
+          "recall": 0.9667,
+          "f1": 0.9062
+        },
+        "pl": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9608,
+          "precision": 0.8056,
+          "recall": 0.9667,
+          "f1": 0.8788
+        },
+        "pt": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9804,
+          "precision": 0.9062,
+          "recall": 0.9667,
+          "f1": 0.9355
+        },
+        "ro": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9853,
+          "precision": 0.9091,
+          "recall": 1.0,
+          "f1": 0.9524
+        },
+        "ru": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9657,
+          "precision": 0.8286,
+          "recall": 0.9667,
+          "f1": 0.8923
+        },
+        "ta": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9412,
+          "precision": 0.725,
+          "recall": 0.9667,
+          "f1": 0.8286
+        },
+        "th": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9608,
+          "precision": 0.8235,
+          "recall": 0.9333,
+          "f1": 0.875
+        },
+        "tr": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9804,
+          "precision": 0.9062,
+          "recall": 0.9667,
+          "f1": 0.9355
+        },
+        "uk": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9657,
+          "precision": 0.8485,
+          "recall": 0.9333,
+          "f1": 0.8889
+        },
+        "vi": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9804,
+          "precision": 0.8824,
+          "recall": 1.0,
+          "f1": 0.9375
+        },
+        "zh": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9608,
+          "precision": 0.8056,
+          "recall": 0.9667,
+          "f1": 0.8788
+        }
+      }
+    },
+    "comprehension": {
+      "test": "comprehension",
+      "set": "Belebele",
+      "label": "text-quality",
+      "model": "qwopus3.6-27b-coder",
+      "concurrency": 8,
+      "answered": 2000,
+      "of": 2000,
+      "chance_level": 0.25,
+      "wall_s": 100.41,
+      "requests": 2000,
+      "failed_requests": 0,
+      "prompt_tokens": 626329,
+      "completion_tokens": 4000,
+      "prefill_tok_s": 6237.8,
+      "decode_tok_s": 39.8,
+      "items_per_s": 19.92,
+      "accuracy": 0.915,
+      "per_language": {
+        "ar": {
+          "n": 100,
+          "accuracy": 0.95
+        },
+        "bn": {
+          "n": 100,
+          "accuracy": 0.85
+        },
+        "de": {
+          "n": 100,
+          "accuracy": 0.92
+        },
+        "en": {
+          "n": 100,
+          "accuracy": 0.97
+        },
+        "es": {
+          "n": 100,
+          "accuracy": 0.94
+        },
+        "fr": {
+          "n": 100,
+          "accuracy": 0.95
+        },
+        "hi": {
+          "n": 100,
+          "accuracy": 0.88
+        },
+        "ja": {
+          "n": 100,
+          "accuracy": 0.9
+        },
+        "ko": {
+          "n": 100,
+          "accuracy": 0.91
+        },
+        "lt": {
+          "n": 100,
+          "accuracy": 0.88
+        },
+        "pl": {
+          "n": 100,
+          "accuracy": 0.93
+        },
+        "pt": {
+          "n": 100,
+          "accuracy": 0.94
+        },
+        "ro": {
+          "n": 100,
+          "accuracy": 0.94
+        },
+        "ru": {
+          "n": 100,
+          "accuracy": 0.96
+        },
+        "ta": {
+          "n": 100,
+          "accuracy": 0.81
+        },
+        "th": {
+          "n": 100,
+          "accuracy": 0.87
+        },
+        "tr": {
+          "n": 100,
+          "accuracy": 0.91
+        },
+        "uk": {
+          "n": 100,
+          "accuracy": 0.93
+        },
+        "vi": {
+          "n": 100,
+          "accuracy": 0.94
+        },
+        "zh": {
+          "n": 100,
+          "accuracy": 0.92
+        }
+      }
+    },
+    "translation": {
+      "test": "translation",
+      "set": "FLORES-200",
+      "reference": "human translations",
+      "label": "text-quality",
+      "model": "qwopus3.6-27b-coder",
+      "concurrency": 8,
+      "translated": 950,
+      "of": 950,
+      "wall_s": 188.89,
+      "requests": 950,
+      "failed_requests": 0,
+      "prompt_tokens": 77480,
+      "completion_tokens": 46683,
+      "prefill_tok_s": 410.2,
+      "decode_tok_s": 247.1,
+      "items_per_s": 5.03,
+      "chrf_mean": 52.99,
+      "chrf_by_language": {
+        "ar": 55.05,
+        "bn": 42.15,
+        "de": 62.97,
+        "es": 54.1,
+        "fr": 71.07,
+        "hi": 50.31,
+        "ja": 34.94,
+        "ko": 37.0,
+        "lt": 52.96,
+        "pl": 48.71,
+        "pt": 69.07,
+        "ro": 64.26,
+        "ru": 58.77,
+        "ta": 42.38,
+        "th": 48.1,
+        "tr": 56.07,
+        "uk": 55.36,
+        "vi": 63.36,
+        "zh": 40.08
+      },
+      "english_markers_total": 116,
+      "numbers_lost_total": 4
+    },
+    "coding": {
+      "test": "coding",
+      "set": "HumanEval+ / MBPP+",
+      "label": "text-quality",
+      "model": "qwopus3.6-27b-coder",
+      "concurrency": 8,
+      "problems": 541,
+      "excluded": {
+        "HumanEval/32": "the set's own reference answer fails the set's own tests"
+      },
+      "wall_s": 304.9,
+      "requests": 541,
+      "failed_requests": 0,
+      "prompt_tokens": 63497,
+      "completion_tokens": 71145,
+      "prefill_tok_s": 208.3,
+      "decode_tok_s": 233.3,
+      "items_per_s": 1.77,
+      "passed": 441,
+      "pass_rate": 0.8152,
+      "by_set": {
+        "humanevalplus": {
+          "n": 163,
+          "passed": 152,
+          "pass_rate": 0.9325
+        },
+        "mbppplus": {
+          "n": 378,
+          "passed": 289,
+          "pass_rate": 0.7646
+        }
+      },
+      "failures": [
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/46",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/76",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/91",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/108",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/132",
+          "passed": false,
+          "why": "SyntaxError: invalid syntax"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/134",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/140",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/145",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/152",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/154",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/163",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/7",
+          "passed": false,
+          "why": "AssertionError: out: {'very', 'that', 'with', 'words', 'characters', 'least', 'long.', 'This', 'long', 'string'}, exp: {'very', 'that', 'with', 'words', 'characters', 'least', 'Thi"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/20",
+          "passed": false,
+          "why": "AssertionError: out: False, exp: True"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/63",
+          "passed": false,
+          "why": "AssertionError: out: 6, exp: 7"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/74",
+          "passed": false,
+          "why": "AssertionError: out: True, exp: False"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/84",
+          "passed": false,
+          "why": "AssertionError: out: 10, exp: 6"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/92",
+          "passed": false,
+          "why": "AssertionError: out: False, exp: True"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/99",
+          "passed": false,
+          "why": "AssertionError: out: , exp: -101"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/102",
+          "passed": false,
+          "why": "AssertionError: out: PythonProgram, exp: ___PythonProgram"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/103",
+          "passed": false,
+          "why": "AssertionError: out: 1, exp: 4"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/109",
+          "passed": false,
+          "why": "SyntaxError: invalid syntax"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/113",
+          "passed": false,
+          "why": "AssertionError: out: False, exp: None"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/119",
+          "passed": false,
+          "why": "IndexError: list index out of range"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/124",
+          "passed": false,
+          "why": "TypeError: must be real number, not complex"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/126",
+          "passed": false,
+          "why": "TypeError: sum() missing 1 required positional argument: 'b'"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/137",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/142",
+          "passed": false,
+          "why": "IndexError: list index out of range"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/160",
+          "passed": false,
+          "why": "AssertionError: out: (-7, 7), exp: (2, 1)"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/161",
+          "passed": false,
+          "why": "TypeError: unhashable type: 'list'"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/165",
+          "passed": false,
+          "why": "IndexError: string index out of range"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/223",
+          "passed": false,
+          "why": "IndexError: list index out of range"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/235",
+          "passed": false,
+          "why": "AssertionError: out: 1431655775, exp: 10"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/244",
+          "passed": false,
+          "why": "AssertionError: out: 25, exp: 36"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/260",
+          "passed": false,
+          "why": "AssertionError: out: 73, exp: 7"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/267",
+          "passed": false,
+          "why": "TypeError: 'float' object cannot be interpreted as an integer"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/274",
+          "passed": false,
+          "why": "NameError: name 'math' is not defined. Did you forget to import 'math'?"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/278",
+          "passed": false,
+          "why": "AssertionError: out: 6, exp: 5"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/286",
+          "passed": false,
+          "why": "AssertionError: out: 88, exp: 59"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/294",
+          "passed": false,
+          "why": "AssertionError: out: 7.5, exp: False"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/300",
+          "passed": false,
+          "why": "OverflowError: int too large to convert to float"
+        }
+      ]
+    },
+    "throughput_curve": {
+      "1": {
+        "wall_s": 188.13,
+        "items_per_s": 3.25,
+        "prefill_tok_s": 220.1,
+        "decode_tok_s": 37.1
+      },
+      "8": {
+        "wall_s": 31.53,
+        "items_per_s": 19.41,
+        "prefill_tok_s": 1313.0,
+        "decode_tok_s": 221.3
+      },
+      "32": {
+        "wall_s": 13.97,
+        "items_per_s": 43.82,
+        "prefill_tok_s": 2964.3,
+        "decode_tok_s": 499.6
+      },
+      "64": {
+        "wall_s": 13.94,
+        "items_per_s": 43.92,
+        "prefill_tok_s": 2971.0,
+        "decode_tok_s": 500.7
+      }
+    },
+    "unload": {
+      "ok": true,
+      "unload_s": 2.2,
+      "unload_ms_reported": 2111
+    }
+  },
+  "coder-fast": {
+    "instance": "coder-fast",
+    "model": "Qwen3-Coder-30B-A3B",
+    "engine": "vLLM",
+    "format": "NVFP4",
+    "tested": true,
+    "load": {
+      "ok": true,
+      "load_s": 45.1,
+      "load_ms_reported": 45071
+    },
+    "classification": {
+      "test": "classification",
+      "set": "SIB-200",
+      "label": "coder-fast",
+      "model": "qwen3-coder-30b-a3b",
+      "topic": "politics",
+      "concurrency": 8,
+      "batch": 5,
+      "answered": 4080,
+      "of": 4080,
+      "wall_s": 81.76,
+      "requests": 816,
+      "failed_requests": 0,
+      "prompt_tokens": 388887,
+      "completion_tokens": 46968,
+      "prefill_tok_s": 4756.3,
+      "decode_tok_s": 574.4,
+      "items_per_s": 49.9,
+      "quality": {
+        "n": 4080,
+        "positives": 600,
+        "accuracy": 0.9331,
+        "precision": 0.9118,
+        "recall": 0.6033,
+        "f1": 0.7262
+      },
+      "per_language": {
+        "ar": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9314,
+          "precision": 0.8636,
+          "recall": 0.6333,
+          "f1": 0.7308
+        },
+        "bn": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9216,
+          "precision": 1.0,
+          "recall": 0.4667,
+          "f1": 0.6364
+        },
+        "de": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9314,
+          "precision": 0.9,
+          "recall": 0.6,
+          "f1": 0.72
+        },
+        "en": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9412,
+          "precision": 0.95,
+          "recall": 0.6333,
+          "f1": 0.76
+        },
+        "es": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9412,
+          "precision": 0.9091,
+          "recall": 0.6667,
+          "f1": 0.7692
+        },
+        "fr": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9412,
+          "precision": 0.9091,
+          "recall": 0.6667,
+          "f1": 0.7692
+        },
+        "hi": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9167,
+          "precision": 0.8421,
+          "recall": 0.5333,
+          "f1": 0.6531
+        },
+        "ja": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9216,
+          "precision": 1.0,
+          "recall": 0.4667,
+          "f1": 0.6364
+        },
+        "ko": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9265,
+          "precision": 0.8947,
+          "recall": 0.5667,
+          "f1": 0.6939
+        },
+        "lt": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9314,
+          "precision": 0.9,
+          "recall": 0.6,
+          "f1": 0.72
+        },
+        "pl": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9265,
+          "precision": 0.9412,
+          "recall": 0.5333,
+          "f1": 0.6809
+        },
+        "pt": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9314,
+          "precision": 0.8636,
+          "recall": 0.6333,
+          "f1": 0.7308
+        },
+        "ro": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9314,
+          "precision": 0.9,
+          "recall": 0.6,
+          "f1": 0.72
+        },
+        "ru": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9216,
+          "precision": 0.8889,
+          "recall": 0.5333,
+          "f1": 0.6667
+        },
+        "ta": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9363,
+          "precision": 0.9474,
+          "recall": 0.6,
+          "f1": 0.7347
+        },
+        "th": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9314,
+          "precision": 0.8636,
+          "recall": 0.6333,
+          "f1": 0.7308
+        },
+        "tr": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9314,
+          "precision": 0.9,
+          "recall": 0.6,
+          "f1": 0.72
+        },
+        "uk": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9461,
+          "precision": 0.88,
+          "recall": 0.7333,
+          "f1": 0.8
+        },
+        "vi": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.951,
+          "precision": 1.0,
+          "recall": 0.6667,
+          "f1": 0.8
+        },
+        "zh": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.951,
+          "precision": 0.9545,
+          "recall": 0.7,
+          "f1": 0.8077
+        }
+      }
+    },
+    "comprehension": {
+      "test": "comprehension",
+      "set": "Belebele",
+      "label": "coder-fast",
+      "model": "qwen3-coder-30b-a3b",
+      "concurrency": 8,
+      "answered": 2000,
+      "of": 2000,
+      "chance_level": 0.25,
+      "wall_s": 33.59,
+      "requests": 2000,
+      "failed_requests": 0,
+      "prompt_tokens": 815445,
+      "completion_tokens": 5247,
+      "prefill_tok_s": 24274.8,
+      "decode_tok_s": 156.2,
+      "items_per_s": 59.54,
+      "accuracy": 0.8465,
+      "per_language": {
+        "ar": {
+          "n": 100,
+          "accuracy": 0.87
+        },
+        "bn": {
+          "n": 100,
+          "accuracy": 0.69
+        },
+        "de": {
+          "n": 100,
+          "accuracy": 0.87
+        },
+        "en": {
+          "n": 100,
+          "accuracy": 0.97
+        },
+        "es": {
+          "n": 100,
+          "accuracy": 0.88
+        },
+        "fr": {
+          "n": 100,
+          "accuracy": 0.92
+        },
+        "hi": {
+          "n": 100,
+          "accuracy": 0.75
+        },
+        "ja": {
+          "n": 100,
+          "accuracy": 0.84
+        },
+        "ko": {
+          "n": 100,
+          "accuracy": 0.83
+        },
+        "lt": {
+          "n": 100,
+          "accuracy": 0.71
+        },
+        "pl": {
+          "n": 100,
+          "accuracy": 0.89
+        },
+        "pt": {
+          "n": 100,
+          "accuracy": 0.91
+        },
+        "ro": {
+          "n": 100,
+          "accuracy": 0.89
+        },
+        "ru": {
+          "n": 100,
+          "accuracy": 0.94
+        },
+        "ta": {
+          "n": 100,
+          "accuracy": 0.62
+        },
+        "th": {
+          "n": 100,
+          "accuracy": 0.84
+        },
+        "tr": {
+          "n": 100,
+          "accuracy": 0.89
+        },
+        "uk": {
+          "n": 100,
+          "accuracy": 0.84
+        },
+        "vi": {
+          "n": 100,
+          "accuracy": 0.85
+        },
+        "zh": {
+          "n": 100,
+          "accuracy": 0.93
+        }
+      }
+    },
+    "translation": {
+      "test": "translation",
+      "set": "FLORES-200",
+      "reference": "human translations",
+      "label": "coder-fast",
+      "model": "qwen3-coder-30b-a3b",
+      "concurrency": 8,
+      "translated": 950,
+      "of": 950,
+      "wall_s": 115.15,
+      "requests": 950,
+      "failed_requests": 0,
+      "prompt_tokens": 73794,
+      "completion_tokens": 77815,
+      "prefill_tok_s": 640.8,
+      "decode_tok_s": 675.8,
+      "items_per_s": 8.25,
+      "chrf_mean": 45.38,
+      "chrf_by_language": {
+        "ar": 42.78,
+        "bn": 31.07,
+        "de": 55.19,
+        "es": 51.28,
+        "fr": 66.42,
+        "hi": 44.84,
+        "ja": 29.15,
+        "ko": 31.1,
+        "lt": 42.86,
+        "pl": 43.55,
+        "pt": 63.32,
+        "ro": 55.77,
+        "ru": 51.23,
+        "ta": 29.12,
+        "th": 40.2,
+        "tr": 46.67,
+        "uk": 46.26,
+        "vi": 56.54,
+        "zh": 34.96
+      },
+      "english_markers_total": 76,
+      "numbers_lost_total": 9
+    },
+    "coding": {
+      "test": "coding",
+      "set": "HumanEval+ / MBPP+",
+      "label": "coder-fast",
+      "model": "qwen3-coder-30b-a3b",
+      "concurrency": 8,
+      "problems": 541,
+      "excluded": {
+        "HumanEval/32": "the set's own reference answer fails the set's own tests"
+      },
+      "wall_s": 153.6,
+      "requests": 541,
+      "failed_requests": 0,
+      "prompt_tokens": 59007,
+      "completion_tokens": 63964,
+      "prefill_tok_s": 384.2,
+      "decode_tok_s": 416.4,
+      "items_per_s": 3.52,
+      "passed": 428,
+      "pass_rate": 0.7911,
+      "by_set": {
+        "humanevalplus": {
+          "n": 163,
+          "passed": 145,
+          "pass_rate": 0.8896
+        },
+        "mbppplus": {
+          "n": 378,
+          "passed": 283,
+          "pass_rate": 0.7487
+        }
+      },
+      "failures": [
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/22",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/26",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/67",
+          "passed": false,
+          "why": "ValueError: invalid literal for int() with base 10: 'oranges'"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/76",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/91",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/93",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/115",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/116",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/122",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/125",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/127",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/129",
+          "passed": false,
+          "why": "UnboundLocalError: cannot access local variable 'min_val' where it is not associated with a value"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/130",
+          "passed": false,
+          "why": "SyntaxError: invalid syntax"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/132",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/134",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/145",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/160",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/163",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/7",
+          "passed": false,
+          "why": "AssertionError: out: {'long', 'with', 'least', 'long.', 'very', 'This', 'words', 'string', 'that', 'characters'}, exp: {'long', 'with', 'least', 'very', 'This', 'words', 'string', "
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/16",
+          "passed": false,
+          "why": "AssertionError: out: False, exp: True"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/69",
+          "passed": false,
+          "why": "AssertionError: out: True, exp: False"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/74",
+          "passed": false,
+          "why": "AssertionError: out: False, exp: True"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/92",
+          "passed": false,
+          "why": "AssertionError: out: False, exp: True"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/99",
+          "passed": false,
+          "why": "AssertionError: out: , exp: -101"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/102",
+          "passed": false,
+          "why": "AssertionError: out: PythonProgram, exp: ___PythonProgram"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/103",
+          "passed": false,
+          "why": "AssertionError: out: 11, exp: 4"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/109",
+          "passed": false,
+          "why": "AssertionError: out: 2, exp: 1"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/113",
+          "passed": false,
+          "why": "AssertionError: out: False, exp: None"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/119",
+          "passed": false,
+          "why": "AssertionError: out: -1, exp: 0"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/124",
+          "passed": false,
+          "why": "TypeError: must be real number, not complex"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/125",
+          "passed": false,
+          "why": "AssertionError: out: 4, exp: 6"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/126",
+          "passed": false,
+          "why": "TypeError: sum() missing 1 required positional argument: 'b'"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/130",
+          "passed": false,
+          "why": "AssertionError: out: 7, exp: 8"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/138",
+          "passed": false,
+          "why": "AssertionError: out: True, exp: False"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/142",
+          "passed": false,
+          "why": "IndexError: list index out of range"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/160",
+          "passed": false,
+          "why": "AssertionError: out: (-7, 7), exp: (2, 1)"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/223",
+          "passed": false,
+          "why": "IndexError: list index out of range"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/235",
+          "passed": false,
+          "why": "AssertionError: out: 15, exp: 10"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/237",
+          "passed": false,
+          "why": "AssertionError: out: {(3, 1): 2, (2, 5): 2, (6, 3): 1}, exp: {(1, 3): 2, (2, 5): 2, (3, 6): 1}"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/244",
+          "passed": false,
+          "why": "AssertionError: out: 9, exp: 16"
+        }
+      ]
+    },
+    "throughput_curve": {
+      "1": {
+        "wall_s": 50.85,
+        "items_per_s": 12.04,
+        "prefill_tok_s": 840.8,
+        "decode_tok_s": 138.7
+      },
+      "8": {
+        "wall_s": 9.87,
+        "items_per_s": 62.03,
+        "prefill_tok_s": 4333.1,
+        "decode_tok_s": 710.3
+      },
+      "32": {
+        "wall_s": 3.49,
+        "items_per_s": 175.61,
+        "prefill_tok_s": 12266.7,
+        "decode_tok_s": 2012.6
+      },
+      "64": {
+        "wall_s": 3.46,
+        "items_per_s": 176.64,
+        "prefill_tok_s": 12339.1,
+        "decode_tok_s": 2024.5
+      }
+    },
+    "unload": {
+      "ok": true,
+      "unload_s": 2.0,
+      "unload_ms_reported": 1974
+    }
+  },
+  "qwen-coder": {
+    "instance": "qwen-coder",
+    "model": "Qwen3.6-35B-A3B",
+    "engine": "llama.cpp",
+    "format": "GGUF",
+    "tested": true,
+    "load": {
+      "ok": true,
+      "load_s": 10.8,
+      "load_ms_reported": 10732
+    },
+    "classification": {
+      "test": "classification",
+      "set": "SIB-200",
+      "label": "qwen-coder",
+      "model": "Qwen3.6-35B-A3B-UD-Q4_K_M",
+      "topic": "politics",
+      "concurrency": 8,
+      "batch": 5,
+      "answered": 4080,
+      "of": 4080,
+      "wall_s": 507.86,
+      "requests": 816,
+      "failed_requests": 0,
+      "prompt_tokens": 317972,
+      "completion_tokens": 46512,
+      "prefill_tok_s": 626.1,
+      "decode_tok_s": 91.6,
+      "items_per_s": 8.03,
+      "quality": {
+        "n": 4080,
+        "positives": 600,
+        "accuracy": 0.9689,
+        "precision": 0.8858,
+        "recall": 0.905,
+        "f1": 0.8953
+      },
+      "per_language": {
+        "ar": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9755,
+          "precision": 0.9032,
+          "recall": 0.9333,
+          "f1": 0.918
+        },
+        "bn": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9706,
+          "precision": 0.9286,
+          "recall": 0.8667,
+          "f1": 0.8966
+        },
+        "de": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9657,
+          "precision": 0.8966,
+          "recall": 0.8667,
+          "f1": 0.8814
+        },
+        "en": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9755,
+          "precision": 0.9032,
+          "recall": 0.9333,
+          "f1": 0.918
+        },
+        "es": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9804,
+          "precision": 0.8824,
+          "recall": 1.0,
+          "f1": 0.9375
+        },
+        "fr": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9608,
+          "precision": 0.8438,
+          "recall": 0.9,
+          "f1": 0.871
+        },
+        "hi": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9608,
+          "precision": 0.8438,
+          "recall": 0.9,
+          "f1": 0.871
+        },
+        "ja": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9608,
+          "precision": 0.8438,
+          "recall": 0.9,
+          "f1": 0.871
+        },
+        "ko": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9755,
+          "precision": 0.931,
+          "recall": 0.9,
+          "f1": 0.9153
+        },
+        "lt": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9608,
+          "precision": 0.8929,
+          "recall": 0.8333,
+          "f1": 0.8621
+        },
+        "pl": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9657,
+          "precision": 0.871,
+          "recall": 0.9,
+          "f1": 0.8852
+        },
+        "pt": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9608,
+          "precision": 0.8438,
+          "recall": 0.9,
+          "f1": 0.871
+        },
+        "ro": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9657,
+          "precision": 0.8966,
+          "recall": 0.8667,
+          "f1": 0.8814
+        },
+        "ru": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9657,
+          "precision": 0.8966,
+          "recall": 0.8667,
+          "f1": 0.8814
+        },
+        "ta": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9755,
+          "precision": 0.931,
+          "recall": 0.9,
+          "f1": 0.9153
+        },
+        "th": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9657,
+          "precision": 0.871,
+          "recall": 0.9,
+          "f1": 0.8852
+        },
+        "tr": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9706,
+          "precision": 0.875,
+          "recall": 0.9333,
+          "f1": 0.9032
+        },
+        "uk": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9706,
+          "precision": 0.9,
+          "recall": 0.9,
+          "f1": 0.9
+        },
+        "vi": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9755,
+          "precision": 0.8788,
+          "recall": 0.9667,
+          "f1": 0.9206
+        },
+        "zh": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9755,
+          "precision": 0.9032,
+          "recall": 0.9333,
+          "f1": 0.918
+        }
+      }
+    },
+    "comprehension": {
+      "test": "comprehension",
+      "set": "Belebele",
+      "label": "qwen-coder",
+      "model": "Qwen3.6-35B-A3B-UD-Q4_K_M",
+      "concurrency": 8,
+      "answered": 1998,
+      "of": 2000,
+      "chance_level": 0.25,
+      "wall_s": 461.76,
+      "requests": 2000,
+      "failed_requests": 2,
+      "prompt_tokens": 628292,
+      "completion_tokens": 4006,
+      "prefill_tok_s": 1360.6,
+      "decode_tok_s": 8.7,
+      "items_per_s": 4.33,
+      "accuracy": 0.9135,
+      "per_language": {
+        "ar": {
+          "n": 100,
+          "accuracy": 0.93
+        },
+        "bn": {
+          "n": 100,
+          "accuracy": 0.82
+        },
+        "de": {
+          "n": 100,
+          "accuracy": 0.95
+        },
+        "en": {
+          "n": 100,
+          "accuracy": 0.96
+        },
+        "es": {
+          "n": 100,
+          "accuracy": 0.94
+        },
+        "fr": {
+          "n": 100,
+          "accuracy": 0.96
+        },
+        "hi": {
+          "n": 100,
+          "accuracy": 0.86
+        },
+        "ja": {
+          "n": 99,
+          "accuracy": 0.899
+        },
+        "ko": {
+          "n": 100,
+          "accuracy": 0.94
+        },
+        "lt": {
+          "n": 100,
+          "accuracy": 0.85
+        },
+        "pl": {
+          "n": 100,
+          "accuracy": 0.92
+        },
+        "pt": {
+          "n": 100,
+          "accuracy": 0.94
+        },
+        "ro": {
+          "n": 100,
+          "accuracy": 0.93
+        },
+        "ru": {
+          "n": 100,
+          "accuracy": 0.94
+        },
+        "ta": {
+          "n": 100,
+          "accuracy": 0.88
+        },
+        "th": {
+          "n": 100,
+          "accuracy": 0.89
+        },
+        "tr": {
+          "n": 100,
+          "accuracy": 0.89
+        },
+        "uk": {
+          "n": 100,
+          "accuracy": 0.94
+        },
+        "vi": {
+          "n": 100,
+          "accuracy": 0.91
+        },
+        "zh": {
+          "n": 99,
+          "accuracy": 0.9394
+        }
+      }
+    },
+    "translation": {
+      "test": "translation",
+      "set": "FLORES-200",
+      "reference": "human translations",
+      "label": "qwen-coder",
+      "model": "Qwen3.6-35B-A3B-UD-Q4_K_M",
+      "concurrency": 8,
+      "translated": 950,
+      "of": 950,
+      "wall_s": 492.87,
+      "requests": 950,
+      "failed_requests": 0,
+      "prompt_tokens": 77480,
+      "completion_tokens": 45198,
+      "prefill_tok_s": 157.2,
+      "decode_tok_s": 91.7,
+      "items_per_s": 1.93,
+      "chrf_mean": 54.24,
+      "chrf_by_language": {
+        "ar": 54.5,
+        "bn": 43.86,
+        "de": 61.45,
+        "es": 55.63,
+        "fr": 72.34,
+        "hi": 52.81,
+        "ja": 36.63,
+        "ko": 36.44,
+        "lt": 55.1,
+        "pl": 51.35,
+        "pt": 70.25,
+        "ro": 65.69,
+        "ru": 58.09,
+        "ta": 49.13,
+        "th": 49.36,
+        "tr": 57.6,
+        "uk": 55.68,
+        "vi": 63.35,
+        "zh": 41.26
+      },
+      "english_markers_total": 71,
+      "numbers_lost_total": 13
+    },
+    "coding": {
+      "test": "coding",
+      "set": "HumanEval+ / MBPP+",
+      "label": "qwen-coder",
+      "model": "Qwen3.6-35B-A3B-UD-Q4_K_M",
+      "concurrency": 8,
+      "problems": 541,
+      "excluded": {
+        "HumanEval/32": "the set's own reference answer fails the set's own tests"
+      },
+      "wall_s": 486.95,
+      "requests": 541,
+      "failed_requests": 0,
+      "prompt_tokens": 63497,
+      "completion_tokens": 65569,
+      "prefill_tok_s": 130.4,
+      "decode_tok_s": 134.7,
+      "items_per_s": 1.11,
+      "passed": 437,
+      "pass_rate": 0.8078,
+      "by_set": {
+        "humanevalplus": {
+          "n": 163,
+          "passed": 147,
+          "pass_rate": 0.9018
+        },
+        "mbppplus": {
+          "n": 378,
+          "passed": 290,
+          "pass_rate": 0.7672
+        }
+      },
+      "failures": [
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/0",
+          "passed": false,
+          "why": "IndentationError: unexpected indent"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/5",
+          "passed": false,
+          "why": "IndentationError: unexpected indent"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/9",
+          "passed": false,
+          "why": "IndentationError: unexpected indent"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/12",
+          "passed": false,
+          "why": "IndentationError: unexpected indent"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/38",
+          "passed": false,
+          "why": "IndentationError: unexpected indent"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/76",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/91",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/95",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/99",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/124",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/132",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/134",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/145",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/151",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/154",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/163",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/7",
+          "passed": false,
+          "why": "AssertionError: out: {'string', 'This', 'long.', 'that', 'words', 'least', 'characters', 'very', 'long', 'with'}, exp: {'string', 'This', 'that', 'words', 'least', 'characters', 'v"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/20",
+          "passed": false,
+          "why": "AssertionError: out: False, exp: True"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/63",
+          "passed": false,
+          "why": "AssertionError: out: -1, exp: 15"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/74",
+          "passed": false,
+          "why": "AssertionError: out: False, exp: True"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/79",
+          "passed": false,
+          "why": "AssertionError: out: True, exp: False"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/92",
+          "passed": false,
+          "why": "AssertionError: out: True, exp: False"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/99",
+          "passed": false,
+          "why": "AssertionError: out: , exp: -101"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/101",
+          "passed": false,
+          "why": "AssertionError: out: 5, exp: 3"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/102",
+          "passed": false,
+          "why": "AssertionError: out: PythonProgram, exp: ___PythonProgram"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/103",
+          "passed": false,
+          "why": "AssertionError: out: 1, exp: 0"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/109",
+          "passed": false,
+          "why": "AssertionError: out: 0, exp: 3"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/113",
+          "passed": false,
+          "why": "AssertionError: out: False, exp: None"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/119",
+          "passed": false,
+          "why": "IndexError: list index out of range"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/124",
+          "passed": false,
+          "why": "TypeError: angle_complex() takes 1 positional argument but 2 were given"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/129",
+          "passed": false,
+          "why": "AssertionError: out: False, exp: True"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/137",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/138",
+          "passed": false,
+          "why": "AssertionError: out: False, exp: True"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/160",
+          "passed": false,
+          "why": "AssertionError: out: (-7, 7), exp: (2, 1)"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/161",
+          "passed": false,
+          "why": "TypeError: unhashable type: 'list'"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/223",
+          "passed": false,
+          "why": "IndexError: list index out of range"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/235",
+          "passed": false,
+          "why": "AssertionError: out: 1431655775, exp: 10"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/244",
+          "passed": false,
+          "why": "TypeError: 'float' object cannot be interpreted as an integer"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/245",
+          "passed": false,
+          "why": "NameError: name 'msds' is not defined. Did you mean: 'msis'?"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/255",
+          "passed": false,
+          "why": "AssertionError: out: [('Red', 'Red'), ('Red', 'Green'), ('Red', 'Blue'), ('Green', 'Red'), ('Green', 'Green'), ('Green', 'Blue'), ('Blue', 'Red'), ('Blue', 'Green'), ('Blue', 'Blue"
+        }
+      ]
+    },
+    "throughput_curve": {
+      "1": {
+        "wall_s": 76.1,
+        "items_per_s": 8.04,
+        "prefill_tok_s": 544.0,
+        "decode_tok_s": 91.7
+      },
+      "8": {
+        "wall_s": 75.24,
+        "items_per_s": 8.13,
+        "prefill_tok_s": 550.3,
+        "decode_tok_s": 92.7
+      },
+      "32": {
+        "wall_s": 73.25,
+        "items_per_s": 8.36,
+        "prefill_tok_s": 565.2,
+        "decode_tok_s": 95.3
+      },
+      "64": {
+        "wall_s": 76.0,
+        "items_per_s": 8.05,
+        "prefill_tok_s": 544.7,
+        "decode_tok_s": 91.8
+      }
+    },
+    "unload": {
+      "ok": true,
+      "unload_s": 2.6,
+      "unload_ms_reported": 2505
+    }
+  },
+  "qwen36-nvfp4": {
+    "instance": "qwen36-nvfp4",
+    "model": "Qwen3.6-35B-A3B",
+    "engine": "vLLM",
+    "format": "NVFP4",
+    "tested": true,
+    "load": {
+      "ok": true,
+      "load_s": 98.1,
+      "load_ms_reported": 98122
+    },
+    "classification": {
+      "test": "classification",
+      "set": "SIB-200",
+      "label": "qwen36-nvfp4",
+      "model": "qwen3.6-35b-a3b",
+      "topic": "politics",
+      "concurrency": 8,
+      "batch": 5,
+      "answered": 4080,
+      "of": 4080,
+      "wall_s": 76.11,
+      "requests": 816,
+      "failed_requests": 0,
+      "prompt_tokens": 343098,
+      "completion_tokens": 46524,
+      "prefill_tok_s": 4507.8,
+      "decode_tok_s": 611.3,
+      "items_per_s": 53.6,
+      "quality": {
+        "n": 4080,
+        "positives": 600,
+        "accuracy": 0.9669,
+        "precision": 0.878,
+        "recall": 0.9,
+        "f1": 0.8889
+      },
+      "per_language": {
+        "ar": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9706,
+          "precision": 0.875,
+          "recall": 0.9333,
+          "f1": 0.9032
+        },
+        "bn": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.951,
+          "precision": 0.8333,
+          "recall": 0.8333,
+          "f1": 0.8333
+        },
+        "de": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9657,
+          "precision": 0.8966,
+          "recall": 0.8667,
+          "f1": 0.8814
+        },
+        "en": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9706,
+          "precision": 0.9,
+          "recall": 0.9,
+          "f1": 0.9
+        },
+        "es": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9804,
+          "precision": 0.8824,
+          "recall": 1.0,
+          "f1": 0.9375
+        },
+        "fr": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9755,
+          "precision": 0.931,
+          "recall": 0.9,
+          "f1": 0.9153
+        },
+        "hi": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9657,
+          "precision": 0.8966,
+          "recall": 0.8667,
+          "f1": 0.8814
+        },
+        "ja": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9657,
+          "precision": 0.8286,
+          "recall": 0.9667,
+          "f1": 0.8923
+        },
+        "ko": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9755,
+          "precision": 0.9032,
+          "recall": 0.9333,
+          "f1": 0.918
+        },
+        "lt": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9559,
+          "precision": 0.8889,
+          "recall": 0.8,
+          "f1": 0.8421
+        },
+        "pl": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9657,
+          "precision": 0.871,
+          "recall": 0.9,
+          "f1": 0.8852
+        },
+        "pt": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9706,
+          "precision": 0.9,
+          "recall": 0.9,
+          "f1": 0.9
+        },
+        "ro": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9657,
+          "precision": 0.8966,
+          "recall": 0.8667,
+          "f1": 0.8814
+        },
+        "ru": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9657,
+          "precision": 0.8966,
+          "recall": 0.8667,
+          "f1": 0.8814
+        },
+        "ta": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9363,
+          "precision": 0.7742,
+          "recall": 0.8,
+          "f1": 0.7869
+        },
+        "th": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9608,
+          "precision": 0.8438,
+          "recall": 0.9,
+          "f1": 0.871
+        },
+        "tr": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9706,
+          "precision": 0.875,
+          "recall": 0.9333,
+          "f1": 0.9032
+        },
+        "uk": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9755,
+          "precision": 0.9032,
+          "recall": 0.9333,
+          "f1": 0.918
+        },
+        "vi": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9755,
+          "precision": 0.8788,
+          "recall": 0.9667,
+          "f1": 0.9206
+        },
+        "zh": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9755,
+          "precision": 0.9032,
+          "recall": 0.9333,
+          "f1": 0.918
+        }
+      }
+    },
+    "comprehension": {
+      "test": "comprehension",
+      "set": "Belebele",
+      "label": "qwen36-nvfp4",
+      "model": "qwen3.6-35b-a3b",
+      "concurrency": 8,
+      "answered": 2000,
+      "of": 2000,
+      "chance_level": 0.25,
+      "wall_s": 65.51,
+      "requests": 2000,
+      "failed_requests": 0,
+      "prompt_tokens": 692294,
+      "completion_tokens": 4000,
+      "prefill_tok_s": 10568.0,
+      "decode_tok_s": 61.1,
+      "items_per_s": 30.53,
+      "accuracy": 0.895,
+      "per_language": {
+        "ar": {
+          "n": 100,
+          "accuracy": 0.94
+        },
+        "bn": {
+          "n": 100,
+          "accuracy": 0.81
+        },
+        "de": {
+          "n": 100,
+          "accuracy": 0.92
+        },
+        "en": {
+          "n": 100,
+          "accuracy": 0.96
+        },
+        "es": {
+          "n": 100,
+          "accuracy": 0.94
+        },
+        "fr": {
+          "n": 100,
+          "accuracy": 0.94
+        },
+        "hi": {
+          "n": 100,
+          "accuracy": 0.8
+        },
+        "ja": {
+          "n": 100,
+          "accuracy": 0.87
+        },
+        "ko": {
+          "n": 100,
+          "accuracy": 0.94
+        },
+        "lt": {
+          "n": 100,
+          "accuracy": 0.85
+        },
+        "pl": {
+          "n": 100,
+          "accuracy": 0.91
+        },
+        "pt": {
+          "n": 100,
+          "accuracy": 0.93
+        },
+        "ro": {
+          "n": 100,
+          "accuracy": 0.92
+        },
+        "ru": {
+          "n": 100,
+          "accuracy": 0.93
+        },
+        "ta": {
+          "n": 100,
+          "accuracy": 0.7
+        },
+        "th": {
+          "n": 100,
+          "accuracy": 0.89
+        },
+        "tr": {
+          "n": 100,
+          "accuracy": 0.88
+        },
+        "uk": {
+          "n": 100,
+          "accuracy": 0.94
+        },
+        "vi": {
+          "n": 100,
+          "accuracy": 0.9
+        },
+        "zh": {
+          "n": 100,
+          "accuracy": 0.93
+        }
+      }
+    },
+    "translation": {
+      "test": "translation",
+      "set": "FLORES-200",
+      "reference": "human translations",
+      "label": "qwen36-nvfp4",
+      "model": "qwen3.6-35b-a3b",
+      "concurrency": 8,
+      "translated": 950,
+      "of": 950,
+      "wall_s": 98.49,
+      "requests": 950,
+      "failed_requests": 0,
+      "prompt_tokens": 77480,
+      "completion_tokens": 45602,
+      "prefill_tok_s": 786.7,
+      "decode_tok_s": 463.0,
+      "items_per_s": 9.65,
+      "chrf_mean": 53.79,
+      "chrf_by_language": {
+        "ar": 54.05,
+        "bn": 42.92,
+        "de": 62.13,
+        "es": 55.17,
+        "fr": 70.62,
+        "hi": 51.87,
+        "ja": 37.08,
+        "ko": 35.86,
+        "lt": 56.46,
+        "pl": 51.2,
+        "pt": 70.29,
+        "ro": 64.74,
+        "ru": 59.44,
+        "ta": 47.83,
+        "th": 48.3,
+        "tr": 56.69,
+        "uk": 55.46,
+        "vi": 62.33,
+        "zh": 39.57
+      },
+      "english_markers_total": 72,
+      "numbers_lost_total": 9
+    },
+    "coding": {
+      "test": "coding",
+      "set": "HumanEval+ / MBPP+",
+      "label": "qwen36-nvfp4",
+      "model": "qwen3.6-35b-a3b",
+      "concurrency": 8,
+      "problems": 541,
+      "excluded": {
+        "HumanEval/32": "the set's own reference answer fails the set's own tests"
+      },
+      "wall_s": 147.69,
+      "requests": 541,
+      "failed_requests": 0,
+      "prompt_tokens": 63497,
+      "completion_tokens": 70959,
+      "prefill_tok_s": 429.9,
+      "decode_tok_s": 480.5,
+      "items_per_s": 3.66,
+      "passed": 438,
+      "pass_rate": 0.8096,
+      "by_set": {
+        "humanevalplus": {
+          "n": 163,
+          "passed": 147,
+          "pass_rate": 0.9018
+        },
+        "mbppplus": {
+          "n": 378,
+          "passed": 291,
+          "pass_rate": 0.7698
+        }
+      },
+      "failures": [
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/0",
+          "passed": false,
+          "why": "IndentationError: unexpected indent"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/12",
+          "passed": false,
+          "why": "IndentationError: unexpected indent"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/14",
+          "passed": false,
+          "why": "IndentationError: unexpected indent"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/20",
+          "passed": false,
+          "why": "IndentationError: unexpected indent"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/38",
+          "passed": false,
+          "why": "IndentationError: unexpected indent"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/62",
+          "passed": false,
+          "why": " DESIRED: array([], dtype=float64)"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/76",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/91",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/93",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/108",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/126",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/132",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/145",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/151",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/154",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/163",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/7",
+          "passed": false,
+          "why": "AssertionError: out: {'least', 'string', 'words', 'that', 'This', 'characters', 'with', 'very', 'long.', 'long'}, exp: {'least', 'string', 'words', 'that', 'This', 'characters', 'w"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/20",
+          "passed": false,
+          "why": "AssertionError: out: False, exp: True"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/67",
+          "passed": false,
+          "why": "AssertionError: out: 5, exp: 2"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/74",
+          "passed": false,
+          "why": "AssertionError: out: False, exp: True"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/79",
+          "passed": false,
+          "why": "AssertionError: out: True, exp: False"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/92",
+          "passed": false,
+          "why": "AssertionError: out: False, exp: True"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/99",
+          "passed": false,
+          "why": "AssertionError: out: , exp: -101"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/101",
+          "passed": false,
+          "why": "AssertionError: out: 5, exp: 3"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/102",
+          "passed": false,
+          "why": "AssertionError: out: PythonProgram, exp: ___PythonProgram"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/109",
+          "passed": false,
+          "why": "AssertionError: out: 1, exp: 2"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/113",
+          "passed": false,
+          "why": "AssertionError: out: False, exp: None"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/119",
+          "passed": false,
+          "why": "IndexError: list index out of range"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/120",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/124",
+          "passed": false,
+          "why": "TypeError: angle_complex() takes 1 positional argument but 2 were given"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/129",
+          "passed": false,
+          "why": "AssertionError: out: False, exp: True"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/137",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/138",
+          "passed": false,
+          "why": "AssertionError: out: False, exp: True"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/160",
+          "passed": false,
+          "why": "AssertionError: out: (-7, 7), exp: (2, 1)"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/161",
+          "passed": false,
+          "why": "TypeError: unhashable type: 'list'"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/223",
+          "passed": false,
+          "why": "IndexError: list index out of range"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/235",
+          "passed": false,
+          "why": "AssertionError: out: 6148914691236517215, exp: 10"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/244",
+          "passed": false,
+          "why": "ValueError: isqrt() argument must be nonnegative"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/255",
+          "passed": false,
+          "why": "AssertionError: out: [('Red', 'Red'), ('Red', 'Green'), ('Red', 'Blue'), ('Green', 'Red'), ('Green', 'Green'), ('Green', 'Blue'), ('Blue', 'Red'), ('Blue', 'Green'), ('Blue', 'Blue"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/259",
+          "passed": false,
+          "why": "AssertionError: out: ((6, 7), (4, 5), (2, 9), (7, 3)), exp: ((6, 7), (4, 9), (2, 9), (7, 10))"
+        }
+      ]
+    },
+    "throughput_curve": {
+      "1": {
+        "wall_s": 41.29,
+        "items_per_s": 14.82,
+        "prefill_tok_s": 1002.7,
+        "decode_tok_s": 169.0
+      },
+      "8": {
+        "wall_s": 10.2,
+        "items_per_s": 60.03,
+        "prefill_tok_s": 4061.0,
+        "decode_tok_s": 684.5
+      },
+      "32": {
+        "wall_s": 5.81,
+        "items_per_s": 105.3,
+        "prefill_tok_s": 7123.7,
+        "decode_tok_s": 1200.6
+      },
+      "64": {
+        "wall_s": 5.79,
+        "items_per_s": 105.74,
+        "prefill_tok_s": 7153.4,
+        "decode_tok_s": 1205.7
+      }
+    },
+    "unload": {
+      "ok": true,
+      "unload_s": 2.3,
+      "unload_ms_reported": 2247
+    }
+  },
+  "gemma-general": {
+    "instance": "gemma-general",
+    "model": "Gemma-4-E4B",
+    "engine": "llama.cpp",
+    "format": "GGUF",
+    "tested": true,
+    "load": {
+      "ok": true,
+      "load_s": 3.3,
+      "load_ms_reported": 3274
+    },
+    "classification": {
+      "test": "classification",
+      "set": "SIB-200",
+      "label": "gemma-general",
+      "model": "gemma-4-E4B-it-Q4_0",
+      "topic": "politics",
+      "concurrency": 8,
+      "batch": 5,
+      "answered": 4080,
+      "of": 4080,
+      "wall_s": 351.22,
+      "requests": 816,
+      "failed_requests": 0,
+      "prompt_tokens": 298954,
+      "completion_tokens": 46512,
+      "prefill_tok_s": 851.2,
+      "decode_tok_s": 132.4,
+      "items_per_s": 11.62,
+      "quality": {
+        "n": 4080,
+        "positives": 600,
+        "accuracy": 0.9453,
+        "precision": 0.772,
+        "recall": 0.8917,
+        "f1": 0.8275
+      },
+      "per_language": {
+        "ar": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9608,
+          "precision": 0.8056,
+          "recall": 0.9667,
+          "f1": 0.8788
+        },
+        "bn": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9265,
+          "precision": 0.7419,
+          "recall": 0.7667,
+          "f1": 0.7541
+        },
+        "de": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9461,
+          "precision": 0.7714,
+          "recall": 0.9,
+          "f1": 0.8308
+        },
+        "en": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9461,
+          "precision": 0.7714,
+          "recall": 0.9,
+          "f1": 0.8308
+        },
+        "es": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9559,
+          "precision": 0.8,
+          "recall": 0.9333,
+          "f1": 0.8615
+        },
+        "fr": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.951,
+          "precision": 0.7632,
+          "recall": 0.9667,
+          "f1": 0.8529
+        },
+        "hi": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9363,
+          "precision": 0.7429,
+          "recall": 0.8667,
+          "f1": 0.8
+        },
+        "ja": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9363,
+          "precision": 0.7429,
+          "recall": 0.8667,
+          "f1": 0.8
+        },
+        "ko": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9461,
+          "precision": 0.7879,
+          "recall": 0.8667,
+          "f1": 0.8254
+        },
+        "lt": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.951,
+          "precision": 0.8125,
+          "recall": 0.8667,
+          "f1": 0.8387
+        },
+        "pl": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9461,
+          "precision": 0.7879,
+          "recall": 0.8667,
+          "f1": 0.8254
+        },
+        "pt": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9314,
+          "precision": 0.7105,
+          "recall": 0.9,
+          "f1": 0.7941
+        },
+        "ro": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9314,
+          "precision": 0.75,
+          "recall": 0.8,
+          "f1": 0.7742
+        },
+        "ru": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9363,
+          "precision": 0.7429,
+          "recall": 0.8667,
+          "f1": 0.8
+        },
+        "ta": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9559,
+          "precision": 0.8182,
+          "recall": 0.9,
+          "f1": 0.8571
+        },
+        "th": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.951,
+          "precision": 0.7778,
+          "recall": 0.9333,
+          "f1": 0.8485
+        },
+        "tr": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9363,
+          "precision": 0.7429,
+          "recall": 0.8667,
+          "f1": 0.8
+        },
+        "uk": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9412,
+          "precision": 0.75,
+          "recall": 0.9,
+          "f1": 0.8182
+        },
+        "vi": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9608,
+          "precision": 0.8235,
+          "recall": 0.9333,
+          "f1": 0.875
+        },
+        "zh": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9608,
+          "precision": 0.8056,
+          "recall": 0.9667,
+          "f1": 0.8788
+        }
+      }
+    },
+    "comprehension": {
+      "test": "comprehension",
+      "set": "Belebele",
+      "label": "gemma-general",
+      "model": "gemma-4-E4B-it-Q4_0",
+      "concurrency": 8,
+      "answered": 2000,
+      "of": 2000,
+      "chance_level": 0.25,
+      "wall_s": 110.35,
+      "requests": 2000,
+      "failed_requests": 0,
+      "prompt_tokens": 588906,
+      "completion_tokens": 4000,
+      "prefill_tok_s": 5336.9,
+      "decode_tok_s": 36.2,
+      "items_per_s": 18.12,
+      "accuracy": 0.7605,
+      "per_language": {
+        "ar": {
+          "n": 100,
+          "accuracy": 0.77
+        },
+        "bn": {
+          "n": 100,
+          "accuracy": 0.7
+        },
+        "de": {
+          "n": 100,
+          "accuracy": 0.83
+        },
+        "en": {
+          "n": 100,
+          "accuracy": 0.77
+        },
+        "es": {
+          "n": 100,
+          "accuracy": 0.78
+        },
+        "fr": {
+          "n": 100,
+          "accuracy": 0.75
+        },
+        "hi": {
+          "n": 100,
+          "accuracy": 0.73
+        },
+        "ja": {
+          "n": 100,
+          "accuracy": 0.76
+        },
+        "ko": {
+          "n": 100,
+          "accuracy": 0.8
+        },
+        "lt": {
+          "n": 100,
+          "accuracy": 0.66
+        },
+        "pl": {
+          "n": 100,
+          "accuracy": 0.8
+        },
+        "pt": {
+          "n": 100,
+          "accuracy": 0.77
+        },
+        "ro": {
+          "n": 100,
+          "accuracy": 0.87
+        },
+        "ru": {
+          "n": 100,
+          "accuracy": 0.8
+        },
+        "ta": {
+          "n": 100,
+          "accuracy": 0.7
+        },
+        "th": {
+          "n": 100,
+          "accuracy": 0.71
+        },
+        "tr": {
+          "n": 100,
+          "accuracy": 0.78
+        },
+        "uk": {
+          "n": 100,
+          "accuracy": 0.77
+        },
+        "vi": {
+          "n": 100,
+          "accuracy": 0.75
+        },
+        "zh": {
+          "n": 100,
+          "accuracy": 0.71
+        }
+      }
+    },
+    "translation": {
+      "test": "translation",
+      "set": "FLORES-200",
+      "reference": "human translations",
+      "label": "gemma-general",
+      "model": "gemma-4-E4B-it-Q4_0",
+      "concurrency": 8,
+      "translated": 950,
+      "of": 950,
+      "wall_s": 283.69,
+      "requests": 950,
+      "failed_requests": 0,
+      "prompt_tokens": 75202,
+      "completion_tokens": 39586,
+      "prefill_tok_s": 265.1,
+      "decode_tok_s": 139.5,
+      "items_per_s": 3.35,
+      "chrf_mean": 54.08,
+      "chrf_by_language": {
+        "ar": 54.67,
+        "bn": 45.26,
+        "de": 60.29,
+        "es": 53.87,
+        "fr": 71.85,
+        "hi": 58.59,
+        "ja": 36.53,
+        "ko": 38.88,
+        "lt": 46.67,
+        "pl": 51.01,
+        "pt": 70.34,
+        "ro": 62.77,
+        "ru": 58.39,
+        "ta": 52.97,
+        "th": 51.39,
+        "tr": 59.26,
+        "uk": 55.36,
+        "vi": 63.47,
+        "zh": 35.96
+      },
+      "english_markers_total": 57,
+      "numbers_lost_total": 6
+    },
+    "coding": {
+      "test": "coding",
+      "set": "HumanEval+ / MBPP+",
+      "label": "gemma-general",
+      "model": "gemma-4-E4B-it-Q4_0",
+      "concurrency": 8,
+      "problems": 541,
+      "excluded": {
+        "HumanEval/32": "the set's own reference answer fails the set's own tests"
+      },
+      "wall_s": 674.73,
+      "requests": 541,
+      "failed_requests": 0,
+      "prompt_tokens": 63297,
+      "completion_tokens": 99504,
+      "prefill_tok_s": 93.8,
+      "decode_tok_s": 147.5,
+      "items_per_s": 0.8,
+      "passed": 414,
+      "pass_rate": 0.7652,
+      "by_set": {
+        "humanevalplus": {
+          "n": 163,
+          "passed": 143,
+          "pass_rate": 0.8773
+        },
+        "mbppplus": {
+          "n": 378,
+          "passed": 271,
+          "pass_rate": 0.7169
+        }
+      },
+      "failures": [
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/8",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/22",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/26",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/50",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/54",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/76",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/89",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/91",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/93",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/108",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/115",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/121",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/124",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/129",
+          "passed": false,
+          "why": "timeout"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/132",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/134",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/140",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/145",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/160",
+          "passed": false,
+          "why": "timeout"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/163",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/7",
+          "passed": false,
+          "why": "AssertionError: out: {'words', 'long.', 'characters', 'that', 'This', 'long', 'with', 'least', 'very', 'string'}, exp: {'words', 'characters', 'that', 'This', 'long', 'with', 'leas"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/14",
+          "passed": false,
+          "why": "TypeError: find_Volume() takes 2 positional arguments but 3 were given"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/16",
+          "passed": false,
+          "why": "AssertionError: out: True, exp: False"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/59",
+          "passed": false,
+          "why": "AssertionError: out: 131, exp: 65"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/74",
+          "passed": false,
+          "why": "IndexError: string index out of range"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/84",
+          "passed": false,
+          "why": "AssertionError: out: 10, exp: 6"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/92",
+          "passed": false,
+          "why": "AssertionError: out: True, exp: False"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/99",
+          "passed": false,
+          "why": "AssertionError: out: , exp: -101"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/100",
+          "passed": false,
+          "why": "AssertionError: out: 131, exp: 121"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/102",
+          "passed": false,
+          "why": "AssertionError: out: PythonProgram, exp: ___PythonProgram"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/109",
+          "passed": false,
+          "why": "AssertionError: out: 2, exp: 1"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/113",
+          "passed": false,
+          "why": "AssertionError: out: False, exp: None"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/119",
+          "passed": false,
+          "why": "AssertionError: out: -1, exp: 3"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/124",
+          "passed": false,
+          "why": "TypeError: must be real number, not complex"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/125",
+          "passed": false,
+          "why": "AssertionError: out: 2, exp: 6"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/126",
+          "passed": false,
+          "why": "TypeError: sum() missing 1 required positional argument: 'b'"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/135",
+          "passed": false,
+          "why": "AssertionError: out: 955, exp: 190"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/138",
+          "passed": false,
+          "why": "AssertionError: out: True, exp: False"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/142",
+          "passed": false,
+          "why": "IndexError: list index out of range"
+        },
+        {
+          "set": "mbppplus",
+          "id": "Mbpp/160",
+          "passed": false,
+          "why": "AssertionError: out: (-7, 7), exp: (2, 1)"
+        }
+      ]
+    },
+    "throughput_curve": {
+      "1": {
+        "wall_s": 52.37,
+        "items_per_s": 11.69,
+        "prefill_tok_s": 788.9,
+        "decode_tok_s": 133.2
+      },
+      "8": {
+        "wall_s": 49.52,
+        "items_per_s": 12.36,
+        "prefill_tok_s": 834.3,
+        "decode_tok_s": 140.9
+      },
+      "32": {
+        "wall_s": 49.33,
+        "items_per_s": 12.41,
+        "prefill_tok_s": 837.4,
+        "decode_tok_s": 141.4
+      },
+      "64": {
+        "wall_s": 49.34,
+        "items_per_s": 12.4,
+        "prefill_tok_s": 837.3,
+        "decode_tok_s": 141.4
+      }
+    },
+    "unload": {
+      "ok": true,
+      "unload_s": 2.4,
+      "unload_ms_reported": 2296
+    }
+  },
+  "glm-flash": {
+    "instance": "glm-flash",
+    "model": "GLM-4.7-Flash",
+    "engine": "vLLM",
+    "format": "NVFP4",
+    "tested": true,
+    "load": {
+      "ok": true,
+      "load_s": 98.3,
+      "load_ms_reported": 98289
+    },
+    "classification": {
+      "test": "classification",
+      "set": "SIB-200",
+      "label": "glm-flash",
+      "model": "glm-4.7-flash",
+      "topic": "politics",
+      "concurrency": 8,
+      "batch": 5,
+      "answered": 4080,
+      "of": 4080,
+      "wall_s": 110.35,
+      "requests": 816,
+      "failed_requests": 0,
+      "prompt_tokens": 387875,
+      "completion_tokens": 46512,
+      "prefill_tok_s": 3514.9,
+      "decode_tok_s": 421.5,
+      "items_per_s": 36.97,
+      "quality": {
+        "n": 4080,
+        "positives": 600,
+        "accuracy": 0.9409,
+        "precision": 0.7449,
+        "recall": 0.91,
+        "f1": 0.8192
+      },
+      "per_language": {
+        "ar": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9314,
+          "precision": 0.7222,
+          "recall": 0.8667,
+          "f1": 0.7879
+        },
+        "bn": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.951,
+          "precision": 0.8125,
+          "recall": 0.8667,
+          "f1": 0.8387
+        },
+        "de": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9314,
+          "precision": 0.7105,
+          "recall": 0.9,
+          "f1": 0.7941
+        },
+        "en": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9461,
+          "precision": 0.7436,
+          "recall": 0.9667,
+          "f1": 0.8406
+        },
+        "es": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9314,
+          "precision": 0.7,
+          "recall": 0.9333,
+          "f1": 0.8
+        },
+        "fr": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9608,
+          "precision": 0.8056,
+          "recall": 0.9667,
+          "f1": 0.8788
+        },
+        "hi": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.951,
+          "precision": 0.75,
+          "recall": 1.0,
+          "f1": 0.8571
+        },
+        "ja": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9363,
+          "precision": 0.7742,
+          "recall": 0.8,
+          "f1": 0.7869
+        },
+        "ko": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.951,
+          "precision": 0.7778,
+          "recall": 0.9333,
+          "f1": 0.8485
+        },
+        "lt": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.951,
+          "precision": 0.7941,
+          "recall": 0.9,
+          "f1": 0.8438
+        },
+        "pl": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9314,
+          "precision": 0.7105,
+          "recall": 0.9,
+          "f1": 0.7941
+        },
+        "pt": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9461,
+          "precision": 0.7436,
+          "recall": 0.9667,
+          "f1": 0.8406
+        },
+        "ro": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9314,
+          "precision": 0.7,
+          "recall": 0.9333,
+          "f1": 0.8
+        },
+        "ru": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9314,
+          "precision": 0.7222,
+          "recall": 0.8667,
+          "f1": 0.7879
+        },
+        "ta": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9706,
+          "precision": 0.875,
+          "recall": 0.9333,
+          "f1": 0.9032
+        },
+        "th": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9314,
+          "precision": 0.7105,
+          "recall": 0.9,
+          "f1": 0.7941
+        },
+        "tr": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.902,
+          "precision": 0.6316,
+          "recall": 0.8,
+          "f1": 0.7059
+        },
+        "uk": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.951,
+          "precision": 0.7778,
+          "recall": 0.9333,
+          "f1": 0.8485
+        },
+        "vi": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9412,
+          "precision": 0.725,
+          "recall": 0.9667,
+          "f1": 0.8286
+        },
+        "zh": {
+          "n": 204,
+          "positives": 30,
+          "accuracy": 0.9412,
+          "precision": 0.7647,
+          "recall": 0.8667,
+          "f1": 0.8125
+        }
+      }
+    },
+    "comprehension": {
+      "test": "comprehension",
+      "set": "Belebele",
+      "label": "glm-flash",
+      "model": "glm-4.7-flash",
+      "concurrency": 8,
+      "answered": 2000,
+      "of": 2000,
+      "chance_level": 0.25,
+      "wall_s": 60.66,
+      "requests": 2000,
+      "failed_requests": 0,
+      "prompt_tokens": 815468,
+      "completion_tokens": 4000,
+      "prefill_tok_s": 13442.3,
+      "decode_tok_s": 65.9,
+      "items_per_s": 32.97,
+      "accuracy": 0.7415,
+      "per_language": {
+        "ar": {
+          "n": 100,
+          "accuracy": 0.81
+        },
+        "bn": {
+          "n": 100,
+          "accuracy": 0.66
+        },
+        "de": {
+          "n": 100,
+          "accuracy": 0.78
+        },
+        "en": {
+          "n": 100,
+          "accuracy": 0.84
+        },
+        "es": {
+          "n": 100,
+          "accuracy": 0.78
+        },
+        "fr": {
+          "n": 100,
+          "accuracy": 0.8
+        },
+        "hi": {
+          "n": 100,
+          "accuracy": 0.54
+        },
+        "ja": {
+          "n": 100,
+          "accuracy": 0.71
+        },
+        "ko": {
+          "n": 100,
+          "accuracy": 0.77
+        },
+        "lt": {
+          "n": 100,
+          "accuracy": 0.64
+        },
+        "pl": {
+          "n": 100,
+          "accuracy": 0.76
+        },
+        "pt": {
+          "n": 100,
+          "accuracy": 0.78
+        },
+        "ro": {
+          "n": 100,
+          "accuracy": 0.78
+        },
+        "ru": {
+          "n": 100,
+          "accuracy": 0.83
+        },
+        "ta": {
+          "n": 100,
+          "accuracy": 0.51
+        },
+        "th": {
+          "n": 100,
+          "accuracy": 0.76
+        },
+        "tr": {
+          "n": 100,
+          "accuracy": 0.73
+        },
+        "uk": {
+          "n": 100,
+          "accuracy": 0.8
+        },
+        "vi": {
+          "n": 100,
+          "accuracy": 0.74
+        },
+        "zh": {
+          "n": 100,
+          "accuracy": 0.81
+        }
+      }
+    },
+    "translation": {
+      "test": "translation",
+      "set": "FLORES-200",
+      "reference": "human translations",
+      "label": "glm-flash",
+      "model": "glm-4.7-flash",
+      "concurrency": 8,
+      "translated": 950,
+      "of": 950,
+      "wall_s": 133.63,
+      "requests": 950,
+      "failed_requests": 0,
+      "prompt_tokens": 66479,
+      "completion_tokens": 67111,
+      "prefill_tok_s": 497.5,
+      "decode_tok_s": 502.2,
+      "items_per_s": 7.11,
+      "chrf_mean": 50.39,
+      "chrf_by_language": {
+        "ar": 48.45,
+        "bn": 40.01,
+        "de": 57.72,
+        "es": 53.23,
+        "fr": 69.5,
+        "hi": 46.83,
+        "ja": 34.06,
+        "ko": 33.09,
+        "lt": 48.67,
+        "pl": 48.87,
+        "pt": 67.61,
+        "ro": 63.12,
+        "ru": 55.91,
+        "ta": 43.93,
+        "th": 42.87,
+        "tr": 54.35,
+        "uk": 51.36,
+        "vi": 58.67,
+        "zh": 39.21
+      },
+      "english_markers_total": 77,
+      "numbers_lost_total": 14
+    },
+    "coding": {
+      "test": "coding",
+      "set": "HumanEval+ / MBPP+",
+      "label": "glm-flash",
+      "model": "glm-4.7-flash",
+      "concurrency": 8,
+      "problems": 541,
+      "excluded": {
+        "HumanEval/32": "the set's own reference answer fails the set's own tests"
+      },
+      "wall_s": 203.94,
+      "requests": 541,
+      "failed_requests": 0,
+      "prompt_tokens": 55943,
+      "completion_tokens": 74263,
+      "prefill_tok_s": 274.3,
+      "decode_tok_s": 364.1,
+      "items_per_s": 2.65,
+      "passed": 382,
+      "pass_rate": 0.7061,
+      "by_set": {
+        "humanevalplus": {
+          "n": 163,
+          "passed": 122,
+          "pass_rate": 0.7485
+        },
+        "mbppplus": {
+          "n": 378,
+          "passed": 260,
+          "pass_rate": 0.6878
+        }
+      },
+      "failures": [
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/19",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/22",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/26",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/33",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/54",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/65",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/67",
+          "passed": false,
+          "why": "ValueError: invalid literal for int() with base 10: 'and'"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/75",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/76",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/77",
+          "passed": false,
+          "why": "TypeError: type complex doesn't define __round__ method"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/83",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/90",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/91",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/93",
+          "passed": false,
+          "why": "AttributeError: 'set' object has no attribute 'upper'"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/95",
+          "passed": false,
+          "why": "AttributeError: 'dict_keys' object has no attribute 'pop'"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/96",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/99",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/101",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/102",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/103",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/108",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/115",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/120",
+          "passed": false,
+          "why": " DESIRED: array([], dtype=float64)"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/124",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/125",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/126",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/129",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/130",
+          "passed": false,
+          "why": "SyntaxError: invalid syntax"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/132",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/133",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/134",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/135",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/137",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/138",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/140",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/145",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/153",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/154",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/155",
+          "passed": false,
+          "why": "AssertionError"
+        },
+        {
+          "set": "humanevalplus",
+          "id": "HumanEval/160",
+          "passed": false,
+          "why": "AssertionError"
+        }
+      ]
+    },
+    "throughput_curve": {
+      "1": {
+        "wall_s": 57.95,
+        "items_per_s": 10.56,
+        "prefill_tok_s": 678.1,
+        "decode_tok_s": 120.4
+      },
+      "8": {
+        "wall_s": 10.81,
+        "items_per_s": 56.59,
+        "prefill_tok_s": 3634.2,
+        "decode_tok_s": 645.3
+      },
+      "32": {
+        "wall_s": 4.1,
+        "items_per_s": 149.18,
+        "prefill_tok_s": 9579.7,
+        "decode_tok_s": 1700.9
+      },
+      "64": {
+        "wall_s": 3.69,
+        "items_per_s": 165.72,
+        "prefill_tok_s": 10642.1,
+        "decode_tok_s": 1889.5
+      }
+    },
+    "unload": {
+      "ok": true,
+      "unload_s": 2.3,
+      "unload_ms_reported": 2198
+    }
+  },
+  "coder-next-80b": {
+    "instance": "coder-next-80b",
+    "model": "Coder-Next 80B",
+    "engine": "llama.cpp",
+    "format": "GGUF",
+    "tested": false,
+    "load": {
+      "ok": false,
+      "error": "Qwen3-Coder-Next-UD-Q4_K_XL needs about 46.2 GB but only 31.9 GB is free on the card. Unload another model, or choose a smaller one.",
+      "load_s": 0.1
+    }
+  }
+}

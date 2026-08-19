@@ -1,0 +1,8 @@
+# Evaluation data is downloaded, never committed. See harness/get_datasets.py.
+eval-data/
+
+__pycache__/
+*.py[cod]
+.venv/
+.DS_Store
+._*

@@ -1,0 +1,101 @@
+{
+  "test": "comprehension",
+  "set": "Belebele",
+  "label": "gemma26-gguf",
+  "model": "gemma-4-26B-A4B-it-UD-Q4_K_XL",
+  "concurrency": 8,
+  "answered": 1957,
+  "of": 2000,
+  "chance_level": 0.25,
+  "wall_s": 207.13,
+  "requests": 2000,
+  "failed_requests": 43,
+  "prompt_tokens": 596906,
+  "completion_tokens": 4324,
+  "prefill_tok_s": 2881.7,
+  "decode_tok_s": 20.9,
+  "items_per_s": 9.45,
+  "accuracy": 0.884,
+  "per_language": {
+    "ar": {
+      "n": 96,
+      "accuracy": 0.9375
+    },
+    "bn": {
+      "n": 97,
+      "accuracy": 0.8763
+    },
+    "de": {
+      "n": 100,
+      "accuracy": 0.92
+    },
+    "en": {
+      "n": 97,
+      "accuracy": 0.9485
+    },
+    "es": {
+      "n": 98,
+      "accuracy": 0.9184
+    },
+    "fr": {
+      "n": 98,
+      "accuracy": 0.9184
+    },
+    "hi": {
+      "n": 98,
+      "accuracy": 0.7959
+    },
+    "ja": {
+      "n": 99,
+      "accuracy": 0.8889
+    },
+    "ko": {
+      "n": 99,
+      "accuracy": 0.9293
+    },
+    "lt": {
+      "n": 100,
+      "accuracy": 0.83
+    },
+    "pl": {
+      "n": 96,
+      "accuracy": 0.9062
+    },
+    "pt": {
+      "n": 97,
+      "accuracy": 0.9278
+    },
+    "ro": {
+      "n": 100,
+      "accuracy": 0.95
+    },
+    "ru": {
+      "n": 97,
+      "accuracy": 0.9381
+    },
+    "ta": {
+      "n": 97,
+      "accuracy": 0.8557
+    },
+    "th": {
+      "n": 97,
+      "accuracy": 0.8866
+    },
+    "tr": {
+      "n": 97,
+      "accuracy": 0.8969
+    },
+    "uk": {
+      "n": 97,
+      "accuracy": 0.9072
+    },
+    "vi": {
+      "n": 98,
+      "accuracy": 0.9082
+    },
+    "zh": {
+      "n": 99,
+      "accuracy": 0.9293
+    }
+  }
+}

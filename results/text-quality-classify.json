@@ -1,0 +1,189 @@
+{
+  "test": "classification",
+  "set": "SIB-200",
+  "label": "text-quality",
+  "model": "qwopus3.6-27b-coder",
+  "topic": "politics",
+  "concurrency": 8,
+  "batch": 5,
+  "answered": 4080,
+  "of": 4080,
+  "wall_s": 207.2,
+  "requests": 816,
+  "failed_requests": 0,
+  "prompt_tokens": 317224,
+  "completion_tokens": 46512,
+  "prefill_tok_s": 1531.0,
+  "decode_tok_s": 224.5,
+  "items_per_s": 19.69,
+  "quality": {
+    "n": 4080,
+    "positives": 600,
+    "accuracy": 0.9706,
+    "precision": 0.854,
+    "recall": 0.965,
+    "f1": 0.9061
+  },
+  "per_language": {
+    "ar": {
+      "n": 204,
+      "positives": 30,
+      "accuracy": 0.9755,
+      "precision": 0.8571,
+      "recall": 1.0,
+      "f1": 0.9231
+    },
+    "bn": {
+      "n": 204,
+      "positives": 30,
+      "accuracy": 0.9755,
+      "precision": 0.8788,
+      "recall": 0.9667,
+      "f1": 0.9206
+    },
+    "de": {
+      "n": 204,
+      "positives": 30,
+      "accuracy": 0.9706,
+      "precision": 0.8529,
+      "recall": 0.9667,
+      "f1": 0.9062
+    },
+    "en": {
+      "n": 204,
+      "positives": 30,
+      "accuracy": 0.9755,
+      "precision": 0.8788,
+      "recall": 0.9667,
+      "f1": 0.9206
+    },
+    "es": {
+      "n": 204,
+      "positives": 30,
+      "accuracy": 0.9706,
+      "precision": 0.8529,
+      "recall": 0.9667,
+      "f1": 0.9062
+    },
+    "fr": {
+      "n": 204,
+      "positives": 30,
+      "accuracy": 0.9755,
+      "precision": 0.8788,
+      "recall": 0.9667,
+      "f1": 0.9206
+    },
+    "hi": {
+      "n": 204,
+      "positives": 30,
+      "accuracy": 0.9706,
+      "precision": 0.8529,
+      "recall": 0.9667,
+      "f1": 0.9062
+    },
+    "ja": {
+      "n": 204,
+      "positives": 30,
+      "accuracy": 0.9706,
+      "precision": 0.875,
+      "recall": 0.9333,
+      "f1": 0.9032
+    },
+    "ko": {
+      "n": 204,
+      "positives": 30,
+      "accuracy": 0.9755,
+      "precision": 0.9032,
+      "recall": 0.9333,
+      "f1": 0.918
+    },
+    "lt": {
+      "n": 204,
+      "positives": 30,
+      "accuracy": 0.9706,
+      "precision": 0.8529,
+      "recall": 0.9667,
+      "f1": 0.9062
+    },
+    "pl": {
+      "n": 204,
+      "positives": 30,
+      "accuracy": 0.9608,
+      "precision": 0.8056,
+      "recall": 0.9667,
+      "f1": 0.8788
+    },
+    "pt": {
+      "n": 204,
+      "positives": 30,
+      "accuracy": 0.9804,
+      "precision": 0.9062,
+      "recall": 0.9667,
+      "f1": 0.9355
+    },
+    "ro": {
+      "n": 204,
+      "positives": 30,
+      "accuracy": 0.9853,
+      "precision": 0.9091,
+      "recall": 1.0,
+      "f1": 0.9524
+    },
+    "ru": {
+      "n": 204,
+      "positives": 30,
+      "accuracy": 0.9657,
+      "precision": 0.8286,
+      "recall": 0.9667,
+      "f1": 0.8923
+    },
+    "ta": {
+      "n": 204,
+      "positives": 30,
+      "accuracy": 0.9412,
+      "precision": 0.725,
+      "recall": 0.9667,
+      "f1": 0.8286
+    },
+    "th": {
+      "n": 204,
+      "positives": 30,
+      "accuracy": 0.9608,
+      "precision": 0.8235,
+      "recall": 0.9333,
+      "f1": 0.875
+    },
+    "tr": {
+      "n": 204,
+      "positives": 30,
+      "accuracy": 0.9804,
+      "precision": 0.9062,
+      "recall": 0.9667,
+      "f1": 0.9355
+    },
+    "uk": {
+      "n": 204,
+      "positives": 30,
+      "accuracy": 0.9657,
+      "precision": 0.8485,
+      "recall": 0.9333,
+      "f1": 0.8889
+    },
+    "vi": {
+      "n": 204,
+      "positives": 30,
+      "accuracy": 0.9804,
+      "precision": 0.8824,
+      "recall": 1.0,
+      "f1": 0.9375
+    },
+    "zh": {
+      "n": 204,
+      "positives": 30,
+      "accuracy": 0.9608,
+      "precision": 0.8056,
+      "recall": 0.9667,
+      "f1": 0.8788
+    }
+  }
+}

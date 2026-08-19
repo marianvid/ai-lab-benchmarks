@@ -1,0 +1,53 @@
+{
+  "test": "classification",
+  "set": "SIB-200",
+  "label": "glm-flash",
+  "model": "glm-4.7-flash",
+  "topic": "politics",
+  "concurrency": 64,
+  "batch": 5,
+  "answered": 612,
+  "of": 612,
+  "wall_s": 3.69,
+  "requests": 123,
+  "failed_requests": 0,
+  "prompt_tokens": 39301,
+  "completion_tokens": 6978,
+  "prefill_tok_s": 10642.1,
+  "decode_tok_s": 1889.5,
+  "items_per_s": 165.72,
+  "quality": {
+    "n": 612,
+    "positives": 90,
+    "accuracy": 0.9477,
+    "precision": 0.7736,
+    "recall": 0.9111,
+    "f1": 0.8367
+  },
+  "per_language": {
+    "en": {
+      "n": 204,
+      "positives": 30,
+      "accuracy": 0.9608,
+      "precision": 0.8438,
+      "recall": 0.9,
+      "f1": 0.871
+    },
+    "ru": {
+      "n": 204,
+      "positives": 30,
+      "accuracy": 0.9412,
+      "precision": 0.75,
+      "recall": 0.9,
+      "f1": 0.8182
+    },
+    "zh": {
+      "n": 204,
+      "positives": 30,
+      "accuracy": 0.9412,
+      "precision": 0.7368,
+      "recall": 0.9333,
+      "f1": 0.8235
+    }
+  }
+}

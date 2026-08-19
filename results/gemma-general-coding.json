@@ -1,0 +1,275 @@
+{
+  "test": "coding",
+  "set": "HumanEval+ / MBPP+",
+  "label": "gemma-general",
+  "model": "gemma-4-E4B-it-Q4_0",
+  "concurrency": 8,
+  "problems": 541,
+  "excluded": {
+    "HumanEval/32": "the set's own reference answer fails the set's own tests"
+  },
+  "wall_s": 674.73,
+  "requests": 541,
+  "failed_requests": 0,
+  "prompt_tokens": 63297,
+  "completion_tokens": 99504,
+  "prefill_tok_s": 93.8,
+  "decode_tok_s": 147.5,
+  "items_per_s": 0.8,
+  "passed": 414,
+  "pass_rate": 0.7652,
+  "by_set": {
+    "humanevalplus": {
+      "n": 163,
+      "passed": 143,
+      "pass_rate": 0.8773
+    },
+    "mbppplus": {
+      "n": 378,
+      "passed": 271,
+      "pass_rate": 0.7169
+    }
+  },
+  "failures": [
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/8",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/22",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/26",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/50",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/54",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/76",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/89",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/91",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/93",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/108",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/115",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/121",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/124",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/129",
+      "passed": false,
+      "why": "timeout"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/132",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/134",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/140",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/145",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/160",
+      "passed": false,
+      "why": "timeout"
+    },
+    {
+      "set": "humanevalplus",
+      "id": "HumanEval/163",
+      "passed": false,
+      "why": "AssertionError"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/7",
+      "passed": false,
+      "why": "AssertionError: out: {'words', 'long.', 'characters', 'that', 'This', 'long', 'with', 'least', 'very', 'string'}, exp: {'words', 'characters', 'that', 'This', 'long', 'with', 'leas"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/14",
+      "passed": false,
+      "why": "TypeError: find_Volume() takes 2 positional arguments but 3 were given"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/16",
+      "passed": false,
+      "why": "AssertionError: out: True, exp: False"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/59",
+      "passed": false,
+      "why": "AssertionError: out: 131, exp: 65"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/74",
+      "passed": false,
+      "why": "IndexError: string index out of range"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/84",
+      "passed": false,
+      "why": "AssertionError: out: 10, exp: 6"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/92",
+      "passed": false,
+      "why": "AssertionError: out: True, exp: False"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/99",
+      "passed": false,
+      "why": "AssertionError: out: , exp: -101"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/100",
+      "passed": false,
+      "why": "AssertionError: out: 131, exp: 121"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/102",
+      "passed": false,
+      "why": "AssertionError: out: PythonProgram, exp: ___PythonProgram"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/109",
+      "passed": false,
+      "why": "AssertionError: out: 2, exp: 1"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/113",
+      "passed": false,
+      "why": "AssertionError: out: False, exp: None"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/119",
+      "passed": false,
+      "why": "AssertionError: out: -1, exp: 3"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/124",
+      "passed": false,
+      "why": "TypeError: must be real number, not complex"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/125",
+      "passed": false,
+      "why": "AssertionError: out: 2, exp: 6"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/126",
+      "passed": false,
+      "why": "TypeError: sum() missing 1 required positional argument: 'b'"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/135",
+      "passed": false,
+      "why": "AssertionError: out: 955, exp: 190"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/138",
+      "passed": false,
+      "why": "AssertionError: out: True, exp: False"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/142",
+      "passed": false,
+      "why": "IndexError: list index out of range"
+    },
+    {
+      "set": "mbppplus",
+      "id": "Mbpp/160",
+      "passed": false,
+      "why": "AssertionError: out: (-7, 7), exp: (2, 1)"
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "test": "comprehension",
+  "set": "Belebele",
+  "label": "coder-fast",
+  "model": "qwen3-coder-30b-a3b",
+  "concurrency": 8,
+  "answered": 2000,
+  "of": 2000,
+  "chance_level": 0.25,
+  "wall_s": 33.59,
+  "requests": 2000,
+  "failed_requests": 0,
+  "prompt_tokens": 815445,
+  "completion_tokens": 5247,
+  "prefill_tok_s": 24274.8,
+  "decode_tok_s": 156.2,
+  "items_per_s": 59.54,
+  "accuracy": 0.8465,
+  "per_language": {
+    "ar": {
+      "n": 100,
+      "accuracy": 0.87
+    },
+    "bn": {
+      "n": 100,
+      "accuracy": 0.69
+    },
+    "de": {
+      "n": 100,
+      "accuracy": 0.87
+    },
+    "en": {
+      "n": 100,
+      "accuracy": 0.97
+    },
+    "es": {
+      "n": 100,
+      "accuracy": 0.88
+    },
+    "fr": {
+      "n": 100,
+      "accuracy": 0.92
+    },
+    "hi": {
+      "n": 100,
+      "accuracy": 0.75
+    },
+    "ja": {
+      "n": 100,
+      "accuracy": 0.84
+    },
+    "ko": {
+      "n": 100,
+      "accuracy": 0.83
+    },
+    "lt": {
+      "n": 100,
+      "accuracy": 0.71
+    },
+    "pl": {
+      "n": 100,
+      "accuracy": 0.89
+    },
+    "pt": {
+      "n": 100,
+      "accuracy": 0.91
+    },
+    "ro": {
+      "n": 100,
+      "accuracy": 0.89
+    },
+    "ru": {
+      "n": 100,
+      "accuracy": 0.94
+    },
+    "ta": {
+      "n": 100,
+      "accuracy": 0.62
+    },
+    "th": {
+      "n": 100,
+      "accuracy": 0.84
+    },
+    "tr": {
+      "n": 100,
+      "accuracy": 0.89
+    },
+    "uk": {
+      "n": 100,
+      "accuracy": 0.84
+    },
+    "vi": {
+      "n": 100,
+      "accuracy": 0.85
+    },
+    "zh": {
+      "n": 100,
+      "accuracy": 0.93
+    }
+  }
+}
