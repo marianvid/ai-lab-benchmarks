@@ -66,6 +66,8 @@ instance also ran with `language_model_only`, which skips the image half of the
 model: vLLM otherwise pushes invented pictures through it at startup to measure
 that path, and none of these tests send a picture.
 
-`Qwen3-Coder-Next`, 46 GB, was loaded and timed but not tested — it exceeds VRAM
-and runs only with part of it in system memory. See
-[loading.md](loading.md#a-model-larger-than-vram).
+`Qwen3-Coder-Next`, 46 GB, is the one model with no scores in
+[quality.md](quality.md). It does not fit on the card and runs with part of it
+in system memory, which makes it far too slow to put through four quality tasks.
+Its loading times and its prompt reading were measured, and are in
+[loading.md](loading.md#a-model-larger-than-the-card).

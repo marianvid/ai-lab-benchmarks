@@ -27,7 +27,7 @@ arrangement data crosses the cable for every token generated. While for llama.cp
 it may work for some configurations (llama.cpp moves the computing next to the
 data), for vLLM the splitting is unusable, since vLLM moves tons of data through
 that cable on every operation (the data migrates to the compute). The cost is
-measured in [loading.md](loading.md#a-model-larger-than-vram).
+measured in [loading.md](loading.md#a-model-larger-than-the-card).
 
 ## Software
 

@@ -69,6 +69,13 @@ to find, so recall has no meaning. Reported as `—`, never as 0.
 The fraction answered correctly, 0 to 1. Useful when the possible answers are
 balanced, misleading when they are not. Shown alongside F1 to make that visible.
 
+### Unanswered
+A question the model was asked but gave no usable reply to. In the comprehension
+test the reply must contain A, B, C or D within the first eight tokens; anything
+else is unanswered. These count as wrong — the score divides by every question
+asked, not by the ones that came back — so a model gains nothing by not
+answering.
+
 ### Chance level
 What a model scores by guessing. On the comprehension task there are four
 options, so chance is **0.25**. A score near 0.25 means the model did not read
