@@ -69,9 +69,9 @@ Six things to know before drawing conclusions from any table here.
 Each test was run once per model. Nothing was repeated and averaged, so there
 is no way to say how much a figure would move if it were run again.
 
-It would move somewhat. Models are not perfectly repeatable even with
-randomness switched off, and the configuration is not in an identical state
-twice.
+Models are not perfectly repeatable even with randomness switched off, and the
+configuration is not in an identical state twice. The scope here was to give a
+rough idea of the limits and of what to expect.
 
 **What to do with that:** on the classification score, a difference smaller
 than about 0.02 should be read as "the same". There are roughly 600 positive
