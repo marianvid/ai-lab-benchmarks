@@ -96,15 +96,3 @@ That is the third large cost, and it is invisible in the map above because the
 cache was already warm when those logs were taken. It is also the most likely
 explanation for the cold-versus-warm gaps in [loading.md](loading.md), which
 were not isolated.
-
-## Two things to be careful with
-
-**None of these numbers was measured more than once.** The 111 s and 39 s come
-from a single pair of runs, as do 241 s and 47 s. The effect is large enough
-that the direction is not in doubt; the exact figures are.
-
-**The AI-Lab help text disagrees with them.** The description of the `Text only`
-setting in `ai_lab/engines/vllm.py` says startup drops "from 117 seconds to
-about 50", where these logs show 111 to 39, and it claims "no loss of
-throughput" without mentioning the 6% of KV cache. The direction is right in
-both; the numbers came from a different run that was not recorded.
