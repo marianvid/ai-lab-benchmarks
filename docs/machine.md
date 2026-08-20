@@ -1,9 +1,4 @@
-# The machine
-
-A home lab, not a server room. Everything measured here describes what a
-single-GPU desktop-class machine does; the bottlenecks are that machine's.
-
-## Hardware
+# Configuration
 
 | | |
 |---|---|
@@ -18,22 +13,17 @@ single-GPU desktop-class machine does; the bottlenecks are that machine's.
 | Memory | 96 GB DDR5-5600 |
 | Model storage | internal NVMe (Lexar NM790) |
 
-## The GPU is outside the machine
-
-It sits in an external dock connected by an [OCuLink](glossary.md#oculink)
-cable rather than in a motherboard slot. Three consequences, in order of how
-much they matter:
+[OCuLink](glossary.md#oculink) cable is a slow connextion providing aroung 8GB/s transfer rate.
 
 **Inference is unaffected.** Once a model is loaded its weights are in VRAM and
 stay there. Nothing crosses the cable while the model is answering, so none of
 the throughput or quality figures in this repository are influenced by it.
 
-**Loading crosses it.** Weights are copied from system memory to the card over
+**Loading is affected.** Weights are copied from system memory to the card over
 that link, so load times include it.
 
 **Splitting a model across card and system memory is a bad idea here.** In that
-arrangement data crosses the cable for every token generated. AI-Lab refuses the
-configuration for that reason; what it costs is measured in
+arrangement data crosses the cable for every token generated. While for Llama.cpp it may work for some configuration (llama.cpp is moving the conputing next to the data) fpr vLLM the splitting in unusable since vLLM is moving tons of data on each operation, through that cable (data is migrating to the comput. The costs is measured in
 [loading.md](loading.md#a-model-larger-than-vram).
 
 ## Software
@@ -52,7 +42,4 @@ number from the last release tag on the branch they were cut from, so
 the stable release would not load one of the models; see
 [the vLLM bug](vllm-gemma4-bug.md).
 
-## What is not here
 
-An Apple M3 Max runs the same application. **Nothing in this repository was
-measured on it.**
