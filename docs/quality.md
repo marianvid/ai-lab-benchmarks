@@ -178,10 +178,24 @@ its own tests. All 164 references were run through this harness to check:
 163 pass. Leaving it in would deduct a point from every model for
 something none of them can pass.
 
-## Per-language classification scores
+## Classification, language by language
 
-The same classification run, split by the language of the sentence. Each
-language contributes 204 sentences, about 30 of them political.
+The same run as the classification table above, taken apart by the
+language the sentence was written in. Nothing extra was measured: those
+4 080 sentences are 204 in each of twenty languages, and this is the
+score for each group of 204 on its own.
+
+**Every cell is an F1 score for one model in one language**, on the same
+question as before — is this sentence about politics. 0 to 1, higher is
+better. About 30 of each language's 204 sentences are political.
+
+The columns are language codes: ar Arabic, bn Bengali, de German, en
+English, es Spanish, fr French, hi Hindi, ja Japanese, ko Korean, lt
+Lithuanian, pl Polish, pt Portuguese, ro Romanian, ru Russian, ta Tamil,
+th Thai, tr Turkish, uk Ukrainian, vi Vietnamese, zh Chinese.
+
+It answers one question: does a model that scores well overall do so
+everywhere, or does the average hide a language it is bad at.
 
 | Model | ar | bn | de | en | es | fr | hi | ja | ko | lt | pl | pt | ro | ru | ta | th | tr | uk | vi | zh |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -196,8 +210,14 @@ language contributes 204 sentences, about 30 of them political.
 | Qwen3.6-35B-A3B (vLLM) | 0.90 | 0.83 | 0.88 | 0.90 | 0.94 | 0.92 | 0.88 | 0.89 | 0.92 | 0.84 | 0.89 | 0.90 | 0.88 | 0.88 | 0.79 | 0.87 | 0.90 | 0.92 | 0.92 | 0.92 |
 | Qwopus3.6-27B-Coder (vLLM) | 0.92 | 0.92 | 0.91 | 0.92 | 0.91 | 0.92 | 0.91 | 0.90 | 0.92 | 0.91 | 0.88 | 0.94 | 0.95 | 0.89 | 0.83 | 0.88 | 0.94 | 0.89 | 0.94 | 0.88 |
 
-A model can look competent on the average and be much weaker in one
-language. Read down a column rather than across a row.
+**Across a row** to see whether one model is weaker in some languages
+than others. Qwopus3.6-27B has the best average in the table above and
+still drops to 0.83 on Tamil, where Qwen3.6-35B on llama.cpp reaches
+0.92 — and where the same Qwen3.6-35B on vLLM manages only 0.79.
+
+**Down a column** to see whether a low score is the model or the
+language. If every model drops in the same column, the language is the
+hard part and no model choice will fix it.
 
 With about 30 positive examples per language, one misjudged sentence
 moves that language's F1 by roughly 0.015. Gaps under 0.03 between
