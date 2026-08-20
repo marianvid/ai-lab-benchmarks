@@ -34,7 +34,7 @@ Start with [Findings](docs/findings.md) if you want the conclusions, or
 
 | Set | What it gives | Why this one |
 |---|---|---|
-| FLORES-200 | the same 1 012 sentences translated by people into 200 languages | translation can be compared against a human reference instead of against another model |
+| FLORES-200 | the same 1 012 sentences translated into 200 languages | translation can be compared against a human reference instead of against another model |
 | SIB-200 | a topic label on those same sentences | turns them into a classification task with a right answer |
 | Belebele | a question and four answers on those same passages | comprehension, scored by reading one letter |
 | HumanEval+ / MBPP+ | Python problems with tests | the code is executed; it passes or it does not |
