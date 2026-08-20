@@ -7,7 +7,7 @@ the engine can be compared with everything else held constant.
 |---|---|---|---:|---|---|
 | Gemma-4-26B-A4B | vLLM | NVFP4 | 18 GB | 26B total, 4B active | MoE |
 | Gemma-4-26B-A4B | llama.cpp | GGUF Q4_K_XL | 16 GB | 26B total, 4B active | MoE |
-| Qwopus3.6-27B-Coder | vLLM | NVFP4 | 20 GB | 27B | dense, reasoning |
+| Qwopus3.6-27B-Coder | vLLM | NVFP4 | 20 GB | 27B | dense |
 | Qwen3-Coder-30B-A3B | vLLM | NVFP4 | 17 GB | 30B total, 3B active | MoE |
 | Qwen3.6-35B-A3B | vLLM | NVFP4 | 22 GB | 35B total, 3B active | MoE |
 | Qwen3.6-35B-A3B | llama.cpp | GGUF Q4_K_M | 21 GB | 35B total, 3B active | Moe |
