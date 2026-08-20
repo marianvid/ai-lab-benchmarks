@@ -469,14 +469,17 @@ def loading_page(summary: dict, results: pathlib.Path, out: pathlib.Path) -> Non
             "",
         ]
     lines += [
-        "| Model | Engine | First load (cold) | Reload (warm) | Unload |",
-        "|---|---|---:|---:|---:|",
+        "| Model | Engine | On disk | First load (cold) | Reload (warm) | Unload |",
+        "|---|---|---:|---:|---:|---:|",
     ]
     for entry in rows:
         first = entry.get("load", {}).get("load_s")
         again = (entry.get("reload") or {}).get("load_s")
+        size = entry.get("size_bytes")
         lines.append(
-            f"| {entry['model']} | {entry['engine']} | {cell(first, 1)} s "
+            f"| {entry['model']} | {entry['engine']} "
+            f"| {(f'{size / 1024 ** 3:.1f} GB') if size else '—'} "
+            f"| {cell(first, 1)} s "
             f"| {(cell(again, 1) + ' s') if again is not None else '—'} "
             f"| {cell(entry.get('unload', {}).get('unload_s'), 1)} s |")
     lines += [
@@ -485,7 +488,7 @@ def loading_page(summary: dict, results: pathlib.Path, out: pathlib.Path) -> Non
         "log puts the disk read at 9.3 seconds out of 111. The rest is importing",
         "torch and CUDA, profiling memory, compiling kernels, and — on a",
         "multimodal model — pushing invented images and audio through the model",
-        "to measure those paths. [Why vLLM takes minutes to start]"
+        "to measure those paths. [The vLLM start sequence]"
         "(vllm-startup.md) breaks it down phase by phase.",
         "",
         "**The cold-to-warm gaps above were not isolated.** They are inconsistent",
@@ -510,61 +513,82 @@ def loading_page(summary: dict, results: pathlib.Path, out: pathlib.Path) -> Non
     ]
     refused = [e for e in summary.values() if not e.get("load", {}).get("ok")]
     if refused:
-        lines += ["## Refused", "",
-                  "AI-Lab checks free VRAM before starting an engine and declines",
-                  "rather than letting the engine fail partway through.", ""]
+        lines += ["## Would not start", "",
+                  "What the engine or the manager reported, verbatim.", ""]
         for entry in refused:
             lines.append(f"- **{entry['model']}** ({entry['engine']}): "
                          f"{entry['load'].get('error','')}")
         lines.append("")
 
-    oversize_path = results / "oversize-80b.json"
-    if oversize_path.exists():
-        oversize = json.loads(oversize_path.read_text())
+    big = summary.get("coder-next-80b") or {}
+    latency = big.get("latency") or {}
+    if big.get("load", {}).get("ok"):
+        size = big.get("size_bytes", 0) / 1024 ** 3
+        runs = {r.get("test"): r for r in latency.get("runs", [])}
         lines += [
-            "## A model larger than VRAM",
+            "## A model larger than the card",
             "",
-            f"`{pathlib.Path(oversize['model_path']).name}` is "
-            f"{oversize['size_gb']} GB; the card has 32 GB. llama.cpp can keep",
-            "part of a model on the card and the rest in system memory, moving",
-            "data across the PCIe link for every token.",
+            f"Qwen3-Coder-Next in GGUF Q4 is {size:.1f} GB and the card holds",
+            "32.6. llama.cpp puts as many layers on the card as fit and leaves",
+            "the rest in system memory, reaching them over the cable for every",
+            "token. It is set per instance: -1 keeps the whole model on the card",
+            "and refuses to load if it does not fit, -2 lets llama.cpp work out",
+            "how many layers fit.",
             "",
-            "AI-Lab refuses this arrangement, so llama.cpp was started directly.",
+            f"| | {header('Wall')} |",
+            "|---|---:|",
+            f"| First load (cold) | {cell(big['load'].get('load_s'), 1)} s |",
+            f"| Reload (warm) | {cell((big.get('reload') or {}).get('load_s'), 1)} s |",
+            f"| Unload | {cell((big.get('unload') or {}).get('unload_s'), 1)} s |",
             "",
-            "| Split | Loaded | VRAM used | Generation |",
-            "|---|---:|---:|---:|",
+            "Per gigabyte that is the same rate as a model that fits: 0.50",
+            "seconds against 0.52 for Qwen3.6-35B at 20.6 GB. Loading is reading",
+            "a file, and the part that stays in system memory never has to cross",
+            "the cable at all.",
+            "",
         ]
-        for split in oversize["splits"]:
-            if not split.get("ok"):
-                lines.append(f"| {split['gpu_layers']} | did not load | — | "
-                             f"{split.get('error','')} |")
-                continue
-            generation = split.get("generation", {})
-            lines.append(f"| {split['gpu_layers']} | {split['load_s']} s "
-                         f"| {split['vram_mb']} MB "
-                         f"| {generation.get('decode_tok_s','—')} tok/s |")
+        if runs:
+            lines += [
+                f"| Prompt | {header('TTFT')} | {header('Prefill')} "
+                f"| {header('Decode')} |",
+                "|---|---:|---:|---:|",
+            ]
+            for name in ("short prompt (~500 tok)", "medium prompt (~9k tok)",
+                         "long prompt (~29k tok)"):
+                run = runs.get(name)
+                if not run:
+                    continue
+                lines.append(
+                    f"| {run['prompt_tokens']} tokens "
+                    f"| {cell(run.get('ttft_s'), 2)} s "
+                    f"| {cell(run.get('prefill_tok_s'), 1)} "
+                    f"| {cell(run.get('decode_tok_s'), 1)} |")
+            lines += [
+                "",
+                "**Generation barely notices.** 52 to 57 tokens per second,",
+                "which is in the same range as models that fit entirely. Only a",
+                "small share of a mixture-of-experts model is used for any one",
+                "token, so most of what sits in system memory is never read.",
+                "",
+                "**Prompt reading is where it hurts.** 3 043 tokens per second",
+                "on a short prompt, 291 on a medium one, 466 on a long one — not",
+                "a straight line, and not measured often enough to say why the",
+                "long prompt beats the medium one. What matters is the size of",
+                "the drop: reading a prompt processes it all at once, so every",
+                "layer sitting in system memory has the whole batch sent to it",
+                "and back. A 29 000-token prompt takes 53 seconds before the",
+                "first word of the answer.",
+                "",
+                "**So it suits generation, not long prompts.** Which is the wrong",
+                "way round for an agent, since an agent sends whole files.",
+                "",
+            ]
         lines += [
-            "",
-            "**Let the engine choose the split.** Given a fixed `--n-gpu-layers`,",
-            "llama.cpp will not adjust a figure the user supplied: it reports",
-            "`n_gpu_layers already set by user to 36, abort` and then fails",
-            "trying to allocate 34 406 MiB on a 32 623 MiB card. With the flag",
-            "left off it works out the division itself and the model runs.",
-            "",
-            "**This load time is warm.** The file had been read by earlier",
-            "attempts. A cold read of 46 GB from NVMe is considerably slower.",
-            "",
-            "**Why AI-Lab refuses it.** The GPU is attached over",
-            "[OCuLink](glossary.md#oculink) at about 8 GB/s, so a split model",
-            "sends data across a cable for every token. It works for llama.cpp,",
-            "which moves computation to the data; it does not for vLLM, which",
-            "moves the data. See [Configuration](machine.md).",
-            "",
-            "**The cost is not evenly spread.** Measured across four sizes of the",
-            "same model, prompt reading falls 9.5× as layers move off the card",
-            "while generation falls only 2×, and 60% of the prompt-reading loss",
-            "happens at the very first layers evicted. See",
-            "[What partial offload costs](partial-offload.md).",
+            "**Let llama.cpp choose the split.** Given a number it will not",
+            "adjust it: `n_gpu_layers already set by user to 28, abort`, followed",
+            "by a failure to allocate 26 664 MiB on a 32 623 MiB card. With the",
+            "setting left on -2 the flag is not passed at all, llama.cpp measures",
+            "the free memory itself, and the model runs.",
         ]
     page(out / "loading.md", "Loading and unloading", lines)
 

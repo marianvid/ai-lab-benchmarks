@@ -17,7 +17,7 @@ of it, answering questions about it — and writing code.
 | [Throughput](docs/throughput.md) | How much work per second, short and long prompts |
 | [Latency](docs/latency.md) | One request at a time, at 500 / 9 k / 29 k tokens |
 | [Loading](docs/loading.md) | Cold and warm load times; a model larger than VRAM |
-| [vLLM startup](docs/vllm-startup.md) | Where the minutes go, and the flag that removes 72 seconds |
+| [vLLM start sequence](docs/vllm-startup.md) | Where the minutes go, and the flag that removes 72 seconds |
 | [Partial offload](docs/partial-offload.md) | What it costs to run a model that does not fit |
 | [Tokenizer cost](docs/tokenizer.md) | What the same text costs in each language |
 | [Findings](docs/findings.md) | What follows from all of it |

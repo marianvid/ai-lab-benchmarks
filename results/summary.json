@@ -711,7 +711,8 @@
         "prefill_tok_s": 287734.8,
         "decode_tok_s": 484.9
       }
-    }
+    },
+    "size_bytes": 18825660374
   },
   "gemma26-gguf": {
     "instance": "gemma26-gguf",
@@ -1425,7 +1426,8 @@
         "prefill_tok_s": 3901.0,
         "decode_tok_s": 6.7
       }
-    }
+    },
+    "size_bytes": 17010980576
   },
   "text-quality": {
     "instance": "text-quality",
@@ -2144,7 +2146,8 @@
         "prefill_tok_s": 7240.2,
         "decode_tok_s": 13.0
       }
-    }
+    },
+    "size_bytes": 20579528317
   },
   "coder-fast": {
     "instance": "coder-fast",
@@ -2863,7 +2866,8 @@
         "prefill_tok_s": 274056.1,
         "decode_tok_s": 499.7
       }
-    }
+    },
+    "size_bytes": 18120044467
   },
   "qwen-coder": {
     "instance": "qwen-coder",
@@ -3582,7 +3586,8 @@
         "prefill_tok_s": 2328.4,
         "decode_tok_s": 4.3
       }
-    }
+    },
+    "size_bytes": 22134528992
   },
   "qwen36-nvfp4": {
     "instance": "qwen36-nvfp4",
@@ -4301,7 +4306,8 @@
         "prefill_tok_s": 39595.6,
         "decode_tok_s": 72.7
       }
-    }
+    },
+    "size_bytes": 23457678472
   },
   "gemma-general": {
     "instance": "gemma-general",
@@ -5020,7 +5026,8 @@
         "prefill_tok_s": 34838.8,
         "decode_tok_s": 55.7
       }
-    }
+    },
+    "size_bytes": 4590807392
   },
   "glm-flash": {
     "instance": "glm-flash",
@@ -5739,7 +5746,8 @@
         "prefill_tok_s": 110170.7,
         "decode_tok_s": 212.1
       }
-    }
+    },
+    "size_bytes": 21287344774
   },
   "coder-next-80b": {
     "instance": "coder-next-80b",
@@ -5748,10 +5756,26 @@
     "format": "GGUF",
     "tested": false,
     "load": {
-      "ok": false,
-      "error": "Qwen3-Coder-Next-UD-Q4_K_XL needs about 46.2 GB but only 31.9 GB is free on the card. Unload another model, or choose a smaller one.",
-      "load_s": 0.1
-    }
+      "ok": true,
+      "load_s": 22.9,
+      "load_ms_reported": 22892
+    },
+    "unload_first": {
+      "ok": true,
+      "unload_s": 2.1,
+      "unload_ms_reported": 1984
+    },
+    "reload": {
+      "ok": true,
+      "load_s": 10.0,
+      "load_ms_reported": 9944
+    },
+    "unload": {
+      "ok": true,
+      "unload_s": 1.9,
+      "unload_ms_reported": 1863
+    },
+    "size_bytes": 49608478720
   },
   "gemma31-gguf": {
     "instance": "gemma31-gguf",
@@ -6470,7 +6494,8 @@
       "ok": true,
       "unload_s": 2.8,
       "unload_ms_reported": 2743
-    }
+    },
+    "size_bytes": 18822970304
   },
   "gemma31-nvfp4": {
     "instance": "gemma31-nvfp4",
@@ -7189,6 +7214,7 @@
       "ok": true,
       "unload_s": 2.1,
       "unload_ms_reported": 1987
-    }
+    },
+    "size_bytes": 23297611890
   }
 }

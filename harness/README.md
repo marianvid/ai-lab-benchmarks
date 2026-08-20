@@ -19,7 +19,7 @@ licences. **Nothing is redistributed by this repository.**
 python3 run_all.py --out ./results
 ```
 
-One model at a time: load it through AI-Lab, wait until it answers, run the four
+One model at a time: load it through [AI-Lab](https://github.com/marianvid/ai-lab), wait until it answers, run the four
 tests, unload, record what loading and unloading cost. It is built to survive
 its own failures — a model that will not start is a recorded fact, not a stop.
 

@@ -37,6 +37,7 @@ measured in [loading.md](loading.md#a-model-larger-than-vram).
 | Engines run in | an unprivileged LXC container |
 | llama.cpp | build b10447 |
 | vLLM | 0.26.1rc1.dev949 (nightly) |
+| Manager | [AI-Lab](https://github.com/marianvid/ai-lab), which loads and unloads the models and timed every load here |
 | Supervisor | systemd, one unit per model instance |
 
 **The vLLM version looks older than it is.** Nightly builds take their version

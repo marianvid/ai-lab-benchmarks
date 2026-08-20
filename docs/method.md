@@ -198,7 +198,7 @@ fact.
 
 ## How a run is orchestrated
 
-`harness/run_all.py` takes each model in turn: loads it through AI-Lab, waits
+`harness/run_all.py` takes each model in turn: loads it through [AI-Lab](https://github.com/marianvid/ai-lab), waits
 until it answers, loads it a second time for the warm figure, then runs the four
 quality tasks, the short-prompt concurrency ladder, the latency test and the
 long-form ladder, and unloads.

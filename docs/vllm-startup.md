@@ -1,4 +1,4 @@
-# Why vLLM takes minutes to start
+# The vLLM start sequence
 
 vLLM loads a model in 42 to 212 seconds where llama.cpp takes 3 to 11. Reading
 the weights from disk is a small part of that, and for a multimodal model most
@@ -89,7 +89,7 @@ The log above shows `torch.compile took 0.31 s`, which means the compiled
 kernels were loaded ready-made from cache. With that cache empty the phase
 expands enormously.
 
-Measured through AI-Lab: **first start after moving the working directory, 241
+Measured through [AI-Lab](https://github.com/marianvid/ai-lab): **first start after moving the working directory, 241
 seconds. The next one, 47 seconds.**
 
 That is the third large cost, and it is invisible in the map above because the

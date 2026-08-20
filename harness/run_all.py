@@ -86,6 +86,17 @@ def wait_ready(port: int, seconds: int = 900) -> bool:
     return False
 
 
+def model_size(instance: str) -> int | None:
+    """Bytes on disk for the model this instance is configured to run."""
+    try:
+        wanted = next(item["model_id"] for item in api("/api/instances")
+                      if item["id"] == instance)
+        return next(item["size_bytes"] for item in api("/api/models")
+                    if item["id"] == wanted)
+    except Exception:
+        return None
+
+
 def load(instance: str, port: int) -> dict:
     started = time.perf_counter()
     try:
@@ -184,6 +195,11 @@ def main() -> int:
         entry = dict(summary.get(instance) or {})
         entry.update({"instance": instance, "model": name, "engine": engine,
                       "format": fmt, "tested": full})
+        # The size on disk, so the loading page can put a load time next to the
+        # number of gigabytes it read. Asked of AI-Lab rather than written down
+        # here, because a re-quantised model changes size and nobody would
+        # remember to edit a constant.
+        entry["size_bytes"] = model_size(instance)
 
         loaded = load(instance, port)
         entry["load"] = loaded
