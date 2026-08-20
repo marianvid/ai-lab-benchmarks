@@ -41,12 +41,18 @@ TERMS = {
 }
 
 
-def header(name: str) -> str:
-    """A column header that links to its definition and shows it on hover."""
-    if name not in TERMS:
-        return name
-    anchor, hover = TERMS[name]
-    return f'[{name}](glossary.md#{anchor} "{hover}")'
+def header(name: str, unit: str | None = None) -> str:
+    """A column header: its name, a link to its definition, and its unit.
+
+    The unit sits outside the link, so it is readable without hovering.
+    Hovering was the only way to find out what a column held, which is no way
+    to read a table.
+    """
+    text = name
+    if name in TERMS:
+        anchor, hover = TERMS[name]
+        text = f'[{name}](glossary.md#{anchor} "{hover}")'
+    return f"{text} ({unit})" if unit else text
 
 
 def cell(value, digits: int = 3) -> str:
@@ -121,13 +127,47 @@ def quality_page(rows: list[dict], out: pathlib.Path) -> None:
         "See [method.md](method.md) for how each task was run and",
         "[models.md](models.md) for what the models are.",
         "",
+        "## How to read these tables",
+        "",
+        "Every table has two kinds of column. The **score** says how well the",
+        "model did; the **rate** and the **time** say how fast. They are",
+        "independent — the fastest model here is not the most accurate one.",
+        "",
+        "| Column | What it measures | Range | Better |",
+        "|---|---|---|---|",
+        "| F1 | classification, balancing the ones it found against the ones it "
+        "got right | 0 to 1 | higher |",
+        "| Accuracy | the fraction of questions answered correctly | 0 to 1 "
+        "| higher |",
+        "| chrF++ | how much a translation overlaps a human one, counted in "
+        "character sequences | 0 to 100 | higher |",
+        "| Pass rate | the fraction of programs that ran and passed every test "
+        "| 0 to 1 | higher |",
+        "| HumanEval+, MBPP+ | the pass rate on each half of the coding set "
+        "| 0 to 1 | higher |",
+        "| Passed | problems passed, out of 541 | a count | higher |",
+        "| Unanswered | questions that got no usable reply, out of 2 000 "
+        "| a count | lower |",
+        "| Sentences/s, Questions/s, Translations/s | items finished per second "
+        "| per second | higher |",
+        "| Prefill | how fast the model reads a prompt | tokens per second "
+        "| higher |",
+        "| Wall | how long the whole task took | seconds | lower |",
+        "",
+        "**A score near the bottom of its range is not a bad model, it is a",
+        "hard task.** Comprehension is a choice between four answers, so 0.25",
+        "is what guessing scores and the useful range starts there. Translation",
+        "scores are held down by the languages in the set; see the caveat in",
+        "the [README](../README.md).",
+        "",
         "## Classification",
         "",
         "The model reads a sentence and answers one question: is its topic",
         "politics. 4 080 sentences in 20 languages, of which 15% are political.",
         "",
         f"| Model | Engine | {header('F1')} | {header('Accuracy')} "
-        f"| Sentences/s | {header('Prefill')} | {header('Wall')} |",
+        f"| Sentences/s | {header('Prefill', 'tok/s')} "
+        f"| {header('Wall', 's')} |",
         "|---|---|---:|---:|---:|---:|---:|",
     ]
     for entry in rows:
@@ -139,7 +179,7 @@ def quality_page(rows: list[dict], out: pathlib.Path) -> None:
         lines.append(
             f"| {entry['model']} | {entry['engine']} | **{cell(quality['f1'])}** "
             f"| {cell(quality['accuracy'])} | {row['items_per_s']} "
-            f"| {row['prefill_tok_s']} | {row['wall_s']} s |")
+            f"| {row['prefill_tok_s']} | {row['wall_s']} |")
     lines += [
         "",
         "**Accuracy is higher than F1 for every model, and the gap matters.**",
@@ -162,7 +202,7 @@ def quality_page(rows: list[dict], out: pathlib.Path) -> None:
         "total, always the same 100 so every model is asked the same things.",
         "",
         f"| Model | Engine | {header('Accuracy')} | {header('Unanswered')} "
-        f"| Questions/s | {header('Wall')} |",
+        f"| Questions/s | {header('Wall', 's')} |",
         "|---|---|---:|---:|---:|---:|",
     ]
     for entry in rows:
@@ -170,7 +210,7 @@ def quality_page(rows: list[dict], out: pathlib.Path) -> None:
         lines.append(f"| {entry['model']} | {entry['engine']} | "
                      + (f"**{cell(row['accuracy'])}** "
                         f"| {row['of'] - row['answered']} | {row['items_per_s']} "
-                        f"| {row['wall_s']} s |" if row else "— | — | — | — |"))
+                        f"| {row['wall_s']} |" if row else "— | — | — | — |"))
     lines += [
         "",
         "**Guessing scores 0.25**, because there are four options. Subtract it",
@@ -217,14 +257,15 @@ def quality_page(rows: list[dict], out: pathlib.Path) -> None:
         "English into 19 languages, 50 sentences each, 950 translations per",
         "model, scored against FLORES's human translations.",
         "",
-        f"| Model | Engine | {header('chrF++')} | Translations/s | {header('Wall')} |",
+        f"| Model | Engine | {header('chrF++')} | Translations/s "
+        f"| {header('Wall', 's')} |",
         "|---|---|---:|---:|---:|",
     ]
     for entry in rows:
         row = entry.get("translation")
         lines.append(f"| {entry['model']} | {entry['engine']} | "
                      + (f"**{cell(row['chrf_mean'], 2)}** | {row['items_per_s']} "
-                        f"| {row['wall_s']} s |" if row else "— | — | — |"))
+                        f"| {row['wall_s']} |" if row else "— | — | — |"))
     lines += [
         "",
         "**The values are low because the language mix is hard.** These 19",
@@ -241,7 +282,7 @@ def quality_page(rows: list[dict], out: pathlib.Path) -> None:
         "that came with the problem; it passes or it does not.",
         "",
         f"| Model | Engine | {header('Pass rate')} | Passed | HumanEval+ | MBPP+ "
-        f"| {header('Wall')} |",
+        f"| {header('Wall', 's')} |",
         "|---|---|---:|---:|---:|---:|---:|",
     ]
     for entry in rows:
@@ -255,7 +296,7 @@ def quality_page(rows: list[dict], out: pathlib.Path) -> None:
             f"| {row['passed']}/{row['problems']} "
             f"| {cell(by_set.get('humanevalplus', {}).get('pass_rate'))} "
             f"| {cell(by_set.get('mbppplus', {}).get('pass_rate'))} "
-            f"| {row['wall_s']} s |")
+            f"| {row['wall_s']} |")
     lines += [
         "",
         "**HumanEval+ scores higher than MBPP+ for every model.** HumanEval gives",
@@ -535,7 +576,7 @@ def loading_page(summary: dict, results: pathlib.Path, out: pathlib.Path) -> Non
             "and refuses to load if it does not fit, -2 lets llama.cpp work out",
             "how many layers fit.",
             "",
-            f"| | {header('Wall')} |",
+            f"| | {header('Wall', 's')} |",
             "|---|---:|",
             f"| First load (cold) | {cell(big['load'].get('load_s'), 1)} s |",
             f"| Reload (warm) | {cell((big.get('reload') or {}).get('load_s'), 1)} s |",

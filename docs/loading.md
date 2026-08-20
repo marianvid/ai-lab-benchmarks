@@ -27,7 +27,7 @@ are genuinely cold.
 **Reading the weights is a small part of a vLLM start.** Its own startup
 log puts the disk read at 9.3 seconds out of 111. The rest is importing
 torch and CUDA, profiling memory, compiling kernels, and — on a
-multimodal model — pushing dummy images and audio through the model
+multimodal model — pushing invented images and audio through the model
 to measure those paths. [The vLLM start sequence](vllm-startup.md) breaks it down phase by phase.
 
 **The cold-to-warm gaps above were not isolated.** They are inconsistent
@@ -58,7 +58,7 @@ token. It is set per instance: -1 keeps the whole model on the card
 and refuses to load if it does not fit, -2 lets llama.cpp work out
 how many layers fit.
 
-| | [Wall](glossary.md#wall--wall-time "seconds on a clock, start to finish") |
+| | [Wall](glossary.md#wall--wall-time "seconds on a clock, start to finish") (s) |
 |---|---:|
 | First load (cold) | 22.9 s |
 | Reload (warm) | 10.0 s |

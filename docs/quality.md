@@ -7,23 +7,48 @@ same run.
 See [method.md](method.md) for how each task was run and
 [models.md](models.md) for what the models are.
 
+## How to read these tables
+
+Every table has two kinds of column. The **score** says how well the
+model did; the **rate** and the **time** say how fast. They are
+independent — the fastest model here is not the most accurate one.
+
+| Column | What it measures | Range | Better |
+|---|---|---|---|
+| F1 | classification, balancing the ones it found against the ones it got right | 0 to 1 | higher |
+| Accuracy | the fraction of questions answered correctly | 0 to 1 | higher |
+| chrF++ | how much a translation overlaps a human one, counted in character sequences | 0 to 100 | higher |
+| Pass rate | the fraction of programs that ran and passed every test | 0 to 1 | higher |
+| HumanEval+, MBPP+ | the pass rate on each half of the coding set | 0 to 1 | higher |
+| Passed | problems passed, out of 541 | a count | higher |
+| Unanswered | questions that got no usable reply, out of 2 000 | a count | lower |
+| Sentences/s, Questions/s, Translations/s | items finished per second | per second | higher |
+| Prefill | how fast the model reads a prompt | tokens per second | higher |
+| Wall | how long the whole task took | seconds | lower |
+
+**A score near the bottom of its range is not a bad model, it is a
+hard task.** Comprehension is a choice between four answers, so 0.25
+is what guessing scores and the useful range starts there. Translation
+scores are held down by the languages in the set; see the caveat in
+the [README](../README.md).
+
 ## Classification
 
 The model reads a sentence and answers one question: is its topic
 politics. 4 080 sentences in 20 languages, of which 15% are political.
 
-| Model | Engine | [F1](glossary.md#f1 "0-1, higher better. Precision and recall combined; used because the set is only 15% positive") | [Accuracy](glossary.md#accuracy "fraction answered correctly, 0-1") | Sentences/s | [Prefill](glossary.md#prefill "prompt reading, tokens per second") | [Wall](glossary.md#wall--wall-time "seconds on a clock, start to finish") |
+| Model | Engine | [F1](glossary.md#f1 "0-1, higher better. Precision and recall combined; used because the set is only 15% positive") | [Accuracy](glossary.md#accuracy "fraction answered correctly, 0-1") | Sentences/s | [Prefill](glossary.md#prefill "prompt reading, tokens per second") (tok/s) | [Wall](glossary.md#wall--wall-time "seconds on a clock, start to finish") (s) |
 |---|---|---:|---:|---:|---:|---:|
-| GLM-4.7-Flash | vLLM | **0.819** | 0.941 | 36.97 | 3514.9 | 110.35 s |
-| Gemma-4-26B-A4B | llama.cpp | **0.871** | 0.963 | 8.94 | 662.2 | 456.41 s |
-| Gemma-4-26B-A4B | vLLM | **0.875** | 0.964 | 51.13 | 3797.8 | 79.79 s |
-| Gemma-4-31B | llama.cpp | **0.877** | 0.960 | 2.24 | 165.8 | 1823.0 s |
-| Gemma-4-31B | vLLM | **0.883** | 0.962 | 18.18 | 1350.4 | 224.4 s |
-| Gemma-4-E4B | llama.cpp | **0.828** | 0.945 | 11.62 | 851.2 | 351.22 s |
-| Qwen3-Coder-30B-A3B | vLLM | **0.726** | 0.933 | 49.9 | 4756.3 | 81.76 s |
-| Qwen3.6-35B-A3B | llama.cpp | **0.895** | 0.969 | 8.03 | 626.1 | 507.86 s |
-| Qwen3.6-35B-A3B | vLLM | **0.889** | 0.967 | 53.6 | 4507.8 | 76.11 s |
-| Qwopus3.6-27B-Coder | vLLM | **0.906** | 0.971 | 19.69 | 1531.0 | 207.2 s |
+| GLM-4.7-Flash | vLLM | **0.819** | 0.941 | 36.97 | 3514.9 | 110.35 |
+| Gemma-4-26B-A4B | llama.cpp | **0.871** | 0.963 | 8.94 | 662.2 | 456.41 |
+| Gemma-4-26B-A4B | vLLM | **0.875** | 0.964 | 51.13 | 3797.8 | 79.79 |
+| Gemma-4-31B | llama.cpp | **0.877** | 0.960 | 2.24 | 165.8 | 1823.0 |
+| Gemma-4-31B | vLLM | **0.883** | 0.962 | 18.18 | 1350.4 | 224.4 |
+| Gemma-4-E4B | llama.cpp | **0.828** | 0.945 | 11.62 | 851.2 | 351.22 |
+| Qwen3-Coder-30B-A3B | vLLM | **0.726** | 0.933 | 49.9 | 4756.3 | 81.76 |
+| Qwen3.6-35B-A3B | llama.cpp | **0.895** | 0.969 | 8.03 | 626.1 | 507.86 |
+| Qwen3.6-35B-A3B | vLLM | **0.889** | 0.967 | 53.6 | 4507.8 | 76.11 |
+| Qwopus3.6-27B-Coder | vLLM | **0.906** | 0.971 | 19.69 | 1531.0 | 207.2 |
 
 **Accuracy is higher than F1 for every model, and the gap matters.**
 Only 15% of the sentences are political, so a model answering "no" to
@@ -44,18 +69,18 @@ A passage, a question about it, four answers of which one is right. The
 model replies with a single letter. 100 questions per language, 2 000 in
 total, always the same 100 so every model is asked the same things.
 
-| Model | Engine | [Accuracy](glossary.md#accuracy "fraction answered correctly, 0-1") | [Unanswered](glossary.md#unanswered "requests that produced no usable answer, out of 2 000. Counted as wrong, not dropped") | Questions/s | [Wall](glossary.md#wall--wall-time "seconds on a clock, start to finish") |
+| Model | Engine | [Accuracy](glossary.md#accuracy "fraction answered correctly, 0-1") | [Unanswered](glossary.md#unanswered "requests that produced no usable answer, out of 2 000. Counted as wrong, not dropped") | Questions/s | [Wall](glossary.md#wall--wall-time "seconds on a clock, start to finish") (s) |
 |---|---|---:|---:|---:|---:|
-| GLM-4.7-Flash | vLLM | **0.742** | 0 | 32.97 | 60.66 s |
-| Gemma-4-26B-A4B | llama.cpp | **0.884** | 43 | 9.45 | 207.13 s |
-| Gemma-4-26B-A4B | vLLM | **0.873** | 43 | 59.08 | 33.13 s |
-| Gemma-4-31B | llama.cpp | **0.916** | 12 | 2.07 | 961.76 s |
-| Gemma-4-31B | vLLM | **0.914** | 11 | 25.89 | 76.83 s |
-| Gemma-4-E4B | llama.cpp | **0.760** | 0 | 18.12 | 110.35 s |
-| Qwen3-Coder-30B-A3B | vLLM | **0.847** | 0 | 59.54 | 33.59 s |
-| Qwen3.6-35B-A3B | llama.cpp | **0.913** | 2 | 4.33 | 461.76 s |
-| Qwen3.6-35B-A3B | vLLM | **0.895** | 0 | 30.53 | 65.51 s |
-| Qwopus3.6-27B-Coder | vLLM | **0.915** | 0 | 19.92 | 100.41 s |
+| GLM-4.7-Flash | vLLM | **0.742** | 0 | 32.97 | 60.66 |
+| Gemma-4-26B-A4B | llama.cpp | **0.884** | 43 | 9.45 | 207.13 |
+| Gemma-4-26B-A4B | vLLM | **0.873** | 43 | 59.08 | 33.13 |
+| Gemma-4-31B | llama.cpp | **0.916** | 12 | 2.07 | 961.76 |
+| Gemma-4-31B | vLLM | **0.914** | 11 | 25.89 | 76.83 |
+| Gemma-4-E4B | llama.cpp | **0.760** | 0 | 18.12 | 110.35 |
+| Qwen3-Coder-30B-A3B | vLLM | **0.847** | 0 | 59.54 | 33.59 |
+| Qwen3.6-35B-A3B | llama.cpp | **0.913** | 2 | 4.33 | 461.76 |
+| Qwen3.6-35B-A3B | vLLM | **0.895** | 0 | 30.53 | 65.51 |
+| Qwopus3.6-27B-Coder | vLLM | **0.915** | 0 | 19.92 | 100.41 |
 
 **Guessing scores 0.25**, because there are four options. Subtract it
 before comparing: 0.74 and 0.91 are not 23% apart, they are 0.49 and
@@ -101,18 +126,18 @@ other runs predate the change and have counts only.
 English into 19 languages, 50 sentences each, 950 translations per
 model, scored against FLORES's human translations.
 
-| Model | Engine | [chrF++](glossary.md#chrf "0-100, higher better. Overlap with a human reference translation, counted in character sequences") | Translations/s | [Wall](glossary.md#wall--wall-time "seconds on a clock, start to finish") |
+| Model | Engine | [chrF++](glossary.md#chrf "0-100, higher better. Overlap with a human reference translation, counted in character sequences") | Translations/s | [Wall](glossary.md#wall--wall-time "seconds on a clock, start to finish") (s) |
 |---|---|---:|---:|---:|
-| GLM-4.7-Flash | vLLM | **50.39** | 7.11 | 133.63 s |
-| Gemma-4-26B-A4B | llama.cpp | **56.12** | 2.71 | 350.82 s |
-| Gemma-4-26B-A4B | vLLM | **55.80** | 11.59 | 81.96 s |
-| Gemma-4-31B | llama.cpp | **56.38** | 0.74 | 1285.08 s |
-| Gemma-4-31B | vLLM | **56.01** | 5.05 | 188.12 s |
-| Gemma-4-E4B | llama.cpp | **54.08** | 3.35 | 283.69 s |
-| Qwen3-Coder-30B-A3B | vLLM | **45.38** | 8.25 | 115.15 s |
-| Qwen3.6-35B-A3B | llama.cpp | **54.24** | 1.93 | 492.87 s |
-| Qwen3.6-35B-A3B | vLLM | **53.79** | 9.65 | 98.49 s |
-| Qwopus3.6-27B-Coder | vLLM | **52.99** | 5.03 | 188.89 s |
+| GLM-4.7-Flash | vLLM | **50.39** | 7.11 | 133.63 |
+| Gemma-4-26B-A4B | llama.cpp | **56.12** | 2.71 | 350.82 |
+| Gemma-4-26B-A4B | vLLM | **55.80** | 11.59 | 81.96 |
+| Gemma-4-31B | llama.cpp | **56.38** | 0.74 | 1285.08 |
+| Gemma-4-31B | vLLM | **56.01** | 5.05 | 188.12 |
+| Gemma-4-E4B | llama.cpp | **54.08** | 3.35 | 283.69 |
+| Qwen3-Coder-30B-A3B | vLLM | **45.38** | 8.25 | 115.15 |
+| Qwen3.6-35B-A3B | llama.cpp | **54.24** | 1.93 | 492.87 |
+| Qwen3.6-35B-A3B | vLLM | **53.79** | 9.65 | 98.49 |
+| Qwopus3.6-27B-Coder | vLLM | **52.99** | 5.03 | 188.89 |
 
 **The values are low because the language mix is hard.** These 19
 include Tamil, Thai, Bengali and Lithuanian. A study covering only
@@ -127,18 +152,18 @@ agreement with a human translator rather than with another model.
 541 Python problems. The generated code is executed against the tests
 that came with the problem; it passes or it does not.
 
-| Model | Engine | [Pass rate](glossary.md#pass-rate "fraction of problems whose generated code ran and passed every test") | Passed | HumanEval+ | MBPP+ | [Wall](glossary.md#wall--wall-time "seconds on a clock, start to finish") |
+| Model | Engine | [Pass rate](glossary.md#pass-rate "fraction of problems whose generated code ran and passed every test") | Passed | HumanEval+ | MBPP+ | [Wall](glossary.md#wall--wall-time "seconds on a clock, start to finish") (s) |
 |---|---|---:|---:|---:|---:|---:|
-| GLM-4.7-Flash | vLLM | **0.706** | 382/541 | 0.749 | 0.688 | 203.94 s |
-| Gemma-4-26B-A4B | llama.cpp | **0.834** | 451/541 | 0.951 | 0.783 | 688.64 s |
-| Gemma-4-26B-A4B | vLLM | **0.826** | 447/541 | 0.945 | 0.775 | 219.86 s |
-| Gemma-4-31B | llama.cpp | **0.826** | 447/541 | 0.939 | 0.778 | 1847.28 s |
-| Gemma-4-31B | vLLM | **0.828** | 448/541 | 0.945 | 0.778 | 349.47 s |
-| Gemma-4-E4B | llama.cpp | **0.765** | 414/541 | 0.877 | 0.717 | 674.73 s |
-| Qwen3-Coder-30B-A3B | vLLM | **0.791** | 428/541 | 0.890 | 0.749 | 153.6 s |
-| Qwen3.6-35B-A3B | llama.cpp | **0.808** | 437/541 | 0.902 | 0.767 | 486.95 s |
-| Qwen3.6-35B-A3B | vLLM | **0.810** | 438/541 | 0.902 | 0.770 | 147.69 s |
-| Qwopus3.6-27B-Coder | vLLM | **0.815** | 441/541 | 0.932 | 0.765 | 304.9 s |
+| GLM-4.7-Flash | vLLM | **0.706** | 382/541 | 0.749 | 0.688 | 203.94 |
+| Gemma-4-26B-A4B | llama.cpp | **0.834** | 451/541 | 0.951 | 0.783 | 688.64 |
+| Gemma-4-26B-A4B | vLLM | **0.826** | 447/541 | 0.945 | 0.775 | 219.86 |
+| Gemma-4-31B | llama.cpp | **0.826** | 447/541 | 0.939 | 0.778 | 1847.28 |
+| Gemma-4-31B | vLLM | **0.828** | 448/541 | 0.945 | 0.778 | 349.47 |
+| Gemma-4-E4B | llama.cpp | **0.765** | 414/541 | 0.877 | 0.717 | 674.73 |
+| Qwen3-Coder-30B-A3B | vLLM | **0.791** | 428/541 | 0.890 | 0.749 | 153.6 |
+| Qwen3.6-35B-A3B | llama.cpp | **0.808** | 437/541 | 0.902 | 0.767 | 486.95 |
+| Qwen3.6-35B-A3B | vLLM | **0.810** | 438/541 | 0.902 | 0.770 | 147.69 |
+| Qwopus3.6-27B-Coder | vLLM | **0.815** | 441/541 | 0.932 | 0.765 | 304.9 |
 
 **HumanEval+ scores higher than MBPP+ for every model.** HumanEval gives
 the function signature and a docstring to complete; MBPP describes the
