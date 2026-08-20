@@ -10,13 +10,20 @@ the engine can be compared with everything else held constant.
 | Qwopus3.6-27B-Coder | vLLM | NVFP4 | 20 GB | 27B | dense |
 | Qwen3-Coder-30B-A3B | vLLM | NVFP4 | 17 GB | 30B total, 3B active | MoE |
 | Qwen3.6-35B-A3B | vLLM | NVFP4 | 22 GB | 35B total, 3B active | MoE |
-| Qwen3.6-35B-A3B | llama.cpp | GGUF Q4_K_M | 21 GB | 35B total, 3B active | Moe |
+| Qwen3.6-35B-A3B | llama.cpp | GGUF Q4_K_M | 21 GB | 35B total, 3B active | MoE |
 | Gemma-4-E4B | llama.cpp | GGUF Q4_0 | 4.3 GB | ~4B | dense |
-| GLM-4.7-Flash | vLLM | NVFP4 | 20 GB | — | — |
+| GLM-4.7-Flash | vLLM | NVFP4 | 20 GB | ~30B total, ~3.6B active¹ | MoE |
 
-Sizes are the files on disk. A running model also needs room for its
-[KV cache](glossary.md#kv-cache), which is why 22 GB of weights fits on a 32 GB
-card and 46 GB does not.
+¹ GLM-4.7-Flash publishes no parameter count. This one is computed from its
+`config.json`: 47 layers, 64 experts of which 4 are active per token plus one
+shared. Treat it as an estimate.
+
+Sizes are the files on disk. A running model needs more than that: the weights
+plus a [KV cache](glossary.md#kv-cache) sized by the context window and the
+number of requests in flight.
+
+vLLM was configured to claim 90% of the card at startup regardless of the
+model, so its VRAM figures describe the setting, not the model.
 
 ## Selection
 

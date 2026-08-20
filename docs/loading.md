@@ -22,11 +22,22 @@ are genuinely cold.
 | Qwen3.6-35B-A3B | vLLM | 177.0 s | 92.2 s | 2.2 s |
 | Qwopus3.6-27B-Coder | vLLM | 163.4 s | 69.1 s | 2.2 s |
 
-**The cause of the gap was not isolated.** It is somewhere between
-reading the weights, reading vLLM's own multi-gigabyte installation, and
-rebuilding its compiled-kernel cache. The figures are inconsistent
-across models of similar size, so the disk alone does not account for
-it.
+**Reading the weights is a small part of a vLLM start.** Its own startup
+log puts the disk read at 9.3 seconds out of 111. The rest is importing
+torch and CUDA, profiling memory, compiling kernels, and — on a
+multimodal model — pushing invented images and audio through the model
+to measure those paths. [Why vLLM takes minutes to start](vllm-startup.md) breaks it down phase by phase.
+
+**The cold-to-warm gaps above were not isolated.** They are inconsistent
+across models of similar size — 95 s for one, 5 s for another — so the
+disk does not account for them. The likeliest cause is vLLM's
+compiled-kernel cache: an empty one turned a 47-second start into 241
+seconds in a separate measurement.
+
+**72 of those 111 seconds are avoidable on a multimodal model.** The
+`--language-model-only` flag skips the multimodal profiling and warm-up
+and takes the same model from 111 seconds to 39, at a cost of about 6%
+of KV cache capacity. Details and the trade-off are on the same page.
 
 **llama.cpp starts in seconds, vLLM in a minute or more.** For work that
 loads a model, asks one question and unloads, llama.cpp finishes before
