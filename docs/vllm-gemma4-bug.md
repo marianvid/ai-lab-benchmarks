@@ -1,6 +1,9 @@
 # A bug in vLLM 0.27.1 — Gemma-4 will not load
 
-**Affects vLLM 0.27.1. Fixed upstream; nightly builds load Gemma-4 unpatched.**
+**Affects vLLM 0.27.1 only. The nightly build fixes it.** This machine now runs
+`0.26.1rc1.dev949`, with no patch applied, and Gemma-4 loads and runs the whole
+benchmark on it. The page is kept for the diagnosis, not because anything here
+still needs doing.
 
 Patch in `harness/fix_gemma4.py`, useful only if pinned to 0.27.1. It edits a
 file inside the installed package, so any upgrade silently reverts it.
@@ -126,67 +129,3 @@ and the same shape for `num_kv_heads`, reading `_lc.num_key_value_heads`.
 Applied to
 `/opt/ai/vllm/.venv/lib/python3.12/site-packages/vllm/model_executor/models/gemma4.py`,
 with the pristine file kept as `gemma4.py.orig`.
-
-## Verification — loading is not the same as working
-
-A model built with wrong layer sizes could load and emit nonsense, so the fixed
-model was compared against **the same model in GGUF on llama.cpp**, which never
-had the bug:
-
-| Measurement | NVFP4 / vLLM, patched | GGUF / llama.cpp | Difference |
-|---|---:|---:|---:|
-| chrF++ average | 69.68 | 69.50 | +0.18 |
-| chrF++ Romanian | 68.68 | 67.90 | +0.78 |
-| chrF++ French | 77.55 | 77.10 | +0.45 |
-| chrF++ Ukrainian | 63.80 | 64.60 | −0.80 |
-| Classification F1 | 0.969 | 0.968 | +0.001 |
-| Coding | 10/10 | 10/10 | — |
-
-Every difference sits inside measurement noise, across all seven languages. The
-model computes correctly.
-
-## Regression check — nothing else was disturbed
-
-Only one file was modified, and it is loaded solely for Gemma-4 models. Verified
-empirically on a non-Gemma model:
-
-| | before the patch | after |
-|---|---:|---:|
-| Qwopus-27B, articles/s at c=8 | 17.64 | 17.67 |
-
-## What it unlocks
-
-| | before | after |
-|---|---|---|
-| Gemma-4 on vLLM | does not start | works |
-| Throughput at c=32 | — | **159.6 articles/s**, ×17.6 over one request |
-| Prompt reading | — | 15 611 tok/s |
-
-Against the same model on llama.cpp — 8.1 articles/s at its best — this is a
-twenty-fold difference in bulk throughput.
-
-## Reporting upstream
-
-Not yet done. It should be, because 0.27.1 is the current release and there is
-no newer version to upgrade to. A report needs:
-
-1. Minimal reproduction: `vllm serve nvidia/Gemma-4-26B-A4B-NVFP4` on
-   transformers 5.15.
-2. Both tracebacks.
-3. The observation that `AmbiguousGlobalPerLayerAttributeError` derives from
-   `RuntimeError`, which is why the `getattr` default does not shield the caller.
-4. The patch above, as a pull request.
-
-Worth checking first whether an issue already exists, and whether the `main`
-branch has moved.
-
-## After any vLLM upgrade
-
-```bash
-pct exec 102 -- ls -la /opt/ai/vllm/.venv/lib/python3.12/site-packages/vllm/model_executor/models/ | grep gemma4
-# if gemma4.py.orig is gone, the package was replaced and the patch with it
-pct exec 102 -- /opt/ai/vllm/.venv/bin/python /tmp/fix_gemma4.py   # from harness/
-```
-
-Then start a Gemma model and run one classification pass. If F1 lands near
-0.969, the fix took.
