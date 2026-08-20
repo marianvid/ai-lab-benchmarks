@@ -13,7 +13,7 @@
 | Memory | 96 GB DDR5-5600 |
 | Model storage | internal NVMe (Lexar NM790) |
 
-[OCuLink](glossary.md#oculink) cable is a slow connextion providing aroung 8GB/s transfer rate.
+The [OCuLink](glossary.md#oculink) cable is a slow connection, providing around 8 GB/s of transfer rate.
 
 **Inference is unaffected.** Once a model is loaded its weights are in VRAM and
 stay there. Nothing crosses the cable while the model is answering, so none of
@@ -23,8 +23,11 @@ the throughput or quality figures in this repository are influenced by it.
 that link, so load times include it.
 
 **Splitting a model across card and system memory is a bad idea here.** In that
-arrangement data crosses the cable for every token generated. While for Llama.cpp it may work for some configuration (llama.cpp is moving the conputing next to the data) fpr vLLM the splitting in unusable since vLLM is moving tons of data on each operation, through that cable (data is migrating to the comput. The costs is measured in
-[loading.md](loading.md#a-model-larger-than-vram).
+arrangement data crosses the cable for every token generated. While for llama.cpp
+it may work for some configurations (llama.cpp moves the computing next to the
+data), for vLLM the splitting is unusable, since vLLM moves tons of data through
+that cable on every operation (the data migrates to the compute). The cost is
+measured in [loading.md](loading.md#a-model-larger-than-vram).
 
 ## Software
 
@@ -41,5 +44,3 @@ number from the last release tag on the branch they were cut from, so
 `0.26.1rc1.dev949` is newer than the `0.27.1` release. It was chosen because
 the stable release would not load one of the models; see
 [the vLLM bug](vllm-gemma4-bug.md).
-
-
