@@ -26,27 +26,21 @@ Start with [Findings](docs/findings.md) if you want the conclusions, or
 
 ## The short version
 
-**The engine decides throughput; the model decides quality.** The same weights
-on both engines:
-
 | Model | Engine | Classification F1 | Sentences/s |
 |---|---|---:|---:|
 | Qwen3.6-35B-A3B | llama.cpp | 0.895 | 8.0 |
 | Qwen3.6-35B-A3B | vLLM | 0.889 | 53.6 |
 
-Same answers, six and a half times the work. vLLM adds requests to a batch
-already running; llama.cpp does not. At one request at a time the two are level,
-and llama.cpp starts in seconds where vLLM takes minutes.
+vLLM adds requests to a batch already running; llama.cpp does not. 
+The real advantage of vLLM sits on concurency.
 
 **Prompt length changes that.** Measured again with whole articles instead of
 sentences, one model's batching advantage went from 13.5× to 1.6×, and
 another's from 15.7× to 8.3×. A long prompt occupies far more cache, so fewer
-requests fit at once. Benchmarking on sentences and deploying on documents does
-not give you the throughput you measured.
+requests fit at once. 
 
 **Load times depend on the page cache more than on the model.** A cold vLLM
-start took 212 seconds where the warm one took 117 — most of the difference is
-vLLM's own multi-gigabyte installation being read from disk, not the model.
+start took 212 seconds where the warm one took 117. 
 
 ## Reproducing
 
