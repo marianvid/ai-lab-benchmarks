@@ -32,10 +32,6 @@ Start with [Findings](docs/findings.md) if you want the conclusions, or
 
 ## Datasets
 
-Four public sets and one fetch from Wikipedia. Every one of them is scored by a
-rule, never by another model judging an answer — a judge model would have to be
-loaded on the same card, and its own weaknesses would end up inside the score.
-
 | Set | What it gives | Why this one |
 |---|---|---|
 | FLORES-200 | the same 1 012 sentences translated by people into 200 languages | translation can be compared against a human reference instead of against another model |
