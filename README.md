@@ -2,9 +2,10 @@
 
 The scope was to find out what the configuration can do, not to rank models in general.
 
-The tasks were chosen from the work this machine actually does on personal
-projects, not from what a leaderboard usually measures: multilingual text —
-sorting it, translating it, answering questions about it — and writing Python.
+The tests were chosen from the work this machine actually does on personal
+projects: multilingual text — sorting it, translating it, processing big volumes
+of it, answering questions about it — and writing code.
+
 The long-prompt pages exist for the same reason. An agent sends whole files, so
 a rate measured on single sentences would not describe anything real here.
 
