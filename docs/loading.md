@@ -49,13 +49,6 @@ the crossover is around 90 seconds.
 **Unloading is uniform** and set by waiting for the driver to hand the
 memory back, not by the model's size.
 
-## Refused
-
-AI-Lab checks free VRAM before starting an engine and declines
-rather than letting the engine fail partway through.
-
-- **Coder-Next 80B** (llama.cpp): Qwen3-Coder-Next-UD-Q4_K_XL needs about 46.2 GB but only 31.9 GB is free on the card. Unload another model, or choose a smaller one.
-
 ## A model larger than VRAM
 
 `Qwen3-Coder-Next-UD-Q4_K_XL.gguf` is 46.2 GB; the card has 32 GB. llama.cpp can keep
