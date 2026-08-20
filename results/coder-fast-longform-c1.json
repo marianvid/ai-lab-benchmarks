@@ -1,0 +1,22 @@
+{
+  "test": "longform_throughput",
+  "set": "Wikipedia articles",
+  "label": "coder-fast",
+  "model": "qwen3-coder-30b-a3b",
+  "concurrency": 1,
+  "articles": 60,
+  "languages": [
+    "ru"
+  ],
+  "chars_min": 2194,
+  "chars_median": 3770,
+  "chars_max": 5192,
+  "wall_s": 5.41,
+  "requests": 60,
+  "failed_requests": 0,
+  "prompt_tokens": 92134,
+  "completion_tokens": 176,
+  "prefill_tok_s": 17034.0,
+  "decode_tok_s": 32.5,
+  "items_per_s": 11.09
+}

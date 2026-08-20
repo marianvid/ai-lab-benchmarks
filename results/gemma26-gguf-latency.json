@@ -1,0 +1,33 @@
+{
+  "label": "gemma26-gguf",
+  "model": "gemma-4-26B-A4B-it-UD-Q4_K_XL",
+  "runs": [
+    {
+      "test": "short prompt (~500 tok)",
+      "prompt_tokens": 358,
+      "output_tokens": 256,
+      "ttft_s": 0.048,
+      "total_s": 1.93,
+      "prefill_tok_s": 7507.9,
+      "decode_tok_s": 135.7
+    },
+    {
+      "test": "medium prompt (~9k tok)",
+      "prompt_tokens": 9166,
+      "output_tokens": 246,
+      "ttft_s": 1.593,
+      "total_s": 3.56,
+      "prefill_tok_s": 5753.6,
+      "decode_tok_s": 124.9
+    },
+    {
+      "test": "long prompt (~29k tok)",
+      "prompt_tokens": 29016,
+      "output_tokens": 239,
+      "ttft_s": 4.122,
+      "total_s": 6.32,
+      "prefill_tok_s": 7039.7,
+      "decode_tok_s": 108.5
+    }
+  ]
+}

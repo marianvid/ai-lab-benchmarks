@@ -1,0 +1,33 @@
+{
+  "label": "text-bulk",
+  "model": "gemma-4-26b-a4b",
+  "runs": [
+    {
+      "test": "short prompt (~500 tok)",
+      "prompt_tokens": 358,
+      "output_tokens": 235,
+      "ttft_s": 0.021,
+      "total_s": 2.25,
+      "prefill_tok_s": 16943.8,
+      "decode_tok_s": 105.2
+    },
+    {
+      "test": "medium prompt (~9k tok)",
+      "prompt_tokens": 9166,
+      "output_tokens": 232,
+      "ttft_s": 0.662,
+      "total_s": 3.01,
+      "prefill_tok_s": 13854.8,
+      "decode_tok_s": 98.3
+    },
+    {
+      "test": "long prompt (~29k tok)",
+      "prompt_tokens": 29016,
+      "output_tokens": 256,
+      "ttft_s": 2.761,
+      "total_s": 5.55,
+      "prefill_tok_s": 10509.7,
+      "decode_tok_s": 91.4
+    }
+  ]
+}

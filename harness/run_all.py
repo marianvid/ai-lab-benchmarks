@@ -108,10 +108,21 @@ def unload(instance: str) -> dict:
 
 
 def bench(script: str, port: int, label: str, concurrency: int,
-          extra: list[str], out: pathlib.Path, log) -> dict | None:
-    """One benchmark. Never raises: a failure is a recorded fact, not a stop."""
-    command = [PYTHON, f"{HARNESS}/{script}", f"http://127.0.0.1:{port}",
-               label, str(concurrency), "--data", DATA, "--out", str(out), *extra]
+          extra: list[str], out: pathlib.Path, log,
+          positional: bool = True) -> dict | None:
+    """One benchmark. Never raises: a failure is a recorded fact, not a stop.
+
+    `positional=False` is for `bench.py`, which predates the others and takes
+    the output path as a third positional argument with no concurrency at all.
+    """
+    if positional:
+        command = [PYTHON, f"{HARNESS}/{script}", f"http://127.0.0.1:{port}",
+                   label, str(concurrency), "--out", str(out), *extra]
+        if script != "bench_longform.py":
+            command += ["--data", DATA]
+    else:
+        command = [PYTHON, f"{HARNESS}/{script}", f"http://127.0.0.1:{port}",
+                   label, str(out)]
     log(f"    {script} c={concurrency} {' '.join(extra)}")
     started = time.perf_counter()
     try:
@@ -135,6 +146,11 @@ def main() -> int:
     parser.add_argument("--out", default="/opt/bench/results")
     parser.add_argument("--only", help="comma-separated instance ids")
     parser.add_argument("--skip-throughput", action="store_true")
+    parser.add_argument("--only-new", action="store_true",
+                        help="skip the quality tasks and run only the latency "
+                             "and long-form measurements")
+    parser.add_argument("--skip-reload", action="store_true",
+                        help="do not measure the second, warm load")
     arguments = parser.parse_args()
 
     out = pathlib.Path(arguments.out)
@@ -156,8 +172,12 @@ def main() -> int:
         if wanted and instance not in wanted:
             continue
         log(f"--- {instance} ({name}, {engine} {fmt}) ---")
-        entry = {"instance": instance, "model": name, "engine": engine,
-                 "format": fmt, "tested": full}
+
+        # Merge into whatever is already recorded for this model, so a second
+        # pass that adds a measurement does not erase the first pass's results.
+        entry = dict(summary.get(instance) or {})
+        entry.update({"instance": instance, "model": name, "engine": engine,
+                      "format": fmt, "tested": full})
 
         loaded = load(instance, port)
         entry["load"] = loaded
@@ -166,9 +186,23 @@ def main() -> int:
             summary[instance] = entry
             summary_path.write_text(json.dumps(summary, indent=2, ensure_ascii=False))
             continue
-        log(f"    loaded in {loaded['load_s']}s")
+        log(f"    first load {loaded['load_s']}s")
 
-        if full:
+        # Load a second time straight away. The weights are in the page cache
+        # now, so the gap between the two numbers is the cost of reading them
+        # from disk rather than of setting the model up.
+        if not arguments.skip_reload:
+            entry["unload_first"] = unload(instance)
+            reloaded = load(instance, port)
+            entry["reload"] = reloaded
+            if not reloaded["ok"]:
+                log(f"    reload failed: {reloaded.get('error')}")
+                summary[instance] = entry
+                summary_path.write_text(json.dumps(summary, indent=2, ensure_ascii=False))
+                continue
+            log(f"    reload {reloaded['load_s']}s (page cache warm)")
+
+        if full and not arguments.only_new:
             entry["classification"] = bench(
                 "bench_classify.py", port, instance, QUALITY_CONCURRENCY, [],
                 out / f"{instance}-classify.json", log)
@@ -194,6 +228,30 @@ def main() -> int:
                             k: result[k] for k in
                             ("wall_s", "items_per_s", "prefill_tok_s", "decode_tok_s")}
                 entry["throughput_curve"] = curve
+
+        if full:
+            # Prompt reading and generation at three prompt sizes, one request
+            # at a time. The only place long prompts are measured.
+            entry["latency"] = bench(
+                "bench.py", port, instance, 1, [],
+                out / f"{instance}-latency.json", log, positional=False)
+
+            # Throughput with whole articles instead of sentences, on the same
+            # concurrency ladder. Prompt length is what fills the cache, so this
+            # is the curve that describes real bulk work.
+            if not arguments.skip_throughput:
+                longform = {}
+                for concurrency in THROUGHPUT_CONCURRENCY:
+                    result = bench(
+                        "bench_longform.py", port, instance, concurrency,
+                        ["--articles", f"{DATA}/wikipedia_articles.jsonl",
+                         "--limit", "60"],
+                        out / f"{instance}-longform-c{concurrency}.json", log)
+                    if result:
+                        longform[str(concurrency)] = {
+                            k: result[k] for k in
+                            ("wall_s", "items_per_s", "prefill_tok_s", "decode_tok_s")}
+                entry["longform_curve"] = longform
 
         entry["unload"] = unload(instance)
         log(f"    unloaded in {entry['unload'].get('unload_s')}s")

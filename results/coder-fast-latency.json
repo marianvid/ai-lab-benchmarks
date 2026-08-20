@@ -1,0 +1,33 @@
+{
+  "label": "coder-fast",
+  "model": "qwen3-coder-30b-a3b",
+  "runs": [
+    {
+      "test": "short prompt (~500 tok)",
+      "prompt_tokens": 309,
+      "output_tokens": 199,
+      "ttft_s": 0.018,
+      "total_s": 1.32,
+      "prefill_tok_s": 17325.7,
+      "decode_tok_s": 151.7
+    },
+    {
+      "test": "medium prompt (~9k tok)",
+      "prompt_tokens": 7841,
+      "output_tokens": 168,
+      "ttft_s": 0.512,
+      "total_s": 1.76,
+      "prefill_tok_s": 15322.0,
+      "decode_tok_s": 134.0
+    },
+    {
+      "test": "long prompt (~29k tok)",
+      "prompt_tokens": 24831,
+      "output_tokens": 174,
+      "ttft_s": 2.469,
+      "total_s": 4.14,
+      "prefill_tok_s": 10057.5,
+      "decode_tok_s": 103.7
+    }
+  ]
+}

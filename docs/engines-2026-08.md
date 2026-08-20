@@ -1,15 +1,15 @@
 # TensorRT-LLM and SGLang, measured
 
 > **August 2026, different corpus, earlier vLLM build.** These numbers are not
-> comparable with `02-results.md` and must not be put in the same table. Kept
+> comparable with [quality.md](quality.md) and must not be put in the same table. Kept
 > because the question — whether a third engine was worth adding — was settled
 > by measuring, and that answer stands.
 
 
-`dead-ends/conclusions-that-were-wrong.md` argued from documentation that no third engine was
+[dead-ends/conclusions-that-were-wrong.md](dead-ends/conclusions-that-were-wrong.md) argued from documentation that no third engine was
 worth adding. That was half a conclusion: TensorRT-LLM and SGLang were dismissed
 partly on published numbers from other hardware — the exact mistake catalogued in
-`dead-ends/measurements-that-lied.md`.
+[dead-ends/measurements-that-lied.md](dead-ends/measurements-that-lied.md).
 
 Both were then actually run. The conclusion holds, but now it is measured, and
 two of the published claims turned out to be wrong in opposite directions.
@@ -46,7 +46,7 @@ FlashAttention-4**, so the newest attention work targets datacentre parts.
 
 ### What it cost to get one number
 
-Ten walls, documented in `dead-ends/conclusions-that-were-wrong.md`. The last two:
+Ten walls, documented in [dead-ends/conclusions-that-were-wrong.md](dead-ends/conclusions-that-were-wrong.md). The last two:
 
 - **Released 1.2.1 refuses `compressed-tensors` NVFP4**:
   `NotImplementedError: Unsupported quantization_config: 'nvfp4-pack-quantized'`.

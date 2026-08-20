@@ -89,6 +89,40 @@ Execution drops to uid 65534 via `setpriv` when running as root, in a temp dir,
 30 s timeout. Interpreter has numpy, scipy, sympy — several EvalPlus tests
 import them.
 
+## Task 5 — Latency (`bench.py`)
+
+One request at a time, at three prompt sizes: about 500, 9 000 and 29 000
+tokens. The prompt is Python source repeated to length followed by a request to
+rewrite one function.
+
+Reports time to first token, prefill rate and decode rate for each size. No
+evaluation set is involved; the prompt is generated.
+
+The longest prompt is 29 000 rather than 32 000 tokens because prompt and answer
+share the [context window](glossary.md#context-window). At 32 768 configured, a
+33 000-token prompt plus a 256-token answer does not fit, and every model
+refuses it with HTTP 400.
+
+## Task 6 — Long-form throughput (`bench_longform.py`)
+
+Whole Wikipedia articles, 2 165 to 5 227 characters, 60 per run, six languages.
+The model is asked for a one-word subject label. Long input, short output.
+
+**Nothing is marked.** The answers are not checked against anything; the
+measurement is articles per second and tokens per second at 1, 8, 32 and 64
+requests in flight.
+
+It exists because prompt length changes how an engine behaves, and every other
+task here sends a sentence or a short passage. `harness/fetch_wikipedia.py`
+collects the articles; the text is CC BY-SA 4.0 and each row keeps its page id,
+revision id and URL.
+
+## Loading
+
+Every model is loaded twice in a row: once with the file not in memory, once
+immediately afterwards with it still in the operating system's page cache. The
+host's cache is dropped before the run so the first load is genuinely cold.
+
 ## Run rules
 
 - Warm-up pass discarded (first pass after engine start runs ~40% slow during
@@ -102,8 +136,11 @@ import them.
 ## Orchestration
 
 `harness/run_all.py` loads each model through AI-Lab, waits for `/v1/models`,
-runs the four tasks, then the concurrency sweep (1/8/32/64 on en,ru,zh),
-unloads, and writes `summary.json` after each model. A model that fails to load
-is recorded and the run continues.
+loads it a second time to measure the warm case, runs the four quality tasks,
+the short-prompt concurrency sweep, the latency test and the long-form sweep,
+then unloads. `summary.json` is written after each model, so a run killed
+halfway leaves usable results.
 
-`harness/make_report.py` generates `02-results.md` from `results/`.
+A model that fails to load is recorded and the run continues.
+
+`harness/make_report.py` generates [quality.md](quality.md) from `results/`.

@@ -1,0 +1,22 @@
+{
+  "test": "longform_throughput",
+  "set": "Wikipedia articles",
+  "label": "text-bulk",
+  "model": "gemma-4-26b-a4b",
+  "concurrency": 32,
+  "articles": 60,
+  "languages": [
+    "ru"
+  ],
+  "chars_min": 2194,
+  "chars_median": 3770,
+  "chars_max": 5192,
+  "wall_s": 0.3,
+  "requests": 60,
+  "failed_requests": 0,
+  "prompt_tokens": 75357,
+  "completion_tokens": 127,
+  "prefill_tok_s": 253559.9,
+  "decode_tok_s": 427.3,
+  "items_per_s": 201.89
+}

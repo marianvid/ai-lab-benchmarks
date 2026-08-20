@@ -1,12 +1,18 @@
 #!/usr/bin/env python3
-"""Turn the run's JSON into the results document.
+"""Turn the run's JSON into the result pages under `docs/`.
 
-Written so that the tables in `02-results.md` are generated, never typed. A
-number transcribed by hand is a number that can be wrong in a way nobody can
-find later; a number generated from `results/` can always be traced back to the
-file it came from.
+The tables are generated, never typed. A number copied by hand can be wrong in a
+way nobody finds later; a number generated from `results/` can always be traced
+to the file it came from.
 
-    python3 make_report.py --results /opt/bench/results --out 02-results.md
+Output is several pages rather than one, because a single page of eight tables
+is not something a person reads.
+
+Column headers link into `docs/glossary.md` and carry the same short definition
+as a link title, which most Markdown viewers show on hover. Longer notes go
+*after* each table, where they explain numbers the reader has already seen.
+
+    python3 make_report.py --results ./results --out ./docs
 """
 
 from __future__ import annotations
@@ -15,10 +21,30 @@ import argparse
 import json
 import pathlib
 
-# The order tables are printed in: fastest engine first within a model family,
-# so that the two formats of one model sit next to each other.
-def sort_key(entry: dict) -> tuple:
-    return (entry.get("model", ""), entry.get("engine", ""))
+# Column header -> (glossary anchor, hover text). Defined once, so a term reads
+# the same everywhere it appears.
+TERMS = {
+    "F1": ("f1", "0-1, higher better. Precision and recall combined; used "
+                 "because the set is only 15% positive"),
+    "Accuracy": ("accuracy", "fraction answered correctly, 0-1"),
+    "chrF++": ("chrf", "0-100, higher better. Overlap with a human reference "
+                       "translation, counted in character sequences"),
+    "Pass rate": ("pass-rate", "fraction of problems whose generated code ran "
+                               "and passed every test"),
+    "Prefill": ("prefill", "prompt reading, tokens per second"),
+    "Decode": ("decode", "answer generation, tokens per second"),
+    "TTFT": ("ttft", "time to first token, seconds"),
+    "Wall": ("wall--wall-time", "seconds on a clock, start to finish"),
+    "Items/s": ("items-per-second", "completed units of work per second"),
+}
+
+
+def header(name: str) -> str:
+    """A column header that links to its definition and shows it on hover."""
+    if name not in TERMS:
+        return name
+    anchor, hover = TERMS[name]
+    return f'[{name}](glossary.md#{anchor} "{hover}")'
 
 
 def cell(value, digits: int = 3) -> str:
@@ -30,284 +56,534 @@ def cell(value, digits: int = 3) -> str:
 
 
 def load(results: pathlib.Path) -> dict:
+    """summary.json, with every per-test result taken from its own file.
+
+    The individual files win over the copy embedded in the summary. A test
+    re-run on its own updates its file but not the summary, and the file is the
+    one that was actually produced last.
+    """
     summary = json.loads((results / "summary.json").read_text())
+    files = {"classification": "classify", "comprehension": "comprehension",
+             "translation": "translate", "coding": "coding", "latency": "latency"}
     for instance, entry in summary.items():
-        for test in ("classification", "comprehension", "translation", "coding"):
-            path = results / f"{instance}-{test.replace('classification', 'classify').replace('translation', 'translate')}.json"
-            if entry.get(test) is None and path.exists():
-                entry[test] = json.loads(path.read_text())
+        for key, stem in files.items():
+            path = results / f"{instance}-{stem}.json"
+            if path.exists():
+                entry[key] = json.loads(path.read_text())
+        for prefix, field in (("throughput", "throughput_curve"),
+                              ("longform", "longform_curve")):
+            curve = {}
+            for concurrency in ("1", "8", "32", "64"):
+                path = results / f"{instance}-{prefix}-c{concurrency}.json"
+                if path.exists():
+                    row = json.loads(path.read_text())
+                    curve[concurrency] = {k: row[k] for k in
+                                          ("wall_s", "items_per_s",
+                                           "prefill_tok_s", "decode_tok_s")}
+            if curve:
+                entry[field] = curve
     return summary
 
 
-def table(rows: list[str], header: str, sep: str) -> str:
-    return "\n".join([header, sep, *rows]) + "\n"
+def tested(summary: dict) -> list[dict]:
+    rows = [e for e in summary.values()
+            if e.get("tested") and e.get("load", {}).get("ok")]
+    rows.sort(key=lambda e: (e.get("model", ""), e.get("engine", "")))
+    return rows
+
+
+def page(path: pathlib.Path, title: str, lines: list[str]) -> None:
+    path.write_text("\n".join([f"# {title}", ""] + lines) + "\n", encoding="utf-8")
+    print(f"  {path}")
+
+
+def ladder(entry: dict, key: str):
+    curve = entry.get(key) or {}
+    rates = {c: curve.get(c, {}).get("items_per_s") for c in ("1", "8", "32", "64")}
+    known = [v for v in rates.values() if v]
+    gain = f"{max(known)/min(known):.1f}×" if len(known) > 1 else "—"
+    return rates, gain
+
+
+# -- pages -------------------------------------------------------------------
+
+def quality_page(rows: list[dict], out: pathlib.Path) -> None:
+    lines = [
+        "Four tasks, one pass each, across eight model and engine combinations.",
+        "Every table gives the score and the time it took, because both came out",
+        "of the same run.",
+        "",
+        "See [method.md](method.md) for how each task was run and",
+        "[models.md](models.md) for what the models are.",
+        "",
+        "## Classification",
+        "",
+        "The model reads a sentence and answers one question: is its topic",
+        "politics. 4 080 sentences in 20 languages, of which 15% are political.",
+        "",
+        f"| Model | Engine | {header('F1')} | {header('Accuracy')} "
+        f"| Sentences/s | {header('Prefill')} | {header('Wall')} |",
+        "|---|---|---:|---:|---:|---:|---:|",
+    ]
+    for entry in rows:
+        row = entry.get("classification")
+        if not row:
+            lines.append(f"| {entry['model']} | {entry['engine']} | — | — | — | — | — |")
+            continue
+        quality = row["quality"]
+        lines.append(
+            f"| {entry['model']} | {entry['engine']} | **{cell(quality['f1'])}** "
+            f"| {cell(quality['accuracy'])} | {row['items_per_s']} "
+            f"| {row['prefill_tok_s']} | {row['wall_s']} s |")
+    lines += [
+        "",
+        "**Read the two score columns together.** Accuracy is higher than F1 for",
+        "every model, and the gap is the point: only 15% of the sentences are",
+        "political, so a model answering \"no\" to everything scores 0.85 accuracy",
+        "while finding nothing. F1 collapses when that happens, which is why it",
+        "is the column to judge by.",
+        "",
+        "**Prefill here is not a long-prompt figure.** These are single sentences",
+        "sent five to a request, a few hundred tokens each. For prompt reading at",
+        "8 000 and 29 000 tokens see [latency.md](latency.md).",
+        "",
+        "**Do not read wall time as engine quality.** It is the same work, but",
+        "llama.cpp ran it with eight requests in flight and gained nothing from",
+        "that. Why is in [throughput.md](throughput.md).",
+        "",
+        "## Comprehension",
+        "",
+        "A passage, a question about it, four answers of which one is right. The",
+        "model replies with a single letter. 100 questions per language, 2 000 in",
+        "total, always the same 100 so every model is asked the same things.",
+        "",
+        f"| Model | Engine | {header('Accuracy')} | Questions/s | {header('Wall')} |",
+        "|---|---|---:|---:|---:|",
+    ]
+    for entry in rows:
+        row = entry.get("comprehension")
+        lines.append(f"| {entry['model']} | {entry['engine']} | "
+                     + (f"**{cell(row['accuracy'])}** | {row['items_per_s']} "
+                        f"| {row['wall_s']} s |" if row else "— | — | — |"))
+    lines += [
+        "",
+        "**Guessing scores 0.25**, because there are four options. Subtract that",
+        "before comparing. 0.74 and 0.91 are not a 23% difference in ability:",
+        "they are 0.49 and 0.66 above chance, which is a third more.",
+        "",
+        "**This is the task that separates by model size.** The smallest model",
+        "loses far more here than on classification or coding. A passage has to",
+        "be understood; it cannot be pattern-matched from a keyword.",
+        "",
+        "## Translation",
+        "",
+        "English into 19 languages, 50 sentences each, 950 translations per",
+        "model, scored against FLORES's human translations.",
+        "",
+        f"| Model | Engine | {header('chrF++')} | Translations/s | {header('Wall')} |",
+        "|---|---|---:|---:|---:|",
+    ]
+    for entry in rows:
+        row = entry.get("translation")
+        lines.append(f"| {entry['model']} | {entry['engine']} | "
+                     + (f"**{cell(row['chrf_mean'], 2)}** | {row['items_per_s']} "
+                        f"| {row['wall_s']} s |" if row else "— | — | — |"))
+    lines += [
+        "",
+        "**The absolute values are low because the language mix is hard.** These",
+        "19 languages include Tamil, Thai, Bengali and Lithuanian. A study",
+        "covering only western European languages reports numbers ten to fifteen",
+        "points higher for the same models. Compare within this table only.",
+        "",
+        "**The reference translations were made by people**, which is not true of",
+        "every translation benchmark. A score here means agreement with a human",
+        "translator rather than with another model.",
+        "",
+        "## Coding",
+        "",
+        "541 Python problems. The generated code is executed against the tests",
+        "that came with the problem; it passes or it does not.",
+        "",
+        f"| Model | Engine | {header('Pass rate')} | Passed | HumanEval+ | MBPP+ "
+        f"| {header('Wall')} |",
+        "|---|---|---:|---:|---:|---:|---:|",
+    ]
+    for entry in rows:
+        row = entry.get("coding")
+        if not row:
+            lines.append(f"| {entry['model']} | {entry['engine']} | — | — | — | — | — |")
+            continue
+        by_set = row.get("by_set", {})
+        lines.append(
+            f"| {entry['model']} | {entry['engine']} | **{cell(row['pass_rate'])}** "
+            f"| {row['passed']}/{row['problems']} "
+            f"| {cell(by_set.get('humanevalplus', {}).get('pass_rate'))} "
+            f"| {cell(by_set.get('mbppplus', {}).get('pass_rate'))} "
+            f"| {row['wall_s']} s |")
+    lines += [
+        "",
+        "**HumanEval+ scores higher than MBPP+ for every model.** HumanEval gives",
+        "the function signature and a docstring to complete. MBPP describes the",
+        "task in one sentence and pins the function's name only through an",
+        "example call — less structure, more room to misread it.",
+        "",
+        "**These problems are in every model's training data.** They are old and",
+        "public. That would invalidate a study ranking models by reasoning. It",
+        "does not affect this one, which uses them as a fixed, standard,",
+        "executable workload for measuring a machine.",
+        "",
+        "**One problem is excluded.** HumanEval/32's own reference solution fails",
+        "its own tests. All 164 references were run through this harness to check:",
+        "163 pass. Leaving it in would deduct a point from every model for",
+        "something none of them can pass.",
+        "",
+        "## Per-language classification scores",
+        "",
+        "The same classification run, split by the language of the sentence. Each",
+        "language contributes 204 sentences, about 30 of them political.",
+        "",
+    ]
+    languages = sorted({lang for e in rows if e.get("classification")
+                        for lang in e["classification"]["per_language"]})
+    lines.append("| Model | " + " | ".join(languages) + " |")
+    lines.append("|---|" + "---:|" * len(languages))
+    for entry in rows:
+        row = entry.get("classification")
+        if not row:
+            continue
+        cells = [cell(row["per_language"].get(lang, {}).get("f1"), 2)
+                 for lang in languages]
+        lines.append(f"| {entry['model']} ({entry['engine']}) | "
+                     + " | ".join(cells) + " |")
+    lines += [
+        "",
+        "**Averages hide this.** A model can look competent overall and be much",
+        "weaker in one language. Read down a column rather than across a row.",
+        "",
+        "With about 30 positive examples per language, one misjudged sentence",
+        "moves that language's F1 by roughly 0.015. Treat gaps under 0.03 between",
+        "languages as noise.",
+    ]
+    page(out / "quality.md", "Quality", lines)
+
+
+def throughput_page(rows: list[dict], out: pathlib.Path) -> None:
+    lines = [
+        "How much work each combination completes per second, and how that",
+        "changes when more requests arrive at once.",
+        "",
+        "Two ladders are measured, because prompt length changes the answer.",
+        "Short prompts are single sentences; long prompts are whole Wikipedia",
+        "articles of 2 000 to 5 000 characters. Prompt length is what fills the",
+        "[KV cache](glossary.md#kv-cache), and the cache is what limits how many",
+        "requests an engine can hold at once.",
+        "",
+        "## Short prompts — sentences",
+        "",
+        "Classification on English, Russian and Chinese, repeated at 1, 8, 32 and",
+        "64 requests in flight. Figures are sentences per second.",
+        "",
+        "| Model | Engine | c=1 | c=8 | c=32 | c=64 | Gain |",
+        "|---|---|---:|---:|---:|---:|---:|",
+    ]
+    for entry in rows:
+        if not entry.get("throughput_curve"):
+            continue
+        rates, gain = ladder(entry, "throughput_curve")
+        lines.append(f"| {entry['model']} | {entry['engine']} | "
+                     + " | ".join(cell(rates[c], 1) for c in ("1", "8", "32", "64"))
+                     + f" | **{gain}** |")
+    lines += [
+        "",
+        "**Gain is the last column: the highest rate divided by the lowest.** It",
+        "says how much the engine got out of being handed more work at once. A",
+        "gain of 1.0 means it got nothing — the ninth request waited for one of",
+        "the first eight to finish.",
+        "",
+        "**At one request at a time the two engines are comparable.** The whole",
+        "difference appears under load, and it comes from",
+        "[continuous batching](glossary.md#continuous-batching).",
+        "",
+        "**vLLM stops improving between 32 and 64.** By then the card is",
+        "saturated; further requests only wait longer.",
+        "",
+    ]
+    if any(e.get("longform_curve") for e in rows):
+        lines += [
+            "## Long prompts — whole articles",
+            "",
+            "The same ladder, sending complete Wikipedia articles and asking for a",
+            "one-word answer. Long input, short output: the shape of",
+            "classification, routing and tagging work on real documents. 60",
+            "articles per run, 2 165–5 227 characters, six languages.",
+            "",
+            "| Model | Engine | c=1 | c=8 | c=32 | c=64 | Gain |",
+            "|---|---|---:|---:|---:|---:|---:|",
+        ]
+        for entry in rows:
+            if not entry.get("longform_curve"):
+                continue
+            rates, gain = ladder(entry, "longform_curve")
+            lines.append(f"| {entry['model']} | {entry['engine']} | "
+                         + " | ".join(cell(rates[c], 1) for c in ("1", "8", "32", "64"))
+                         + f" | **{gain}** |")
+        lines += [
+            "",
+            "**Compare the gain columns between the two tables, not the rates.**",
+            "An article is ten to twenty times longer than a sentence, so of",
+            "course fewer of them finish per second. The question is whether the",
+            "engine still profits from concurrency when each request occupies far",
+            "more cache.",
+            "",
+        ]
+    else:
+        lines += ["## Long prompts — whole articles", "",
+                  "Not yet measured in this run.", ""]
+    page(out / "throughput.md", "Throughput", lines)
+
+
+def latency_page(rows: list[dict], out: pathlib.Path) -> None:
+    have = [e for e in rows if (e.get("latency") or {}).get("runs")]
+    lines = [
+        "One request at a time, at three prompt sizes. This is what a person or",
+        "an agent waiting for a single answer experiences, and the only place in",
+        "this repository where long prompts are read.",
+        "",
+        "The prompt is Python source repeated to length followed by a request to",
+        "rewrite one function — the shape of an agent pasting a codebase into",
+        "every turn.",
+        "",
+    ]
+    if not have:
+        lines.append("Not yet measured in this run.")
+        page(out / "latency.md", "Latency and prompt reading", lines)
+        return
+
+    for size in ("short prompt (~500 tok)", "medium prompt (~9k tok)",
+                 "long prompt (~29k tok)"):
+        lines += [
+            f"## {size}",
+            "",
+            f"| Model | Engine | Prompt tokens | {header('TTFT')} "
+            f"| {header('Prefill')} | {header('Decode')} |",
+            "|---|---|---:|---:|---:|---:|",
+        ]
+        for entry in have:
+            run = next((r for r in entry["latency"]["runs"]
+                        if r.get("test") == size), None)
+            if not run or "error" in run:
+                why = (run or {}).get("error", "not run")
+                lines.append(f"| {entry['model']} | {entry['engine']} | — | — | — "
+                             f"| {str(why)[:44]} |")
+                continue
+            lines.append(
+                f"| {entry['model']} | {entry['engine']} | {run.get('prompt_tokens')} "
+                f"| {cell(run.get('ttft_s'), 2)} s | {cell(run.get('prefill_tok_s'), 1)} "
+                f"| {cell(run.get('decode_tok_s'), 1)} |")
+        lines.append("")
+    lines += [
+        "**The same text is a different number of tokens for each model.** The",
+        "prompt is identical; the tokenizers are not. That column is the first",
+        "place the difference in [tokenizer.md](tokenizer.md) becomes visible.",
+        "",
+        "**TTFT is the number a person feels.** On a long prompt it is almost",
+        "entirely prompt reading: the model cannot start answering until it has",
+        "read the question.",
+        "",
+        "**Prefill and decode do not move together.** Prefill processes every",
+        "token of the prompt at once and reaches thousands per second; decode",
+        "produces one token at a time and reaches tens. A machine can be strong",
+        "at one and ordinary at the other, and which matters depends entirely on",
+        "the work.",
+        "",
+        "**Prefill rates fall as prompts grow.** Attention cost rises faster than",
+        "linearly with length, so reading 32 000 tokens is more than four times",
+        "the work of reading 8 000.",
+        "",
+        "An error in the last table usually means the instance's",
+        "[context window](glossary.md#context-window) was smaller than the",
+        "prompt. All instances here were set to 32 768 tokens.",
+    ]
+    page(out / "latency.md", "Latency and prompt reading", lines)
+
+
+def loading_page(summary: dict, results: pathlib.Path, out: pathlib.Path) -> None:
+    rows = tested(summary)
+    warm_measured = any((e.get("reload") or {}).get("load_s") for e in rows)
+    lines = [
+        "How long it takes to get a model onto the card and off it again.",
+        "",
+    ]
+    if warm_measured:
+        lines += [
+            "Loading is measured twice. The **first load** happens with the file",
+            "not in memory, so it includes reading 4 to 22 GB from the NVMe. The",
+            "**reload** happens immediately afterwards, when the operating system",
+            "still holds the file in its [page cache](glossary.md#page-cache) and",
+            "the disk is skipped entirely.",
+            "",
+            "The host's page cache was dropped before the run, so the first loads",
+            "are genuinely cold.",
+            "",
+        ]
+    else:
+        lines += [
+            "**These are cold loads**: the host's page cache was dropped before",
+            "the run, so each figure includes reading the weights from NVMe.",
+            "",
+        ]
+    lines += [
+        "| Model | Engine | First load (cold) | Reload (warm) | Unload |",
+        "|---|---|---:|---:|---:|",
+    ]
+    for entry in rows:
+        first = entry.get("load", {}).get("load_s")
+        again = (entry.get("reload") or {}).get("load_s")
+        lines.append(
+            f"| {entry['model']} | {entry['engine']} | {cell(first, 1)} s "
+            f"| {(cell(again, 1) + ' s') if again is not None else '—'} "
+            f"| {cell(entry.get('unload', {}).get('unload_s'), 1)} s |")
+    lines += [
+        "",
+        "**The gap between the two load columns is disk.** What remains in the",
+        "warm column is the engine setting the model up: allocating VRAM,",
+        "building the cache, and for vLLM compiling kernels for this particular",
+        "model and card.",
+        "",
+        "**llama.cpp starts in seconds, vLLM in a minute or more.** For work that",
+        "loads a model, asks one question and unloads, llama.cpp finishes before",
+        "vLLM has started. The advantage reverses under sustained batched work;",
+        "the crossover is around 90 seconds.",
+        "",
+        "**Unloading is uniform** and dominated by waiting for the driver to hand",
+        "the memory back, not by the model's size.",
+        "",
+    ]
+    refused = [e for e in summary.values() if not e.get("load", {}).get("ok")]
+    if refused:
+        lines += ["## Refused", "",
+                  "AI-Lab checks free VRAM before starting an engine and declines",
+                  "rather than letting the engine fail partway through.", ""]
+        for entry in refused:
+            lines.append(f"- **{entry['model']}** ({entry['engine']}): "
+                         f"{entry['load'].get('error','')}")
+        lines.append("")
+
+    oversize_path = results / "oversize-80b.json"
+    if oversize_path.exists():
+        oversize = json.loads(oversize_path.read_text())
+        lines += [
+            "## A model larger than VRAM",
+            "",
+            f"`{pathlib.Path(oversize['model_path']).name}` is "
+            f"{oversize['size_gb']} GB; the card has 32 GB. llama.cpp can keep",
+            "part of a model on the card and the rest in system memory, moving",
+            "data across the PCIe link for every token.",
+            "",
+            "AI-Lab refuses this arrangement, so it was measured with llama.cpp",
+            "started directly.",
+            "",
+            "| Split | Loaded | VRAM used | Generation |",
+            "|---|---:|---:|---:|",
+        ]
+        for split in oversize["splits"]:
+            if not split.get("ok"):
+                lines.append(f"| {split['gpu_layers']} | did not load | — | "
+                             f"{split.get('error','')} |")
+                continue
+            generation = split.get("generation", {})
+            lines.append(f"| {split['gpu_layers']} | {split['load_s']} s "
+                         f"| {split['vram_mb']} MB "
+                         f"| {generation.get('decode_tok_s','—')} tok/s |")
+        lines += [
+            "",
+            "**Let the engine choose the split.** Given a fixed `--n-gpu-layers`,",
+            "llama.cpp will not adjust a figure the user supplied: it reports",
+            "`n_gpu_layers already set by user to 36, abort` and then fails",
+            "trying to allocate 34 406 MiB on a 32 623 MiB card. With the flag",
+            "left off it works out the division itself and the model runs.",
+            "",
+            "**This load time is warm.** The file had been read by earlier",
+            "attempts. A cold read of 46 GB from NVMe is considerably slower.",
+            "",
+            "**Why AI-Lab refuses it.** The GPU is attached over",
+            "[OCuLink](glossary.md#oculink), so a split model sends data across a",
+            "cable for every token. The application's position is that a model",
+            "either fits or it does not.",
+        ]
+    page(out / "loading.md", "Loading and unloading", lines)
+
+
+def tokenizer_page(results: pathlib.Path, out: pathlib.Path) -> None:
+    path = results / "tokens-per-script.json"
+    if not path.exists():
+        return
+    tokens = json.loads(path.read_text())
+    for model_name, rows in tokens.items():
+        english = rows.get("en", {}).get("tokens")
+        if not english:
+            continue
+        worst = max(rows.items(), key=lambda kv: kv[1]["tokens"])
+        lines = [
+            "How many [tokens](glossary.md#token) the same content costs in each",
+            "language.",
+            "",
+            "This is not a quality measurement and needs no GPU. It counts the",
+            "same 200 FLORES sentences — identical content in every language —",
+            f"with `{model_name}`'s tokenizer.",
+            "",
+            "| Language | Script | Characters per token | Tokens vs English |",
+            "|---|---|---:|---:|",
+        ]
+        for lang, row in sorted(rows.items(), key=lambda kv: -kv[1]["tokens"]):
+            lines.append(f"| {lang} | {row['script']} | {row['chars_per_token']} "
+                         f"| **{row['tokens']/english:.2f}×** |")
+        lines += [
+            "",
+            "**Reading the last column.** 1.50× means the same text costs half",
+            "again as many tokens as in English: a context window holds two",
+            "thirds as much of it, a request takes half again as long to read,",
+            "and a hosted model charges half again as much.",
+            "",
+            "**The writing system does not predict the cost.** Chinese, in Han",
+            "characters, is the cheapest language here after English. The most",
+            f"expensive is {worst[0]}, written in {worst[1]['script']} — the same",
+            "alphabet as English.",
+            "",
+            "What decides it is how much of that language the tokenizer was built",
+            "from. One trained mostly on English and Chinese text holds whole",
+            "Chinese words as single tokens and cuts Lithuanian into fragments.",
+            "",
+            "**The practical consequence.** A context window sized against",
+            f"English documents holds about "
+            f"{english/max(r['tokens'] for r in rows.values()):.0%} as much "
+            f"{worst[0]}. Size it on the most expensive language you will",
+            "actually send, or requests will be rejected for length in a way that",
+            "looks like a model fault.",
+        ]
+        page(out / "tokenizer.md", "Tokenizer cost by language", lines)
+        return
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--results", default="/opt/bench/results")
-    parser.add_argument("--out", default="-")
+    parser.add_argument("--results", default="./results")
+    parser.add_argument("--out", default="./docs")
     arguments = parser.parse_args()
 
-    summary = load(pathlib.Path(arguments.results))
-    tested = [e for e in summary.values() if e.get("tested") and e.get("load", {}).get("ok")]
-    tested.sort(key=sort_key)
-    weighed = [e for e in summary.values() if not e.get("tested")]
-    refused = [e for e in summary.values() if not e.get("load", {}).get("ok")]
+    results = pathlib.Path(arguments.results)
+    out = pathlib.Path(arguments.out)
+    out.mkdir(parents=True, exist_ok=True)
 
-    out = ["# Results", "",
-           "Generated by `harness/make_report.py` from `results/`. Do not edit.", ""]
+    summary = load(results)
+    rows = tested(summary)
+    print(f"{len(rows)} combinations -> {out}")
 
-    # -- what ran ----------------------------------------------------------
-    out += ["## The models", "",
-            "What ran, and what it cost to get it running.", "",
-            "- **Load** — seconds from the load request to the engine answering",
-            "  `/v1/models`. Includes reading the weights from disk and any kernel",
-            "  compilation. Lower is better.",
-            "- **Unload** — seconds from the unload request to VRAM being free.",
-            "- **Format** — GGUF is llama.cpp's quantised format; NVFP4 is a 4-bit",
-            "  format the Blackwell card handles natively.", "",
-            "| Model | Engine | Format | Load | Unload |",
-            "|---|---|---|---:|---:|"]
-    # Only combinations that actually loaded. A refused load has no timing, and
-    # printing the seconds it took to be refused reads as a measurement.
-    for entry in [e for e in tested + weighed if e.get("load", {}).get("ok")]:
-        out.append(f"| {entry['model']} | {entry['engine']} | {entry['format']} "
-                   f"| {cell(entry.get('load', {}).get('load_s'), 1)} s "
-                   f"| {cell(entry.get('unload', {}).get('unload_s'), 1)} s |")
-    out.append("")
-    if [e for e in weighed if e.get("load", {}).get("ok")]:
-        out += ["Last entry: load/unload timing only, not tested.", ""]
-    if refused:
-        out += ["**Refused by AI-Lab:**", ""]
-        for entry in refused:
-            out.append(f"- {entry['model']} ({entry['engine']}): "
-                       f"{entry['load'].get('error','')}")
-        out.append("")
-
-    # -- quality -----------------------------------------------------------
-    out += ["## Scores and throughput", "",
-            "One pass per model per task; score and rate from the same pass.", ""]
-
-    out += ["### Classification — SIB-200, twenty languages", "",
-            "**What it tests.** Whether the model can judge the topic of a sentence",
-            "in a language it may barely know.", "",
-            "**Method.** SIB-200 test split, all 20 languages, 4 080 sentences, each",
-            "labelled by a person with one of seven topics. The model is asked one",
-            "yes/no question per sentence: is the topic `politics`. 15% are. Sentences",
-            "go five to a request, 816 requests, 8 in flight at once.", "",
-            "**Columns.**", "",
-            "- **F1** — 0 to 1, higher better. Combines precision (of the sentences it",
-            "  called politics, how many were) and recall (of the political sentences,",
-            "  how many it found). Used instead of accuracy because only 15% are",
-            "  positive: a model that always answers no scores 0.85 accuracy and 0.00 F1.",
-            "- **Accuracy** — fraction answered correctly. Shown to make the point above",
-            "  visible, not to rank.",
-            "- **Sentences/s** — throughput including the model's thinking time.",
-            "- **Prompt tok/s** — how fast the input was read, across all requests.",
-            "- **Wall** — total seconds for the 4 080 sentences.", "",
-            "| Model | Engine | F1 | Accuracy | Sentences/s | Prompt tok/s | Wall |",
-            "|---|---|---:|---:|---:|---:|---:|"]
-    for entry in tested:
-        row = entry.get("classification")
-        if not row:
-            out.append(f"| {entry['model']} | {entry['engine']} | — | — | — | — | — |")
-            continue
-        quality = row["quality"]
-        out.append(f"| {entry['model']} | {entry['engine']} | **{cell(quality['f1'])}** "
-                   f"| {cell(quality['accuracy'])} | {row['items_per_s']} "
-                   f"| {row['prefill_tok_s']} | {row['wall_s']} s |")
-    out.append("")
-
-    out += ["### Comprehension — Belebele, twenty languages", "",
-            "**What it tests.** Reading comprehension: whether the model understood a",
-            "passage well enough to answer a question about it. This is the task that",
-            "cannot be guessed from keywords.", "",
-            "**Method.** Belebele: a passage, a question, four answers, exactly one",
-            "correct, all written and checked by people. First 100 questions per",
-            "language, 2 000 total, so every model sees identical questions. The model",
-            "replies with one letter.", "",
-            "**Columns.**", "",
-            "- **Accuracy** — fraction correct, 0 to 1. **Chance is 0.25** because there",
-            "  are four options. A score near 0.25 means the model did not read the",
-            "  passage, whatever else the number looks like.",
-            "- **Questions/s**, **Wall** — throughput and total time.", "",
-            "| Model | Engine | Accuracy | Questions/s | Wall |",
-            "|---|---|---:|---:|---:|"]
-    for entry in tested:
-        row = entry.get("comprehension")
-        out.append(f"| {entry['model']} | {entry['engine']} | "
-                   + (f"**{cell(row['accuracy'])}** | {row['items_per_s']} | {row['wall_s']} s |"
-                      if row else "— | — | — |"))
-    out.append("")
-
-    out += ["### Translation — FLORES-200, English into nineteen languages", "",
-            "**What it tests.** Translation quality out of English.", "",
-            "**Method.** FLORES-200, English source into the other 19 languages, first",
-            "50 sentences each, 950 translations per model. Scored against FLORES's",
-            "**human** reference translations.", "",
-            "**Columns.**", "",
-            "- **chrF++** — 0 to 100, higher better. Counts how much the output shares",
-            "  character sequences and word pairs with the reference. Mechanical: no",
-            "  judge model, no opinion. Roughly: below 40 is poor, 50-60 is usable,",
-            "  above 70 is close to the reference. Values are not comparable across",
-            "  different language sets, only within this table.",
-            "- **Translations/s**, **Wall** — throughput and total time.", "",
-            "| Model | Engine | chrF++ | Translations/s | Wall |",
-            "|---|---|---:|---:|---:|"]
-    for entry in tested:
-        row = entry.get("translation")
-        out.append(f"| {entry['model']} | {entry['engine']} | "
-                   + (f"**{cell(row['chrf_mean'], 2)}** | {row['items_per_s']} | {row['wall_s']} s |"
-                      if row else "— | — | — |"))
-    out.append("")
-
-    out += ["### Coding — HumanEval+ and MBPP+", "",
-            "**What it tests.** Whether the model writes Python that runs correctly.", "",
-            "**Method.** 541 problems: 163 from HumanEval+ (a function signature and a",
-            "docstring to complete) and 378 from MBPP+ (a task described in words). The",
-            "answer is extracted from its code block, run against the problem's own test",
-            "suite as `nobody` with a 30 s timeout, and passes or does not. Nothing is",
-            "graded by opinion.", "",
-            "**Columns.**", "",
-            "- **Pass rate** — fraction of the 541 that passed, 0 to 1.",
-            "- **HumanEval+ / MBPP+** — the same, per set. MBPP+ is harder here because",
-            "  the task is stated in prose rather than as a signature.",
-            "- **Wall** — total seconds, including running the generated code.", "",
-            "| Model | Engine | Pass rate | Passed | HumanEval+ | MBPP+ | Wall |",
-            "|---|---|---:|---:|---:|---:|---:|"]
-    for entry in tested:
-        row = entry.get("coding")
-        if not row:
-            out.append(f"| {entry['model']} | {entry['engine']} | — | — | — | — | — |")
-            continue
-        by_set = row.get("by_set", {})
-        out.append(f"| {entry['model']} | {entry['engine']} "
-                   f"| **{cell(row['pass_rate'])}** | {row['passed']}/{row['problems']} "
-                   f"| {cell(by_set.get('humanevalplus', {}).get('pass_rate'))} "
-                   f"| {cell(by_set.get('mbppplus', {}).get('pass_rate'))} "
-                   f"| {row['wall_s']} s |")
-    out.append("")
-
-    # -- per language ------------------------------------------------------
-    out += ["## Classification F1 per language", "",
-            "The same classification run, broken out by the language the sentence was",
-            "written in. The average hides which languages a model actually handles.",
-            "Same scale as above: 0 to 1, higher better. Each language contributes",
-            "204 sentences, of which about 30 are positive.", ""]
-    languages = sorted({lang for e in tested if e.get("classification")
-                        for lang in e["classification"]["per_language"]})
-    out.append("| Model | " + " | ".join(languages) + " |")
-    out.append("|---|" + "---:|" * len(languages))
-    for entry in tested:
-        row = entry.get("classification")
-        if not row:
-            continue
-        cells = [cell(row["per_language"].get(lang, {}).get("f1"), 2) for lang in languages]
-        out.append(f"| {entry['model']} ({entry['engine']}) | " + " | ".join(cells) + " |")
-    out.append("")
-
-    # -- throughput --------------------------------------------------------
-    out += ["## Throughput vs concurrency", "",
-            "**What it tests.** Whether the engine gets more done when more requests",
-            "arrive at once. This is the difference between the two engines.", "",
-            "**Method.** The same classification task, cut to three languages (English,",
-            "Russian, Chinese — Latin, Cyrillic, Han) to keep each run short, repeated",
-            "at 1, 8, 32 and 64 requests in flight.", "",
-            "**Columns.** Sentences per second at each concurrency. **Gain** is the",
-            "highest divided by the lowest: how much the engine gained from being given",
-            "more work at once. A gain near 1 means it gained nothing.", "",
-            "| Model | Engine | c=1 | c=8 | c=32 | c=64 | Gain |",
-            "|---|---|---:|---:|---:|---:|---:|"]
-    for entry in tested:
-        curve = entry.get("throughput_curve") or {}
-        if not curve:
-            continue
-        rates = {c: curve.get(c, {}).get("items_per_s") for c in ("1", "8", "32", "64")}
-        known = [v for v in rates.values() if v]
-        gain = f"{max(known)/min(known):.1f}x" if len(known) > 1 else "—"
-        out.append(f"| {entry['model']} | {entry['engine']} | "
-                   + " | ".join(cell(rates[c], 1) for c in ("1", "8", "32", "64"))
-                   + f" | **{gain}** |")
-    out.append("")
-
-    # -- what a token buys, per language -----------------------------------
-    tokens_path = pathlib.Path(arguments.results) / "tokens-per-script.json"
-    if tokens_path.exists():
-        tokens = json.loads(tokens_path.read_text())
-        for model_name, rows in tokens.items():
-            english = rows.get("en", {}).get("tokens")
-            if not english:
-                continue
-            out += ["## Tokenizer cost per language", "",
-                    "**What it tests.** How many tokens the same content costs in each",
-                    "language. Tokens are the unit of everything: how much fits in a",
-                    "context window, how long reading takes, what a hosted model charges.",
-                    "", "**Method.** The same 200 FLORES sentences in every language —",
-                    "identical content, so any difference is the tokenizer, not the text",
-                    f"— counted by `{model_name}`'s tokenizer. No GPU involved.", "",
-                    "**Columns.**", "",
-                    "- **Characters per token** — higher means the tokenizer packs more",
-                    "  text into each token, which is cheaper.",
-                    "- **Tokens vs English** — the same sentences, as a multiple of what",
-                    "  they cost in English. 1.50x means a context window holds two thirds",
-                    "  as much of that language.", "",
-                    "| Language | Script | Characters per token | Tokens vs English |",
-                    "|---|---|---:|---:|"]
-            for lang, row in sorted(rows.items(), key=lambda kv: -kv[1]["tokens"]):
-                out.append(f"| {lang} | {row['script']} | {row['chars_per_token']} "
-                           f"| **{row['tokens']/english:.2f}x** |")
-            worst = max(rows.items(), key=lambda kv: kv[1]["tokens"])
-            out += ["",
-                    f"Most expensive: {worst[0]} ({worst[1]['script']}). Cheapest after "
-                    "English: zh (Han). Predictor is tokenizer coverage, not script.",
-                    f"A token budget sized on English holds "
-                    f"{english/max(r['tokens'] for r in rows.values()):.0%} as much "
-                    f"{worst[0]}.", ""]
-            break
-
-    # -- the model that does not fit ---------------------------------------
-    oversize_path = pathlib.Path(arguments.results) / "oversize-80b.json"
-    if oversize_path.exists():
-        oversize = json.loads(oversize_path.read_text())
-        out += ["## Model larger than VRAM", "",
-                "**What it tests.** Whether a model that does not fit in VRAM runs at",
-                "all, and how fast.", "",
-                f"**Method.** `{pathlib.Path(oversize['model_path']).name}`, "
-                f"{oversize['size_gb']} GB, on a 32 GB card. llama.cpp keeps part of the",
-                "model on the card and the rest in system memory, moving data across the",
-                "PCIe link for every token. Started directly rather than through AI-Lab,",
-                "which refuses this configuration.", "",
-                "**Columns.**", "",
-                "- **Split** — how many layers were placed on the card. `chosen by",
-                "  llama.cpp` means the flag was left off and the engine decided.",
-                "- **Loaded** — seconds until it answered.",
-                "- **VRAM** — how much of the 32 623 MiB card it used.",
-                "- **Generation** — output tokens per second, single request.", "",
-                "| Split | Loaded | VRAM | Generation |",
-                "|---|---:|---:|---:|"]
-        for split in oversize["splits"]:
-            if not split.get("ok"):
-                out.append(f"| {split['gpu_layers']} | did not load | — | "
-                           f"{split.get('error','')} |")
-                continue
-            generation = split.get("generation", {})
-            out.append(f"| {split['gpu_layers']} | {split['load_s']} s "
-                       f"| {split['vram_mb']} MB "
-                       f"| {generation.get('decode_tok_s','—')} tok/s |")
-        out += ["",
-                "Forcing `--n-gpu-layers` aborts: `common_fit_params: failed to fit "
-                "params to free device memory: n_gpu_layers already set by user to 36, "
-                "abort`, then `cudaMalloc failed` on 34 406 MiB. Let the engine pick.",
-                "",
-                "Load time is warm (page cache). Cold read of 46 GB is slower.", ""]
-
-    text = "\n".join(out)
-    if arguments.out == "-":
-        print(text)
-    else:
-        pathlib.Path(arguments.out).write_text(text, encoding="utf-8")
-        print(f"written to {arguments.out}")
+    quality_page(rows, out)
+    throughput_page(rows, out)
+    latency_page(rows, out)
+    loading_page(summary, results, out)
+    tokenizer_page(results, out)
     return 0
 
 

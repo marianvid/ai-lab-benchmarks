@@ -3,7 +3,7 @@
 > **Record of an error.** This rejected TensorRT-LLM and SGLang using
 > throughput figures published on other hardware. Both were later run on this
 > card: the headline conclusion (model support is the binding constraint) held,
-> two specific claims did not. `../03-engines.md` has the measured version.
+> two specific claims did not. [engines-2026-08.md](../engines-2026-08.md) has the measured version.
 
 A day spent trying to add TensorRT-LLM as a third engine produced a finding
 worth more than the benchmark that was intended.
@@ -101,7 +101,7 @@ uv pip install -U vllm --pre \
   --index-strategy unsafe-best-match
 ```
 
-So the local patch in `../05-a-bug-in-vllm.md` is not a discovery of an unknown
+So the local patch in [the vLLM bug](../vllm-gemma4-bug.md) is not a discovery of an unknown
 defect. It reproduces on the stable release what already exists upstream. That is
 a better thing to publish than a patch: *stable is broken, nightly works, here is
 the patch if you are pinned to stable.*
@@ -210,7 +210,7 @@ complaint, and so does vLLM nightly.**
 
 ## And vLLM nightly needs no patch at all
 
-The local fix in `../05-a-bug-in-vllm.md` was tested against the alternative.
+The local fix in [the vLLM bug](../vllm-gemma4-bug.md) was tested against the alternative.
 `config.json` was restored to its original state, and vLLM nightly
 (`0.27.2rc1.dev205`, transformers 5.15) was installed in a third environment and
 pointed at the unmodified model.

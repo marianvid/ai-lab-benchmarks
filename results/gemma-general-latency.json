@@ -1,0 +1,33 @@
+{
+  "label": "gemma-general",
+  "model": "gemma-4-E4B-it-Q4_0",
+  "runs": [
+    {
+      "test": "short prompt (~500 tok)",
+      "prompt_tokens": 354,
+      "output_tokens": 256,
+      "ttft_s": 0.021,
+      "total_s": 1.72,
+      "prefill_tok_s": 16504.4,
+      "decode_tok_s": 149.9
+    },
+    {
+      "test": "medium prompt (~9k tok)",
+      "prompt_tokens": 9162,
+      "output_tokens": 256,
+      "ttft_s": 0.98,
+      "total_s": 2.88,
+      "prefill_tok_s": 9348.6,
+      "decode_tok_s": 134.5
+    },
+    {
+      "test": "long prompt (~29k tok)",
+      "prompt_tokens": 29012,
+      "output_tokens": 256,
+      "ttft_s": 2.762,
+      "total_s": 5.07,
+      "prefill_tok_s": 10505.8,
+      "decode_tok_s": 110.7
+    }
+  ]
+}

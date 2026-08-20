@@ -1,0 +1,124 @@
+{
+  "gemma-4-26b-a4b": {
+    "ar": {
+      "script": "Arabic",
+      "chars": 23571,
+      "tokens": 8253,
+      "chars_per_token": 2.86
+    },
+    "bn": {
+      "script": "Bengali",
+      "chars": 26732,
+      "tokens": 6877,
+      "chars_per_token": 3.89
+    },
+    "ru": {
+      "script": "Cyrillic",
+      "chars": 29036,
+      "tokens": 7812,
+      "chars_per_token": 3.72
+    },
+    "uk": {
+      "script": "Cyrillic",
+      "chars": 27473,
+      "tokens": 9174,
+      "chars_per_token": 2.99
+    },
+    "hi": {
+      "script": "Devanagari",
+      "chars": 26550,
+      "tokens": 7350,
+      "chars_per_token": 3.61
+    },
+    "zh": {
+      "script": "Han",
+      "chars": 9049,
+      "tokens": 6261,
+      "chars_per_token": 1.45
+    },
+    "ko": {
+      "script": "Hangul",
+      "chars": 13455,
+      "tokens": 7749,
+      "chars_per_token": 1.74
+    },
+    "ja": {
+      "script": "Japanese",
+      "chars": 11750,
+      "tokens": 6958,
+      "chars_per_token": 1.69
+    },
+    "en": {
+      "script": "Latin",
+      "chars": 26763,
+      "tokens": 5593,
+      "chars_per_token": 4.79
+    },
+    "es": {
+      "script": "Latin",
+      "chars": 31773,
+      "tokens": 7241,
+      "chars_per_token": 4.39
+    },
+    "fr": {
+      "script": "Latin",
+      "chars": 31527,
+      "tokens": 7864,
+      "chars_per_token": 4.01
+    },
+    "pt": {
+      "script": "Latin",
+      "chars": 29300,
+      "tokens": 7027,
+      "chars_per_token": 4.17
+    },
+    "de": {
+      "script": "Latin",
+      "chars": 31302,
+      "tokens": 7479,
+      "chars_per_token": 4.19
+    },
+    "tr": {
+      "script": "Latin",
+      "chars": 27589,
+      "tokens": 7602,
+      "chars_per_token": 3.63
+    },
+    "vi": {
+      "script": "Latin",
+      "chars": 28193,
+      "tokens": 7652,
+      "chars_per_token": 3.68
+    },
+    "pl": {
+      "script": "Latin",
+      "chars": 28469,
+      "tokens": 8482,
+      "chars_per_token": 3.36
+    },
+    "ro": {
+      "script": "Latin",
+      "chars": 30575,
+      "tokens": 8807,
+      "chars_per_token": 3.47
+    },
+    "lt": {
+      "script": "Latin",
+      "chars": 26581,
+      "tokens": 9308,
+      "chars_per_token": 2.86
+    },
+    "ta": {
+      "script": "Tamil",
+      "chars": 31503,
+      "tokens": 8350,
+      "chars_per_token": 3.77
+    },
+    "th": {
+      "script": "Thai",
+      "chars": 26295,
+      "tokens": 9246,
+      "chars_per_token": 2.84
+    }
+  }
+}

@@ -166,3 +166,127 @@
 21:15:00     unloaded in 2.5s
 21:15:00     written to /opt/bench/results/summary.json
 21:15:00 === finished ===
+00:30:30 === starting: 9 models -> /opt/bench/results ===
+00:30:30 --- text-bulk (Gemma-4-26B-A4B, vLLM NVFP4) ---
+00:34:03     first load 212.4s
+00:36:03     reload 117.4s (page cache warm)
+00:36:03     bench.py c=1 
+00:36:10       done in 7s
+00:36:10     bench_longform.py c=1 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:36:16       done in 6s
+00:36:16     bench_longform.py c=8 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:36:17       done in 1s
+00:36:17     bench_longform.py c=32 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:36:18       done in 1s
+00:36:18     bench_longform.py c=64 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:36:18       done in 1s
+00:36:21     unloaded in 2.3s
+00:36:21     written to /opt/bench/results/summary.json
+00:36:21 --- gemma26-gguf (Gemma-4-26B-A4B, llama.cpp GGUF) ---
+00:36:30     first load 9.0s
+00:36:36     reload 5.0s (page cache warm)
+00:36:36     bench.py c=1 
+00:36:42       done in 6s
+00:36:42     bench_longform.py c=1 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:37:03       done in 21s
+00:37:03     bench_longform.py c=8 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:37:26       done in 22s
+00:37:26     bench_longform.py c=32 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:37:52       done in 27s
+00:37:52     bench_longform.py c=64 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:38:32       done in 40s
+00:38:34     unloaded in 2.3s
+00:38:34     written to /opt/bench/results/summary.json
+00:38:34 --- text-quality (Qwopus3.6-27B-Coder, vLLM NVFP4) ---
+00:41:18     first load 163.4s
+00:42:29     reload 69.1s (page cache warm)
+00:42:29     bench.py c=1 
+00:42:49       done in 20s
+00:42:49     bench_longform.py c=1 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:43:05       done in 16s
+00:43:05     bench_longform.py c=8 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:43:16       done in 11s
+00:43:16     bench_longform.py c=32 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:43:31       done in 15s
+00:43:31     bench_longform.py c=64 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:43:53       done in 21s
+00:43:55     unloaded in 2.2s
+00:43:55     written to /opt/bench/results/summary.json
+00:43:55 --- coder-fast (Qwen3-Coder-30B-A3B, vLLM NVFP4) ---
+00:44:37     first load 42.1s
+00:45:16     reload 37.2s (page cache warm)
+00:45:16     bench.py c=1 
+00:45:24       done in 8s
+00:45:24     bench_longform.py c=1 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:45:29       done in 6s
+00:45:29     bench_longform.py c=8 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:45:30       done in 1s
+00:45:30     bench_longform.py c=32 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:45:31       done in 1s
+00:45:31     bench_longform.py c=64 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:45:32       done in 1s
+00:45:34     unloaded in 2.0s
+00:45:34     written to /opt/bench/results/summary.json
+00:45:34 --- qwen-coder (Qwen3.6-35B-A3B, llama.cpp GGUF) ---
+00:45:44     first load 10.8s
+00:45:51     reload 5.3s (page cache warm)
+00:45:51     bench.py c=1 
+00:46:03       done in 11s
+00:46:03     bench_longform.py c=1 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:46:36       done in 34s
+00:46:36     bench_longform.py c=8 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:47:11       done in 35s
+00:47:11     bench_longform.py c=32 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:48:01       done in 50s
+00:48:01     bench_longform.py c=64 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:49:08       done in 67s
+00:49:10     unloaded in 2.2s
+00:49:10     written to /opt/bench/results/summary.json
+00:49:10 --- qwen36-nvfp4 (Qwen3.6-35B-A3B, vLLM NVFP4) ---
+00:52:07     first load 177.0s
+00:53:43     reload 92.2s (page cache warm)
+00:53:43     bench.py c=1 
+00:53:49       done in 6s
+00:53:49     bench_longform.py c=1 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:53:56       done in 7s
+00:53:56     bench_longform.py c=8 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:53:58       done in 3s
+00:53:58     bench_longform.py c=32 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:54:01       done in 3s
+00:54:01     bench_longform.py c=64 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:54:05       done in 4s
+00:54:07     unloaded in 2.2s
+00:54:07     written to /opt/bench/results/summary.json
+00:54:07 --- gemma-general (Gemma-4-E4B, llama.cpp GGUF) ---
+00:54:11     first load 3.9s
+00:54:15     reload 2.5s (page cache warm)
+00:54:15     bench.py c=1 
+00:54:25       done in 10s
+00:54:25     bench_longform.py c=1 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:54:36       done in 10s
+00:54:36     bench_longform.py c=8 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:54:38       done in 3s
+00:54:38     bench_longform.py c=32 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:54:42       done in 3s
+00:54:42     bench_longform.py c=64 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:54:46       done in 4s
+00:54:48     unloaded in 1.8s
+00:54:48     written to /opt/bench/results/summary.json
+00:54:48 --- glm-flash (GLM-4.7-Flash, vLLM NVFP4) ---
+00:56:19     first load 91.6s
+00:57:02     reload 40.2s (page cache warm)
+00:57:02     bench.py c=1 
+00:57:13       done in 11s
+00:57:13     bench_longform.py c=1 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:57:19       done in 7s
+00:57:19     bench_longform.py c=8 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:57:23       done in 3s
+00:57:23     bench_longform.py c=32 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:57:24       done in 2s
+00:57:24     bench_longform.py c=64 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:57:26       done in 1s
+00:57:28     unloaded in 2.0s
+00:57:28     written to /opt/bench/results/summary.json
+00:57:28 --- coder-next-80b (Coder-Next 80B, llama.cpp GGUF) ---
+00:57:28     will not start: Qwen3-Coder-Next-UD-Q4_K_XL needs about 46.2 GB but only 31.9 GB is free on the card. Unload another model, or choose a smaller one.
+00:57:28 === finished ===

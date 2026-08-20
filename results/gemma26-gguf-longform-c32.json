@@ -1,0 +1,22 @@
+{
+  "test": "longform_throughput",
+  "set": "Wikipedia articles",
+  "label": "gemma26-gguf",
+  "model": "gemma-4-26B-A4B-it-UD-Q4_K_XL",
+  "concurrency": 32,
+  "articles": 60,
+  "languages": [
+    "ru"
+  ],
+  "chars_min": 2194,
+  "chars_median": 3770,
+  "chars_max": 5192,
+  "wall_s": 15.78,
+  "requests": 60,
+  "failed_requests": 0,
+  "prompt_tokens": 75297,
+  "completion_tokens": 129,
+  "prefill_tok_s": 4771.3,
+  "decode_tok_s": 8.2,
+  "items_per_s": 3.8
+}

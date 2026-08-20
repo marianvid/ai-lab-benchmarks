@@ -1,0 +1,33 @@
+{
+  "label": "glm-flash",
+  "model": "glm-4.7-flash",
+  "runs": [
+    {
+      "test": "short prompt (~500 tok)",
+      "prompt_tokens": 306,
+      "output_tokens": 166,
+      "ttft_s": 0.514,
+      "total_s": 1.73,
+      "prefill_tok_s": 595.3,
+      "decode_tok_s": 135.9
+    },
+    {
+      "test": "medium prompt (~9k tok)",
+      "prompt_tokens": 7788,
+      "output_tokens": 167,
+      "ttft_s": 0.623,
+      "total_s": 2.03,
+      "prefill_tok_s": 12492.0,
+      "decode_tok_s": 117.9
+    },
+    {
+      "test": "long prompt (~29k tok)",
+      "prompt_tokens": 24558,
+      "output_tokens": 195,
+      "ttft_s": 3.352,
+      "total_s": 5.49,
+      "prefill_tok_s": 7325.3,
+      "decode_tok_s": 90.9
+    }
+  ]
+}

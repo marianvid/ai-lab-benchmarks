@@ -2,7 +2,7 @@
 
 **Affects vLLM 0.27.1. Fixed upstream; nightly builds load Gemma-4 unpatched.**
 
-Patch in `../harness/fix_gemma4.py`, useful only if pinned to 0.27.1. It edits a
+Patch in `harness/fix_gemma4.py`, useful only if pinned to 0.27.1. It edits a
 file inside the installed package, so any upgrade silently reverts it.
 
 Symptom resembles a corrupt checkpoint; cause is a config attribute change in

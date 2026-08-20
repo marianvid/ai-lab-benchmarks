@@ -7,8 +7,8 @@
     "tested": true,
     "load": {
       "ok": true,
-      "load_s": 45.1,
-      "load_ms_reported": 45079
+      "load_s": 212.4,
+      "load_ms_reported": 212374
     },
     "classification": {
       "test": "classification",
@@ -645,8 +645,72 @@
     },
     "unload": {
       "ok": true,
-      "unload_s": 2.1,
-      "unload_ms_reported": 2006
+      "unload_s": 2.3,
+      "unload_ms_reported": 2226
+    },
+    "unload_first": {
+      "ok": true,
+      "unload_s": 3.3,
+      "unload_ms_reported": 3236
+    },
+    "reload": {
+      "ok": true,
+      "load_s": 117.4,
+      "load_ms_reported": 117358
+    },
+    "latency": {
+      "label": "text-bulk",
+      "model": "gemma-4-26b-a4b",
+      "runs": [
+        {
+          "test": "short prompt (~500 tok)",
+          "prompt_tokens": 358,
+          "output_tokens": 235,
+          "ttft_s": 0.02,
+          "total_s": 2.25,
+          "prefill_tok_s": 17651.2,
+          "decode_tok_s": 105.2
+        },
+        {
+          "test": "medium prompt (~9k tok)",
+          "prompt_tokens": 9166,
+          "output_tokens": 232,
+          "ttft_s": 0.662,
+          "total_s": 3.01,
+          "prefill_tok_s": 13839.4,
+          "decode_tok_s": 98.3
+        },
+        {
+          "test": "long prompt (~32k tok)",
+          "error": "<HTTPError 400: 'Bad Request'>"
+        }
+      ]
+    },
+    "longform_curve": {
+      "1": {
+        "wall_s": 6.07,
+        "items_per_s": 9.89,
+        "prefill_tok_s": 12418.1,
+        "decode_tok_s": 20.9
+      },
+      "8": {
+        "wall_s": 0.55,
+        "items_per_s": 108.34,
+        "prefill_tok_s": 136071.9,
+        "decode_tok_s": 229.3
+      },
+      "32": {
+        "wall_s": 0.3,
+        "items_per_s": 201.89,
+        "prefill_tok_s": 253559.9,
+        "decode_tok_s": 427.3
+      },
+      "64": {
+        "wall_s": 0.26,
+        "items_per_s": 229.1,
+        "prefill_tok_s": 287734.8,
+        "decode_tok_s": 484.9
+      }
     }
   },
   "gemma26-gguf": {
@@ -657,8 +721,8 @@
     "tested": true,
     "load": {
       "ok": true,
-      "load_s": 9.3,
-      "load_ms_reported": 9242
+      "load_s": 9.0,
+      "load_ms_reported": 9022
     },
     "classification": {
       "test": "classification",
@@ -1295,8 +1359,72 @@
     },
     "unload": {
       "ok": true,
-      "unload_s": 2.5,
-      "unload_ms_reported": 2456
+      "unload_s": 2.3,
+      "unload_ms_reported": 2206
+    },
+    "unload_first": {
+      "ok": true,
+      "unload_s": 1.8,
+      "unload_ms_reported": 1767
+    },
+    "reload": {
+      "ok": true,
+      "load_s": 5.0,
+      "load_ms_reported": 4930
+    },
+    "latency": {
+      "label": "gemma26-gguf",
+      "model": "gemma-4-26B-A4B-it-UD-Q4_K_XL",
+      "runs": [
+        {
+          "test": "short prompt (~500 tok)",
+          "prompt_tokens": 358,
+          "output_tokens": 256,
+          "ttft_s": 0.047,
+          "total_s": 1.93,
+          "prefill_tok_s": 7650.7,
+          "decode_tok_s": 135.7
+        },
+        {
+          "test": "medium prompt (~9k tok)",
+          "prompt_tokens": 9166,
+          "output_tokens": 246,
+          "ttft_s": 1.575,
+          "total_s": 3.54,
+          "prefill_tok_s": 5817.9,
+          "decode_tok_s": 124.8
+        },
+        {
+          "test": "long prompt (~32k tok)",
+          "error": "<HTTPError 400: 'Bad Request'>"
+        }
+      ]
+    },
+    "longform_curve": {
+      "1": {
+        "wall_s": 20.13,
+        "items_per_s": 2.98,
+        "prefill_tok_s": 3740.2,
+        "decode_tok_s": 6.4
+      },
+      "8": {
+        "wall_s": 19.5,
+        "items_per_s": 3.08,
+        "prefill_tok_s": 3861.6,
+        "decode_tok_s": 6.6
+      },
+      "32": {
+        "wall_s": 15.78,
+        "items_per_s": 3.8,
+        "prefill_tok_s": 4771.3,
+        "decode_tok_s": 8.2
+      },
+      "64": {
+        "wall_s": 19.3,
+        "items_per_s": 3.11,
+        "prefill_tok_s": 3901.0,
+        "decode_tok_s": 6.7
+      }
     }
   },
   "text-quality": {
@@ -1307,8 +1435,8 @@
     "tested": true,
     "load": {
       "ok": true,
-      "load_s": 69.6,
-      "load_ms_reported": 69615
+      "load_s": 163.4,
+      "load_ms_reported": 163357
     },
     "classification": {
       "test": "classification",
@@ -1946,7 +2074,76 @@
     "unload": {
       "ok": true,
       "unload_s": 2.2,
-      "unload_ms_reported": 2111
+      "unload_ms_reported": 2092
+    },
+    "unload_first": {
+      "ok": true,
+      "unload_s": 2.7,
+      "unload_ms_reported": 2659
+    },
+    "reload": {
+      "ok": true,
+      "load_s": 69.1,
+      "load_ms_reported": 69030
+    },
+    "latency": {
+      "label": "text-quality",
+      "model": "qwopus3.6-27b-coder",
+      "runs": [
+        {
+          "test": "short prompt (~500 tok)",
+          "prompt_tokens": 338,
+          "output_tokens": 178,
+          "ttft_s": 0.068,
+          "total_s": 4.53,
+          "prefill_tok_s": 4995.8,
+          "decode_tok_s": 39.6
+        },
+        {
+          "test": "medium prompt (~9k tok)",
+          "prompt_tokens": 8566,
+          "output_tokens": 200,
+          "ttft_s": 1.29,
+          "total_s": 6.45,
+          "prefill_tok_s": 6642.4,
+          "decode_tok_s": 38.6
+        },
+        {
+          "test": "long prompt (~29k tok)",
+          "prompt_tokens": 27116,
+          "output_tokens": 169,
+          "ttft_s": 3.715,
+          "total_s": 8.32,
+          "prefill_tok_s": 7299.7,
+          "decode_tok_s": 36.5
+        }
+      ]
+    },
+    "longform_curve": {
+      "1": {
+        "wall_s": 15.23,
+        "items_per_s": 3.94,
+        "prefill_tok_s": 5081.2,
+        "decode_tok_s": 9.1
+      },
+      "8": {
+        "wall_s": 9.82,
+        "items_per_s": 6.11,
+        "prefill_tok_s": 7881.4,
+        "decode_tok_s": 14.2
+      },
+      "32": {
+        "wall_s": 9.26,
+        "items_per_s": 6.48,
+        "prefill_tok_s": 8360.5,
+        "decode_tok_s": 15.0
+      },
+      "64": {
+        "wall_s": 10.69,
+        "items_per_s": 5.61,
+        "prefill_tok_s": 7240.2,
+        "decode_tok_s": 13.0
+      }
     }
   },
   "coder-fast": {
@@ -1957,8 +2154,8 @@
     "tested": true,
     "load": {
       "ok": true,
-      "load_s": 45.1,
-      "load_ms_reported": 45071
+      "load_s": 42.1,
+      "load_ms_reported": 42070
     },
     "classification": {
       "test": "classification",
@@ -2596,7 +2793,76 @@
     "unload": {
       "ok": true,
       "unload_s": 2.0,
-      "unload_ms_reported": 1974
+      "unload_ms_reported": 1922
+    },
+    "unload_first": {
+      "ok": true,
+      "unload_s": 2.0,
+      "unload_ms_reported": 1905
+    },
+    "reload": {
+      "ok": true,
+      "load_s": 37.2,
+      "load_ms_reported": 37194
+    },
+    "latency": {
+      "label": "coder-fast",
+      "model": "qwen3-coder-30b-a3b",
+      "runs": [
+        {
+          "test": "short prompt (~500 tok)",
+          "prompt_tokens": 309,
+          "output_tokens": 199,
+          "ttft_s": 0.018,
+          "total_s": 1.32,
+          "prefill_tok_s": 17325.7,
+          "decode_tok_s": 151.7
+        },
+        {
+          "test": "medium prompt (~9k tok)",
+          "prompt_tokens": 7841,
+          "output_tokens": 168,
+          "ttft_s": 0.512,
+          "total_s": 1.76,
+          "prefill_tok_s": 15322.0,
+          "decode_tok_s": 134.0
+        },
+        {
+          "test": "long prompt (~29k tok)",
+          "prompt_tokens": 24831,
+          "output_tokens": 174,
+          "ttft_s": 2.469,
+          "total_s": 4.14,
+          "prefill_tok_s": 10057.5,
+          "decode_tok_s": 103.7
+        }
+      ]
+    },
+    "longform_curve": {
+      "1": {
+        "wall_s": 5.41,
+        "items_per_s": 11.09,
+        "prefill_tok_s": 17034.0,
+        "decode_tok_s": 32.5
+      },
+      "8": {
+        "wall_s": 0.7,
+        "items_per_s": 86.26,
+        "prefill_tok_s": 132457.8,
+        "decode_tok_s": 240.1
+      },
+      "32": {
+        "wall_s": 0.34,
+        "items_per_s": 174.9,
+        "prefill_tok_s": 268563.2,
+        "decode_tok_s": 481.0
+      },
+      "64": {
+        "wall_s": 0.34,
+        "items_per_s": 178.47,
+        "prefill_tok_s": 274056.1,
+        "decode_tok_s": 499.7
+      }
     }
   },
   "qwen-coder": {
@@ -2608,7 +2874,7 @@
     "load": {
       "ok": true,
       "load_s": 10.8,
-      "load_ms_reported": 10732
+      "load_ms_reported": 10790
     },
     "classification": {
       "test": "classification",
@@ -3245,8 +3511,77 @@
     },
     "unload": {
       "ok": true,
-      "unload_s": 2.6,
-      "unload_ms_reported": 2505
+      "unload_s": 2.2,
+      "unload_ms_reported": 2158
+    },
+    "unload_first": {
+      "ok": true,
+      "unload_s": 1.7,
+      "unload_ms_reported": 1675
+    },
+    "reload": {
+      "ok": true,
+      "load_s": 5.3,
+      "load_ms_reported": 5269
+    },
+    "latency": {
+      "label": "qwen-coder",
+      "model": "Qwen3.6-35B-A3B-UD-Q4_K_M",
+      "runs": [
+        {
+          "test": "short prompt (~500 tok)",
+          "prompt_tokens": 338,
+          "output_tokens": 192,
+          "ttft_s": 0.059,
+          "total_s": 1.17,
+          "prefill_tok_s": 5717.3,
+          "decode_tok_s": 171.5
+        },
+        {
+          "test": "medium prompt (~9k tok)",
+          "prompt_tokens": 8566,
+          "output_tokens": 177,
+          "ttft_s": 2.137,
+          "total_s": 3.22,
+          "prefill_tok_s": 4009.0,
+          "decode_tok_s": 162.6
+        },
+        {
+          "test": "long prompt (~29k tok)",
+          "prompt_tokens": 27116,
+          "output_tokens": 178,
+          "ttft_s": 5.0,
+          "total_s": 6.24,
+          "prefill_tok_s": 5422.8,
+          "decode_tok_s": 142.3
+        }
+      ]
+    },
+    "longform_curve": {
+      "1": {
+        "wall_s": 32.5,
+        "items_per_s": 1.85,
+        "prefill_tok_s": 2380.9,
+        "decode_tok_s": 4.4
+      },
+      "8": {
+        "wall_s": 30.31,
+        "items_per_s": 1.98,
+        "prefill_tok_s": 2553.5,
+        "decode_tok_s": 4.7
+      },
+      "32": {
+        "wall_s": 32.57,
+        "items_per_s": 1.84,
+        "prefill_tok_s": 2375.7,
+        "decode_tok_s": 4.4
+      },
+      "64": {
+        "wall_s": 33.24,
+        "items_per_s": 1.81,
+        "prefill_tok_s": 2328.4,
+        "decode_tok_s": 4.3
+      }
     }
   },
   "qwen36-nvfp4": {
@@ -3257,8 +3592,8 @@
     "tested": true,
     "load": {
       "ok": true,
-      "load_s": 98.1,
-      "load_ms_reported": 98122
+      "load_s": 177.0,
+      "load_ms_reported": 177016
     },
     "classification": {
       "test": "classification",
@@ -3895,8 +4230,77 @@
     },
     "unload": {
       "ok": true,
-      "unload_s": 2.3,
-      "unload_ms_reported": 2247
+      "unload_s": 2.2,
+      "unload_ms_reported": 2110
+    },
+    "unload_first": {
+      "ok": true,
+      "unload_s": 3.5,
+      "unload_ms_reported": 3410
+    },
+    "reload": {
+      "ok": true,
+      "load_s": 92.2,
+      "load_ms_reported": 92200
+    },
+    "latency": {
+      "label": "qwen36-nvfp4",
+      "model": "qwen3.6-35b-a3b",
+      "runs": [
+        {
+          "test": "short prompt (~500 tok)",
+          "prompt_tokens": 338,
+          "output_tokens": 191,
+          "ttft_s": 0.066,
+          "total_s": 0.97,
+          "prefill_tok_s": 5094.6,
+          "decode_tok_s": 209.5
+        },
+        {
+          "test": "medium prompt (~9k tok)",
+          "prompt_tokens": 8566,
+          "output_tokens": 208,
+          "ttft_s": 0.633,
+          "total_s": 1.67,
+          "prefill_tok_s": 13531.1,
+          "decode_tok_s": 198.8
+        },
+        {
+          "test": "long prompt (~29k tok)",
+          "prompt_tokens": 27116,
+          "output_tokens": 192,
+          "ttft_s": 1.64,
+          "total_s": 2.69,
+          "prefill_tok_s": 16532.9,
+          "decode_tok_s": 181.7
+        }
+      ]
+    },
+    "longform_curve": {
+      "1": {
+        "wall_s": 6.78,
+        "items_per_s": 8.86,
+        "prefill_tok_s": 11420.8,
+        "decode_tok_s": 21.0
+      },
+      "8": {
+        "wall_s": 2.24,
+        "items_per_s": 26.78,
+        "prefill_tok_s": 34542.8,
+        "decode_tok_s": 63.4
+      },
+      "32": {
+        "wall_s": 1.97,
+        "items_per_s": 30.52,
+        "prefill_tok_s": 39364.0,
+        "decode_tok_s": 72.2
+      },
+      "64": {
+        "wall_s": 1.95,
+        "items_per_s": 30.7,
+        "prefill_tok_s": 39595.6,
+        "decode_tok_s": 72.7
+      }
     }
   },
   "gemma-general": {
@@ -3907,8 +4311,8 @@
     "tested": true,
     "load": {
       "ok": true,
-      "load_s": 3.3,
-      "load_ms_reported": 3274
+      "load_s": 3.9,
+      "load_ms_reported": 3837
     },
     "classification": {
       "test": "classification",
@@ -4545,8 +4949,77 @@
     },
     "unload": {
       "ok": true,
-      "unload_s": 2.4,
-      "unload_ms_reported": 2296
+      "unload_s": 1.8,
+      "unload_ms_reported": 1748
+    },
+    "unload_first": {
+      "ok": true,
+      "unload_s": 1.6,
+      "unload_ms_reported": 1557
+    },
+    "reload": {
+      "ok": true,
+      "load_s": 2.5,
+      "load_ms_reported": 2433
+    },
+    "latency": {
+      "label": "gemma-general",
+      "model": "gemma-4-E4B-it-Q4_0",
+      "runs": [
+        {
+          "test": "short prompt (~500 tok)",
+          "prompt_tokens": 354,
+          "output_tokens": 256,
+          "ttft_s": 0.021,
+          "total_s": 1.72,
+          "prefill_tok_s": 16504.4,
+          "decode_tok_s": 149.9
+        },
+        {
+          "test": "medium prompt (~9k tok)",
+          "prompt_tokens": 9162,
+          "output_tokens": 256,
+          "ttft_s": 0.98,
+          "total_s": 2.88,
+          "prefill_tok_s": 9348.6,
+          "decode_tok_s": 134.5
+        },
+        {
+          "test": "long prompt (~29k tok)",
+          "prompt_tokens": 29012,
+          "output_tokens": 256,
+          "ttft_s": 2.762,
+          "total_s": 5.07,
+          "prefill_tok_s": 10505.8,
+          "decode_tok_s": 110.7
+        }
+      ]
+    },
+    "longform_curve": {
+      "1": {
+        "wall_s": 9.94,
+        "items_per_s": 6.04,
+        "prefill_tok_s": 7554.5,
+        "decode_tok_s": 12.1
+      },
+      "8": {
+        "wall_s": 2.18,
+        "items_per_s": 27.58,
+        "prefill_tok_s": 34505.5,
+        "decode_tok_s": 55.2
+      },
+      "32": {
+        "wall_s": 2.16,
+        "items_per_s": 27.81,
+        "prefill_tok_s": 34787.6,
+        "decode_tok_s": 55.6
+      },
+      "64": {
+        "wall_s": 2.15,
+        "items_per_s": 27.85,
+        "prefill_tok_s": 34838.8,
+        "decode_tok_s": 55.7
+      }
     }
   },
   "glm-flash": {
@@ -4557,8 +5030,8 @@
     "tested": true,
     "load": {
       "ok": true,
-      "load_s": 98.3,
-      "load_ms_reported": 98289
+      "load_s": 91.6,
+      "load_ms_reported": 91598
     },
     "classification": {
       "test": "classification",
@@ -5195,8 +5668,77 @@
     },
     "unload": {
       "ok": true,
-      "unload_s": 2.3,
-      "unload_ms_reported": 2198
+      "unload_s": 2.0,
+      "unload_ms_reported": 1906
+    },
+    "unload_first": {
+      "ok": true,
+      "unload_s": 2.1,
+      "unload_ms_reported": 2039
+    },
+    "reload": {
+      "ok": true,
+      "load_s": 40.2,
+      "load_ms_reported": 40211
+    },
+    "latency": {
+      "label": "glm-flash",
+      "model": "glm-4.7-flash",
+      "runs": [
+        {
+          "test": "short prompt (~500 tok)",
+          "prompt_tokens": 306,
+          "output_tokens": 166,
+          "ttft_s": 0.514,
+          "total_s": 1.73,
+          "prefill_tok_s": 595.3,
+          "decode_tok_s": 135.9
+        },
+        {
+          "test": "medium prompt (~9k tok)",
+          "prompt_tokens": 7788,
+          "output_tokens": 167,
+          "ttft_s": 0.623,
+          "total_s": 2.03,
+          "prefill_tok_s": 12492.0,
+          "decode_tok_s": 117.9
+        },
+        {
+          "test": "long prompt (~29k tok)",
+          "prompt_tokens": 24558,
+          "output_tokens": 195,
+          "ttft_s": 3.352,
+          "total_s": 5.49,
+          "prefill_tok_s": 7325.3,
+          "decode_tok_s": 90.9
+        }
+      ]
+    },
+    "longform_curve": {
+      "1": {
+        "wall_s": 5.69,
+        "items_per_s": 10.54,
+        "prefill_tok_s": 13231.4,
+        "decode_tok_s": 25.3
+      },
+      "8": {
+        "wall_s": 1.91,
+        "items_per_s": 31.37,
+        "prefill_tok_s": 39376.4,
+        "decode_tok_s": 75.8
+      },
+      "32": {
+        "wall_s": 1.22,
+        "items_per_s": 49.38,
+        "prefill_tok_s": 61979.8,
+        "decode_tok_s": 119.3
+      },
+      "64": {
+        "wall_s": 0.68,
+        "items_per_s": 87.78,
+        "prefill_tok_s": 110170.7,
+        "decode_tok_s": 212.1
+      }
     }
   },
   "coder-next-80b": {

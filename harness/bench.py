@@ -111,10 +111,15 @@ def run(prompt, max_tokens, tag):
         "decode_tok_s": round((p_out - 1) / decode_s, 1) if decode_s > 0 and p_out > 1 else None,
     }
 
+# The prompt and the answer share the context window, so the longest prompt has
+# to leave room for the answer. At about 153 tokens per repeat, 190 repeats is
+# roughly 29 000 tokens, which fits a 32 768-token window with the 256-token
+# answer and some framing. 220 repeats did not, and every model refused it with
+# HTTP 400.
 TESTS = [
     (make_prompt(2),   256, "short prompt (~500 tok)"),
     (make_prompt(60),  256, "medium prompt (~9k tok)"),
-    (make_prompt(220), 256, "long prompt (~32k tok)"),
+    (make_prompt(190), 256, "long prompt (~29k tok)"),
 ]
 
 results = {"label": LABEL, "model": MODEL, "runs": []}

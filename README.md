@@ -1,162 +1,90 @@
 # RTX PRO 4500 Blackwell — inference benchmark
 
-llama.cpp and vLLM on a single 32 GB card, eGPU over OCuLink. Eight
-model/engine combinations, four tasks, 20 languages.
+llama.cpp against vLLM on a single 32 GB card, attached as an external GPU over
+OCuLink. Eight model and engine combinations, four tasks, 20 languages.
 
-Measured 19–20 August 2026. Raw JSON in `results/`; `02-results.md` is
-generated from it.
+Measured 19–20 August 2026 on one machine. The point was to find out what that
+machine can do, not to rank models in general.
 
-## Hardware
-
-| | |
-|---|---|
-| GPU | NVIDIA RTX PRO 4500 Blackwell, 32 GB (32 623 MiB), 200 W cap, ECC on |
-| Attachment | OCuLink eGPU dock, PCIe address 01:00.0 |
-| Driver | 610.57.04, CUDA 13 |
-| Host | AOOSTAR GEM12+ Pro, Ryzen 7 PRO 8845HS (8C/16T), 96 GB DDR5-5600, 35 W BIOS cap |
-| OS | Proxmox; engines in an unprivileged LXC |
-| Engines | llama.cpp b10447, vLLM 0.26.1rc1.dev949 |
-| Model storage | internal NVMe |
-
-## Tasks
-
-Four tasks, each with a public evaluation set whose ground truth was produced by
-people. Each run reports a score **and** a rate, from the same pass.
-
-| Task | Set | Items | Metric | Range |
-|---|---|---:|---|---|
-| Classification | SIB-200, 20 languages | 4 080 | F1 | 0–1, higher better |
-| Comprehension | Belebele, 20 languages | 2 000 | accuracy | 0–1, chance 0.25 |
-| Translation | FLORES-200, en→19 | 950 | chrF++ | 0–100, higher better |
-| Coding | HumanEval+ / MBPP+ | 541 | pass rate | 0–1, higher better |
-
-**Classification** — the model is shown a sentence and answers one yes/no
-question: is its topic `politics`. 15% are. F1 rather than accuracy because of
-that imbalance: always answering no gives 0.85 accuracy and 0.00 F1.
-
-**Comprehension** — a passage, a question about it, four answers, one correct.
-The model replies with a letter. Four options means guessing scores 0.25, so
-anything near that indicates the passage was not read.
-
-**Translation** — English sentences into 19 languages, scored by chrF++ against
-FLORES's human translations. chrF++ counts shared character sequences and word
-pairs; it needs no judge model. Below 40 is poor, 50–60 usable, above 70 close
-to the reference.
-
-**Coding** — the model completes a function or writes one from a description.
-The answer is executed against the problem's own test suite; it passes or it
-does not.
-
-Sets are CC BY-SA 4.0 / Apache 2.0 and none is redistributed here.
-`harness/get_datasets.py` fetches them from their publishers.
-
-## Results
-
-Full tables, with per-language breakdowns, in `02-results.md`.
-
-`Cls F1` classification, `Comp` comprehension accuracy, `chrF++` translation,
-`Code` coding pass rate, `Cls items/s` sentences classified per second at
-concurrency 8, `Load` seconds from request to the engine answering.
-
-| Model | Engine | Cls F1 | Comp | chrF++ | Code | Cls items/s | Load |
-|---|---|---:|---:|---:|---:|---:|---:|
-| Qwopus3.6-27B-Coder | vLLM | **0.906** | **0.915** | 52.99 | 0.815 | 19.7 | 69.6 s |
-| Qwen3.6-35B-A3B | llama.cpp | 0.895 | 0.913 | 54.24 | 0.808 | 8.0 | 10.8 s |
-| Qwen3.6-35B-A3B | vLLM | 0.889 | 0.895 | 53.79 | 0.810 | 53.6 | 98.1 s |
-| Gemma-4-26B-A4B | vLLM | 0.875 | 0.873 | 55.80 | 0.826 | **51.1** | 45.1 s |
-| Gemma-4-26B-A4B | llama.cpp | 0.871 | 0.884 | **56.12** | **0.834** | 8.9 | 9.3 s |
-| Gemma-4-E4B (4.6 GB) | llama.cpp | 0.828 | 0.760 | 54.08 | 0.765 | 11.6 | **3.3 s** |
-| GLM-4.7-Flash | vLLM | 0.819 | 0.742 | 50.39 | 0.706 | 37.0 | 98.3 s |
-| Qwen3-Coder-30B-A3B | vLLM | 0.726 | 0.847 | 45.38 | 0.791 | 49.9 | 45.1 s |
-
-Unload is 2.0–2.6 s for every combination.
-
-### Throughput vs concurrency
-
-Does the engine get more done when more requests arrive at once? The same
-classification task, cut to three languages to keep runs short, repeated at 1,
-8, 32 and 64 requests in flight. Numbers are sentences per second; `gain` is
-highest divided by lowest.
-
-| Model | Engine | c=1 | c=8 | c=32 | c=64 | gain |
-|---|---|---:|---:|---:|---:|---:|
-| Gemma-4-26B-A4B | vLLM | 8.7 | 54.4 | 164.7 | 169.7 | 19.6× |
-| GLM-4.7-Flash | vLLM | 10.6 | 56.6 | 149.2 | 165.7 | 15.7× |
-| Qwen3-Coder-30B-A3B | vLLM | 12.0 | 62.0 | 175.6 | 176.6 | 14.7× |
-| Qwopus3.6-27B-Coder | vLLM | 3.2 | 19.4 | 43.8 | 43.9 | 13.5× |
-| Qwen3.6-35B-A3B | vLLM | 14.8 | 60.0 | 105.3 | 105.7 | 7.1× |
-| Gemma-4-E4B | llama.cpp | 11.7 | 12.4 | 12.4 | 12.4 | 1.1× |
-| Gemma-4-26B-A4B | llama.cpp | 9.4 | 9.5 | 9.6 | 9.8 | 1.0× |
-| Qwen3.6-35B-A3B | llama.cpp | 8.0 | 8.1 | 8.4 | 8.1 | 1.0× |
-
-### Tokenizer cost by language
-
-How many tokens the same content costs in each language. Identical FLORES
-sentences, so any difference is the tokenizer and not the text. Counted by
-Gemma-4-26B's tokenizer; no GPU involved. Figures are multiples of the English
-token count — 1.50 means a context window holds two thirds as much.
-
-`lt 1.66 · th 1.65 · uk 1.64 · ro 1.57 · pl 1.52 · ta 1.49 · ar 1.48 ·
-fr 1.41 · ru 1.40 · ko 1.39 · vi 1.37 · tr 1.36 · de 1.34 · hi 1.31 ·
-es 1.29 · pt 1.26 · ja 1.24 · bn 1.23 · zh 1.12 · en 1.00`
-
-Script is not the predictor: Han is cheapest after English, Latin-script
-Lithuanian is most expensive. An 8 192-token window holds ~60% as much
-Lithuanian as English.
-
-### Model larger than VRAM
-
-Does a model that does not fit run at all? llama.cpp can keep part of the model
-on the card and the rest in system memory, moving data across the PCIe link for
-every token. `Qwen3-Coder-Next-UD-Q4_K_XL`, 46.2 GB, on a 32 GB card:
+## Pages
 
 | | |
 |---|---|
-| Load | 10.5 s (warm page cache) |
-| VRAM | 30 728 MB |
-| Generation | 56.4 tok/s (llama.cpp timing), 42.0 tok/s wall-clock |
+| [The machine](docs/machine.md) | Hardware, engines, and how the GPU is attached |
+| [The models](docs/models.md) | What was tested, how large, and why these eight |
+| [Method](docs/method.md) | How each task was run, and where the data comes from |
+| [Quality](docs/quality.md) | Classification, comprehension, translation, coding |
+| [Throughput](docs/throughput.md) | How much work per second, short and long prompts |
+| [Latency](docs/latency.md) | One request at a time, at 500 / 9 k / 29 k tokens |
+| [Loading](docs/loading.md) | Cold and warm load times; a model larger than VRAM |
+| [Tokenizer cost](docs/tokenizer.md) | What the same text costs in each language |
+| [Findings](docs/findings.md) | What follows from all of it |
+| [Glossary](docs/glossary.md) | Every term used in a table |
 
-Requires letting llama.cpp pick the split. With `--n-gpu-layers 36` it aborts:
-`common_fit_params: failed to fit params to free device memory: n_gpu_layers
-already set by user to 36, abort`, then `cudaMalloc failed` on 34 406 MiB.
+Also kept: [an earlier four-engine study](docs/engines-2026-08.md) from August,
+and [dead ends](docs/dead-ends/) — measurement errors and a conclusion that
+measuring overturned.
 
-AI-Lab refuses this configuration by design — partial offload over OCuLink puts
-every token across the cable. Measured outside AI-Lab.
+Start with [Findings](docs/findings.md) if you want the conclusions, or
+[Quality](docs/quality.md) if you want the numbers.
+
+## The short version
+
+**The engine decides throughput; the model decides quality.** The same weights
+on both engines:
+
+| Model | Engine | Classification F1 | Sentences/s |
+|---|---|---:|---:|
+| Qwen3.6-35B-A3B | llama.cpp | 0.895 | 8.0 |
+| Qwen3.6-35B-A3B | vLLM | 0.889 | 53.6 |
+
+Same answers, six and a half times the work. vLLM adds requests to a batch
+already running; llama.cpp does not. At one request at a time the two are level,
+and llama.cpp starts in seconds where vLLM takes minutes.
+
+**Prompt length changes that.** Measured again with whole articles instead of
+sentences, one model's batching advantage went from 13.5× to 1.6×, and
+another's from 15.7× to 8.3×. A long prompt occupies far more cache, so fewer
+requests fit at once. Benchmarking on sentences and deploying on documents does
+not give you the throughput you measured.
+
+**Load times depend on the page cache more than on the model.** A cold vLLM
+start took 212 seconds where the warm one took 117 — most of the difference is
+vLLM's own multi-gigabyte installation being read from disk, not the model.
 
 ## Reproducing
 
 ```sh
-python3 harness/get_datasets.py --out ./eval-data     # ~57 MB, 20 languages
-python3 harness/run_all.py --out ./results            # one model at a time
-python3 harness/make_report.py --results ./results --out 02-results.md
+python3 harness/get_datasets.py --out ./eval-data     # ~57 MB, from the publishers
+python3 harness/fetch_wikipedia.py --out ./eval-data/wikipedia_articles.jsonl
+python3 harness/run_all.py --out ./results
+python3 harness/make_report.py --results ./results --out ./docs
 ```
 
-`bench_coding.py` executes model-generated Python. It drops to `nobody` in a
-temp dir with a timeout, but run it in a container.
+No evaluation data is stored in this repository. The first two commands fetch it
+from FLORES-200, SIB-200, Belebele, EvalPlus and Wikipedia, all under CC BY-SA
+4.0 or Apache 2.0, and write a manifest recording what came from where.
+
+`harness/bench_coding.py` executes code written by a language model. It drops to
+`nobody` in a temporary directory with a timeout, but run it in a container.
 
 ## Caveats
 
-- Single run per cell. No error bars. Treat F1 deltas under 0.02 as noise.
-- Sentence- and passage-level inputs. Long-context behaviour is not covered
-  here; see `bench.py` for a separate latency test at 300 / 8 k / 32 k tokens.
-- HumanEval+ and MBPP+ are in every model's training data. Irrelevant for
-  measuring machine throughput; do not read the pass rates as reasoning scores.
-- HumanEval/32 excluded: its own reference solution fails its own tests
-  (163/164 references pass through this harness).
-- Single-turn only. No agent-loop or long-conversation behaviour.
+- **One run per cell.** No error bars. Treat differences under 0.02 F1 as noise.
+- **Single-turn only.** Nothing here measures an agent loop or a long
+  conversation.
+- **The coding problems are in every model's training data.** They are old and
+  public. That would invalidate a study ranking models by reasoning; here they
+  are a fixed executable workload for measuring a machine.
+- **Quality was measured at an 8 192-token context**, latency and the long-form
+  throughput ladder at 32 768. Both are stated on the relevant pages.
+- **Load times are reported cold and warm.** The host's page cache was dropped
+  before the run so the cold figures are genuine.
+- **The translation scores are low in absolute terms** because the language mix
+  includes Tamil, Thai, Bengali and Lithuanian. Compare within the table only.
 
-## Files
+## Licence
 
-| | |
-|---|---|
-| `01-method.md` | Task definitions, metrics, run rules |
-| `02-results.md` | Generated tables |
-| `03-engines.md` | TensorRT-LLM and SGLang comparison (August 2026, different corpus) |
-| `04-what-it-means.md` | Findings and selection guidance |
-| `05-a-bug-in-vllm.md` | Gemma-4 load failure in vLLM 0.27.1: cause and patch |
-| `dead-ends/` | Measurement errors and a conclusion that measuring overturned |
-| `harness/` | Scripts |
-| `results/` | Raw JSON, 68 files |
-
-MIT for the harness, documents and results. Evaluation sets keep their own
-licences; see `eval-data/MANIFEST.json` after fetching.
+MIT for the harness, the documents and the results. The evaluation sets are not
+ours and are not here; each keeps its own licence, recorded in
+`eval-data/MANIFEST.json` once fetched.
