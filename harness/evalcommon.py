@@ -96,6 +96,15 @@ class Run:
             self.requests += 1
         return strip_think(answer["choices"][0]["message"]["content"] or "")
 
+    def _warm_up(self) -> None:
+        """Exercise the engine on text that is not part of the measurement."""
+        filler = ("Warm-up. " * 200) + "\n\nReply with the single word: ready."
+        with ThreadPoolExecutor(max_workers=self.concurrency) as pool:
+            list(pool.map(
+                lambda _: self.ask([{"role": "user", "content": filler}],
+                                   max_tokens=4),
+                range(self.concurrency)))
+
     def reset(self) -> None:
         with self._lock:
             self.prompt_tokens = self.completion_tokens = 0
@@ -108,11 +117,15 @@ class Run:
         server starts runs about 40% slow while the engine's kernel autotuning
         settles, and a benchmark that measures that is measuring the wrong
         thing.
+
+        The warm-up sends a prompt of its own, never one from `work`. It used
+        to send the first `concurrency` items, which at 64 was the whole set of
+        60 articles — so the measured pass asked for exactly what the engine
+        had just read, and vLLM answered from its prefix cache. That reported
+        60 articles read in a quarter of a second.
         """
         if warm and work:
-            sample = work[: max(2, self.concurrency)]
-            with ThreadPoolExecutor(max_workers=self.concurrency) as pool:
-                list(pool.map(do, sample))
+            self._warm_up()
             self.reset()
 
         started = time.perf_counter()

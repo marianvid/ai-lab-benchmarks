@@ -158,6 +158,32 @@ def bench(script: str, port: int, label: str, concurrency: int,
     return json.loads(out.read_text())
 
 
+def ladder(script: str, instance: str, port: int, extra: list[str],
+           stem: str, out: pathlib.Path, log) -> dict:
+    """One rung per concurrency, each on an engine that has not seen the work.
+
+    The engine is restarted between rungs. Every rung sends the same prompts,
+    and vLLM keeps what it has already read: run them back to back and the
+    second rung answers from cache, which reported 60 articles read in a
+    quarter of a second. Restarting throws that cache away, which is the only
+    way each rung measures the same thing.
+    """
+    curve = {}
+    for concurrency in THROUGHPUT_CONCURRENCY:
+        unload(instance)
+        again = load(instance, port)
+        if not again["ok"]:
+            log(f"    could not restart for c={concurrency}: {again.get('error')}")
+            break
+        result = bench(script, port, instance, concurrency, extra,
+                       out / f"{instance}-{stem}-c{concurrency}.json", log)
+        if result:
+            curve[str(concurrency)] = {
+                k: result[k] for k in
+                ("wall_s", "items_per_s", "prefill_tok_s", "decode_tok_s")}
+    return curve
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", default="/opt/bench/results")
@@ -166,6 +192,9 @@ def main() -> int:
     parser.add_argument("--only-new", action="store_true",
                         help="skip the quality tasks and run only the latency "
                              "and long-form measurements")
+    parser.add_argument("--ladders-only", action="store_true",
+                        help="run only the two concurrency ladders, leaving the "
+                             "quality and latency results already on disk alone")
     parser.add_argument("--skip-reload", action="store_true",
                         help="do not measure the second, warm load")
     arguments = parser.parse_args()
@@ -224,7 +253,7 @@ def main() -> int:
                 continue
             log(f"    reload {reloaded['load_s']}s (page cache warm)")
 
-        if full and not arguments.only_new:
+        if full and not arguments.only_new and not arguments.ladders_only:
             entry["classification"] = bench(
                 "bench_classify.py", port, instance, QUALITY_CONCURRENCY, [],
                 out / f"{instance}-classify.json", log)
@@ -238,42 +267,24 @@ def main() -> int:
                 "bench_coding.py", port, instance, QUALITY_CONCURRENCY, [],
                 out / f"{instance}-coding.json", log)
 
-            if not arguments.skip_throughput:
-                curve = {}
-                for concurrency in THROUGHPUT_CONCURRENCY:
-                    result = bench(
-                        "bench_classify.py", port, instance, concurrency,
-                        ["--languages", THROUGHPUT_LANGUAGES],
-                        out / f"{instance}-throughput-c{concurrency}.json", log)
-                    if result:
-                        curve[str(concurrency)] = {
-                            k: result[k] for k in
-                            ("wall_s", "items_per_s", "prefill_tok_s", "decode_tok_s")}
-                entry["throughput_curve"] = curve
-
-        if full:
+        if full and not arguments.ladders_only:
             # Prompt reading and generation at three prompt sizes, one request
             # at a time. The only place long prompts are measured.
             entry["latency"] = bench(
                 "bench.py", port, instance, 1, [],
                 out / f"{instance}-latency.json", log, positional=False)
 
-            # Throughput with whole articles instead of sentences, on the same
-            # concurrency ladder. Prompt length is what fills the cache, so this
-            # is the curve that describes real bulk work.
-            if not arguments.skip_throughput:
-                longform = {}
-                for concurrency in THROUGHPUT_CONCURRENCY:
-                    result = bench(
-                        "bench_longform.py", port, instance, concurrency,
-                        ["--articles", f"{DATA}/wikipedia_articles.jsonl",
-                         "--limit", "60"],
-                        out / f"{instance}-longform-c{concurrency}.json", log)
-                    if result:
-                        longform[str(concurrency)] = {
-                            k: result[k] for k in
-                            ("wall_s", "items_per_s", "prefill_tok_s", "decode_tok_s")}
-                entry["longform_curve"] = longform
+        # Throughput with whole articles instead of sentences, on the same
+        # concurrency ladder. Prompt length is what fills the cache, so this
+        # is the curve that describes real bulk work.
+        if full and not arguments.skip_throughput:
+            entry["throughput_curve"] = ladder(
+                "bench_classify.py", instance, port,
+                ["--languages", THROUGHPUT_LANGUAGES], "throughput", out, log)
+            entry["longform_curve"] = ladder(
+                "bench_longform.py", instance, port,
+                ["--articles", f"{DATA}/wikipedia_articles.jsonl",
+                 "--limit", "60"], "longform", out, log)
 
         entry["unload"] = unload(instance)
         log(f"    unloaded in {entry['unload'].get('unload_s')}s")
