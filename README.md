@@ -2,6 +2,12 @@
 
 The scope was to find out what the configuration can do, not to rank models in general.
 
+The tasks were chosen from the work this machine actually does on personal
+projects, not from what a leaderboard usually measures: multilingual text —
+sorting it, translating it, answering questions about it — and writing Python.
+The long-prompt pages exist for the same reason. An agent sends whole files, so
+a rate measured on single sentences would not describe anything real here.
+
 ## Pages
 
 | | |
@@ -26,25 +32,29 @@ measuring overturned.
 Start with [Findings](docs/findings.md) if you want the conclusions, or
 [Quality](docs/quality.md) if you want the numbers.
 
-## The short version
+## Datasets
 
-| Model | Engine | Classification F1 | Sentences/s |
-|---|---|---:|---:|
-| Qwen3.6-35B-A3B | llama.cpp | 0.895 | 8.0 |
-| Qwen3.6-35B-A3B | vLLM | 0.889 | 53.6 |
+Four public sets and one fetch from Wikipedia. Every one of them is scored by a
+rule, never by another model judging an answer — a judge model would have to be
+loaded on the same card, and its own weaknesses would end up inside the score.
 
-vLLM adds requests to a batch already running; llama.cpp does not.
-The real advantage of vLLM lies in concurrency.
+| Set | What it gives | Why this one |
+|---|---|---|
+| FLORES-200 | the same 1 012 sentences translated by people into 200 languages | translation can be compared against a human reference instead of against another model |
+| SIB-200 | a topic label on those same sentences | turns them into a classification task with a right answer |
+| Belebele | a question and four answers on those same passages | comprehension, scored by reading one letter |
+| HumanEval+ / MBPP+ | Python problems with tests | the code is executed; it passes or it does not |
+| Wikipedia | whole articles, 2 165 to 5 227 characters, six languages | a real long prompt rather than a sentence |
 
-**Prompt length changes that.** Measured again with whole articles instead of
-sentences, one model's batching advantage went from 13.5× to 1.6×, and
-another's from 15.7× to 8.3×. A long prompt occupies far more cache, so fewer
-requests fit at once.
+Three of them are built on FLORES, so the same sentences are being sorted,
+understood and translated. A weakness in one language shows up in all three at
+once rather than being hidden by three different corpora.
 
-**Load times depend on the page cache more than on the model.** A cold vLLM
-start took 212 seconds where the warm one took 117.
+Sources and licences are in [method.md](docs/method.md). Nothing is redistributed
+here: the sets are fetched from their publishers and a manifest records what came
+from where.
 
-## Reproducing
+## Running it
 
 ```sh
 python3 harness/get_datasets.py --out ./eval-data     # ~57 MB, from the publishers
@@ -52,10 +62,6 @@ python3 harness/fetch_wikipedia.py --out ./eval-data/wikipedia_articles.jsonl
 python3 harness/run_all.py --out ./results
 python3 harness/make_report.py --results ./results --out ./docs
 ```
-
-No evaluation data is stored in this repository. The first two commands fetch it
-from FLORES-200, SIB-200, Belebele, EvalPlus and Wikipedia, all under CC BY-SA
-4.0 or Apache 2.0, and write a manifest recording what came from where.
 
 `harness/bench_coding.py` executes code written by a language model. It drops to
 `nobody` in a temporary directory with a timeout, but run it in a container.
