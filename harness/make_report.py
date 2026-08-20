@@ -60,6 +60,13 @@ def main() -> int:
 
     # -- what ran ----------------------------------------------------------
     out += ["## The models", "",
+            "What ran, and what it cost to get it running.", "",
+            "- **Load** — seconds from the load request to the engine answering",
+            "  `/v1/models`. Includes reading the weights from disk and any kernel",
+            "  compilation. Lower is better.",
+            "- **Unload** — seconds from the unload request to VRAM being free.",
+            "- **Format** — GGUF is llama.cpp's quantised format; NVFP4 is a 4-bit",
+            "  format the Blackwell card handles natively.", "",
             "| Model | Engine | Format | Load | Unload |",
             "|---|---|---|---:|---:|"]
     # Only combinations that actually loaded. A refused load has no timing, and
@@ -83,8 +90,22 @@ def main() -> int:
             "One pass per model per task; score and rate from the same pass.", ""]
 
     out += ["### Classification — SIB-200, twenty languages", "",
-            "Binary: topic == `politics`. 4 080 sentences, 15% positive. F1 rather",
-            "than accuracy — an always-negative classifier scores 0.85 accuracy.", "",
+            "**What it tests.** Whether the model can judge the topic of a sentence",
+            "in a language it may barely know.", "",
+            "**Method.** SIB-200 test split, all 20 languages, 4 080 sentences, each",
+            "labelled by a person with one of seven topics. The model is asked one",
+            "yes/no question per sentence: is the topic `politics`. 15% are. Sentences",
+            "go five to a request, 816 requests, 8 in flight at once.", "",
+            "**Columns.**", "",
+            "- **F1** — 0 to 1, higher better. Combines precision (of the sentences it",
+            "  called politics, how many were) and recall (of the political sentences,",
+            "  how many it found). Used instead of accuracy because only 15% are",
+            "  positive: a model that always answers no scores 0.85 accuracy and 0.00 F1.",
+            "- **Accuracy** — fraction answered correctly. Shown to make the point above",
+            "  visible, not to rank.",
+            "- **Sentences/s** — throughput including the model's thinking time.",
+            "- **Prompt tok/s** — how fast the input was read, across all requests.",
+            "- **Wall** — total seconds for the 4 080 sentences.", "",
             "| Model | Engine | F1 | Accuracy | Sentences/s | Prompt tok/s | Wall |",
             "|---|---|---:|---:|---:|---:|---:|"]
     for entry in tested:
@@ -99,7 +120,18 @@ def main() -> int:
     out.append("")
 
     out += ["### Comprehension — Belebele, twenty languages", "",
-            "4-way MCQ over a passage, 100 questions per language. Chance = 0.25.", "",
+            "**What it tests.** Reading comprehension: whether the model understood a",
+            "passage well enough to answer a question about it. This is the task that",
+            "cannot be guessed from keywords.", "",
+            "**Method.** Belebele: a passage, a question, four answers, exactly one",
+            "correct, all written and checked by people. First 100 questions per",
+            "language, 2 000 total, so every model sees identical questions. The model",
+            "replies with one letter.", "",
+            "**Columns.**", "",
+            "- **Accuracy** — fraction correct, 0 to 1. **Chance is 0.25** because there",
+            "  are four options. A score near 0.25 means the model did not read the",
+            "  passage, whatever else the number looks like.",
+            "- **Questions/s**, **Wall** — throughput and total time.", "",
             "| Model | Engine | Accuracy | Questions/s | Wall |",
             "|---|---|---:|---:|---:|"]
     for entry in tested:
@@ -110,7 +142,17 @@ def main() -> int:
     out.append("")
 
     out += ["### Translation — FLORES-200, English into nineteen languages", "",
-            "en -> 19 languages, 50 sentences each. chrF++ against human reference.", "",
+            "**What it tests.** Translation quality out of English.", "",
+            "**Method.** FLORES-200, English source into the other 19 languages, first",
+            "50 sentences each, 950 translations per model. Scored against FLORES's",
+            "**human** reference translations.", "",
+            "**Columns.**", "",
+            "- **chrF++** — 0 to 100, higher better. Counts how much the output shares",
+            "  character sequences and word pairs with the reference. Mechanical: no",
+            "  judge model, no opinion. Roughly: below 40 is poor, 50-60 is usable,",
+            "  above 70 is close to the reference. Values are not comparable across",
+            "  different language sets, only within this table.",
+            "- **Translations/s**, **Wall** — throughput and total time.", "",
             "| Model | Engine | chrF++ | Translations/s | Wall |",
             "|---|---|---:|---:|---:|"]
     for entry in tested:
@@ -121,7 +163,17 @@ def main() -> int:
     out.append("")
 
     out += ["### Coding — HumanEval+ and MBPP+", "",
-            "541 problems, executed against each problem's own test suite.", "",
+            "**What it tests.** Whether the model writes Python that runs correctly.", "",
+            "**Method.** 541 problems: 163 from HumanEval+ (a function signature and a",
+            "docstring to complete) and 378 from MBPP+ (a task described in words). The",
+            "answer is extracted from its code block, run against the problem's own test",
+            "suite as `nobody` with a 30 s timeout, and passes or does not. Nothing is",
+            "graded by opinion.", "",
+            "**Columns.**", "",
+            "- **Pass rate** — fraction of the 541 that passed, 0 to 1.",
+            "- **HumanEval+ / MBPP+** — the same, per set. MBPP+ is harder here because",
+            "  the task is stated in prose rather than as a signature.",
+            "- **Wall** — total seconds, including running the generated code.", "",
             "| Model | Engine | Pass rate | Passed | HumanEval+ | MBPP+ | Wall |",
             "|---|---|---:|---:|---:|---:|---:|"]
     for entry in tested:
@@ -138,7 +190,11 @@ def main() -> int:
     out.append("")
 
     # -- per language ------------------------------------------------------
-    out += ["## Classification F1 per language", ""]
+    out += ["## Classification F1 per language", "",
+            "The same classification run, broken out by the language the sentence was",
+            "written in. The average hides which languages a model actually handles.",
+            "Same scale as above: 0 to 1, higher better. Each language contributes",
+            "204 sentences, of which about 30 are positive.", ""]
     languages = sorted({lang for e in tested if e.get("classification")
                         for lang in e["classification"]["per_language"]})
     out.append("| Model | " + " | ".join(languages) + " |")
@@ -153,7 +209,14 @@ def main() -> int:
 
     # -- throughput --------------------------------------------------------
     out += ["## Throughput vs concurrency", "",
-            "Classification on en, ru, zh.", "",
+            "**What it tests.** Whether the engine gets more done when more requests",
+            "arrive at once. This is the difference between the two engines.", "",
+            "**Method.** The same classification task, cut to three languages (English,",
+            "Russian, Chinese — Latin, Cyrillic, Han) to keep each run short, repeated",
+            "at 1, 8, 32 and 64 requests in flight.", "",
+            "**Columns.** Sentences per second at each concurrency. **Gain** is the",
+            "highest divided by the lowest: how much the engine gained from being given",
+            "more work at once. A gain near 1 means it gained nothing.", "",
             "| Model | Engine | c=1 | c=8 | c=32 | c=64 | Gain |",
             "|---|---|---:|---:|---:|---:|---:|"]
     for entry in tested:
@@ -177,8 +240,18 @@ def main() -> int:
             if not english:
                 continue
             out += ["## Tokenizer cost per language", "",
-                    "Identical FLORES sentences, "
-                    f"`{model_name}` tokenizer.", "",
+                    "**What it tests.** How many tokens the same content costs in each",
+                    "language. Tokens are the unit of everything: how much fits in a",
+                    "context window, how long reading takes, what a hosted model charges.",
+                    "", "**Method.** The same 200 FLORES sentences in every language —",
+                    "identical content, so any difference is the tokenizer, not the text",
+                    f"— counted by `{model_name}`'s tokenizer. No GPU involved.", "",
+                    "**Columns.**", "",
+                    "- **Characters per token** — higher means the tokenizer packs more",
+                    "  text into each token, which is cheaper.",
+                    "- **Tokens vs English** — the same sentences, as a multiple of what",
+                    "  they cost in English. 1.50x means a context window holds two thirds",
+                    "  as much of that language.", "",
                     "| Language | Script | Characters per token | Tokens vs English |",
                     "|---|---|---:|---:|"]
             for lang, row in sorted(rows.items(), key=lambda kv: -kv[1]["tokens"]):
@@ -198,9 +271,19 @@ def main() -> int:
     if oversize_path.exists():
         oversize = json.loads(oversize_path.read_text())
         out += ["## Model larger than VRAM", "",
-                f"`{pathlib.Path(oversize['model_path']).name}`, "
-                f"{oversize['size_gb']} GB, on a 32 GB card. llama.cpp started directly,",
-                "not through AI-Lab, which refuses partial offload by design.", "",
+                "**What it tests.** Whether a model that does not fit in VRAM runs at",
+                "all, and how fast.", "",
+                f"**Method.** `{pathlib.Path(oversize['model_path']).name}`, "
+                f"{oversize['size_gb']} GB, on a 32 GB card. llama.cpp keeps part of the",
+                "model on the card and the rest in system memory, moving data across the",
+                "PCIe link for every token. Started directly rather than through AI-Lab,",
+                "which refuses this configuration.", "",
+                "**Columns.**", "",
+                "- **Split** — how many layers were placed on the card. `chosen by",
+                "  llama.cpp` means the flag was left off and the engine decided.",
+                "- **Loaded** — seconds until it answered.",
+                "- **VRAM** — how much of the 32 623 MiB card it used.",
+                "- **Generation** — output tokens per second, single request.", "",
                 "| Split | Loaded | VRAM | Generation |",
                 "|---|---:|---:|---:|"]
         for split in oversize["splits"]:

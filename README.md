@@ -20,21 +20,43 @@ generated from it.
 
 ## Tasks
 
-| Task | Set | Items | Metric |
-|---|---|---:|---|
-| Classification | SIB-200, 20 languages | 4 080 | F1, binary (`politics` vs rest, 15% positive) |
-| Comprehension | Belebele, 20 languages | 2 000 | accuracy, 4-way MCQ (chance 0.25) |
-| Translation | FLORES-200, en→19 | 950 | chrF++ vs human reference |
-| Coding | HumanEval+ / MBPP+ | 541 | pass rate, tests executed |
+Four tasks, each with a public evaluation set whose ground truth was produced by
+people. Each run reports a score **and** a rate, from the same pass.
 
-All sets public (CC BY-SA 4.0 / Apache 2.0), none redistributed here.
-`harness/get_datasets.py` fetches them.
+| Task | Set | Items | Metric | Range |
+|---|---|---:|---|---|
+| Classification | SIB-200, 20 languages | 4 080 | F1 | 0–1, higher better |
+| Comprehension | Belebele, 20 languages | 2 000 | accuracy | 0–1, chance 0.25 |
+| Translation | FLORES-200, en→19 | 950 | chrF++ | 0–100, higher better |
+| Coding | HumanEval+ / MBPP+ | 541 | pass rate | 0–1, higher better |
 
-Every task records throughput and wall time alongside the score.
+**Classification** — the model is shown a sentence and answers one yes/no
+question: is its topic `politics`. 15% are. F1 rather than accuracy because of
+that imbalance: always answering no gives 0.85 accuracy and 0.00 F1.
+
+**Comprehension** — a passage, a question about it, four answers, one correct.
+The model replies with a letter. Four options means guessing scores 0.25, so
+anything near that indicates the passage was not read.
+
+**Translation** — English sentences into 19 languages, scored by chrF++ against
+FLORES's human translations. chrF++ counts shared character sequences and word
+pairs; it needs no judge model. Below 40 is poor, 50–60 usable, above 70 close
+to the reference.
+
+**Coding** — the model completes a function or writes one from a description.
+The answer is executed against the problem's own test suite; it passes or it
+does not.
+
+Sets are CC BY-SA 4.0 / Apache 2.0 and none is redistributed here.
+`harness/get_datasets.py` fetches them from their publishers.
 
 ## Results
 
-Full tables in `02-results.md`. Summary:
+Full tables, with per-language breakdowns, in `02-results.md`.
+
+`Cls F1` classification, `Comp` comprehension accuracy, `chrF++` translation,
+`Code` coding pass rate, `Cls items/s` sentences classified per second at
+concurrency 8, `Load` seconds from request to the engine answering.
 
 | Model | Engine | Cls F1 | Comp | chrF++ | Code | Cls items/s | Load |
 |---|---|---:|---:|---:|---:|---:|---:|
@@ -51,7 +73,10 @@ Unload is 2.0–2.6 s for every combination.
 
 ### Throughput vs concurrency
 
-Classification, 3 languages, concurrency 1 → 64:
+Does the engine get more done when more requests arrive at once? The same
+classification task, cut to three languages to keep runs short, repeated at 1,
+8, 32 and 64 requests in flight. Numbers are sentences per second; `gain` is
+highest divided by lowest.
 
 | Model | Engine | c=1 | c=8 | c=32 | c=64 | gain |
 |---|---|---:|---:|---:|---:|---:|
@@ -66,7 +91,10 @@ Classification, 3 languages, concurrency 1 → 64:
 
 ### Tokenizer cost by language
 
-Same FLORES sentences, Gemma-4-26B tokenizer, tokens relative to English:
+How many tokens the same content costs in each language. Identical FLORES
+sentences, so any difference is the tokenizer and not the text. Counted by
+Gemma-4-26B's tokenizer; no GPU involved. Figures are multiples of the English
+token count — 1.50 means a context window holds two thirds as much.
 
 `lt 1.66 · th 1.65 · uk 1.64 · ro 1.57 · pl 1.52 · ta 1.49 · ar 1.48 ·
 fr 1.41 · ru 1.40 · ko 1.39 · vi 1.37 · tr 1.36 · de 1.34 · hi 1.31 ·
@@ -78,7 +106,9 @@ Lithuanian as English.
 
 ### Model larger than VRAM
 
-`Qwen3-Coder-Next-UD-Q4_K_XL`, 46.2 GB, on a 32 GB card:
+Does a model that does not fit run at all? llama.cpp can keep part of the model
+on the card and the rest in system memory, moving data across the PCIe link for
+every token. `Qwen3-Coder-Next-UD-Q4_K_XL`, 46.2 GB, on a 32 GB card:
 
 | | |
 |---|---|

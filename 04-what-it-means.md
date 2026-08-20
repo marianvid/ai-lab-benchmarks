@@ -2,7 +2,10 @@
 
 ## Engine dominates throughput; model dominates quality
 
-Same weights, both engines:
+The same model file run on both engines. `Cls F1` is the classification score
+(0–1); `items/s` is sentences classified per second at concurrency 8. Anything
+else about the model is held constant — same weights, same prompts, same
+machine.
 
 | Model | Engine | Cls F1 | items/s |
 |---|---|---:|---:|
@@ -15,29 +18,37 @@ F1 delta is within noise (±0.006). Throughput delta is 5.7× and 6.7×.
 
 ## Continuous batching accounts for it
 
-Concurrency 1 → 64, classification:
+Throughput measured at 1, 8, 32 and 64 requests in flight, then expressed as
+the ratio of the highest to the lowest — how much each engine gained from being
+given more work at once:
 
 - vLLM: 7.1× – 19.6×
 - llama.cpp: 1.0× – 1.1×
 
-llama.cpp allocates a fixed slot count and splits the context window between
-them; vLLM uses a shared paged pool with continuous batching. At concurrency 1
-the engines are comparable.
+llama.cpp allocates a fixed number of slots and divides the context window
+between them, so extra requests queue. vLLM keeps a shared paged pool and adds
+or retires requests inside a running batch. At concurrency 1 the two are
+comparable; the gap is entirely about parallel requests.
 
 ## llama.cpp wins on startup
+
+Seconds from the load request to the engine answering, across the models
+measured. vLLM spends the extra time compiling kernels for the specific model
+and card.
 
 | Engine | Load |
 |---|---|
 | llama.cpp | 3.3 – 10.8 s |
 | vLLM | 45.1 – 98.3 s |
 
-Unload is 2.0 – 2.6 s for both. For load-ask-unload cycles, llama.cpp finishes
-before vLLM has started. Break-even against vLLM's throughput advantage is
+Unload is 2.0 – 2.6 s for both. For load-ask-unload cycles llama.cpp finishes
+before vLLM has started; break-even against vLLM's throughput advantage is
 roughly 90 s of sustained batched work.
 
 ## A code-specialised model is a poor language model
 
-Qwen3-Coder-30B-A3B, highest prompt-read rate in the set:
+Qwen3-Coder-30B-A3B has the highest prompt-reading rate in the set. Its scores
+against the best result in each task, all measured in the same run:
 
 | | best | Qwen3-Coder-30B |
 |---|---:|---:|
@@ -50,7 +61,8 @@ It is not even the best coder in the set.
 
 ## Parameter count buys comprehension, not much else
 
-Gemma-4-E4B is 4.6 GB against 20 GB for the leader:
+Gemma-4-E4B is 4.6 GB on disk; the leading model is 20 GB. Same tasks, same
+scales as above:
 
 | | E4B (4.6 GB) | best |
 |---|---:|---:|
@@ -63,8 +75,11 @@ down — the MCQ task is the one that separates by capacity.
 
 ## Tokenizer cost is not predicted by script
 
-Tokens for identical content, relative to English: Han 1.12, Devanagari 1.31,
-Cyrillic 1.40–1.64, Latin 1.00–1.66.
+Token counts for identical sentences, as a multiple of the English count. 1.50
+means the same content costs half again as many tokens, so a context window
+holds two thirds as much:
+
+Han 1.12, Devanagari 1.31, Cyrillic 1.40–1.64, Latin 1.00–1.66.
 
 Lithuanian (Latin) is the most expensive of the 20; Chinese (Han) the cheapest
 after English. The predictor is tokenizer coverage, not writing system.
@@ -74,10 +89,16 @@ and Ukrainian by up to 40%.
 
 ## Oversize models run if the engine picks the split
 
-46.2 GB model, 32 GB card, 56.4 tok/s generation, 30 728 MB resident.
-Forcing `--n-gpu-layers` makes llama.cpp abort instead of fitting.
+llama.cpp can keep part of a model on the card and the rest in system memory.
+A 46.2 GB model on a 32 GB card: 56.4 output tokens per second, 30 728 MB of
+the card in use.
+
+Forcing `--n-gpu-layers` to a fixed number makes it abort rather than fit —
+it will not adjust a figure the user supplied.
 
 ## Selection
+
+Which combination to pick, given the numbers above.
 
 | Workload | Choice |
 |---|---|

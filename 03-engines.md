@@ -26,6 +26,8 @@ The only model of the six here that released TensorRT-LLM can load.
 | 64 | 115.1 | **129.0** |
 | **peak** | 120.5 | **129.0** |
 
+Everything else measured on the same model, one run each:
+
 | | TensorRT-LLM | vLLM |
 |---|---:|---:|
 | Prompt reading, 8k | 17 217 tok/s | **18 602** |
@@ -66,6 +68,8 @@ Same model, same weights, same prompts.
 | 32 | 71.0 | **156.7** |
 | 64 | 101.3 | **159.6** |
 | **peak** | 101.3 | **159.6** |
+
+The rest of the comparison, same model, one run each:
 
 | | SGLang | vLLM |
 |---|---:|---:|
