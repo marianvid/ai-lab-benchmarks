@@ -1,4 +1,4 @@
-# RTX PRO 4500 Blackwell — inference benchmark
+# Gem12+ PRO + RTX PRO 4500 Blackwell - OCuLink — benchmark
 
 Scope was to find out what the configuration can do, not to rank models in general.
 
