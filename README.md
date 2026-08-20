@@ -33,7 +33,7 @@ Start with [Findings](docs/findings.md) if you want the conclusions, or
 ## Datasets
 
 Four of these are evaluation sets. Each is text with the correct answer already
-recorded next to it, decided by people. The model sees the text without the
+recorded next to it, manually reviewed. The model sees the text without the
 answer, and its reply is compared against the recorded one.
 
 The Wikipedia articles have no answers. They are long text, used for measuring
