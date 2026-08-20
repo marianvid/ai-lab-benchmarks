@@ -5,13 +5,13 @@
 | GPU | NVIDIA RTX PRO 4500 Blackwell, 32 GB (32 623 MiB usable) |
 | GPU power cap | 200 W |
 | ECC | on |
-| Attachment | **OCuLink external dock**, PCIe address `01:00.0` |
+| Attachment | **OCuLink external dock** |
 | Driver | 610.57.04, CUDA 13 |
 | Host | AOOSTAR GEM12+ Pro |
 | CPU | AMD Ryzen 7 PRO 8845HS, 8 cores / 16 threads |
 | CPU power target | 35 W, set in the BIOS |
 | Memory | 96 GB DDR5-5600 |
-| Model storage | internal NVMe (Lexar NM790) |
+| Model storage | 2 x internal NVMe (Lexar NM790 4TB) |
 
 The [OCuLink](glossary.md#oculink) cable is a slow connection, providing around 8 GB/s of transfer rate.
 
