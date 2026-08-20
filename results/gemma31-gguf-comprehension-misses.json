@@ -1,0 +1,84 @@
+{
+  "test": "comprehension misses",
+  "set": "Belebele",
+  "label": "gemma31-gguf",
+  "model": "gemma-4-31B-it-UD-Q4_K_XL",
+  "note": "A second run of the comprehension test, made only to record which questions produced no letter. It reproduced the first run exactly: same accuracy 0.9165, same 1988 answered, same 12 misses, same questions. The committed comprehension result is from the first run and was not replaced.",
+  "accuracy": 0.9165,
+  "answered": 1988,
+  "of": 2000,
+  "misses": [
+    {
+      "id": "arb_Arab:48",
+      "lang": "ar",
+      "reason": "no letter in the answer",
+      "returned": "The provided passage mentions \"learning,\" \""
+    },
+    {
+      "id": "ben_Beng:48",
+      "lang": "bn",
+      "reason": "no letter in the answer",
+      "returned": "The provided passage discusses motivations for using the"
+    },
+    {
+      "id": "eng_Latn:48",
+      "lang": "en",
+      "reason": "no letter in the answer",
+      "returned": "The provided passage lists \"learning,\" \""
+    },
+    {
+      "id": "spa_Latn:48",
+      "lang": "es",
+      "reason": "no letter in the answer",
+      "returned": "The provided passage lists \"learning,\" \""
+    },
+    {
+      "id": "jpn_Jpan:24",
+      "lang": "ja",
+      "reason": "no letter in the answer",
+      "returned": "None of the options are correct based on"
+    },
+    {
+      "id": "por_Latn:48",
+      "lang": "pt",
+      "reason": "no letter in the answer",
+      "returned": "The provided passage lists \"learning\", \""
+    },
+    {
+      "id": "rus_Cyrl:48",
+      "lang": "ru",
+      "reason": "no letter in the answer",
+      "returned": "The provided passage discusses motivations for using the"
+    },
+    {
+      "id": "tam_Taml:48",
+      "lang": "ta",
+      "reason": "no letter in the answer",
+      "returned": "The provided passage discusses the general motivations for"
+    },
+    {
+      "id": "tha_Thai:48",
+      "lang": "th",
+      "reason": "no letter in the answer",
+      "returned": "The provided passage lists \"learning\" ("
+    },
+    {
+      "id": "ukr_Cyrl:89",
+      "lang": "uk",
+      "reason": "no letter in the answer",
+      "returned": "None of the options are correct based on"
+    },
+    {
+      "id": "vie_Latn:24",
+      "lang": "vi",
+      "reason": "no letter in the answer",
+      "returned": "The question asks which aspect of asynchronous communication"
+    },
+    {
+      "id": "vie_Latn:48",
+      "lang": "vi",
+      "reason": "no letter in the answer",
+      "returned": "The provided passage mentions \"learning\" ("
+    }
+  ]
+}

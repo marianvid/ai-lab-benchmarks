@@ -63,6 +63,11 @@ same things and the scores can go in one table.
 Four options mean that guessing scores 0.25. A result near that says the model
 did not read the passage.
 
+The answer is read from the first eight tokens. A reply with no A, B, C or D in
+it counts as wrong — the score divides by all 2 000, so nothing is dropped. The
+question and what came back instead are written to the result file, under
+`misses`, so a count can be looked into rather than guessed at.
+
 ## 3. Translation
 
 `bench_translate.py`, using FLORES-200.

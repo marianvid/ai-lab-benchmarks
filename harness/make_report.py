@@ -36,6 +36,8 @@ TERMS = {
     "TTFT": ("ttft", "time to first token, seconds"),
     "Wall": ("wall--wall-time", "seconds on a clock, start to finish"),
     "Items/s": ("items-per-second", "completed units of work per second"),
+    "Unanswered": ("unanswered", "requests that produced no usable answer, out "
+                                 "of 2 000. Counted as wrong, not dropped"),
 }
 
 
@@ -159,14 +161,16 @@ def quality_page(rows: list[dict], out: pathlib.Path) -> None:
         "model replies with a single letter. 100 questions per language, 2 000 in",
         "total, always the same 100 so every model is asked the same things.",
         "",
-        f"| Model | Engine | {header('Accuracy')} | Questions/s | {header('Wall')} |",
-        "|---|---|---:|---:|---:|",
+        f"| Model | Engine | {header('Accuracy')} | {header('Unanswered')} "
+        f"| Questions/s | {header('Wall')} |",
+        "|---|---|---:|---:|---:|---:|",
     ]
     for entry in rows:
         row = entry.get("comprehension")
         lines.append(f"| {entry['model']} | {entry['engine']} | "
-                     + (f"**{cell(row['accuracy'])}** | {row['items_per_s']} "
-                        f"| {row['wall_s']} s |" if row else "— | — | — |"))
+                     + (f"**{cell(row['accuracy'])}** "
+                        f"| {row['of'] - row['answered']} | {row['items_per_s']} "
+                        f"| {row['wall_s']} s |" if row else "— | — | — | — |"))
     lines += [
         "",
         "**Guessing scores 0.25**, because there are four options. Subtract it",
@@ -176,6 +180,37 @@ def quality_page(rows: list[dict], out: pathlib.Path) -> None:
         "**This is where model size shows.** The smallest model loses far more",
         "here than on classification or coding. A passage has to be understood;",
         "it cannot be pattern-matched from a keyword.",
+        "",
+        "**Unanswered questions are counted as wrong.** The answer is read from",
+        "the first eight tokens, and a model that writes anything other than a",
+        "letter there has not answered. The score divides by all 2 000, so a",
+        "model that fails to answer is penalised exactly as much as one that",
+        "answers incorrectly — no model is flattered by the questions it skipped.",
+        "",
+        "**It is the two large Gemma models, on either engine.** Gemma-4-26B-A4B",
+        "loses 43 both times; Gemma-4-31B loses 12 and 11. The same model loses",
+        "about the same number whichever engine runs it, which puts the cause in",
+        "the weights rather than in the engine or the harness. Gemma-4-E4B, the",
+        "small one, loses none, and nothing else in the table loses more than 2.",
+        "",
+        "**They are a few questions, not a scatter.** The harness now records",
+        "which question produced no letter and what came back instead. For",
+        "Gemma-4-31B on llama.cpp the 12 misses are three questions: number 48 in",
+        "nine languages, number 24 in two, and number 89 in one. See",
+        "[the recorded misses](../results/gemma31-gguf-comprehension-misses.json).",
+        "",
+        "**What came back was an explanation rather than a letter.** On question",
+        "48 the model began \"The provided passage lists ...\"; on 24 and 89,",
+        "\"None of the options are correct based on ...\". Question 48 asks which",
+        "of four activities does not reflect personal involvement, and none of",
+        "the four appears anywhere in its passage.",
+        "",
+        "The system prompt tells the model the answer is always in the passage",
+        "and not to object that it is incomplete. On these questions it objects",
+        "anyway, the objection is cut off at eight tokens, and the score counts",
+        "it wrong. That is a measurement of instruction-following, not of",
+        "comprehension. Only Gemma-4-31B on llama.cpp has this recorded — the",
+        "other runs predate the change and have counts only.",
         "",
         "## Translation",
         "",

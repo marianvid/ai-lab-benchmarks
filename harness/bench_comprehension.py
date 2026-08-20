@@ -91,6 +91,9 @@ def main() -> int:
     model = common.model_name(arguments.base)
     run = common.Run(arguments.base, model, arguments.concurrency)
     answers: dict[str, str] = {}
+    # What came back when no letter did. A count alone says a model failed
+    # without saying how, and the answer to "which ones?" was "not recorded".
+    misses: list[dict] = []
 
     def do(item: dict) -> None:
         options = "\n".join(f"{LETTERS[n]}. {text}"
@@ -100,12 +103,17 @@ def main() -> int:
         text = run.ask([{"role": "system", "content": SYSTEM},
                         {"role": "user", "content": user}], max_tokens=8)
         if text is None:
+            misses.append({"id": item["id"], "lang": item["lang"],
+                           "reason": "request failed", "returned": None})
             return
         found = LETTER_RE.search(text.upper())
         if found:
             answers[item["id"]] = found.group(1)
         else:
             run.failed += 1
+            misses.append({"id": item["id"], "lang": item["lang"],
+                           "reason": "no letter in the answer",
+                           "returned": text[:200]})
 
     print(f"\n=== {arguments.label} | {model} | {len(items)} questions "
           f"| concurrency={arguments.concurrency} ===", flush=True)
@@ -130,6 +138,8 @@ def main() -> int:
         "chance_level": 0.25,
         **run.speed(len(answers)),
         "accuracy": round(right / len(items), 4) if items else 0.0,
+        # Every question that produced no letter, with what came back instead.
+        "misses": sorted(misses, key=lambda m: (m["lang"], m["id"])),
         "per_language": {lang: {"n": len(marks),
                                 "accuracy": round(sum(marks) / len(marks), 4)}
                          for lang, marks in sorted(per_language.items())},
