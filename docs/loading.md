@@ -80,3 +80,9 @@ attempts. A cold read of 46 GB from NVMe is considerably slower.
 sends data across a cable for every token. It works for llama.cpp,
 which moves computation to the data; it does not for vLLM, which
 moves the data. See [Configuration](machine.md).
+
+**The cost is not evenly spread.** Measured across four sizes of the
+same model, prompt reading falls 9.5× as layers move off the card
+while generation falls only 2×, and 60% of the prompt-reading loss
+happens at the very first layers evicted. See
+[What partial offload costs](partial-offload.md).

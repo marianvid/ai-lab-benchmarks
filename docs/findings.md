@@ -152,6 +152,12 @@ This is a llama.cpp property. vLLM moves data rather than computation, so the
 same split sends far more across the [OCuLink](glossary.md#oculink) cable and is
 not usable — see [Configuration](machine.md).
 
+**What it costs is uneven.** Across four sizes of one model, prompt reading fell
+9.5× as layers moved off the card while generation fell only 2×, and 60% of the
+prompt-reading loss came from the first four layers evicted. A model that fits
+with nothing to spare behaves nothing like one that misses by 5 GB. See
+[What partial offload costs](partial-offload.md).
+
 ## Choosing
 
 | Workload | Choice | Why |

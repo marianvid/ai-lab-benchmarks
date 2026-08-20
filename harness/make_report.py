@@ -521,6 +521,12 @@ def loading_page(summary: dict, results: pathlib.Path, out: pathlib.Path) -> Non
             "sends data across a cable for every token. It works for llama.cpp,",
             "which moves computation to the data; it does not for vLLM, which",
             "moves the data. See [Configuration](machine.md).",
+            "",
+            "**The cost is not evenly spread.** Measured across four sizes of the",
+            "same model, prompt reading falls 9.5× as layers move off the card",
+            "while generation falls only 2×, and 60% of the prompt-reading loss",
+            "happens at the very first layers evicted. See",
+            "[What partial offload costs](partial-offload.md).",
         ]
     page(out / "loading.md", "Loading and unloading", lines)
 
