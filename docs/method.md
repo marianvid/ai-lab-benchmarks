@@ -6,7 +6,7 @@ the tables are explained in the [glossary](glossary.md).
 ## Where the data comes from
 
 Nothing is stored in this repository. `harness/get_datasets.py` downloads the
-four evaluation sets from the people who published them and writes a manifest
+four evaluation sets from their location and writes a manifest
 listing what came from where, under which licence.
 
 | Set | Source | Licence |
@@ -20,9 +20,6 @@ Three of them share a foundation. SIB-200 and Belebele are both built on FLORES
 passages, so a model is classifying, understanding and translating the same
 sentences. That is why a weakness in one language tends to show up in all three
 at once.
-
-FLORES comes from Meta's own release rather than from Hugging Face, because the
-Hugging Face copies require an account and this has to work for anyone.
 
 ## Languages
 
@@ -39,13 +36,7 @@ it sounds. See [tokenizer cost](tokenizer.md).
 `bench_classify.py`, using SIB-200.
 
 The model is shown a sentence and asked one yes-or-no question: is this about
-politics? For example, in Romanian:
-
-> Mai mulți locuitori din Bishkek au dat vina pe protestatarii din sud pentru
-> haosul creat.
-
-That one is. About one sentence in seven is, which is deliberate — the set is
-unbalanced so that a model cannot do well by answering "no" to everything.
+politics? The set is unbalanced so that a model cannot do well by answering "no" to everything.
 
 All 4 080 sentences of the test split are used, in all twenty languages. They go
 five to a request, so 816 requests, sent at whatever concurrency the run
@@ -63,19 +54,7 @@ score of zero would say the model failed at something it was never asked.
 `bench_comprehension.py`, using Belebele.
 
 The model reads a passage, then a question about it, then four possible answers,
-and replies with a single letter:
-
-> **Passage:** Brazilia este cea mai mare țară Romano-Catolică de pe Pământ […]
->
-> **Question:** Cui i-au dat protestatarii petiția lor?
->
-> A. Biserica Romano-Catolică
-> B. Roberto Jefferson
-> C. Congresul Național al Braziliei
-> D. Primarul orașului São Paulo
-
-The answer is C, and it is in the passage. The questions were written and
-checked by people.
+and replies with a single letter.
 
 The first 100 questions of each language are used, 2 000 in all. Always the
 first hundred and never a random sample, so every model is asked exactly the
@@ -90,13 +69,7 @@ did not read the passage.
 
 English into the other nineteen languages, the first 50 sentences of the test
 split each, so 950 translations per model. The reference is FLORES's own
-translation, made by a professional translator:
-
-> **Source:** "We now have 4-month-old mice that are non-diabetic that used to
-> be diabetic," he added.
->
-> **Reference:** „Acum avem șoareci în vârstă de 4 luni care nu mai au diabet,
-> dar care anterior fuseseră diabetici", a adăugat el.
+translation, made by a professional translator.
 
 Scoring is chrF++ from `sacrebleu`, which compares the model's output with that
 reference by counting shared character sequences. No second model is involved in
