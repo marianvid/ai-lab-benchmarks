@@ -33,11 +33,12 @@ PYTHON = "/opt/bench/.venv/bin/python"
 HARNESS = "/opt/bench/harness"
 DATA = "/opt/bench/eval-data"
 
-# The six models the tests run against, and one that is only weighed.
+# The models the tests run against, and one that is only weighed.
 #
-# The six were chosen from the August study: the ones that won something, the
-# one in production, the smallest, and the weakest. A benchmark with no weak
-# entry cannot show that it discriminates.
+# The first eight were chosen from the August study: the ones that won
+# something, the one in production, the smallest, and the weakest. A benchmark
+# with no weak entry cannot show that it discriminates. Gemma-4-31B was added
+# afterwards as the only dense model on the shelf.
 MODELS = [
     ("text-bulk",     8084, "Gemma-4-26B-A4B",     "vLLM",      "NVFP4", True),
     ("gemma26-gguf",  8086, "Gemma-4-26B-A4B",     "llama.cpp", "GGUF",  True),
@@ -47,6 +48,11 @@ MODELS = [
     ("qwen36-nvfp4",  8085, "Qwen3.6-35B-A3B",     "vLLM",      "NVFP4", True),
     ("gemma-general", 8081, "Gemma-4-E4B",         "llama.cpp", "GGUF",  True),
     ("glm-flash",     8087, "GLM-4.7-Flash",       "vLLM",      "NVFP4", True),
+    # The only dense model here. Every one of its 31B parameters works on every
+    # token, where the others use 3-4B of a much larger total. Both engines, so
+    # the dense/sparse difference can be read without the engine confusing it.
+    ("gemma31-gguf",  8089, "Gemma-4-31B",         "llama.cpp", "GGUF",  True),
+    ("gemma31-nvfp4", 8091, "Gemma-4-31B",         "vLLM",      "NVFP4", True),
     # Weighed, not tested: it is here to show that a 47 GB model runs at all on
     # a 32 GB card, and what that costs in loading time.
     ("coder-next-80b", 8088, "Coder-Next 80B",     "llama.cpp", "GGUF",  False),

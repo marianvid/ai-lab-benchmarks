@@ -1,6 +1,6 @@
 # Models
 
-Eight combinations of model and engine. Two models appear in both formats, so
+Ten combinations of model and engine. Three models appear in both formats, so
 the engine can be compared with everything else held constant.
 
 | Model | Engine | Format | On disk | Parameters | Kind |
@@ -13,6 +13,8 @@ the engine can be compared with everything else held constant.
 | Qwen3.6-35B-A3B | llama.cpp | GGUF Q4_K_M | 21 GB | 35B total, 3B active | MoE |
 | Gemma-4-E4B | llama.cpp | GGUF Q4_0 | 4.3 GB | ~4B | dense |
 | GLM-4.7-Flash | vLLM | NVFP4 | 20 GB | ~30B total, ~3.6B active¹ | MoE |
+| Gemma-4-31B | vLLM | NVFP4 | 22 GB | 31B, all active | dense |
+| Gemma-4-31B | llama.cpp | GGUF Q4_K_XL | 18 GB | 31B, all active | dense |
 
 ¹ GLM-4.7-Flash publishes no parameter count. This one is computed from its
 `config.json`: 47 layers, 64 experts of which 4 are active per token plus one
@@ -35,6 +37,7 @@ model, so its VRAM figures describe the setting, not the model.
 | Qwen3-Coder-30B-A3B | code-specialised, to test whether it is usable for language work |
 | Gemma-4-E4B | a quarter the size of the others |
 | GLM-4.7-Flash | weakest on most tasks; a set with no weak entry shows nothing about its own resolution |
+| Gemma-4-31B | the only large dense model here, on both engines. Everything else of this size computes 3-4B parameters per token; this one computes all 31B |
 
 ## Terms
 
@@ -57,6 +60,11 @@ long-form measurements. The four quality tasks ran at 8 192, before that change;
 their prompts are two or three hundred tokens, inside either setting.
 
 vLLM instances: `gpu_memory_fraction 0.90`, `max_sequences 32`.
+
+Gemma-4-31B was added after the others and ran everything at 32 768. Its NVFP4
+instance also ran with `language_model_only`, which skips the image half of the
+model: vLLM otherwise pushes invented pictures through it at startup to measure
+that path, and none of these tests send a picture.
 
 `Qwen3-Coder-Next`, 46 GB, was loaded and timed but not tested — it exceeds VRAM
 and runs only with part of it in system memory. See

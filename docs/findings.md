@@ -110,9 +110,9 @@ Gemma-4-E4B is 4.3 GB; the leading models are 16 to 22 GB.
 |---|---:|---:|
 | Classification F1 | 0.828 | 0.906 |
 | Coding pass rate | 0.765 | 0.834 |
-| Comprehension | **0.760** | **0.915** |
+| Comprehension | **0.760** | **0.916** |
 
-Classification and coding are within 8 points. Comprehension is 15.5 points
+Classification and coding are within 8 points. Comprehension is 15.6 points
 behind, and after subtracting the 0.25 that guessing scores the gap is larger
 still: 0.51 above chance against 0.66.
 
@@ -157,6 +157,46 @@ not usable — see [Configuration](machine.md).
 prompt-reading loss came from the first four layers evicted. A model that fits
 with nothing to spare behaves nothing like one that misses by 5 GB. See
 [What partial offload costs](partial-offload.md).
+
+## 10. Computing every parameter buys one thing
+
+Gemma-4-31B is dense: all 31 billion parameters work on every token.
+Gemma-4-26B-A4B is the same family and size, but uses about 4 billion per
+token. That is roughly eight times the arithmetic for the same amount of
+memory.
+
+| | 26B-A4B | 31B dense | 26B-A4B | 31B dense |
+|---|---:|---:|---:|---:|
+| Engine | llama.cpp | llama.cpp | vLLM | vLLM |
+| Classification F1 | 0.871 | 0.877 | 0.875 | 0.883 |
+| Comprehension | 0.884 | **0.916** | 0.873 | **0.914** |
+| Translation chrF++ | 56.12 | 56.38 | 55.80 | 56.01 |
+| Coding pass rate | **0.834** | 0.826 | 0.826 | 0.828 |
+| Classification, sentences/s | **8.94** | 2.24 | **51.13** | 18.18 |
+
+**Three of the four scores do not move.** F1, translation and coding all differ
+by less than the 0.02 this study treats as noise, and coding goes the wrong way
+on llama.cpp. Only comprehension gains, by about 0.03 on both engines — the same
+place where the small model lost most in finding 7, and for the same reason.
+
+**The cost is 3 to 4 times the wall time.** 456 seconds becomes 1 823 on
+llama.cpp; 80 becomes 224 on vLLM. Generation drops from 101.9 tokens per second
+to 25.5.
+
+**Batching stops working on long prompts.** From
+[throughput.md](throughput.md), articles rather than sentences:
+
+| | c=1 | c=8 | c=32 | c=64 | Gain |
+|---|---:|---:|---:|---:|---:|
+| Gemma-4-26B-A4B, vLLM | 9.9 | 108.3 | 201.9 | 229.1 | **23.2×** |
+| Gemma-4-31B, vLLM | 3.4 | 4.9 | 4.3 | 4.3 | **1.4×** |
+
+Batching helps when the card is waiting on memory, because several requests can
+share one pass over the weights. A dense model is not waiting on memory — it is
+busy arithmetic. There is nothing to share, so the queue just grows.
+
+That is the sharper limit. Three times slower is a price. Losing the batching
+gain means the machine cannot be fed more work to make up for it.
 
 ## Choosing
 

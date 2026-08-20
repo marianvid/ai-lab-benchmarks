@@ -1,0 +1,101 @@
+{
+  "test": "comprehension",
+  "set": "Belebele",
+  "label": "gemma31-gguf",
+  "model": "gemma-4-31B-it-UD-Q4_K_XL",
+  "concurrency": 8,
+  "answered": 1988,
+  "of": 2000,
+  "chance_level": 0.25,
+  "wall_s": 961.76,
+  "requests": 2000,
+  "failed_requests": 12,
+  "prompt_tokens": 596906,
+  "completion_tokens": 4078,
+  "prefill_tok_s": 620.6,
+  "decode_tok_s": 4.2,
+  "items_per_s": 2.07,
+  "accuracy": 0.9165,
+  "per_language": {
+    "ar": {
+      "n": 99,
+      "accuracy": 0.9697
+    },
+    "bn": {
+      "n": 99,
+      "accuracy": 0.8687
+    },
+    "de": {
+      "n": 100,
+      "accuracy": 0.91
+    },
+    "en": {
+      "n": 99,
+      "accuracy": 0.9596
+    },
+    "es": {
+      "n": 99,
+      "accuracy": 0.9293
+    },
+    "fr": {
+      "n": 100,
+      "accuracy": 0.94
+    },
+    "hi": {
+      "n": 100,
+      "accuracy": 0.86
+    },
+    "ja": {
+      "n": 99,
+      "accuracy": 0.9091
+    },
+    "ko": {
+      "n": 100,
+      "accuracy": 0.93
+    },
+    "lt": {
+      "n": 100,
+      "accuracy": 0.86
+    },
+    "pl": {
+      "n": 100,
+      "accuracy": 0.93
+    },
+    "pt": {
+      "n": 99,
+      "accuracy": 0.9394
+    },
+    "ro": {
+      "n": 100,
+      "accuracy": 0.94
+    },
+    "ru": {
+      "n": 99,
+      "accuracy": 0.9697
+    },
+    "ta": {
+      "n": 99,
+      "accuracy": 0.899
+    },
+    "th": {
+      "n": 99,
+      "accuracy": 0.9091
+    },
+    "tr": {
+      "n": 100,
+      "accuracy": 0.93
+    },
+    "uk": {
+      "n": 99,
+      "accuracy": 0.9495
+    },
+    "vi": {
+      "n": 98,
+      "accuracy": 0.9184
+    },
+    "zh": {
+      "n": 100,
+      "accuracy": 0.92
+    }
+  }
+}

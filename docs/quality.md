@@ -1,6 +1,6 @@
 # Quality
 
-Four tasks, one pass each, across eight model and engine combinations.
+Four tasks, one pass each, across 10 model and engine combinations.
 Each table gives the score and the time it took; both came out of the
 same run.
 
@@ -17,6 +17,8 @@ politics. 4 080 sentences in 20 languages, of which 15% are political.
 | GLM-4.7-Flash | vLLM | **0.819** | 0.941 | 36.97 | 3514.9 | 110.35 s |
 | Gemma-4-26B-A4B | llama.cpp | **0.871** | 0.963 | 8.94 | 662.2 | 456.41 s |
 | Gemma-4-26B-A4B | vLLM | **0.875** | 0.964 | 51.13 | 3797.8 | 79.79 s |
+| Gemma-4-31B | llama.cpp | **0.877** | 0.960 | 2.24 | 165.8 | 1823.0 s |
+| Gemma-4-31B | vLLM | **0.883** | 0.962 | 18.18 | 1350.4 | 224.4 s |
 | Gemma-4-E4B | llama.cpp | **0.828** | 0.945 | 11.62 | 851.2 | 351.22 s |
 | Qwen3-Coder-30B-A3B | vLLM | **0.726** | 0.933 | 49.9 | 4756.3 | 81.76 s |
 | Qwen3.6-35B-A3B | llama.cpp | **0.895** | 0.969 | 8.03 | 626.1 | 507.86 s |
@@ -47,6 +49,8 @@ total, always the same 100 so every model is asked the same things.
 | GLM-4.7-Flash | vLLM | **0.742** | 32.97 | 60.66 s |
 | Gemma-4-26B-A4B | llama.cpp | **0.884** | 9.45 | 207.13 s |
 | Gemma-4-26B-A4B | vLLM | **0.873** | 59.08 | 33.13 s |
+| Gemma-4-31B | llama.cpp | **0.916** | 2.07 | 961.76 s |
+| Gemma-4-31B | vLLM | **0.914** | 25.89 | 76.83 s |
 | Gemma-4-E4B | llama.cpp | **0.760** | 18.12 | 110.35 s |
 | Qwen3-Coder-30B-A3B | vLLM | **0.847** | 59.54 | 33.59 s |
 | Qwen3.6-35B-A3B | llama.cpp | **0.913** | 4.33 | 461.76 s |
@@ -71,6 +75,8 @@ model, scored against FLORES's human translations.
 | GLM-4.7-Flash | vLLM | **50.39** | 7.11 | 133.63 s |
 | Gemma-4-26B-A4B | llama.cpp | **56.12** | 2.71 | 350.82 s |
 | Gemma-4-26B-A4B | vLLM | **55.80** | 11.59 | 81.96 s |
+| Gemma-4-31B | llama.cpp | **56.38** | 0.74 | 1285.08 s |
+| Gemma-4-31B | vLLM | **56.01** | 5.05 | 188.12 s |
 | Gemma-4-E4B | llama.cpp | **54.08** | 3.35 | 283.69 s |
 | Qwen3-Coder-30B-A3B | vLLM | **45.38** | 8.25 | 115.15 s |
 | Qwen3.6-35B-A3B | llama.cpp | **54.24** | 1.93 | 492.87 s |
@@ -95,6 +101,8 @@ that came with the problem; it passes or it does not.
 | GLM-4.7-Flash | vLLM | **0.706** | 382/541 | 0.749 | 0.688 | 203.94 s |
 | Gemma-4-26B-A4B | llama.cpp | **0.834** | 451/541 | 0.951 | 0.783 | 688.64 s |
 | Gemma-4-26B-A4B | vLLM | **0.826** | 447/541 | 0.945 | 0.775 | 219.86 s |
+| Gemma-4-31B | llama.cpp | **0.826** | 447/541 | 0.939 | 0.778 | 1847.28 s |
+| Gemma-4-31B | vLLM | **0.828** | 448/541 | 0.945 | 0.778 | 349.47 s |
 | Gemma-4-E4B | llama.cpp | **0.765** | 414/541 | 0.877 | 0.717 | 674.73 s |
 | Qwen3-Coder-30B-A3B | vLLM | **0.791** | 428/541 | 0.890 | 0.749 | 153.6 s |
 | Qwen3.6-35B-A3B | llama.cpp | **0.808** | 437/541 | 0.902 | 0.767 | 486.95 s |
@@ -126,6 +134,8 @@ language contributes 204 sentences, about 30 of them political.
 | GLM-4.7-Flash (vLLM) | 0.79 | 0.84 | 0.79 | 0.84 | 0.80 | 0.88 | 0.86 | 0.79 | 0.85 | 0.84 | 0.79 | 0.84 | 0.80 | 0.79 | 0.90 | 0.79 | 0.71 | 0.85 | 0.83 | 0.81 |
 | Gemma-4-26B-A4B (llama.cpp) | 0.88 | 0.80 | 0.86 | 0.85 | 0.92 | 0.86 | 0.84 | 0.86 | 0.87 | 0.84 | 0.94 | 0.90 | 0.86 | 0.88 | 0.85 | 0.88 | 0.85 | 0.86 | 0.89 | 0.92 |
 | Gemma-4-26B-A4B (vLLM) | 0.92 | 0.88 | 0.85 | 0.89 | 0.92 | 0.83 | 0.86 | 0.86 | 0.85 | 0.88 | 0.90 | 0.88 | 0.83 | 0.88 | 0.87 | 0.88 | 0.86 | 0.84 | 0.89 | 0.92 |
+| Gemma-4-31B (llama.cpp) | 0.88 | 0.89 | 0.91 | 0.87 | 0.88 | 0.88 | 0.87 | 0.85 | 0.89 | 0.89 | 0.85 | 0.87 | 0.88 | 0.88 | 0.84 | 0.88 | 0.88 | 0.90 | 0.90 | 0.85 |
+| Gemma-4-31B (vLLM) | 0.88 | 0.89 | 0.91 | 0.88 | 0.84 | 0.88 | 0.87 | 0.84 | 0.89 | 0.89 | 0.90 | 0.88 | 0.88 | 0.88 | 0.90 | 0.88 | 0.88 | 0.90 | 0.90 | 0.89 |
 | Gemma-4-E4B (llama.cpp) | 0.88 | 0.75 | 0.83 | 0.83 | 0.86 | 0.85 | 0.80 | 0.80 | 0.83 | 0.84 | 0.83 | 0.79 | 0.77 | 0.80 | 0.86 | 0.85 | 0.80 | 0.82 | 0.88 | 0.88 |
 | Qwen3-Coder-30B-A3B (vLLM) | 0.73 | 0.64 | 0.72 | 0.76 | 0.77 | 0.77 | 0.65 | 0.64 | 0.69 | 0.72 | 0.68 | 0.73 | 0.72 | 0.67 | 0.73 | 0.73 | 0.72 | 0.80 | 0.80 | 0.81 |
 | Qwen3.6-35B-A3B (llama.cpp) | 0.92 | 0.90 | 0.88 | 0.92 | 0.94 | 0.87 | 0.87 | 0.87 | 0.92 | 0.86 | 0.89 | 0.87 | 0.88 | 0.88 | 0.92 | 0.89 | 0.90 | 0.90 | 0.92 | 0.92 |

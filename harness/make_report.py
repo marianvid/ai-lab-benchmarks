@@ -108,8 +108,11 @@ def ladder(entry: dict, key: str):
 # -- pages -------------------------------------------------------------------
 
 def quality_page(rows: list[dict], out: pathlib.Path) -> None:
+    # Counted rather than written out. It was wrong the first time a model was
+    # added, and a number in prose that nobody recomputes is a number that ages.
     lines = [
-        "Four tasks, one pass each, across eight model and engine combinations.",
+        f"Four tasks, one pass each, across {len(rows)} model and engine "
+        f"combinations.",
         "Each table gives the score and the time it took; both came out of the",
         "same run.",
         "",

@@ -7,7 +7,7 @@ The scope was to find out what the configuration can do, not to rank models in g
 | | |
 |---|---|
 | [Configuration](docs/machine.md) | Hardware, engines, and how the GPU is attached |
-| [Models](docs/models.md) | What was tested, how large, and why these eight |
+| [Models](docs/models.md) | What was tested, how large, and why these ten |
 | [Method](docs/method.md) | How each task was run, and where the data comes from |
 | [Quality](docs/quality.md) | Classification, comprehension, translation, coding |
 | [Throughput](docs/throughput.md) | How much work per second, short and long prompts |

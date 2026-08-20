@@ -16,6 +16,8 @@ are genuinely cold.
 | GLM-4.7-Flash | vLLM | 91.6 s | 40.2 s | 2.0 s |
 | Gemma-4-26B-A4B | llama.cpp | 9.0 s | 5.0 s | 2.3 s |
 | Gemma-4-26B-A4B | vLLM | 212.4 s | 117.4 s | 2.3 s |
+| Gemma-4-31B | llama.cpp | 10.2 s | 5.5 s | 2.8 s |
+| Gemma-4-31B | vLLM | 40.7 s | 34.4 s | 2.1 s |
 | Gemma-4-E4B | llama.cpp | 3.9 s | 2.5 s | 1.8 s |
 | Qwen3-Coder-30B-A3B | vLLM | 42.1 s | 37.2 s | 2.0 s |
 | Qwen3.6-35B-A3B | llama.cpp | 10.8 s | 5.3 s | 2.2 s |

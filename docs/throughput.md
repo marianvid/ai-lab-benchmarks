@@ -19,6 +19,8 @@ Classification on English, Russian and Chinese, repeated at 1, 8, 32 and
 | GLM-4.7-Flash | vLLM | 10.6 | 56.6 | 149.2 | 165.7 | **15.7×** |
 | Gemma-4-26B-A4B | llama.cpp | 9.4 | 9.5 | 9.6 | 9.8 | **1.0×** |
 | Gemma-4-26B-A4B | vLLM | 8.7 | 54.4 | 164.7 | 169.7 | **19.6×** |
+| Gemma-4-31B | llama.cpp | 2.5 | 2.5 | 2.5 | 2.5 | **1.0×** |
+| Gemma-4-31B | vLLM | 2.9 | 18.1 | 50.1 | 47.3 | **17.3×** |
 | Gemma-4-E4B | llama.cpp | 11.7 | 12.4 | 12.4 | 12.4 | **1.1×** |
 | Qwen3-Coder-30B-A3B | vLLM | 12.0 | 62.0 | 175.6 | 176.6 | **14.7×** |
 | Qwen3.6-35B-A3B | llama.cpp | 8.0 | 8.1 | 8.4 | 8.1 | **1.0×** |
@@ -48,6 +50,8 @@ articles per run, 2 165–5 227 characters, six languages.
 | GLM-4.7-Flash | vLLM | 10.5 | 31.4 | 49.4 | 87.8 | **8.3×** |
 | Gemma-4-26B-A4B | llama.cpp | 3.0 | 3.1 | 3.8 | 3.1 | **1.3×** |
 | Gemma-4-26B-A4B | vLLM | 9.9 | 108.3 | 201.9 | 229.1 | **23.2×** |
+| Gemma-4-31B | llama.cpp | 0.7 | 0.7 | 0.7 | 0.7 | **1.0×** |
+| Gemma-4-31B | vLLM | 3.4 | 4.9 | 4.3 | 4.3 | **1.4×** |
 | Gemma-4-E4B | llama.cpp | 6.0 | 27.6 | 27.8 | 27.9 | **4.6×** |
 | Qwen3-Coder-30B-A3B | vLLM | 11.1 | 86.3 | 174.9 | 178.5 | **16.1×** |
 | Qwen3.6-35B-A3B | llama.cpp | 1.9 | 2.0 | 1.8 | 1.8 | **1.1×** |
