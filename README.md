@@ -1,10 +1,6 @@
 # RTX PRO 4500 Blackwell — inference benchmark
 
-llama.cpp against vLLM on a single 32 GB card, attached as an external GPU over
-OCuLink. Eight model and engine combinations, four tasks, 20 languages.
-
-Measured 19–20 August 2026 on one machine. The point was to find out what that
-machine can do, not to rank models in general.
+Scope was to find out what the configuration can do, not to rank models in general.
 
 ## Pages
 
