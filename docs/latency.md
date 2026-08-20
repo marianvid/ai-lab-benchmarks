@@ -1,8 +1,14 @@
 # Latency and prompt reading
 
-One request at a time, at three prompt sizes. What a person or an agent
-waiting for a single answer experiences, and the only place here where
-long prompts are read.
+**Concurrency 1** — one request, nothing else in flight — at three
+prompt sizes. What a person or an agent waiting for a single answer
+experiences.
+
+**Read the prefill column with that in mind.** Prompt reading gets much
+faster when several requests are read together: on Qwen3.6-35B under
+vLLM it goes from 11 421 tokens per second here to 39 596 at 64
+requests in flight. The figures at every step of that ladder are in
+[throughput.md](throughput.md#prompt-reading-as-concurrency-rises).
 
 The prompt is Python source repeated to length, followed by a request
 to rewrite one function: the shape of an agent pasting a codebase into

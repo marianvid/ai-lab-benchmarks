@@ -65,3 +65,33 @@ still profits from concurrency when each request holds far more
 cache — for some combinations it profits more, for others barely at
 all.
 
+## Prompt reading as concurrency rises
+
+The same long-prompt runs, reporting prompt reading rather than
+articles finished. [Prefill](glossary.md#prefill "prompt reading, tokens per second") (tok/s).
+
+| Model | Engine | c=1 | c=8 | c=32 | c=64 |
+|---|---|---:|---:|---:|---:|
+| GLM-4.7-Flash | vLLM | 13231.4 | 39376.4 | 61979.8 | 110170.7 |
+| Gemma-4-26B-A4B | llama.cpp | 3740.2 | 3861.6 | 4771.3 | 3901.0 |
+| Gemma-4-26B-A4B | vLLM | 12418.1 | 136071.9 | 253559.9 | 287734.8 |
+| Gemma-4-31B | llama.cpp | 853.6 | 855.9 | 862.9 | 867.8 |
+| Gemma-4-31B | vLLM | 4244.8 | 6148.1 | 5415.6 | 5415.3 |
+| Gemma-4-E4B | llama.cpp | 7554.5 | 34505.5 | 34787.6 | 34838.8 |
+| Qwen3-Coder-30B-A3B | vLLM | 17034.0 | 132457.8 | 268563.2 | 274056.1 |
+| Qwen3.6-35B-A3B | llama.cpp | 2380.9 | 2553.5 | 2375.7 | 2328.4 |
+| Qwen3.6-35B-A3B | vLLM | 11420.8 | 34542.8 | 39364.0 | 39595.6 |
+| Qwopus3.6-27B-Coder | vLLM | 5081.2 | 7881.4 | 8360.5 | 7240.2 |
+
+**A prefill rate means nothing without the concurrency it was
+measured at.** The same model and the same prompts, read at 64
+requests instead of one: Gemma-4-26B on vLLM goes 23× faster,
+Qwen3-Coder 16×, Qwen3.6-35B 3.5×. Reading several prompts in one
+pass is worth that much.
+
+**It is not worth it for everyone.** Three of the vLLM entries gain
+under 1.7×, and every llama.cpp entry except the smallest sits at
+1.0 to 1.3× — the same figure at every rung of the ladder. Which
+column applies to you depends on how your work arrives, and the
+single-request figures are in [latency.md](latency.md).
+

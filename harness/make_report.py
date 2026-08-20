@@ -412,6 +412,36 @@ def throughput_page(rows: list[dict], out: pathlib.Path) -> None:
             "cache — for some combinations it profits more, for others barely at",
             "all.",
             "",
+            "## Prompt reading as concurrency rises",
+            "",
+            "The same long-prompt runs, reporting prompt reading rather than",
+            f"articles finished. {header('Prefill', 'tok/s')}.",
+            "",
+            "| Model | Engine | c=1 | c=8 | c=32 | c=64 |",
+            "|---|---|---:|---:|---:|---:|",
+        ]
+        for entry in rows:
+            curve = entry.get("longform_curve")
+            if not curve:
+                continue
+            lines.append(
+                f"| {entry['model']} | {entry['engine']} | "
+                + " | ".join(cell((curve.get(c) or {}).get("prefill_tok_s"), 1)
+                             for c in ("1", "8", "32", "64")) + " |")
+        lines += [
+            "",
+            "**A prefill rate means nothing without the concurrency it was",
+            "measured at.** The same model and the same prompts, read at 64",
+            "requests instead of one: Gemma-4-26B on vLLM goes 23× faster,",
+            "Qwen3-Coder 16×, Qwen3.6-35B 3.5×. Reading several prompts in one",
+            "pass is worth that much.",
+            "",
+            "**It is not worth it for everyone.** Three of the vLLM entries gain",
+            "under 1.7×, and every llama.cpp entry except the smallest sits at",
+            "1.0 to 1.3× — the same figure at every rung of the ladder. Which",
+            "column applies to you depends on how your work arrives, and the",
+            "single-request figures are in [latency.md](latency.md).",
+            "",
         ]
     else:
         lines += ["## Long prompts — whole articles", "",
@@ -422,9 +452,15 @@ def throughput_page(rows: list[dict], out: pathlib.Path) -> None:
 def latency_page(rows: list[dict], out: pathlib.Path) -> None:
     have = [e for e in rows if (e.get("latency") or {}).get("runs")]
     lines = [
-        "One request at a time, at three prompt sizes. What a person or an agent",
-        "waiting for a single answer experiences, and the only place here where",
-        "long prompts are read.",
+        "**Concurrency 1** — one request, nothing else in flight — at three",
+        "prompt sizes. What a person or an agent waiting for a single answer",
+        "experiences.",
+        "",
+        "**Read the prefill column with that in mind.** Prompt reading gets much",
+        "faster when several requests are read together: on Qwen3.6-35B under",
+        "vLLM it goes from 11 421 tokens per second here to 39 596 at 64",
+        "requests in flight. The figures at every step of that ladder are in",
+        "[throughput.md](throughput.md#prompt-reading-as-concurrency-rises).",
         "",
         "The prompt is Python source repeated to length, followed by a request",
         "to rewrite one function: the shape of an agent pasting a codebase into",
