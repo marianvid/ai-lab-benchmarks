@@ -65,7 +65,7 @@ from FLORES-200, SIB-200, Belebele, EvalPlus and Wikipedia, all under CC BY-SA
   conversation.
 - **The coding problems are in every model's training data.** They are old and
   public. That would invalidate a study ranking models by reasoning; here they
-  are a fixed executable workload for measuring a machine.
+  are a fixed executable workload for measuring the configuratin.
 - **Quality was measured at an 8 192-token context**, latency and the long-form
   throughput ladder at 32 768. Both are stated on the relevant pages.
 - **Load times are reported cold and warm.** The host's page cache was dropped
