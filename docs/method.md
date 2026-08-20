@@ -1,32 +1,16 @@
 # Method
 
-Each script in `harness/` is the definition of its task. This file records the
-parameters and the rules. Every task reports score and throughput from the same
-pass.
+Six measurements. Each one is a script in `harness/`, and the script is the real
+definition of what it does; this page says what it asks and what comes back.
 
-## Terms
+Every task records both a score and a rate, from the same pass. Terms used in
+the tables are explained in the [glossary](glossary.md).
 
-**Prefill / prompt reading** — encoding the input. Parallel across tokens,
-thousands of tok/s.
+## Where the data comes from
 
-**Decode / generation** — producing output tokens serially, tens of tok/s.
-
-**Concurrency** — requests in flight simultaneously.
-
-**Continuous batching** — adding and retiring requests within a running batch.
-vLLM does this; llama.cpp uses fixed slots with the context window divided
-between them.
-
-**F1** — used instead of accuracy because the classification set is 15%
-positive. An always-negative classifier scores 0.85 accuracy and 0.00 F1.
-
-**chrF++** — character n-gram F-score with word bigrams, `sacrebleu`
-implementation, no judge model.
-
-## Data
-
-`harness/get_datasets.py` fetches all four sets and writes `MANIFEST.json` with
-licences. Nothing is redistributed by this repository.
+Nothing is stored in this repository. `harness/get_datasets.py` downloads the
+four evaluation sets from the people who published them and writes a manifest
+listing what came from where, under which licence.
 
 | Set | Source | Licence |
 |---|---|---|
@@ -35,114 +19,219 @@ licences. Nothing is redistributed by this repository.
 | Belebele | `huggingface.co/datasets/facebook/belebele` | CC BY-SA 4.0 |
 | HumanEval+ / MBPP+ | `huggingface.co/datasets/evalplus/*` | Apache 2.0 |
 
-SIB-200 and Belebele are built on FLORES passages, so the same text is
-classified, comprehended and translated.
+Three of them share a foundation. SIB-200 and Belebele are both built on FLORES
+passages, so a model is classifying, understanding and translating the same
+sentences. That is why a weakness in one language tends to show up in all three
+at once.
 
-FLORES is fetched from Meta's tarball rather than from HuggingFace: the
-HuggingFace copies require an account.
+FLORES comes from Meta's own release rather than from Hugging Face, because the
+Hugging Face copies require an account and this has to work for anyone.
 
 ## Languages
 
-en, zh, hi, es, ar, fr, bn, pt, ru, ja, de, ko, tr, vi, ta, th, pl, uk, ro, lt.
+Twenty: English, Chinese, Hindi, Spanish, Arabic, French, Bengali, Portuguese,
+Russian, Japanese, German, Korean, Turkish, Vietnamese, Tamil, Thai, Polish,
+Ukrainian, Romanian and Lithuanian.
 
-Ten scripts: Latin, Han, Devanagari, Arabic, Bengali, Japanese, Hangul, Tamil,
-Thai, Cyrillic.
+They cover ten writing systems — Latin, Han, Devanagari, Arabic, Bengali,
+Japanese, Hangul, Tamil, Thai and Cyrillic — which turns out to matter less than
+it sounds. See [tokenizer cost](tokenizer.md).
 
-## Task 1 — Classification (`bench_classify.py`)
+## 1. Classification
 
-SIB-200 test split, all 20 languages, 4 080 sentences. Binary: is the topic
-`politics`. 15% positive.
+`bench_classify.py`, using SIB-200.
 
-5 sentences per request → 816 requests at the given concurrency. Reports F1
-overall and per language, plus items/s and prefill/decode tok/s.
+The model is shown a sentence and asked one yes-or-no question: is this about
+politics? For example, in Romanian:
 
-Per-language F1 is reported as undefined rather than 0.0 when a slice holds no
-positives: with nothing to find, recall has no value.
+> Mai mulți locuitori din Bishkek au dat vina pe protestatarii din sud pentru
+> haosul creat.
 
-## Task 2 — Comprehension (`bench_comprehension.py`)
+That one is. About one sentence in seven is, which is deliberate — the set is
+unbalanced so that a model cannot do well by answering "no" to everything.
 
-Belebele, first 100 questions per language, 2 000 total. Passage + question +
-4 options, single letter answer. Chance level 0.25.
+All 4 080 sentences of the test split are used, in all twenty languages. They go
+five to a request, so 816 requests, sent at whatever concurrency the run
+specifies.
 
-The first N, never sampled, so every model sees identical questions.
+Out of it comes an F1 score overall and one per language, along with sentences
+per second and the token rates.
 
-## Task 3 — Translation (`bench_translate.py`)
+When a language slice happens to contain no political sentences at all, its F1
+is reported as undefined rather than as 0.0. There was nothing to find, so a
+score of zero would say the model failed at something it was never asked.
 
-FLORES-200 devtest, English → 19 languages, first 50 sentences each, 950
-translations. chrF++ against the human reference.
+## 2. Comprehension
 
-Two mechanical checks alongside: English function words left in the output, and
-digits lost between source and output. Both are weak signals — most English-word
-hits are organisation names correctly kept — so they locate candidates to read
-rather than score anything. Digit group separators are stripped first, because
-`4,475` legitimately becomes `4 475`.
+`bench_comprehension.py`, using Belebele.
 
-## Task 4 — Coding (`bench_coding.py`)
+The model reads a passage, then a question about it, then four possible answers,
+and replies with a single letter:
 
-HumanEval+ (163) and MBPP+ (378), 541 problems. Answer extracted from the code
-block, concatenated with the problem's test suite, executed.
+> **Passage:** Brazilia este cea mai mare țară Romano-Catolică de pe Pământ […]
+>
+> **Question:** Cui i-au dat protestatarii petiția lor?
+>
+> A. Biserica Romano-Catolică
+> B. Roberto Jefferson
+> C. Congresul Național al Braziliei
+> D. Primarul orașului São Paulo
 
-HumanEval/32 is excluded: its own canonical solution fails its own tests. All
-164 canonical solutions were run through this harness to check; 163 pass.
+The answer is C, and it is in the passage. The questions were written and
+checked by people.
 
-Execution drops to uid 65534 with `setpriv` when running as root, in a temporary
-directory, 30 s timeout. The interpreter has numpy, scipy and sympy, which
-several EvalPlus tests import — without them those problems fail for the wrong
-reason.
+The first 100 questions of each language are used, 2 000 in all. Always the
+first hundred and never a random sample, so every model is asked exactly the
+same things and the scores can go in one table.
 
-## Task 5 — Latency (`bench.py`)
+Four options mean that guessing scores 0.25. A result near that says the model
+did not read the passage.
 
-One request at a time, at three prompt sizes: about 500, 9 000 and 29 000
-tokens. The prompt is Python source repeated to length followed by a request to
-rewrite one function.
+## 3. Translation
 
-Reports time to first token, prefill rate and decode rate for each size. No
-evaluation set is involved; the prompt is generated.
+`bench_translate.py`, using FLORES-200.
 
-The longest prompt is 29 000 rather than 32 000 tokens because prompt and answer
-share the [context window](glossary.md#context-window). At 32 768 configured, a
-33 000-token prompt plus a 256-token answer does not fit, and every model
-refuses it with HTTP 400.
+English into the other nineteen languages, the first 50 sentences of the test
+split each, so 950 translations per model. The reference is FLORES's own
+translation, made by a professional translator:
 
-## Task 6 — Long-form throughput (`bench_longform.py`)
+> **Source:** "We now have 4-month-old mice that are non-diabetic that used to
+> be diabetic," he added.
+>
+> **Reference:** „Acum avem șoareci în vârstă de 4 luni care nu mai au diabet,
+> dar care anterior fuseseră diabetici", a adăugat el.
 
-Whole Wikipedia articles, 2 165 to 5 227 characters, 60 per run, six languages.
-The model is asked for a one-word subject label. Long input, short output.
+Scoring is chrF++ from `sacrebleu`, which compares the model's output with that
+reference by counting shared character sequences. No second model is involved in
+judging.
 
-**Nothing is marked.** The answers are not checked; the measurement is articles
-per second and tokens per second at 1, 8, 32 and 64 requests in flight.
+Two cheap checks run alongside, because a reasonable-looking score can hide a
+disaster. One counts English function words left in the output; the other
+compares the digits in the source with the digits in the translation.
 
-Prompt length changes how an engine behaves, and every other task here sends a
-sentence or a short passage. `harness/fetch_wikipedia.py` collects the articles;
-the text is CC BY-SA 4.0 and each row keeps its page id, revision id and URL.
+Both are weak signals rather than scores. Most of the English-word hits turn out
+to be organisation names correctly left in English. They are there to point at
+translations worth reading, not to rank anything. Digit group separators are
+removed before comparing, because `4,475` legitimately becomes `4 475` in some
+languages.
+
+## 4. Coding
+
+`bench_coding.py`, using HumanEval+ and MBPP+.
+
+541 problems, of two shapes. HumanEval gives a function signature and a
+docstring to complete:
+
+```python
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    """ Check if in given list of numbers, are any two numbers closer to each
+    other than given threshold. """
+```
+
+MBPP describes the task in a sentence and pins the function's name through one
+example call:
+
+> Write a function to find the shared elements from the given two lists.
+>
+> `assert set(similar_elements((3, 4, 5, 6), (5, 7, 4, 10))) == set((4, 5))`
+
+Whatever the model writes is pulled out of its code block, joined to the tests
+that came with the problem, and run. It passes or it does not. Nothing is graded
+by opinion and there are no partial marks.
+
+One problem, HumanEval/32, is left out because its own reference solution fails
+its own tests. All 164 reference solutions were run through this harness to
+check that the harness itself was sound: 163 of them pass.
+
+The generated code runs as user `nobody` when the harness has root to drop from,
+in a throwaway directory, with a thirty-second limit. The interpreter it runs
+under has numpy, scipy and sympy installed, because several of the EvalPlus
+tests import them and without them those problems would fail for a reason that
+has nothing to do with the model.
+
+## 5. Latency
+
+`bench.py`. No evaluation set — the prompt is generated.
+
+One request at a time, at three sizes: roughly 500, 9 000 and 29 000 tokens. The
+prompt is a chunk of Python source repeated until it reaches the length wanted,
+followed by a request to rewrite one of the functions. That is the shape of an
+agent pasting a codebase into every turn.
+
+It reports time to first token, the prompt-reading rate and the generation rate
+at each size. This is the only place in the repository where long prompts are
+sent to a model.
+
+The longest prompt is 29 000 tokens rather than 32 000 because the prompt and
+the answer share the [context window](glossary.md#context-window). With the
+window set to 32 768, a 33 000-token prompt plus a 256-token answer does not fit,
+and every model refuses it with an HTTP 400.
+
+## 6. Long-form throughput
+
+`bench_longform.py`, using whole Wikipedia articles.
+
+Sixty articles per run, between 2 165 and 5 227 characters, in six languages.
+Each one is sent complete, with a request for a one-word subject label. Long
+input, short output — the shape of classification, routing or tagging work on
+real documents.
+
+**Nothing is marked here.** The answers are never checked against anything. What
+is being measured is articles per second and tokens per second at 1, 8, 32 and
+64 requests in flight.
+
+It exists because every other task in this suite sends a sentence or a short
+passage, and prompt length changes how an engine behaves: the prompt is what
+fills the [KV cache](glossary.md#kv-cache), and the cache is what limits how
+many requests fit at once. The two ladders turn out to disagree — see
+[throughput](throughput.md).
+
+`harness/fetch_wikipedia.py` collects the articles. The text is CC BY-SA 4.0 and
+every row keeps its page id, revision id and URL, so each article stays
+attributable.
 
 ## Loading
 
-Every model is loaded twice in a row: once with the file not in memory, once
-immediately afterwards with it still in the operating system's page cache. The
-host's cache is dropped before the run so the first load is genuinely cold.
+Each model is loaded twice in a row. The first time the file is not in memory;
+the second follows immediately, with the file still in the operating system's
+page cache.
 
-## Run rules
+The host's page cache is emptied before the run starts, so the first load of the
+first model is genuinely cold.
 
-- A warm-up pass is run and discarded. The first pass after an engine starts is
-  about 40% slow while kernel autotuning settles. Exception: coding, where every
-  problem is distinct and a discarded pass would throw away real answers.
-- `chat_template_kwargs: {enable_thinking: false}` is sent, and the request is
-  retried without it on 400 or 422 — not every engine and model accepts the
-  argument. Any `<think>` block the model writes anyway is stripped before
-  marking.
-- temperature 0.
-- One model resident at a time.
-- Failures recorded in the result JSON, not suppressed.
+## Rules that apply everywhere
 
-## Orchestration
+**A warm-up pass is run and thrown away.** The first pass after an engine starts
+is about 40% slower than the rest while its kernel autotuning settles. Measuring
+that would be measuring the wrong thing. The coding task is the exception: every
+problem there is different, so a discarded pass would throw away real answers.
 
-`harness/run_all.py` loads each model through AI-Lab, waits for `/v1/models`,
-loads it a second time to measure the warm case, runs the four quality tasks,
-the short-prompt concurrency sweep, the latency test and the long-form sweep,
-then unloads. `summary.json` is written after each model, so a run killed
-halfway leaves usable results.
+**Reasoning is switched off where the engine allows it.** The request carries
+`chat_template_kwargs: {enable_thinking: false}`, and if the engine answers 400
+or 422 it is sent again without that argument — not every engine and model
+accepts it. If a model writes out its thinking anyway, the `<think>` block is
+stripped before the answer is marked.
 
-A model that fails to load is recorded and the run continues.
+**Temperature is 0** everywhere.
 
-`harness/make_report.py` generates [quality.md](quality.md) from `results/`.
+**One model on the card at a time.** There is one 32 GB card; there is no
+alternative.
+
+**Failures are recorded, not hidden.** A model that will not start, a request
+that times out, a test that crashes — each appears in the result files as a
+fact.
+
+## How a run is orchestrated
+
+`harness/run_all.py` takes each model in turn: loads it through AI-Lab, waits
+until it answers, loads it a second time for the warm figure, then runs the four
+quality tasks, the short-prompt concurrency ladder, the latency test and the
+long-form ladder, and unloads.
+
+`summary.json` is written after every model, so a run killed halfway still
+leaves everything that finished. A model that will not load is recorded and the
+run carries on to the next one.
+
+`harness/make_report.py` turns `results/` into the result pages. The tables
+there are generated rather than typed, so every number can be traced back to the
+file it came from.
