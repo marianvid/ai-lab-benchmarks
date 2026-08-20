@@ -30,10 +30,10 @@ with `gemma-4-26b-a4b`'s tokenizer.
 | zh | Han | 1.45 | **1.12×** |
 | en | Latin | 4.79 | **1.00×** |
 
-**Reading the last column.** 1.50× means the same text costs half
-again as many tokens as in English: a context window holds two
-thirds as much of it, a request takes half again as long to read,
-and a hosted model charges half again as much.
+**The last column.** 1.50× means the same text costs half again as
+many tokens as in English: a context window holds two thirds as much
+of it, a request takes half again as long to read, and a hosted
+model charges half again as much.
 
 **The writing system does not predict the cost.** Chinese, in Han
 characters, is the cheapest language here after English. The most
@@ -44,7 +44,7 @@ What decides it is how much of that language the tokenizer was built
 from. One trained mostly on English and Chinese text holds whole
 Chinese words as single tokens and cuts Lithuanian into fragments.
 
-**The practical consequence.** A context window sized against
+A context window sized against
 English documents holds about 60% as much lt. Size it on the most expensive language you will
 actually send, or requests will be rejected for length in a way that
 looks like a model fault.

@@ -1,8 +1,8 @@
 # Quality
 
 Four tasks, one pass each, across eight model and engine combinations.
-Every table gives the score and the time it took, because both came out
-of the same run.
+Each table gives the score and the time it took; both came out of the
+same run.
 
 See [method.md](method.md) for how each task was run and
 [models.md](models.md) for what the models are.
@@ -23,19 +23,18 @@ politics. 4 080 sentences in 20 languages, of which 15% are political.
 | Qwen3.6-35B-A3B | vLLM | **0.889** | 0.967 | 53.6 | 4507.8 | 76.11 s |
 | Qwopus3.6-27B-Coder | vLLM | **0.906** | 0.971 | 19.69 | 1531.0 | 207.2 s |
 
-**Read the two score columns together.** Accuracy is higher than F1 for
-every model, and the gap is the point: only 15% of the sentences are
-political, so a model answering "no" to everything scores 0.85 accuracy
-while finding nothing. F1 collapses when that happens, which is why it
-is the column to judge by.
+**Accuracy is higher than F1 for every model, and the gap matters.**
+Only 15% of the sentences are political, so a model answering "no" to
+everything scores 0.85 accuracy and finds nothing. F1 collapses in that
+case; accuracy does not. Judge by F1.
 
 **Prefill here is not a long-prompt figure.** These are single sentences
 sent five to a request, a few hundred tokens each. For prompt reading at
 8 000 and 29 000 tokens see [latency.md](latency.md).
 
-**Do not read wall time as engine quality.** It is the same work, but
+**Wall time here is not a quality signal.** It is the same work, but
 llama.cpp ran it with eight requests in flight and gained nothing from
-that. Why is in [throughput.md](throughput.md).
+that; see [throughput.md](throughput.md).
 
 ## Comprehension
 
@@ -54,13 +53,13 @@ total, always the same 100 so every model is asked the same things.
 | Qwen3.6-35B-A3B | vLLM | **0.895** | 30.53 | 65.51 s |
 | Qwopus3.6-27B-Coder | vLLM | **0.915** | 19.92 | 100.41 s |
 
-**Guessing scores 0.25**, because there are four options. Subtract that
-before comparing. 0.74 and 0.91 are not a 23% difference in ability:
-they are 0.49 and 0.66 above chance, which is a third more.
+**Guessing scores 0.25**, because there are four options. Subtract it
+before comparing: 0.74 and 0.91 are not 23% apart, they are 0.49 and
+0.66 above chance, which is a third more.
 
-**This is the task that separates by model size.** The smallest model
-loses far more here than on classification or coding. A passage has to
-be understood; it cannot be pattern-matched from a keyword.
+**This is where model size shows.** The smallest model loses far more
+here than on classification or coding. A passage has to be understood;
+it cannot be pattern-matched from a keyword.
 
 ## Translation
 
@@ -78,14 +77,13 @@ model, scored against FLORES's human translations.
 | Qwen3.6-35B-A3B | vLLM | **53.79** | 9.65 | 98.49 s |
 | Qwopus3.6-27B-Coder | vLLM | **52.99** | 5.03 | 188.89 s |
 
-**The absolute values are low because the language mix is hard.** These
-19 languages include Tamil, Thai, Bengali and Lithuanian. A study
-covering only western European languages reports numbers ten to fifteen
-points higher for the same models. Compare within this table only.
+**The values are low because the language mix is hard.** These 19
+include Tamil, Thai, Bengali and Lithuanian. A study covering only
+western European languages reports ten to fifteen points higher for the
+same models. Compare within this table only.
 
-**The reference translations were made by people**, which is not true of
-every translation benchmark. A score here means agreement with a human
-translator rather than with another model.
+**The references were made by people**, not generated. A score here is
+agreement with a human translator rather than with another model.
 
 ## Coding
 
@@ -104,14 +102,14 @@ that came with the problem; it passes or it does not.
 | Qwopus3.6-27B-Coder | vLLM | **0.815** | 441/541 | 0.932 | 0.765 | 304.9 s |
 
 **HumanEval+ scores higher than MBPP+ for every model.** HumanEval gives
-the function signature and a docstring to complete. MBPP describes the
-task in one sentence and pins the function's name only through an
-example call — less structure, more room to misread it.
+the function signature and a docstring to complete; MBPP describes the
+task in one sentence and pins the function name only through an example
+call. Less structure, more room to misread it.
 
 **These problems are in every model's training data.** They are old and
-public. That would invalidate a study ranking models by reasoning. It
-does not affect this one, which uses them as a fixed, standard,
-executable workload for measuring a machine.
+public, so part of a score is memory rather than reasoning. That would
+invalidate a ranking of programmers; here they are a fixed, executable
+workload for measuring the configuration.
 
 **One problem is excluded.** HumanEval/32's own reference solution fails
 its own tests. All 164 references were run through this harness to check:
@@ -134,9 +132,9 @@ language contributes 204 sentences, about 30 of them political.
 | Qwen3.6-35B-A3B (vLLM) | 0.90 | 0.83 | 0.88 | 0.90 | 0.94 | 0.92 | 0.88 | 0.89 | 0.92 | 0.84 | 0.89 | 0.90 | 0.88 | 0.88 | 0.79 | 0.87 | 0.90 | 0.92 | 0.92 | 0.92 |
 | Qwopus3.6-27B-Coder (vLLM) | 0.92 | 0.92 | 0.91 | 0.92 | 0.91 | 0.92 | 0.91 | 0.90 | 0.92 | 0.91 | 0.88 | 0.94 | 0.95 | 0.89 | 0.83 | 0.88 | 0.94 | 0.89 | 0.94 | 0.88 |
 
-**Averages hide this.** A model can look competent overall and be much
-weaker in one language. Read down a column rather than across a row.
+A model can look competent on the average and be much weaker in one
+language. Read down a column rather than across a row.
 
 With about 30 positive examples per language, one misjudged sentence
-moves that language's F1 by roughly 0.015. Treat gaps under 0.03 between
-languages as noise.
+moves that language's F1 by roughly 0.015. Gaps under 0.03 between
+languages are noise.

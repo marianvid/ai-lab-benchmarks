@@ -1,11 +1,11 @@
 # Latency and prompt reading
 
-One request at a time, at three prompt sizes. This is what a person or
-an agent waiting for a single answer experiences, and the only place in
-this repository where long prompts are read.
+One request at a time, at three prompt sizes. What a person or an agent
+waiting for a single answer experiences, and the only place here where
+long prompts are read.
 
-The prompt is Python source repeated to length followed by a request to
-rewrite one function — the shape of an agent pasting a codebase into
+The prompt is Python source repeated to length, followed by a request
+to rewrite one function: the shape of an agent pasting a codebase into
 every turn.
 
 ## short prompt (~500 tok)
@@ -52,8 +52,8 @@ prompt is identical; the tokenizers are not. That column is the first
 place the difference in [tokenizer.md](tokenizer.md) becomes visible.
 
 **TTFT is the number a person feels.** On a long prompt it is almost
-entirely prompt reading: the model cannot start answering until it has
-read the question.
+all prompt reading — the model cannot start answering until it has read
+the question.
 
 **Prefill and decode do not move together.** Prefill processes every
 token of the prompt at once and reaches thousands per second; decode

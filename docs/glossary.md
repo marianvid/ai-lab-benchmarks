@@ -1,7 +1,6 @@
 # Glossary
 
-Every column header in this repository links here. If a term in a table is
-unclear, the link beside it lands on the entry below.
+Every column header in this repository links here.
 
 ## Measurements
 
@@ -38,7 +37,7 @@ vLLM does this. llama.cpp allocates a fixed number of slots at startup and
 divides the context window between them, so a ninth request waits for one of
 eight to finish.
 
-This is the single largest difference between the two engines measured here.
+It is the largest difference between the two engines measured here.
 
 ### Wall / wall time
 Seconds measured on a clock, start to finish, including everything: network,
@@ -56,8 +55,8 @@ A single number between 0 and 1, higher better, combining two things:
 - **Precision** — of the items the model said were X, how many were.
 - **Recall** — of the items that were X, how many the model found.
 
-F1 is their harmonic mean, which means it is low if either is low. A model
-cannot score well by being cautious or by guessing freely.
+F1 is their harmonic mean, so it is low if either is low. A model cannot score
+well by being cautious or by guessing freely.
 
 **Why not accuracy.** The classification set here is 15% positive. A model that
 answers "no" to everything is right 85% of the time and has found nothing: 0.85
@@ -80,16 +79,16 @@ A translation score from 0 to 100, higher better. It compares the model's
 output with a reference translation by counting shared character sequences and
 shared word pairs.
 
-It needs no judge model and has no opinion, which is why it is used here.
+It needs no judge model, which is why it is used here.
 
-Rough reading: below 40 is poor, 50–60 is usable, above 70 is close to the
-reference. The absolute value depends heavily on which languages are in the
-mix, so **compare only within one table**, never across studies.
+Below 40 is poor, 50–60 usable, above 70 close to the reference. The value
+depends heavily on which languages are in the mix, so compare only within one
+table, never across studies.
 
 ### Pass rate
-On the coding task, the fraction of problems whose generated code ran and
-passed every test in the problem's own suite. Nothing partial and nothing
-graded by opinion: it ran and passed, or it did not.
+On the coding task, the fraction of problems whose generated code ran and passed
+every test in the problem's own suite. Nothing partial: it passed or it did
+not.
 
 ## Engines and formats
 
@@ -129,11 +128,12 @@ trades against how many requests fit at once.
 
 ### OCuLink
 A cable standard carrying PCIe outside the case. The GPU here is in an external
-dock connected this way rather than plugged into the motherboard.
+dock connected this way rather than plugged into the motherboard. About
+8 GB/s, against roughly 32 GB/s for a PCIe 4.0 x16 slot.
 
-It does not slow inference down — the weights sit in VRAM and are not moved —
-but it does affect loading, and it is why splitting a model between card and
-system memory is a bad idea on this machine.
+Inference is unaffected: the weights sit in VRAM and are not moved. Loading
+crosses the cable, and so does every token if a model is split between card and
+system memory.
 
 ## Data
 
@@ -148,12 +148,12 @@ different languages.
 must fetch it from disk.
 
 **Warm** — the file is still in the operating system's page cache in RAM, so
-loading skips the disk entirely.
+loading skips the disk.
 
-The difference can be several times over, which is why load times here are
-reported as both.
+The difference can be several times over, so load times here are reported as
+both.
 
 ### Page cache
-Memory the operating system uses to keep recently-read files around. It is why
-loading the same model twice in a row is faster the second time, and why a load
-time quoted without saying which it was means very little.
+Memory the operating system uses to keep recently-read files around. Loading the
+same model twice in a row is faster the second time; a load time quoted without
+saying which it was means little.

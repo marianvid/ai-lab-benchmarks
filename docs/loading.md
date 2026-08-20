@@ -22,18 +22,19 @@ are genuinely cold.
 | Qwen3.6-35B-A3B | vLLM | 177.0 s | 92.2 s | 2.2 s |
 | Qwopus3.6-27B-Coder | vLLM | 163.4 s | 69.1 s | 2.2 s |
 
-**The gap between the two load columns is disk.** What remains in the
-warm column is the engine setting the model up: allocating VRAM,
-building the cache, and for vLLM compiling kernels for this particular
-model and card.
+**The cause of the gap was not isolated.** It is somewhere between
+reading the weights, reading vLLM's own multi-gigabyte installation, and
+rebuilding its compiled-kernel cache. The figures are inconsistent
+across models of similar size, so the disk alone does not account for
+it.
 
 **llama.cpp starts in seconds, vLLM in a minute or more.** For work that
 loads a model, asks one question and unloads, llama.cpp finishes before
-vLLM has started. The advantage reverses under sustained batched work;
+vLLM has started. Under sustained batched work the advantage reverses;
 the crossover is around 90 seconds.
 
-**Unloading is uniform** and dominated by waiting for the driver to hand
-the memory back, not by the model's size.
+**Unloading is uniform** and set by waiting for the driver to hand the
+memory back, not by the model's size.
 
 ## Refused
 
@@ -48,8 +49,7 @@ rather than letting the engine fail partway through.
 part of a model on the card and the rest in system memory, moving
 data across the PCIe link for every token.
 
-AI-Lab refuses this arrangement, so it was measured with llama.cpp
-started directly.
+AI-Lab refuses this arrangement, so llama.cpp was started directly.
 
 | Split | Loaded | VRAM used | Generation |
 |---|---:|---:|---:|
@@ -65,6 +65,7 @@ left off it works out the division itself and the model runs.
 attempts. A cold read of 46 GB from NVMe is considerably slower.
 
 **Why AI-Lab refuses it.** The GPU is attached over
-[OCuLink](glossary.md#oculink), so a split model sends data across a
-cable for every token. The application's position is that a model
-either fits or it does not.
+[OCuLink](glossary.md#oculink) at about 8 GB/s, so a split model
+sends data across a cable for every token. It works for llama.cpp,
+which moves computation to the data; it does not for vLLM, which
+moves the data. See [Configuration](machine.md).

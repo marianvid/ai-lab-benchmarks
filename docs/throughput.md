@@ -3,11 +3,11 @@
 How much work each combination completes per second, and how that
 changes when more requests arrive at once.
 
-Two ladders are measured, because prompt length changes the answer.
-Short prompts are single sentences; long prompts are whole Wikipedia
-articles of 2 000 to 5 000 characters. Prompt length is what fills the
-[KV cache](glossary.md#kv-cache), and the cache is what limits how many
-requests an engine can hold at once.
+Two ladders, because prompt length changes the answer. Short prompts are
+single sentences; long prompts are whole Wikipedia articles of 2 000 to
+5 000 characters. The prompt fills the
+[KV cache](glossary.md#kv-cache), and the cache limits how many requests
+an engine holds at once.
 
 ## Short prompts — sentences
 
@@ -25,17 +25,16 @@ Classification on English, Russian and Chinese, repeated at 1, 8, 32 and
 | Qwen3.6-35B-A3B | vLLM | 14.8 | 60.0 | 105.3 | 105.7 | **7.1×** |
 | Qwopus3.6-27B-Coder | vLLM | 3.2 | 19.4 | 43.8 | 43.9 | **13.5×** |
 
-**Gain is the last column: the highest rate divided by the lowest.** It
-says how much the engine got out of being handed more work at once. A
-gain of 1.0 means it got nothing — the ninth request waited for one of
-the first eight to finish.
+**Gain is the highest rate divided by the lowest**: what the engine got
+out of being handed more work at once. A gain of 1.0 means nothing — the
+ninth request waited for one of the first eight to finish.
 
-**At one request at a time the two engines are comparable.** The whole
-difference appears under load, and it comes from
+**At one request at a time the engines are comparable.** The difference
+appears only under load, from
 [continuous batching](glossary.md#continuous-batching).
 
-**vLLM stops improving between 32 and 64.** By then the card is
-saturated; further requests only wait longer.
+**vLLM stops improving between 32 and 64**: the card is saturated, and
+further requests only wait longer.
 
 ## Long prompts — whole articles
 
@@ -56,8 +55,9 @@ articles per run, 2 165–5 227 characters, six languages.
 | Qwopus3.6-27B-Coder | vLLM | 3.9 | 6.1 | 6.5 | 5.6 | **1.6×** |
 
 **Compare the gain columns between the two tables, not the rates.**
-An article is ten to twenty times longer than a sentence, so of
-course fewer of them finish per second. The question is whether the
-engine still profits from concurrency when each request occupies far
-more cache.
+An article is ten to twenty times longer than a sentence, so fewer
+finish per second either way. What changes is whether the engine
+still profits from concurrency when each request holds far more
+cache — for some combinations it profits more, for others barely at
+all.
 
