@@ -60,18 +60,91 @@ from FLORES-200, SIB-200, Belebele, EvalPlus and Wikipedia, all under CC BY-SA
 
 ## Caveats
 
-- **One run per cell.** No error bars. Treat differences under 0.02 F1 as noise.
-- **Single-turn only.** Nothing here measures an agent loop or a long
-  conversation.
-- **The coding problems are in every model's training data.** They are old and
-  public. That would invalidate a study ranking models by reasoning; here they
-  are a fixed executable workload for measuring the configuratin.
-- **Quality was measured at an 8 192-token context**, latency and the long-form
-  throughput ladder at 32 768. Both are stated on the relevant pages.
-- **Load times are reported cold and warm.** The host's page cache was dropped
-  before the run so the cold figures are genuine.
-- **The translation scores are low in absolute terms** because the language mix
-  includes Tamil, Thai, Bengali and Lithuanian. Compare within the table only.
+Six things to know before drawing conclusions from any table here.
+
+### Every number is from a single run
+
+Each test was run once per model. Nothing was repeated and averaged, so there
+is no way to say how much a figure would move if it were run again.
+
+It would move somewhat. Models are not perfectly repeatable even with
+randomness switched off, and the configuration is not in an identical state
+twice.
+
+**What to do with that:** on the classification score, a difference smaller
+than about 0.02 should be read as "the same". There are roughly 600 positive
+examples in that set, so a handful of sentences judged differently moves the
+score by that much on its own. Two models at 0.889 and 0.895 have not been
+separated by this benchmark.
+
+### Every measurement is one question and one answer
+
+The model is asked something, it replies, the exchange ends. Nothing here sends
+a follow-up.
+
+That leaves out how a model behaves inside an agent that goes back and forth
+twenty times over the same code, or in a conversation whose history keeps
+growing. Both work the engine differently: the same text is re-sent repeatedly,
+and an engine can reuse the part of a prompt it has already processed.
+
+**What to do with that:** the throughput figures describe batch work — many
+independent requests. They do not describe an agent session.
+
+### The coding problems are in every model's training data
+
+HumanEval and MBPP have been public for years. Every model measured here has
+almost certainly seen them during training, so a good score partly reflects
+memory rather than reasoning.
+
+That would ruin a study asking which model is the better programmer. It does
+not affect this one, which asks how fast this configuration gets through a
+fixed amount of Python. The problems are identical for every model, they
+execute, and they pass or fail mechanically — that is all this needs from them.
+
+**What to do with that:** read the coding column as throughput and correctness
+on a known workload, not as evidence of reasoning ability.
+
+### The tests did not all run with the same context window
+
+The context window is the largest number of tokens one request may contain,
+prompt and answer together. It is set per model instance, and a larger window
+reserves more VRAM, which leaves less room for handling several requests at
+once.
+
+The four quality tasks ran at 8 192 tokens. The latency test and the long-form
+throughput ladder need longer prompts than that, so they ran at 32 768.
+
+**What to do with that:** do not place a throughput figure from the quality
+section beside one from the long-form section and treat them as the same
+measurement. Each page states which setting applied.
+
+### Load times are given twice, cold and warm
+
+When a file has been read recently the operating system keeps a copy of it in
+RAM — the page cache — and reading it again skips the disk entirely. The second
+load of a model is therefore much faster than the first, and a load time quoted
+without saying which one it was is close to meaningless.
+
+The host's page cache was emptied before the run, so the **cold** column is a
+genuine first read. The **warm** column is a second load taken immediately
+afterwards.
+
+**What to do with that:** if models sit on disk between uses, the cold column
+is the one that applies. If a model is reloaded repeatedly, the warm one is.
+
+### The translation scores look low, and the languages are why
+
+chrF++ compares a translation with a reference by counting shared character
+sequences. How high anyone scores depends heavily on which languages are being
+translated into. These 19 include Tamil, Thai, Bengali and Lithuanian, all of
+which every model handles worse than French or Spanish.
+
+A study covering only western European languages would report numbers ten to
+fifteen points higher for these same models, and it would not mean they were
+better.
+
+**What to do with that:** compare the models with each other inside that table.
+Do not compare the numbers against a chrF++ figure published anywhere else.
 
 ## Licence
 
