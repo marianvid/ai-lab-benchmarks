@@ -1,9 +1,6 @@
 # Method
 
-Six measurements. Each one is a script in `harness/`, and the script is the real
-definition of what it does; this page says what it asks and what comes back.
-
-Every task records both a score and a rate, from the same pass. Terms used in
+Six measurements were done. Every task records both a score and a rate, from the same pass. Terms used in
 the tables are explained in the [glossary](glossary.md).
 
 ## Where the data comes from
