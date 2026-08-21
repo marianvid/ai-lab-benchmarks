@@ -48,7 +48,7 @@ that misses by 5 GB.
 ## Quality runs the other way
 
 F1 rises monotonically with size: 0.864, 0.900, 0.931, 0.957. The unpruned 80B
-was the best judge in that whole study, and the least pleasant thing to use.
+was the best judge, and the least pleasant thing to use.
 
 The pruned variants are the worst of both: slower than a model in a native
 format and less accurate than the original they came from. 
