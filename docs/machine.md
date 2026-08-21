@@ -2,8 +2,8 @@
 
 ![A mini PC on the left and an external dock holding a full-height graphics card on the right, joined by an OCuLink cable](images/machine.png)
 
-On the left is the AOOSTAR GEM12+ Pro — holds the processor, the memory and the
-model storage. On the right - RTX PRO 4500 — sits in a dock of its own. 
+On the left is the AOOSTAR GEM12+ Pro — the model storage is there. 
+On the right - RTX PRO 4500 — sits in a dock of its own. 
 The OCuLink link in between is the reason several pages here talk about
 what crosses the cable and when.
 
