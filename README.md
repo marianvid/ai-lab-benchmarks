@@ -23,7 +23,7 @@ of it, answering questions about it — and writing code.
 | [Findings](docs/findings.md) | What follows from all of it |
 | [Glossary](docs/glossary.md) | Every term used in a table |
 
-Also kept: [an earlier four-engine study](docs/engines-2026-08.md) from August,
+Also kept: [an earlier four-engine study](docs/engines-2026-08.md),
 and [dead ends](docs/dead-ends/README.md) — measurement errors and a conclusion that
 measuring overturned.
 
