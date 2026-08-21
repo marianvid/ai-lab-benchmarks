@@ -2,6 +2,15 @@
 
 The scope was to find out what the configuration can do, not to rank models in general.
 
+**The word benchmark oversells this.** A benchmark in the proper sense repeats
+every measurement, averages it, says how much it moved between runs, and follows
+a published method so that its figures can be set beside somebody else's. None
+of that happened here. Every number comes from one pass on one machine, taken to
+work out roughly how much this configuration can carry so that jobs could be
+sized around it. Read the figures as orders of magnitude that happen to have
+decimal places on them, and where two of them sit close together, treat them as
+the same number.
+
 The tests were chosen from the work this machine actually does on personal
 projects: multilingual text — sorting it, translating it, processing big volumes
 of it, answering questions about it — and writing code.
