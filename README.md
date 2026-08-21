@@ -24,7 +24,7 @@ of it, answering questions about it — and writing code.
 | [Glossary](docs/glossary.md) | Every term used in a table |
 
 Also kept: [an earlier four-engine study](docs/engines-2026-08.md) from August,
-and [dead ends](docs/dead-ends/) — measurement errors and a conclusion that
+and [dead ends](docs/dead-ends/README.md) — measurement errors and a conclusion that
 measuring overturned.
 
 Start with [Findings](docs/findings.md) if you want the conclusions, or

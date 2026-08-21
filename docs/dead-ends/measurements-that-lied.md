@@ -1,7 +1,7 @@
 # Measurement errors
 
-Five cases where the numbers looked right and were wrong. Each is recorded
-with the cause and the corrected figure.
+Six cases where the numbers looked right and were wrong, and a seventh about
+vLLM specifically. Each is recorded with the cause and the corrected figure.
 
 ## 1. A reasoning model scored zero because it was cut off mid-thought
 
@@ -115,7 +115,43 @@ of it.
 
 ---
 
-## A sixth, about vLLM specifically
+## 6. The benchmark measured a cache instead of the card
+
+**What it looked like.** The long-prompt ladder reported 60 Wikipedia articles
+read in 0.26 seconds — 287 735 prompt tokens per second on a 26B model, and a
+23× gain from concurrency.
+
+**Why it was wrong.** That is several times the card's arithmetic peak. Prompt
+reading costs roughly two floating-point operations per parameter per token: 4
+billion active parameters over 75 000 tokens is about 6×10¹⁴ operations, which
+in 0.26 seconds would be 2 300 TFLOPS. The card does a fraction of that.
+
+**The cause, two faults compounding.** The warm-up pass took the first
+`concurrency` items of the work — at c=64 that was the whole set of 60 articles.
+It read them, the counters were reset, and the measured pass then asked for
+exactly what vLLM had just put in its prefix cache. On top of that the four
+rungs shared one loaded engine and ran c=1, 8, 32, 64 back to back, so whatever
+the first rung read, the other three got free.
+
+**How it was caught.** The same 60 articles at c=64 on a freshly started engine
+take 4.54 s. Sent again immediately: 0.34 s. Same work, same concurrency,
+thirteen times faster because the engine had seen it. `cached_tokens` reported
+zero throughout, so the usage figures gave no warning — only the wall clock did.
+
+**Corrected.** The warm-up now sends filler text of its own, and the engine is
+restarted between rungs. Gemma-4-26B-A4B on vLLM, articles per second:
+
+| | c=1 | c=8 | c=32 | c=64 | Gain |
+|---|---:|---:|---:|---:|---:|
+| As published | 9.89 | 108.34 | 201.89 | 229.10 | 23.2× |
+| Measured | 9.65 | 13.06 | 13.20 | 13.19 | **1.4×** |
+
+**A benchmark that re-sends the same prompts is measuring the cache.** Either
+give every pass work the engine has not seen, or restart it.
+
+---
+
+## A seventh, about vLLM specifically
 
 **Changing any compilation-related flag invalidates vLLM's on-disk compile
 cache.** The first start with a new flag therefore pays a full recompilation and
@@ -136,6 +172,10 @@ Before believing any result, ask: **if my harness were broken in the most likely
 way, would the output look exactly like this?**
 
 Zero is suspicious. So is a perfectly round failure, an unexplained 70% spread,
-and any number that changes a conclusion. Every one of the six above was found
-by looking at the actual output — the raw text, the server log, the tensor
-shapes — rather than at the summary score.
+and any number that changes a conclusion. Every one above was found by looking
+at the actual output — the raw text, the server log, the tensor shapes — rather
+than at the summary score.
+
+**And check the arithmetic against the hardware.** A rate that would need more
+operations per second than the card can perform is not a fast result, it is a
+broken measurement. That is what caught the sixth.
