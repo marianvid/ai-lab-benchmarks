@@ -1,5 +1,15 @@
 # Configuration
 
+![A mini PC on the left and an external dock holding a full-height graphics card on the right, joined by an OCuLink cable](images/machine.png)
+
+The whole machine. On the left is the AOOSTAR GEM12+ Pro, which is a mini PC
+about the size of a hardback book and holds the processor, the memory and the
+model storage. On the right, in the silver enclosure, is the RTX PRO 4500 — a
+full-height desktop card that will not fit inside a box that size, so it sits in
+a dock of its own. The braided cable running off the right-hand side is the
+OCuLink link between them, and it is the reason several pages here talk about
+what crosses the cable and when.
+
 | | |
 |---|---|
 | GPU | NVIDIA RTX PRO 4500 Blackwell, 32 GB (32 623 MiB usable) |
