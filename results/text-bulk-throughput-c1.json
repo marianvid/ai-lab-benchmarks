@@ -8,30 +8,30 @@
   "batch": 5,
   "answered": 612,
   "of": 612,
-  "wall_s": 70.72,
+  "wall_s": 70.33,
   "requests": 123,
   "failed_requests": 0,
   "prompt_tokens": 41926,
   "completion_tokens": 6978,
-  "prefill_tok_s": 592.8,
-  "decode_tok_s": 98.7,
-  "items_per_s": 8.65,
+  "prefill_tok_s": 596.2,
+  "decode_tok_s": 99.2,
+  "items_per_s": 8.7,
   "quality": {
     "n": 612,
     "positives": 90,
     "accuracy": 0.9706,
-    "precision": 0.9,
-    "recall": 0.9,
-    "f1": 0.9
+    "precision": 0.9091,
+    "recall": 0.8889,
+    "f1": 0.8989
   },
   "per_language": {
     "en": {
       "n": 204,
       "positives": 30,
       "accuracy": 0.9706,
-      "precision": 0.875,
-      "recall": 0.9333,
-      "f1": 0.9032
+      "precision": 0.9,
+      "recall": 0.9,
+      "f1": 0.9
     },
     "ru": {
       "n": 204,

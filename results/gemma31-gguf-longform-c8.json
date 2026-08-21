@@ -11,12 +11,12 @@
   "chars_min": 2194,
   "chars_median": 3770,
   "chars_max": 5192,
-  "wall_s": 87.97,
+  "wall_s": 102.94,
   "requests": 60,
   "failed_requests": 0,
   "prompt_tokens": 75297,
   "completion_tokens": 121,
-  "prefill_tok_s": 855.9,
-  "decode_tok_s": 1.4,
-  "items_per_s": 0.68
+  "prefill_tok_s": 731.4,
+  "decode_tok_s": 1.2,
+  "items_per_s": 0.58
 }

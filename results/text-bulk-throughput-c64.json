@@ -8,21 +8,21 @@
   "batch": 5,
   "answered": 612,
   "of": 612,
-  "wall_s": 3.61,
+  "wall_s": 5.05,
   "requests": 123,
   "failed_requests": 0,
   "prompt_tokens": 41926,
   "completion_tokens": 6978,
-  "prefill_tok_s": 11624.2,
-  "decode_tok_s": 1934.7,
-  "items_per_s": 169.68,
+  "prefill_tok_s": 8309.8,
+  "decode_tok_s": 1383.0,
+  "items_per_s": 121.3,
   "quality": {
     "n": 612,
     "positives": 90,
-    "accuracy": 0.9739,
-    "precision": 0.9111,
-    "recall": 0.9111,
-    "f1": 0.9111
+    "accuracy": 0.9722,
+    "precision": 0.9101,
+    "recall": 0.9,
+    "f1": 0.905
   },
   "per_language": {
     "en": {
@@ -44,10 +44,10 @@
     "zh": {
       "n": 204,
       "positives": 30,
-      "accuracy": 0.9755,
-      "precision": 0.931,
-      "recall": 0.9,
-      "f1": 0.9153
+      "accuracy": 0.9706,
+      "precision": 0.9286,
+      "recall": 0.8667,
+      "f1": 0.8966
     }
   }
 }

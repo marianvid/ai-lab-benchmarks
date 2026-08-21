@@ -74,7 +74,7 @@ total, always the same 100 so every model is asked the same things.
 | GLM-4.7-Flash | vLLM | **0.742** | 0 | 32.97 | 60.66 |
 | Gemma-4-26B-A4B | llama.cpp | **0.884** | 43 | 9.45 | 207.13 |
 | Gemma-4-26B-A4B | vLLM | **0.873** | 43 | 59.08 | 33.13 |
-| Gemma-4-31B | llama.cpp | **0.916** | 12 | 2.07 | 961.76 |
+| Gemma-4-31B | llama.cpp | **0.916** | 12 | 2.31 | 859.1 |
 | Gemma-4-31B | vLLM | **0.914** | 11 | 25.89 | 76.83 |
 | Gemma-4-E4B | llama.cpp | **0.760** | 0 | 18.12 | 110.35 |
 | Qwen3-Coder-30B-A3B | vLLM | **0.847** | 0 | 59.54 | 33.59 |

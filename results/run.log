@@ -359,3 +359,216 @@
 18:48:49     unloaded in 2.1s
 18:48:49     written to /opt/bench/results/summary.json
 18:48:49 === finished ===
+21:02:33 === starting: 11 models -> /opt/bench/results ===
+21:02:33 --- coder-next-80b (Coder-Next 80B, llama.cpp GGUF) ---
+21:02:56     first load 22.9s
+21:03:08     reload 10.0s (page cache warm)
+21:03:10     unloaded in 1.9s
+21:03:10     written to /opt/bench/results/summary.json
+21:03:10 === finished ===
+23:00:37 === starting: 11 models -> /opt/bench/results ===
+23:00:37 --- text-bulk (Gemma-4-26B-A4B, vLLM NVFP4) ---
+23:02:40     first load 123.3s
+23:04:41     bench_classify.py c=1 --languages en,ru,zh
+23:05:52       done in 70s
+23:07:53     bench_classify.py c=8 --languages en,ru,zh
+23:08:05       done in 12s
+23:10:04     bench_classify.py c=32 --languages en,ru,zh
+23:10:10       done in 5s
+23:12:08     bench_classify.py c=64 --languages en,ru,zh
+23:12:13       done in 5s
+23:14:13     bench_longform.py c=1 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+23:14:20       done in 6s
+23:16:18     bench_longform.py c=8 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+23:16:23       done in 5s
+23:18:22     bench_longform.py c=32 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+23:18:27       done in 5s
+23:20:27     bench_longform.py c=64 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+23:20:32       done in 5s
+23:20:34     unloaded in 2.3s
+23:20:34     written to /opt/bench/results/summary.json
+23:20:34 --- gemma26-gguf (Gemma-4-26B-A4B, llama.cpp GGUF) ---
+23:20:43     first load 9.4s
+23:20:50     bench_classify.py c=1 --languages en,ru,zh
+23:21:56       done in 65s
+23:22:03     bench_classify.py c=8 --languages en,ru,zh
+23:23:08       done in 66s
+23:23:15     bench_classify.py c=32 --languages en,ru,zh
+23:24:23       done in 68s
+23:24:30     bench_classify.py c=64 --languages en,ru,zh
+23:25:42       done in 71s
+23:25:49     bench_longform.py c=1 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+23:26:10       done in 21s
+23:26:17     bench_longform.py c=8 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+23:26:39       done in 21s
+23:26:46     bench_longform.py c=32 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+23:27:10       done in 24s
+23:27:17     bench_longform.py c=64 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+23:27:44       done in 27s
+23:27:46     unloaded in 2.3s
+23:27:46     written to /opt/bench/results/summary.json
+23:27:46 --- text-quality (Qwopus3.6-27B-Coder, vLLM NVFP4) ---
+23:29:01     first load 74.1s
+23:30:13     bench_classify.py c=1 --languages en,ru,zh
+23:33:20       done in 186s
+23:34:33     bench_classify.py c=8 --languages en,ru,zh
+23:35:05       done in 32s
+23:36:16     bench_classify.py c=32 --languages en,ru,zh
+23:36:32       done in 17s
+23:37:44     bench_classify.py c=64 --languages en,ru,zh
+23:38:03       done in 19s
+23:39:15     bench_longform.py c=1 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+23:39:31       done in 16s
+23:40:42     bench_longform.py c=8 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+23:40:54       done in 11s
+23:42:06     bench_longform.py c=32 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+23:42:19       done in 13s
+23:43:30     bench_longform.py c=64 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+23:43:46       done in 16s
+23:43:49     unloaded in 2.2s
+23:43:49     written to /opt/bench/results/summary.json
+23:43:49 --- coder-fast (Qwen3-Coder-30B-A3B, vLLM NVFP4) ---
+23:44:31     first load 42.3s
+23:45:10     bench_classify.py c=1 --languages en,ru,zh
+23:46:01       done in 51s
+23:46:40     bench_classify.py c=8 --languages en,ru,zh
+23:46:51       done in 11s
+23:47:29     bench_classify.py c=32 --languages en,ru,zh
+23:47:34       done in 5s
+23:48:13     bench_classify.py c=64 --languages en,ru,zh
+23:48:18       done in 5s
+23:48:58     bench_longform.py c=1 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+23:49:03       done in 6s
+23:49:42     bench_longform.py c=8 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+23:49:47       done in 4s
+23:50:25     bench_longform.py c=32 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+23:50:30       done in 5s
+23:51:08     bench_longform.py c=64 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+23:51:13       done in 5s
+23:51:15     unloaded in 2.0s
+23:51:15     written to /opt/bench/results/summary.json
+23:51:15 --- qwen-coder (Qwen3.6-35B-A3B, llama.cpp GGUF) ---
+23:51:26     first load 10.7s
+23:51:33     bench_classify.py c=1 --languages en,ru,zh
+23:52:49       done in 77s
+23:52:57     bench_classify.py c=8 --languages en,ru,zh
+23:54:13       done in 76s
+23:54:21     bench_classify.py c=32 --languages en,ru,zh
+23:55:38       done in 78s
+23:55:46     bench_classify.py c=64 --languages en,ru,zh
+23:57:06       done in 80s
+23:57:14     bench_longform.py c=1 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+23:57:47       done in 34s
+23:57:55     bench_longform.py c=8 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+23:58:29       done in 34s
+23:58:36     bench_longform.py c=32 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+23:59:12       done in 36s
+23:59:19     bench_longform.py c=64 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+23:59:57       done in 38s
+00:00:00     unloaded in 2.3s
+00:00:00     written to /opt/bench/results/summary.json
+00:00:00 --- qwen36-nvfp4 (Qwen3.6-35B-A3B, vLLM NVFP4) ---
+00:01:40     first load 100.6s
+00:03:16     bench_classify.py c=1 --languages en,ru,zh
+00:03:58       done in 41s
+00:05:32     bench_classify.py c=8 --languages en,ru,zh
+00:05:43       done in 11s
+00:07:17     bench_classify.py c=32 --languages en,ru,zh
+00:07:24       done in 7s
+00:08:58     bench_classify.py c=64 --languages en,ru,zh
+00:09:06       done in 8s
+00:10:40     bench_longform.py c=1 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:10:47       done in 7s
+00:12:22     bench_longform.py c=8 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:12:27       done in 5s
+00:14:01     bench_longform.py c=32 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:14:07       done in 6s
+00:15:41     bench_longform.py c=64 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:15:48       done in 7s
+00:15:50     unloaded in 2.2s
+00:15:50     written to /opt/bench/results/summary.json
+00:15:50 --- gemma-general (Gemma-4-E4B, llama.cpp GGUF) ---
+00:15:54     first load 3.8s
+00:15:58     bench_classify.py c=1 --languages en,ru,zh
+00:16:51       done in 53s
+00:16:55     bench_classify.py c=8 --languages en,ru,zh
+00:17:48       done in 53s
+00:17:52     bench_classify.py c=32 --languages en,ru,zh
+00:18:45       done in 53s
+00:18:50     bench_classify.py c=64 --languages en,ru,zh
+00:19:43       done in 54s
+00:19:48     bench_longform.py c=1 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:19:58       done in 11s
+00:20:02     bench_longform.py c=8 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:20:13       done in 10s
+00:20:17     bench_longform.py c=32 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:20:28       done in 11s
+00:20:32     bench_longform.py c=64 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:20:43       done in 11s
+00:20:45     unloaded in 1.8s
+00:20:45     written to /opt/bench/results/summary.json
+00:20:45 --- glm-flash (GLM-4.7-Flash, vLLM NVFP4) ---
+00:21:29     first load 43.8s
+00:22:10     bench_classify.py c=1 --languages en,ru,zh
+00:23:12       done in 62s
+00:23:53     bench_classify.py c=8 --languages en,ru,zh
+00:24:08       done in 15s
+00:24:49     bench_classify.py c=32 --languages en,ru,zh
+00:24:57       done in 8s
+00:25:38     bench_classify.py c=64 --languages en,ru,zh
+00:25:46       done in 8s
+00:26:28     bench_longform.py c=1 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:26:34       done in 7s
+00:27:15     bench_longform.py c=8 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:27:20       done in 5s
+00:28:01     bench_longform.py c=32 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:28:06       done in 5s
+00:28:48     bench_longform.py c=64 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:28:53       done in 5s
+00:28:55     unloaded in 2.0s
+00:28:55     written to /opt/bench/results/summary.json
+00:28:55 --- gemma31-gguf (Gemma-4-31B, llama.cpp GGUF) ---
+00:29:05     first load 9.7s
+00:29:12     bench_classify.py c=1 --languages en,ru,zh
+00:33:29       done in 257s
+00:33:37     bench_classify.py c=8 --languages en,ru,zh
+00:37:58       done in 261s
+00:38:05     bench_classify.py c=32 --languages en,ru,zh
+00:42:39       done in 274s
+00:42:46     bench_classify.py c=64 --languages en,ru,zh
+00:47:38       done in 292s
+00:47:46     bench_longform.py c=1 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:49:29       done in 104s
+00:49:37     bench_longform.py c=8 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:51:25       done in 108s
+00:51:32     bench_longform.py c=32 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:53:33       done in 121s
+00:53:40     bench_longform.py c=64 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+00:55:58       done in 138s
+00:56:00     unloaded in 2.3s
+00:56:00     written to /opt/bench/results/summary.json
+00:56:00 --- gemma31-nvfp4 (Gemma-4-31B, vLLM NVFP4) ---
+00:56:39     first load 38.3s
+00:57:15     bench_classify.py c=1 --languages en,ru,zh
+01:00:46       done in 211s
+01:01:22     bench_classify.py c=8 --languages en,ru,zh
+01:01:56       done in 34s
+01:02:32     bench_classify.py c=32 --languages en,ru,zh
+01:02:45       done in 13s
+01:03:22     bench_classify.py c=64 --languages en,ru,zh
+01:03:35       done in 13s
+01:04:11     bench_longform.py c=1 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+01:04:29       done in 18s
+01:05:06     bench_longform.py c=8 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+01:05:20       done in 14s
+01:05:56     bench_longform.py c=32 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+01:06:10       done in 14s
+01:06:46     bench_longform.py c=64 --articles /opt/bench/eval-data/wikipedia_articles.jsonl --limit 60
+01:07:01       done in 14s
+01:07:03     unloaded in 2.0s
+01:07:03     written to /opt/bench/results/summary.json
+01:07:03 --- coder-next-80b (Coder-Next 80B, llama.cpp GGUF) ---
+01:07:24     first load 21.0s
+01:07:26     unloaded in 1.9s
+01:07:26     written to /opt/bench/results/summary.json
+01:07:26 === finished ===

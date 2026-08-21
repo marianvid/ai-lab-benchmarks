@@ -7,15 +7,89 @@
   "answered": 1988,
   "of": 2000,
   "chance_level": 0.25,
-  "wall_s": 961.76,
+  "wall_s": 859.1,
   "requests": 2000,
   "failed_requests": 12,
   "prompt_tokens": 596906,
   "completion_tokens": 4078,
-  "prefill_tok_s": 620.6,
-  "decode_tok_s": 4.2,
-  "items_per_s": 2.07,
+  "prefill_tok_s": 694.8,
+  "decode_tok_s": 4.7,
+  "items_per_s": 2.31,
   "accuracy": 0.9165,
+  "misses": [
+    {
+      "id": "arb_Arab:48",
+      "lang": "ar",
+      "reason": "no letter in the answer",
+      "returned": "The provided passage mentions \"learning,\" \""
+    },
+    {
+      "id": "ben_Beng:48",
+      "lang": "bn",
+      "reason": "no letter in the answer",
+      "returned": "The provided passage discusses motivations for using the"
+    },
+    {
+      "id": "eng_Latn:48",
+      "lang": "en",
+      "reason": "no letter in the answer",
+      "returned": "The provided passage lists \"learning,\" \""
+    },
+    {
+      "id": "spa_Latn:48",
+      "lang": "es",
+      "reason": "no letter in the answer",
+      "returned": "The provided passage lists \"learning,\" \""
+    },
+    {
+      "id": "jpn_Jpan:24",
+      "lang": "ja",
+      "reason": "no letter in the answer",
+      "returned": "None of the options are correct based on"
+    },
+    {
+      "id": "por_Latn:48",
+      "lang": "pt",
+      "reason": "no letter in the answer",
+      "returned": "The provided passage lists \"learning\", \""
+    },
+    {
+      "id": "rus_Cyrl:48",
+      "lang": "ru",
+      "reason": "no letter in the answer",
+      "returned": "The provided passage discusses motivations for using the"
+    },
+    {
+      "id": "tam_Taml:48",
+      "lang": "ta",
+      "reason": "no letter in the answer",
+      "returned": "The provided passage discusses the general motivations for"
+    },
+    {
+      "id": "tha_Thai:48",
+      "lang": "th",
+      "reason": "no letter in the answer",
+      "returned": "The provided passage lists \"learning\" ("
+    },
+    {
+      "id": "ukr_Cyrl:89",
+      "lang": "uk",
+      "reason": "no letter in the answer",
+      "returned": "None of the options are correct based on"
+    },
+    {
+      "id": "vie_Latn:24",
+      "lang": "vi",
+      "reason": "no letter in the answer",
+      "returned": "The question asks which aspect of asynchronous communication"
+    },
+    {
+      "id": "vie_Latn:48",
+      "lang": "vi",
+      "reason": "no letter in the answer",
+      "returned": "The provided passage mentions \"learning\" ("
+    }
+  ],
   "per_language": {
     "ar": {
       "n": 99,

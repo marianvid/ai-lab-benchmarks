@@ -13,16 +13,16 @@ are genuinely cold.
 
 | Model | Engine | On disk | First load (cold) | Reload (warm) | Unload |
 |---|---|---:|---:|---:|---:|
-| GLM-4.7-Flash | vLLM | 19.8 GB | 91.6 s | 40.2 s | 2.0 s |
-| Gemma-4-26B-A4B | llama.cpp | 15.8 GB | 9.0 s | 5.0 s | 2.3 s |
-| Gemma-4-26B-A4B | vLLM | 17.5 GB | 212.4 s | 117.4 s | 2.3 s |
-| Gemma-4-31B | llama.cpp | 17.5 GB | 10.2 s | 5.5 s | 2.8 s |
-| Gemma-4-31B | vLLM | 21.7 GB | 40.7 s | 34.4 s | 2.1 s |
-| Gemma-4-E4B | llama.cpp | 4.3 GB | 3.9 s | 2.5 s | 1.8 s |
-| Qwen3-Coder-30B-A3B | vLLM | 16.9 GB | 42.1 s | 37.2 s | 2.0 s |
-| Qwen3.6-35B-A3B | llama.cpp | 20.6 GB | 10.8 s | 5.3 s | 2.2 s |
-| Qwen3.6-35B-A3B | vLLM | 21.8 GB | 177.0 s | 92.2 s | 2.2 s |
-| Qwopus3.6-27B-Coder | vLLM | 19.2 GB | 163.4 s | 69.1 s | 2.2 s |
+| GLM-4.7-Flash | vLLM | 19.8 GB | 43.8 s | 40.2 s | 2.0 s |
+| Gemma-4-26B-A4B | llama.cpp | 15.8 GB | 9.4 s | 5.0 s | 2.3 s |
+| Gemma-4-26B-A4B | vLLM | 17.5 GB | 123.3 s | 117.4 s | 2.3 s |
+| Gemma-4-31B | llama.cpp | 17.5 GB | 9.7 s | 5.5 s | 2.3 s |
+| Gemma-4-31B | vLLM | 21.7 GB | 38.3 s | 34.4 s | 2.0 s |
+| Gemma-4-E4B | llama.cpp | 4.3 GB | 3.8 s | 2.5 s | 1.8 s |
+| Qwen3-Coder-30B-A3B | vLLM | 16.9 GB | 42.3 s | 37.2 s | 2.0 s |
+| Qwen3.6-35B-A3B | llama.cpp | 20.6 GB | 10.7 s | 5.3 s | 2.3 s |
+| Qwen3.6-35B-A3B | vLLM | 21.8 GB | 100.6 s | 92.2 s | 2.2 s |
+| Qwopus3.6-27B-Coder | vLLM | 19.2 GB | 74.1 s | 69.1 s | 2.2 s |
 
 **Reading the weights is a small part of a vLLM start.** Its own startup
 log puts the disk read at 9.3 seconds out of 111. The rest is importing
@@ -60,7 +60,7 @@ how many layers fit.
 
 | | [Wall](glossary.md#wall--wall-time "seconds on a clock, start to finish") (s) |
 |---|---:|
-| First load (cold) | 22.9 s |
+| First load (cold) | 21.0 s |
 | Reload (warm) | 10.0 s |
 | Unload | 1.9 s |
 

@@ -8,24 +8,32 @@
   "batch": 5,
   "answered": 612,
   "of": 612,
-  "wall_s": 4.1,
+  "wall_s": 7.07,
   "requests": 123,
   "failed_requests": 0,
   "prompt_tokens": 39301,
   "completion_tokens": 6978,
-  "prefill_tok_s": 9579.7,
-  "decode_tok_s": 1700.9,
-  "items_per_s": 149.18,
+  "prefill_tok_s": 5562.1,
+  "decode_tok_s": 987.6,
+  "items_per_s": 86.61,
   "quality": {
     "n": 612,
     "positives": 90,
-    "accuracy": 0.9395,
-    "precision": 0.7431,
-    "recall": 0.9,
-    "f1": 0.8141
+    "accuracy": 0.9412,
+    "precision": 0.7455,
+    "recall": 0.9111,
+    "f1": 0.82
   },
   "per_language": {
     "en": {
+      "n": 204,
+      "positives": 30,
+      "accuracy": 0.9412,
+      "precision": 0.725,
+      "recall": 0.9667,
+      "f1": 0.8286
+    },
+    "ru": {
       "n": 204,
       "positives": 30,
       "accuracy": 0.9608,
@@ -33,21 +41,13 @@
       "recall": 0.9,
       "f1": 0.871
     },
-    "ru": {
-      "n": 204,
-      "positives": 30,
-      "accuracy": 0.9314,
-      "precision": 0.7105,
-      "recall": 0.9,
-      "f1": 0.7941
-    },
     "zh": {
       "n": 204,
       "positives": 30,
-      "accuracy": 0.9265,
-      "precision": 0.6923,
-      "recall": 0.9,
-      "f1": 0.7826
+      "accuracy": 0.9216,
+      "precision": 0.6842,
+      "recall": 0.8667,
+      "f1": 0.7647
     }
   }
 }

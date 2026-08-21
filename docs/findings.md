@@ -24,37 +24,38 @@ arrive together.
 
 | Engine | Gain, 1 → 64 concurrent (sentences) |
 |---|---|
-| vLLM | 7.1× – 19.6× |
-| llama.cpp | 1.0× – 1.1× |
+| vLLM | 7.2× – 16.4× |
+| llama.cpp | 1.0× |
 
 llama.cpp allocates a fixed number of slots at startup and divides the context
 window between them, so a ninth request waits. vLLM keeps a shared pool and adds
 requests to a batch already in flight; one that finishes frees its space at
 once.
 
-## 3. Prompt length changes that answer, sometimes completely
+## 3. Long prompts take that advantage away
 
 The same ladder run twice: once with single sentences, once with whole articles
 of 2 000 to 5 000 characters.
 
 | Model | Engine | Gain on sentences | Gain on articles |
 |---|---|---:|---:|
-| Gemma-4-26B-A4B | vLLM | 19.6× | **23.2×** |
-| Qwen3-Coder-30B-A3B | vLLM | 14.7× | **16.1×** |
-| GLM-4.7-Flash | vLLM | 15.7× | **8.3×** |
-| Qwen3.6-35B-A3B | vLLM | 7.1× | **3.5×** |
-| Qwopus3.6-27B-Coder | vLLM | 13.5× | **1.6×** |
-| Gemma-4-E4B | llama.cpp | 1.1× | 4.6× |
-| Gemma-4-26B-A4B | llama.cpp | 1.0× | 1.3× |
-| Qwen3.6-35B-A3B | llama.cpp | 1.0× | 1.1× |
+| Gemma-4-31B | vLLM | 16.4× | **1.3×** |
+| Gemma-4-26B-A4B | vLLM | 13.9× | **1.4×** |
+| Qwopus3.6-27B-Coder | vLLM | 13.6× | **1.5×** |
+| Qwen3-Coder-30B-A3B | vLLM | 10.7× | **1.3×** |
+| GLM-4.7-Flash | vLLM | 8.7× | **1.5×** |
+| Qwen3.6-35B-A3B | vLLM | 7.2× | **1.5×** |
+| every llama.cpp entry | llama.cpp | 1.0× | 1.0× |
 
-Qwopus goes from 13.5× to 1.6×. A long prompt occupies far more
-[KV cache](glossary.md#kv-cache) than a sentence, so fewer requests fit on the
-card at once. A model already using a large cache per request runs out of room
-first, and its batching advantage goes with it.
+Seven to sixteen times on sentences, and between 1.3 and 1.5 on articles —
+every model, both engines. The gain is also spent by the eighth request: c=8,
+c=32 and c=64 are the same number in every row.
 
-Measuring on sentences and deploying on documents gives a different number: for
-some combinations better, for others eight times worse.
+An article fills far more [KV cache](glossary.md#kv-cache) than a sentence, so
+far fewer requests fit on the card at once. Beyond that point the rest queue.
+
+**Size document work from the article ladder, not the sentence one.** They
+differ by an order of magnitude, and the sentence figure is the flattering one.
 
 ## 4. Cold and warm loads are different measurements
 
@@ -183,30 +184,24 @@ place where the small model lost most in finding 7, and for the same reason.
 llama.cpp; 80 becomes 224 on vLLM. Generation drops from 101.9 tokens per second
 to 25.5.
 
-**Batching stops working on long prompts.** From
-[throughput.md](throughput.md), articles rather than sentences:
+**Batching still works.** From [throughput.md](throughput.md), sentences at 1
+and 64 requests: the dense model goes 2.9 to 47.8, a gain of 16.4×, the largest
+in the table. Being dense costs throughput per request; it does not stop the
+engine filling the card with more of them.
 
-| | c=1 | c=8 | c=32 | c=64 | Gain |
-|---|---:|---:|---:|---:|---:|
-| Gemma-4-26B-A4B, vLLM | 9.9 | 108.3 | 201.9 | 229.1 | **23.2×** |
-| Gemma-4-31B, vLLM | 3.4 | 4.9 | 4.3 | 4.3 | **1.4×** |
-
-Batching helps when the card is waiting on memory, because several requests can
-share one pass over the weights. A dense model is not waiting on memory — it is
-busy arithmetic. There is nothing to share, so the queue just grows.
-
-That is the sharper limit. Three times slower is a price. Losing the batching
-gain means the machine cannot be fed more work to make up for it.
+So the cost is what it looks like: three to four times the wall time, paid
+evenly, for one measurable gain in comprehension.
 
 ## Choosing
 
 | Workload | Choice | Why |
 |---|---|---|
-| Batched multilingual bulk | Gemma-4-26B-A4B on vLLM | 0.875 F1 at 51 sentences/s, and the only model whose batching gain *improves* on long prompts |
-| Highest quality, speed secondary | Qwopus3.6-27B-Coder on vLLM | 0.906 F1 and 0.915 comprehension, but 1.6× batching gain on articles — do not plan on concurrency |
+| Batched multilingual bulk, short prompts | Gemma-4-26B-A4B on vLLM | 0.875 F1 at 51 sentences/s, and 13.9× from concurrency |
+| The same work on whole documents | Gemma-4-26B-A4B on vLLM | still the fastest, but expect 13 articles a second, not 120 — concurrency buys 1.4× on long prompts, for every model here |
+| Highest quality, speed secondary | Qwopus3.6-27B-Coder on vLLM | 0.906 F1 and 0.915 comprehension, at a third of the throughput |
 | One request at a time | any model on llama.cpp | answering while vLLM is still starting |
 | Agent prompt-reading | Qwen3-Coder-30B-A3B | fastest prefill; keep it away from prose |
-| Already running Qwen3.6-35B | change engine before changing model | 6.7× throughput for 0.006 F1 |
+| Already running Qwen3.6-35B | change engine before changing model | 13× the throughput under load, for 0.006 F1 |
 
 ## What this does not tell you
 
