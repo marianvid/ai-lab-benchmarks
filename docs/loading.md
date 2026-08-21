@@ -89,9 +89,6 @@ layer sitting in system memory has the whole batch sent to it
 and back. A 29 000-token prompt takes 53 seconds before the
 first word of the answer.
 
-**So it suits generation, not long prompts.** Which is the wrong
-way round for an agent, since an agent sends whole files.
-
 **Let llama.cpp choose the split.** Given a number it will not
 adjust it: `n_gpu_layers already set by user to 28, abort`, followed
 by a failure to allocate 26 664 MiB on a 32 623 MiB card. With the
