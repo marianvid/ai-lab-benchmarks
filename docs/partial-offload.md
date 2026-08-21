@@ -4,11 +4,6 @@ When a model does not fit in VRAM, llama.cpp can keep some layers on the card
 and the rest in system memory. It works, and the cost is not evenly distributed:
 prompt reading collapses, generation barely moves.
 
-**From the August 2026 study.** GGUF Q4 on llama.cpp, prompts of about 8 000
-tokens, on the same 32.6 GB card. The F1 column comes from that study's
-classification set, not from [quality.md](quality.md), so it is not comparable
-with the scores there. Single runs.
-
 ## The Coder-Next family, from 40B to 80B
 
 The same model pruned to four sizes, plus the original.
