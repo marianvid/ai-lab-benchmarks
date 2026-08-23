@@ -1,8 +1,7 @@
 # Findings
 
 Ten things this configuration turned out to do, each one traceable back to the
-table it came from. Every number here appears in one of the measurement pages,
-and the link next to it goes to the full version with all the models in it.
+table it came from. Every number here appears in one of the measurement pages.
 
 If you read nothing else, read the first three. They are about the choice
 between the two engines, which turns out to matter far more than the choice
