@@ -50,6 +50,19 @@ that looked fluent while scoring roughly 100% WER. The adapter now sends the
 model's documented ASR prompt. Fluent output is not proof that an audio request
 was configured correctly.
 
+## Diarization: Sortformer won this synthetic Romanian pass
+
+Both diarization systems completed all 120 Echo files. Sortformer obtained
+**29.35% DER** versus **31.99%** for Pyannote Community-1, and was much faster:
+**394×** versus **62× real time**. Its advantage was present both without
+overlap (28.97% versus 30.64%) and with overlap (29.70% versus 33.23%).
+
+The licence changes the operational conclusion. Sortformer is CC BY-NC 4.0,
+so it is a useful research baseline but not a production candidate for a
+commercial Beacon deployment. Pyannote is CC BY 4.0 and remains the deployable
+candidate from this pair. Also, Echo is synthetic; neither score substitutes
+for a test on council or committee recordings.
+
 ## What remains before choosing for Beacon
 
 FLEURS is clean read speech. Beacon will encounter council chambers, remote
@@ -59,8 +72,9 @@ small, manually transcribed Romanian set sampled from those real sources.
 
 Silero processed the 15.9-minute corpus at **179× real time** on CPU and failed
 no requests. That establishes technical viability, not VAD accuracy, because
-FLEURS has no speech-boundary labels. Diarization likewise needs a labelled
-multi-speaker corpus before a score would mean anything.
+FLEURS has no speech-boundary labels. Diarization now has a reproducible
+Romanian synthetic baseline; the next step is a small labelled set drawn from
+Beacon's actual long-form sources.
 
 ---
 

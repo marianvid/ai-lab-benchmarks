@@ -1,0 +1,126 @@
+{
+  "diar-sortformer-4spk-v1": {
+    "instance": "diar-sortformer-4spk-v1",
+    "model": "NVIDIA Sortformer 4-speaker v1",
+    "engine": "NeMo",
+    "license": "CC-BY-NC-4.0",
+    "usage": "personal, non-commercial comparative evaluation only",
+    "dataset": "upb-nlp/echo-synthetic-diarization",
+    "dataset_revision": "b627c5bf437937d90efafc7cf76d5dcfb3195f35",
+    "language": "ro",
+    "files": 120,
+    "metric": {
+      "name": "DER",
+      "collar_s": 0.25,
+      "score_overlap": true
+    },
+    "preload_unloads": [],
+    "load": {
+      "ok": true,
+      "wall_s": 7.788,
+      "manager_total_ms": 7756
+    },
+    "warmup": {
+      "ok": true,
+      "wall_s": 1.082726
+    },
+    "status": "complete",
+    "successful": 120,
+    "failed": 0,
+    "audio_duration_s": 7200.0,
+    "inference_s": 18.269,
+    "real_time_factor": 0.002537,
+    "audio_seconds_per_second": 394.11,
+    "score": {
+      "der": 0.293491,
+      "reference_speaker_time_s": 7085.912,
+      "missed_detection_s": 1374.218,
+      "false_alarm_s": 12.77,
+      "speaker_confusion_s": 692.662
+    },
+    "by_condition": {
+      "no_overlap": {
+        "der": 0.289716,
+        "reference_speaker_time_s": 3404.581,
+        "missed_detection_s": 618.083,
+        "false_alarm_s": 3.92,
+        "speaker_confusion_s": 364.357
+      },
+      "overlap": {
+        "der": 0.296982,
+        "reference_speaker_time_s": 3681.331,
+        "missed_detection_s": 756.135,
+        "false_alarm_s": 8.85,
+        "speaker_confusion_s": 328.305
+      }
+    },
+    "unload": {
+      "ok": true,
+      "manager_total_ms": 1628
+    }
+  },
+  "pyannote-community-1": {
+    "instance": "pyannote-community-1",
+    "model": "Pyannote Speaker Diarization Community-1",
+    "engine": "pyannote.audio",
+    "license": "CC-BY-4.0",
+    "dataset": "upb-nlp/echo-synthetic-diarization",
+    "dataset_revision": "b627c5bf437937d90efafc7cf76d5dcfb3195f35",
+    "language": "ro",
+    "files": 120,
+    "metric": {
+      "name": "DER",
+      "collar_s": 0.25,
+      "score_overlap": true
+    },
+    "preload_unloads": [
+      {
+        "instance": "pyannote-community-1",
+        "ok": true
+      }
+    ],
+    "load": {
+      "ok": true,
+      "wall_s": 4.856,
+      "manager_total_ms": 4823
+    },
+    "warmup": {
+      "ok": true,
+      "wall_s": 1.776132
+    },
+    "status": "complete",
+    "successful": 120,
+    "failed": 0,
+    "audio_duration_s": 7200.0,
+    "inference_s": 115.777,
+    "real_time_factor": 0.01608,
+    "audio_seconds_per_second": 62.189,
+    "score": {
+      "der": 0.31987,
+      "reference_speaker_time_s": 7085.912,
+      "missed_detection_s": 1327.1585,
+      "false_alarm_s": 13.197031,
+      "speaker_confusion_s": 926.21475
+    },
+    "by_condition": {
+      "no_overlap": {
+        "der": 0.306423,
+        "reference_speaker_time_s": 3404.581,
+        "missed_detection_s": 614.468062,
+        "false_alarm_s": 6.905563,
+        "speaker_confusion_s": 421.868375
+      },
+      "overlap": {
+        "der": 0.332306,
+        "reference_speaker_time_s": 3681.331,
+        "missed_detection_s": 712.690437,
+        "false_alarm_s": 6.291469,
+        "speaker_confusion_s": 504.346375
+      }
+    },
+    "unload": {
+      "ok": true,
+      "manager_total_ms": 1610
+    }
+  }
+}

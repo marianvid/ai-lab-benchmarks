@@ -66,12 +66,34 @@ vLLM compile cache were not cleared between audio models, so this column is an
 operational observation, not the controlled cold/warm comparison used by the
 text loading study.
 
-## VAD and diarization
+## VAD
 
 FLEURS has transcripts but no speech-boundary or speaker-turn annotations.
 Silero VAD therefore gets a transport, stability and speed measurement only;
-no VAD accuracy number is claimed. Diarization waits for both a commercially
-compatible model and a labelled Romanian multi-speaker corpus.
+no VAD accuracy number is claimed.
+
+## Speaker diarization
+
+The diarization corpus is
+[Echo Synthetic Diarization](https://huggingface.co/datasets/upb-nlp/echo-synthetic-diarization),
+revision `b627c5bf437937d90efafc7cf76d5dcfb3195f35`, published by the
+POLITEHNICA Bucharest NLP Group. It contains 120 synthetic Romanian files of
+60 seconds each, with two to five speakers: 60 without overlapped speech and
+60 with overlap. Reference turns are supplied as RTTM. The dataset card does
+not state a licence, so the audio is downloaded to Data-Lab for evaluation and
+is not redistributed in this repository.
+
+Speaker error is measured with `pyannote.metrics` DER using a 0.25-second
+collar and `skip_overlap=False`. In other words, overlap is scored rather than
+discarded. DER aggregates missed speaker time, false alarms and speaker
+confusion over total reference speaker time, after optimal speaker mapping.
+Lower is better.
+
+Both systems receive identical WAV files through the AI-Lab gateway, after a
+single discarded warm-up request. Timing includes HTTP transfer and the local
+adapter. Sortformer 4-speaker v1 is CC BY-NC 4.0 and is included only as a
+personal, non-commercial comparative evaluation. Pyannote Community-1 is CC BY
+4.0.
 
 ---
 

@@ -1,6 +1,6 @@
 # Audio models
 
-Seven ASR instances and one VAD instance are in scope. Revisions are pinned in
+Seven ASR instances, one VAD instance and two diarization instances are in scope. Revisions are pinned in
 the deployment inventory; the short hash here connects a published result to
 that inventory.
 
@@ -14,6 +14,8 @@ that inventory.
 | Canary 1B v2 | NeMo | 6.36 GB `.nemo` | `87bc52657add` | CC BY 4.0 | yes |
 | Nemotron 3.5 ASR Streaming 0.6B | NeMo | 2.37 GB `.nemo` | `1c8deaecc64b` | OpenMDW 1.1 | **no** — checkpoint prompts expose English, Spanish and Chinese |
 | Silero VAD | ONNX Runtime, CPU | package repository | 6.2.1 / `7e30209a3e90` | MIT | language-independent |
+| NVIDIA Sortformer 4-speaker v1 | NeMo | 493 MB `.nemo` | `9f17b10df44c` | CC BY-NC 4.0 | language-independent; non-commercial evaluation only |
+| Pyannote Community-1 | pyannote.audio 4.0.7 | 33.7 MB pipeline | `3533c8cf8e36` | CC BY 4.0 | language-independent |
 
 ## Stored but not in the Romanian run
 
@@ -22,13 +24,9 @@ published language list does not include Romanian. Running it here would
 produce a number without a supported interpretation, so it is not presented as
 a Romanian alignment result.
 
-Pyannote Speaker Diarization Community-1 has a commercial-compatible CC BY 4.0
-licence but is gated: its terms must be accepted and a Hugging Face token made
-available to AI-Lab. It remains pending. NVIDIA Sortformer 4-speaker v1 was
-excluded because its checkpoint is CC BY-NC 4.0.
-
-These are exclusions, not hidden failures. The result page covers every model
-that was actually run.
+The result page covers every model that was actually run. Sortformer remains
+restricted to personal, non-commercial evaluation; publishing its benchmark
+result does not make the checkpoint suitable for Beacon's commercial use.
 
 ---
 

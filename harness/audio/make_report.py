@@ -28,10 +28,14 @@ def main() -> int:
     summary = json.loads((root / "asr" / "summary.json").read_text())
     vad_path = root / "vad.json"
     vad = json.loads(vad_path.read_text()) if vad_path.exists() else {}
+    diarization_path = root / "diarization" / "summary.json"
+    diarization = (json.loads(diarization_path.read_text())
+                   if diarization_path.exists() else {})
     lines = [
         "# Romanian audio results", "",
         "> Generated from `results/audio/` by `harness/audio/make_report.py`.", "",
-        "This is one deterministic 100-file FLEURS `ro_ro` pass. Read the "
+        "This report combines a deterministic 100-file FLEURS `ro_ro` pass "
+        "with the complete 120-file Echo Romanian diarization set. Read the "
         "[method](audio-method.md) before comparing close figures.", "",
         "## Speech recognition", "",
         "| Model | Engine | Completed | WER | CER | WER without diacritics | Load | RTF | Audio × real time |",
@@ -75,9 +79,34 @@ def main() -> int:
         ])
     else:
         lines.append("Silero VAD has no completed result.")
+    lines.extend(["", "## Speaker diarization", ""])
+    if diarization:
+        lines.extend([
+            "Echo Synthetic Diarization contains 120 Romanian 60-second files "
+            "with reference speaker turns: 60 without overlap and 60 with overlap. "
+            "DER uses a 0.25 s collar and scores overlapped speech.", "",
+            "| Model | Licence | Completed | DER | No overlap DER | Overlap DER | Load | Audio × real time |",
+            "|---|---|---:|---:|---:|---:|---:|---:|",
+        ])
+        for key in ("diar-sortformer-4spk-v1", "pyannote-community-1"):
+            item = diarization.get(key, {})
+            by = item.get("by_condition") or {}
+            lines.append(
+                f"| {item.get('model', key)} | {item.get('license', '—')} | "
+                f"{item.get('successful', 0)}/{item.get('files', 120)} | "
+                f"{number((item.get('score') or {}).get('der'))} | "
+                f"{number((by.get('no_overlap') or {}).get('der'))} | "
+                f"{number((by.get('overlap') or {}).get('der'))} | "
+                f"{number((item.get('load') or {}).get('wall_s'), 1, ' s')} | "
+                f"{number(item.get('audio_seconds_per_second'), 1, '×')} |")
+        lines.extend(["", "Lower DER is better. Sortformer is an NC-licensed "
+                      "checkpoint and its figures are published strictly as a "
+                      "personal, non-commercial comparative evaluation."])
+    else:
+        lines.append("No diarization run has been recorded.")
     lines.extend(["", "## What this establishes", "",
-                  "The useful result is the trade-off between Romanian transcription error, loading cost and processing rate on this machine. It is a candidate-selection study, not a claim about all Romanian audio domains.", "",
-                  "Diarization and Romanian forced alignment are not included for the reasons recorded in [Audio models](audio-models.md).", "",
+                  "The useful result is the trade-off between Romanian transcription or diarization error, loading cost and processing rate on this machine. It is a candidate-selection study, not a claim about all Romanian audio domains.", "",
+                  "Romanian forced alignment is not included for the reason recorded in [Audio models](audio-models.md).", "",
                   "---", "", "[← index](../README.md) · [Audio method](audio-method.md) · [Audio models](audio-models.md)", ""])
     pathlib.Path(args.out).write_text("\n".join(lines), encoding="utf-8")
     return 0

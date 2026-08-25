@@ -2,7 +2,7 @@
 
 > Generated from `results/audio/` by `harness/audio/make_report.py`.
 
-This is one deterministic 100-file FLEURS `ro_ro` pass. Read the [method](audio-method.md) before comparing close figures.
+This report combines a deterministic 100-file FLEURS `ro_ro` pass with the complete 120-file Echo Romanian diarization set. Read the [method](audio-method.md) before comparing close figures.
 
 ## Speech recognition
 
@@ -28,11 +28,22 @@ Silero VAD completed 100/100 requests in 5.33 s, an RTF of 0.00558 or 179.3× re
 
 This is a technical stability and throughput result. FLEURS has no speech-boundary labels, so no VAD quality score is reported.
 
+## Speaker diarization
+
+Echo Synthetic Diarization contains 120 Romanian 60-second files with reference speaker turns: 60 without overlap and 60 with overlap. DER uses a 0.25 s collar and scores overlapped speech.
+
+| Model | Licence | Completed | DER | No overlap DER | Overlap DER | Load | Audio × real time |
+|---|---|---:|---:|---:|---:|---:|---:|
+| NVIDIA Sortformer 4-speaker v1 | CC-BY-NC-4.0 | 120/120 | 0.293 | 0.290 | 0.297 | 7.8 s | 394.1× |
+| Pyannote Speaker Diarization Community-1 | CC-BY-4.0 | 120/120 | 0.320 | 0.306 | 0.332 | 4.9 s | 62.2× |
+
+Lower DER is better. Sortformer is an NC-licensed checkpoint and its figures are published strictly as a personal, non-commercial comparative evaluation.
+
 ## What this establishes
 
-The useful result is the trade-off between Romanian transcription error, loading cost and processing rate on this machine. It is a candidate-selection study, not a claim about all Romanian audio domains.
+The useful result is the trade-off between Romanian transcription or diarization error, loading cost and processing rate on this machine. It is a candidate-selection study, not a claim about all Romanian audio domains.
 
-Diarization and Romanian forced alignment are not included for the reasons recorded in [Audio models](audio-models.md).
+Romanian forced alignment is not included for the reason recorded in [Audio models](audio-models.md).
 
 ---
 

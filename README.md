@@ -61,6 +61,7 @@ speed.
 | HumanEval+ / MBPP+ | Python problems with tests | the code is executed; it passes or it does not |
 | Wikipedia | whole articles, 2 165 to 5 227 characters, six languages | a real long prompt rather than a sentence |
 | FLEURS `ro_ro` | Romanian read speech with human transcriptions | one official test split can measure both ASR accuracy and processing speed |
+| Echo Synthetic Diarization | Romanian synthetic meetings with RTTM speaker turns | compares diarization on 2–5 speakers, with and without overlap |
 
 Three of them are built on FLORES, so the same sentences are being sorted,
 understood and translated. A weakness in one language shows up in all three at
@@ -86,6 +87,10 @@ downloaded corpus and calls AI-Lab over the private network:
 python3 harness/audio/prepare_fleurs.py 0000.parquet --out ./fleurs-ro --limit 100
 python3 harness/audio/run_asr.py --data ./fleurs-ro --out ./results/audio/asr
 python3 harness/audio/run_vad.py --data ./fleurs-ro --out ./results/audio/vad.json
+hf download --repo-type dataset upb-nlp/echo-synthetic-diarization \
+  --revision b627c5bf437937d90efafc7cf76d5dcfb3195f35 \
+  --local-dir ./echo-synthetic-diarization
+python3 harness/audio/run_diarization.py --data ./echo-synthetic-diarization --out ./results/audio/diarization
 python3 harness/audio/make_report.py --results ./results/audio --out ./docs/audio-results.md
 ```
 
@@ -180,7 +185,7 @@ better.
 **What to do with that:** compare the models with each other inside that table.
 Do not compare the numbers against a chrF++ figure published anywhere else.
 
-### The audio study is a deterministic slice, not the whole corpus
+### The audio studies are controlled baselines, not the target domain
 
 The Romanian audio pass uses 100 rows selected at equal intervals across the
 official FLEURS test parquet. This keeps the seven-model run manageable and
@@ -191,6 +196,12 @@ audio and noisy local reporting.
 **What to do with that:** use it to choose candidates for the next, domain-
 specific evaluation. Differences that are small need a larger corpus and
 repeated runs.
+
+The diarization pass uses all 120 files in Echo Synthetic Diarization. They are
+Romanian and have exact RTTM speaker references, but they are synthetic
+mixtures rather than recordings from council chambers, public debates or local
+video streams. Use the result to compare candidates, then validate the winner
+on manually labelled Beacon material.
 
 ## Licence
 
