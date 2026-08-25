@@ -47,6 +47,15 @@ queueing, the model thinking. Not CPU time.
 Completed units of work per second of wall time — sentences classified,
 questions answered, articles processed. Throughput as a person would count it.
 
+### RTF
+*Real-time factor.* Processing time divided by audio duration. `RTF 0.10` means
+one minute of audio took six seconds. Lower is faster; below 1 means faster than
+real time.
+
+**Audio × real time** is the inverse and says the same thing more intuitively:
+`10×` means ten hours of audio can be processed in one hour of wall time. The
+figures here include transfer through the AI-Lab gateway and the engine adapter.
+
 ## Scores
 
 ### F1
@@ -97,6 +106,25 @@ On the coding task, the fraction of problems whose generated code ran and passed
 every test in the problem's own suite. Nothing partial: it passed or it did
 not.
 
+### WER
+*Word error rate.* Word substitutions, deletions and insertions divided by the
+number of words in the reference transcript. `0.100` means ten percent. Lower
+is better. The benchmark aggregates errors over the whole corpus rather than
+averaging short and long files equally.
+
+### CER
+*Character error rate.* The same edit-distance idea as WER, applied to
+characters. It is useful for Romanian because it exposes spelling and
+diacritic errors that a word-level score compresses into one wrong word. Lower
+is better.
+
+### DER
+*Diarization error rate.* Incorrect speaker time divided by total reference
+speaker time. It combines missed speech, speech detected where the reference
+has none, and time assigned to the wrong speaker after the best label mapping.
+Lower is better. The reported study uses a 0.25-second collar and scores
+overlapped speech.
+
 ## Engines and formats
 
 ### llama.cpp
@@ -107,6 +135,28 @@ does not gain from having many requests at once.
 A Python inference engine built around continuous batching and paged attention.
 Slow to start — it compiles kernels for the specific model and card — and much
 faster once many requests are arriving.
+
+### NeMo
+NVIDIA's speech-model framework. In this study it loads `.nemo` checkpoints
+for transcription and Sortformer speaker diarization.
+
+### ONNX Runtime
+An inference engine for models exported to the ONNX format. Silero VAD runs
+through it on the CPU in this study.
+
+### pyannote.audio
+A Python toolkit and inference runtime for speaker diarization. Community-1 is
+the CC BY 4.0 diarization pipeline measured here.
+
+### Runtime
+The installed program and dependency environment that executes a model. An
+engine update changes this software; a model update changes the weights or
+pipeline it loads. They are versioned separately.
+
+### Checkpoint
+A saved set of learned model weights, usually tied to one exact upstream
+revision. A checkpoint can have a different licence and language support from
+the engine that loads it.
 
 ### GGUF
 llama.cpp's file format, with the model's weights compressed to roughly 4 bits
@@ -143,6 +193,35 @@ crosses the cable, and so does every token if a model is split between card and
 system memory.
 
 ## Data
+
+### ASR
+*Automatic speech recognition.* Turning spoken audio into text. The ASR table
+is scored against human reference transcripts with WER and CER.
+
+### VAD
+*Voice activity detection.* Marking intervals that contain speech, without
+deciding who spoke or what was said. The FLEURS pass measures VAD stability and
+speed only because that corpus has no reference speech boundaries.
+
+### Speaker diarization
+Dividing audio into speaker-labelled time intervals — answering “who spoke
+when” with anonymous labels such as `SPEAKER_00`. It does not identify a
+person's real name and does not transcribe their words.
+
+### RTTM
+*Rich Transcription Time Marked.* A text format for reference time intervals
+and speaker labels. Echo supplies RTTM files, which make an objective DER score
+possible.
+
+### Overlap
+Time during which two or more speakers talk simultaneously. The Echo study
+reports files with and without overlap separately and includes overlap in the
+overall DER.
+
+### Collar
+A tolerance around reference speaker boundaries. A 0.25-second collar ignores
+small timing differences within 250 milliseconds of a turn boundary, so the
+score focuses on meaningful speaker errors rather than annotation precision.
 
 ### Token
 The unit a model reads and writes: usually a few characters, sometimes a whole

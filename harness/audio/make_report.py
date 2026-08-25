@@ -38,7 +38,7 @@ def main() -> int:
         "with the complete 120-file Echo Romanian diarization set. Read the "
         "[method](audio-method.md) before comparing close figures.", "",
         "## Speech recognition", "",
-        "| Model | Engine | Completed | WER | CER | WER without diacritics | Load | RTF | Audio × real time |",
+        "| Model | Engine | Completed | [WER](glossary.md#wer) | [CER](glossary.md#cer) | WER without diacritics | Load (s) | [RTF](glossary.md#rtf) | [Audio × real time](glossary.md#rtf) |",
         "|---|---|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for key in ORDER:
@@ -51,7 +51,7 @@ def main() -> int:
             f"| {item.get('model', key)} | {item.get('engine', '—')} | {completed} | "
             f"{number(item.get('wer'))} | {number(item.get('cer'))} | "
             f"{number(item.get('wer_without_diacritics'))} | "
-            f"{number(load.get('wall_s'), 1, ' s')} | {number(item.get('real_time_factor'))} | "
+            f"{number(load.get('wall_s'), 1)} | {number(item.get('real_time_factor'))} | "
             f"{number(item.get('audio_seconds_per_second'), 1, '×')} |")
     lines.extend(["", "WER and CER are fractions: `0.100` means ten percent.", "",
                   "## Recorded failures", ""])
@@ -85,7 +85,7 @@ def main() -> int:
             "Echo Synthetic Diarization contains 120 Romanian 60-second files "
             "with reference speaker turns: 60 without overlap and 60 with overlap. "
             "DER uses a 0.25 s collar and scores overlapped speech.", "",
-            "| Model | Licence | Completed | DER | No overlap DER | Overlap DER | Load | Audio × real time |",
+            "| Model | Licence | Completed | [DER](glossary.md#der) | No-overlap DER | Overlap DER | Load (s) | [Audio × real time](glossary.md#rtf) |",
             "|---|---|---:|---:|---:|---:|---:|---:|",
         ])
         for key in ("diar-sortformer-4spk-v1", "pyannote-community-1"):
@@ -97,7 +97,7 @@ def main() -> int:
                 f"{number((item.get('score') or {}).get('der'))} | "
                 f"{number((by.get('no_overlap') or {}).get('der'))} | "
                 f"{number((by.get('overlap') or {}).get('der'))} | "
-                f"{number((item.get('load') or {}).get('wall_s'), 1, ' s')} | "
+                f"{number((item.get('load') or {}).get('wall_s'), 1)} | "
                 f"{number(item.get('audio_seconds_per_second'), 1, '×')} |")
         lines.extend(["", "Lower DER is better. Sortformer is an NC-licensed "
                       "checkpoint and its figures are published strictly as a "
