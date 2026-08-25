@@ -1,4 +1,7 @@
-# Method
+# Text method
+
+The Romanian speech procedure is documented separately in
+[Romanian audio method](audio-method.md).
 
 Six measurements were done. Every task records both a score and a rate, from the same pass. Terms used in
 the tables are explained in the [glossary](glossary.md).

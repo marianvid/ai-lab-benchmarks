@@ -1,4 +1,7 @@
-# Models
+# Text models
+
+Speech models are listed separately in [Audio models](audio-models.md). This
+page retains the original text study and its engine comparisons.
 
 Ten combinations of model and engine. Three models appear in both formats, so
 the engine can be compared with everything else held constant.

@@ -1,0 +1,307 @@
+{
+  "qwen3-asr-06b": {
+    "instance": "qwen3-asr-06b",
+    "model": "Qwen3-ASR-0.6B",
+    "engine": "vLLM",
+    "format": "Safetensors",
+    "dataset": "google/fleurs ro_ro test",
+    "selected_rows": 100,
+    "audio_duration_s": 955.98,
+    "preload_unloads": [],
+    "load": {
+      "ok": true,
+      "wall_s": 33.584,
+      "manager_total_ms": 33554
+    },
+    "warmup": {
+      "ok": true,
+      "wall_s": 0.241462
+    },
+    "requests": 100,
+    "successful": 100,
+    "failed": 0,
+    "inference_s": 12.52,
+    "real_time_factor": 0.0131,
+    "audio_seconds_per_second": 76.357,
+    "wer": 0.39196,
+    "cer": 0.151823,
+    "wer_without_diacritics": 0.370489,
+    "cer_without_diacritics": 0.137392,
+    "error_totals": {
+      "word_errors": 858,
+      "words": 2189,
+      "char_errors": 2020,
+      "chars": 13305,
+      "ascii_word_errors": 811,
+      "ascii_words": 2189,
+      "ascii_char_errors": 1828,
+      "ascii_chars": 13305
+    },
+    "unload": {
+      "ok": true,
+      "wall_s": 2.094,
+      "manager_total_ms": 2026
+    }
+  },
+  "whisper-large-v3": {
+    "instance": "whisper-large-v3",
+    "model": "Whisper large-v3",
+    "engine": "vLLM",
+    "format": "Safetensors",
+    "dataset": "google/fleurs ro_ro test",
+    "selected_rows": 100,
+    "audio_duration_s": 955.98,
+    "preload_unloads": [
+      {
+        "instance": "qwen3-asr-06b",
+        "ok": true
+      }
+    ],
+    "load": {
+      "ok": true,
+      "wall_s": 176.259,
+      "manager_total_ms": 176229
+    },
+    "warmup": {
+      "ok": true,
+      "wall_s": 0.334082
+    },
+    "requests": 100,
+    "successful": 100,
+    "failed": 0,
+    "inference_s": 20.946,
+    "real_time_factor": 0.0219,
+    "audio_seconds_per_second": 45.64,
+    "wer": 0.087254,
+    "cer": 0.028486,
+    "wer_without_diacritics": 0.078575,
+    "cer_without_diacritics": 0.026306,
+    "error_totals": {
+      "word_errors": 191,
+      "words": 2189,
+      "char_errors": 379,
+      "chars": 13305,
+      "ascii_word_errors": 172,
+      "ascii_words": 2189,
+      "ascii_char_errors": 350,
+      "ascii_chars": 13305
+    },
+    "unload": {
+      "ok": true,
+      "wall_s": 2.027,
+      "manager_total_ms": 1957
+    }
+  },
+  "whisper-large-v3-turbo": {
+    "instance": "whisper-large-v3-turbo",
+    "model": "Whisper large-v3-turbo",
+    "engine": "vLLM",
+    "format": "Safetensors",
+    "dataset": "google/fleurs ro_ro test",
+    "selected_rows": 100,
+    "audio_duration_s": 955.98,
+    "preload_unloads": [],
+    "load": {
+      "ok": true,
+      "wall_s": 32.972,
+      "manager_total_ms": 32941
+    },
+    "warmup": {
+      "ok": true,
+      "wall_s": 0.298825
+    },
+    "requests": 100,
+    "successful": 100,
+    "failed": 0,
+    "inference_s": 8.405,
+    "real_time_factor": 0.0088,
+    "audio_seconds_per_second": 113.735,
+    "wer": 0.118776,
+    "cer": 0.034498,
+    "wer_without_diacritics": 0.088168,
+    "cer_without_diacritics": 0.028335,
+    "error_totals": {
+      "word_errors": 260,
+      "words": 2189,
+      "char_errors": 459,
+      "chars": 13305,
+      "ascii_word_errors": 193,
+      "ascii_words": 2189,
+      "ascii_char_errors": 377,
+      "ascii_chars": 13305
+    },
+    "unload": {
+      "ok": true,
+      "wall_s": 1.973,
+      "manager_total_ms": 1904
+    }
+  },
+  "qwen3-asr-17b": {
+    "instance": "qwen3-asr-17b",
+    "model": "Qwen3-ASR-1.7B",
+    "engine": "vLLM",
+    "format": "Safetensors",
+    "dataset": "google/fleurs ro_ro test",
+    "selected_rows": 100,
+    "audio_duration_s": 955.98,
+    "preload_unloads": [],
+    "load": {
+      "ok": true,
+      "wall_s": 56.067,
+      "manager_total_ms": 56037
+    },
+    "warmup": {
+      "ok": true,
+      "wall_s": 0.356957
+    },
+    "requests": 100,
+    "successful": 100,
+    "failed": 0,
+    "inference_s": 26.496,
+    "real_time_factor": 0.0277,
+    "audio_seconds_per_second": 36.08,
+    "wer": 0.206487,
+    "cer": 0.073206,
+    "wer_without_diacritics": 0.179991,
+    "cer_without_diacritics": 0.06366,
+    "error_totals": {
+      "word_errors": 452,
+      "words": 2189,
+      "char_errors": 974,
+      "chars": 13305,
+      "ascii_word_errors": 394,
+      "ascii_words": 2189,
+      "ascii_char_errors": 847,
+      "ascii_chars": 13305
+    },
+    "unload": {
+      "ok": true,
+      "wall_s": 2.088,
+      "manager_total_ms": 2019
+    }
+  },
+  "parakeet-tdt-06b-v3": {
+    "instance": "parakeet-tdt-06b-v3",
+    "model": "Parakeet TDT 0.6B v3",
+    "engine": "NeMo",
+    "format": ".nemo",
+    "dataset": "google/fleurs ro_ro test",
+    "selected_rows": 100,
+    "audio_duration_s": 955.98,
+    "preload_unloads": [],
+    "load": {
+      "ok": true,
+      "wall_s": 18.253,
+      "manager_total_ms": 18222
+    },
+    "warmup": {
+      "ok": true,
+      "wall_s": 1.237909
+    },
+    "requests": 100,
+    "successful": 100,
+    "failed": 0,
+    "inference_s": 6.707,
+    "real_time_factor": 0.007,
+    "audio_seconds_per_second": 142.545,
+    "wer": 0.120603,
+    "cer": 0.03758,
+    "wer_without_diacritics": 0.117405,
+    "cer_without_diacritics": 0.036603,
+    "error_totals": {
+      "word_errors": 264,
+      "words": 2189,
+      "char_errors": 500,
+      "chars": 13305,
+      "ascii_word_errors": 257,
+      "ascii_words": 2189,
+      "ascii_char_errors": 487,
+      "ascii_chars": 13305
+    },
+    "unload": {
+      "ok": true,
+      "wall_s": 1.713,
+      "manager_total_ms": 1645
+    }
+  },
+  "canary-1b-v2": {
+    "instance": "canary-1b-v2",
+    "model": "Canary 1B v2",
+    "engine": "NeMo",
+    "format": ".nemo",
+    "dataset": "google/fleurs ro_ro test",
+    "selected_rows": 100,
+    "audio_duration_s": 955.98,
+    "preload_unloads": [
+      {
+        "instance": "canary-1b-v2",
+        "ok": true
+      }
+    ],
+    "load": {
+      "ok": true,
+      "wall_s": 28.06,
+      "manager_total_ms": 28030
+    },
+    "warmup": {
+      "ok": true,
+      "wall_s": 1.174681
+    },
+    "requests": 100,
+    "successful": 100,
+    "failed": 0,
+    "inference_s": 29.667,
+    "real_time_factor": 0.031,
+    "audio_seconds_per_second": 32.224,
+    "wer": 0.060758,
+    "cer": 0.021721,
+    "wer_without_diacritics": 0.056647,
+    "cer_without_diacritics": 0.020594,
+    "error_totals": {
+      "word_errors": 133,
+      "words": 2189,
+      "char_errors": 289,
+      "chars": 13305,
+      "ascii_word_errors": 124,
+      "ascii_words": 2189,
+      "ascii_char_errors": 274,
+      "ascii_chars": 13305
+    },
+    "unload": {
+      "ok": true,
+      "wall_s": 1.9,
+      "manager_total_ms": 1830
+    }
+  },
+  "nemotron-35-asr-streaming-06b": {
+    "instance": "nemotron-35-asr-streaming-06b",
+    "model": "Nemotron 3.5 ASR Streaming 0.6B",
+    "engine": "NeMo",
+    "format": ".nemo",
+    "dataset": "google/fleurs ro_ro test",
+    "selected_rows": 100,
+    "audio_duration_s": 955.98,
+    "preload_unloads": [],
+    "load": {
+      "ok": true,
+      "wall_s": 42.581,
+      "manager_total_ms": 42550
+    },
+    "warmup": {
+      "ok": false,
+      "wall_s": 0.48415,
+      "error": "{\"error\": {\"message\": \"Unknown prompt key: 'None'. Available: ['en-US', 'en', 'en-GB', 'enGB', 'es-ES', 'esES', 'es-US', 'es', 'zh-CN', 'zh-ZH']...\", \"type\": \"ValueError\"}}"
+    },
+    "status": "warmup_failed",
+    "requests": 0,
+    "successful": 0,
+    "failed": 0,
+    "inference_s": 0.0,
+    "real_time_factor": null,
+    "audio_seconds_per_second": null,
+    "wer": null,
+    "cer": null,
+    "wer_without_diacritics": null,
+    "cer_without_diacritics": null
+  }
+}

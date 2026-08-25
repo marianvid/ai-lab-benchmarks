@@ -13,7 +13,7 @@ the same number.
 
 The tests were chosen from the work this machine actually does on personal
 projects: multilingual text — sorting it, translating it, processing big volumes
-of it, answering questions about it — and writing code.
+of it, answering questions about it — writing code, and Romanian speech.
 
 ## Pages
 
@@ -31,6 +31,10 @@ of it, answering questions about it — and writing code.
 | [Tokenizer cost](docs/tokenizer.md) | What the same text costs in each language |
 | [Findings](docs/findings.md) | What follows from all of it |
 | [Glossary](docs/glossary.md) | Every term used in a table |
+| [Romanian audio method](docs/audio-method.md) | Corpus, selection, normalisation and scoring for speech models |
+| [Audio models](docs/audio-models.md) | ASR and VAD models, revisions, licences and exclusions |
+| [Romanian audio results](docs/audio-results.md) | Accuracy, processing speed, loading and every recorded failure |
+| [Audio findings](docs/audio-findings.md) | What the Romanian pass suggests for real workloads |
 
 Also kept: [an earlier four-engine study](docs/engines-2026-08.md),
 and [dead ends](docs/dead-ends/README.md) — measurement errors and a conclusion that
@@ -41,9 +45,10 @@ Start with [Findings](docs/findings.md) if you want the conclusions, or
 
 ## Datasets
 
-Four of these are evaluation sets. Each is text with the correct answer already
-recorded next to it, manually reviewed. The model sees the text without the
-answer, and its reply is compared against the recorded one.
+Five of these are evaluation sets. Four contain text with the correct answer
+recorded next to it; FLEURS contains speech with a reference transcript. The
+model sees the input without its reference, and its reply is compared with the
+recorded one.
 
 The Wikipedia articles have no answers. They are long text, used for measuring
 speed.
@@ -55,14 +60,15 @@ speed.
 | Belebele | a question and four answers on those same passages | comprehension, scored by reading one letter |
 | HumanEval+ / MBPP+ | Python problems with tests | the code is executed; it passes or it does not |
 | Wikipedia | whole articles, 2 165 to 5 227 characters, six languages | a real long prompt rather than a sentence |
+| FLEURS `ro_ro` | Romanian read speech with human transcriptions | one official test split can measure both ASR accuracy and processing speed |
 
 Three of them are built on FLORES, so the same sentences are being sorted,
 understood and translated. A weakness in one language shows up in all three at
 once rather than being hidden by three different corpora.
 
-Sources and licences are in [method.md](docs/method.md). Nothing is redistributed
-here: the sets are fetched from their publishers and a manifest records what came
-from where.
+Sources and licences are in [the text method](docs/method.md) and
+[audio method](docs/audio-method.md). Nothing is redistributed here: the sets
+are fetched from their publishers and a manifest records what came from where.
 
 ## Running it
 
@@ -73,12 +79,22 @@ python3 harness/run_all.py --out ./results
 python3 harness/make_report.py --results ./results --out ./docs
 ```
 
+Romanian audio is prepared and run separately on Data-Lab, which owns the
+downloaded corpus and calls AI-Lab over the private network:
+
+```sh
+python3 harness/audio/prepare_fleurs.py 0000.parquet --out ./fleurs-ro --limit 100
+python3 harness/audio/run_asr.py --data ./fleurs-ro --out ./results/audio/asr
+python3 harness/audio/run_vad.py --data ./fleurs-ro --out ./results/audio/vad.json
+python3 harness/audio/make_report.py --results ./results/audio --out ./docs/audio-results.md
+```
+
 `harness/bench_coding.py` executes code written by a language model. It drops to
 `nobody` in a temporary directory with a timeout, but run it in a container.
 
 ## Caveats
 
-Six things to know before drawing conclusions from any table here.
+Seven things to know before drawing conclusions from any table here.
 
 ### Every number is from a single run
 
@@ -163,6 +179,18 @@ better.
 
 **What to do with that:** compare the models with each other inside that table.
 Do not compare the numbers against a chrF++ figure published anywhere else.
+
+### The audio study is a deterministic slice, not the whole corpus
+
+The Romanian audio pass uses 100 rows selected at equal intervals across the
+official FLEURS test parquet. This keeps the seven-model run manageable and
+makes the selection exactly reproducible, but it is too small to establish a
+general Romanian ASR ranking or performance on political meetings, telephone
+audio and noisy local reporting.
+
+**What to do with that:** use it to choose candidates for the next, domain-
+specific evaluation. Differences that are small need a larger corpus and
+repeated runs.
 
 ## Licence
 

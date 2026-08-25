@@ -33,6 +33,15 @@ its own failures — a model that will not start is a recorded fact, not a stop.
 | `bench_coding.py` | 541 Python problems, HumanEval+ and MBPP+, marked by running the code |
 | `bench.py` | Single-stream latency at three prompt sizes. No corpus: it builds its own prompts |
 
+Romanian speech has its own small harness under `audio/`:
+
+| Script | Purpose |
+|---|---|
+| `audio/prepare_fleurs.py` | Selects FLEURS `ro_ro` test rows deterministically and creates mono 16 kHz WAV files |
+| `audio/run_asr.py` | Loads every ASR model through AI-Lab and records WER, CER, timing and failures |
+| `audio/run_vad.py` | Measures Silero VAD stability and speed; FLEURS has no boundary labels, so it does not invent a quality score |
+| `audio/make_report.py` | Generates the public audio results page from raw JSON |
+
 Every one of them reports correctness and speed from the same run.
 
 ## Helpers

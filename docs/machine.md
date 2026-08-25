@@ -44,6 +44,9 @@ measured in [loading.md](loading.md#a-model-larger-than-the-card).
 | Engines run in | an unprivileged LXC container |
 | llama.cpp | build b10447 |
 | vLLM | 0.26.1rc1.dev949 (nightly) |
+| vLLM audio decoding | av 18.1.0, SciPy 1.18.1, SoundFile 0.14.0, soxr 1.1.0 |
+| NeMo | 3.0.0, PyTorch 2.13.0 + CUDA 13.2, isolated environment |
+| VAD runtime | Silero VAD 6.2.1, ONNX Runtime 1.29.0, CPU-only environment |
 | Manager | [AI-Lab](https://github.com/marianvid/ai-lab), which loads and unloads the models and timed every load here |
 | Supervisor | systemd, one unit per model instance |
 
@@ -52,3 +55,8 @@ number from the last release tag on the branch they were cut from, so
 `0.26.1rc1.dev949` is newer than the `0.27.1` release. It was chosen because
 the stable release would not load one of the models; see
 [the vLLM bug](vllm-gemma4-bug.md).
+
+The audio files and harness run in a separate CPU-only Data-Lab container on
+the same private network. It downloads, converts and stores data; AI-Lab alone
+loads inference models. End-to-end request time therefore includes local HTTP
+transport, which is part of the deployed architecture being measured.
