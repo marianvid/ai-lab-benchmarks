@@ -24,9 +24,12 @@ FLEURS identifiers are recorded with the results.
 
 ## Audio preparation
 
-Data-Lab extracts the embedded files and uses FFmpeg to create mono, 16 kHz,
-signed 16-bit PCM WAV. The same files are sent to every model. Download,
-conversion and storage time are not part of inference timing.
+[Data-Lab](https://github.com/marianvid/data-lab) extracts the embedded files
+and uses FFmpeg to create mono, 16 kHz, signed 16-bit PCM WAV. Its public
+repository exists only to expose this preparation method; the complete
+personal service remains private because its other workflows may handle
+confidential material. The same prepared files are sent to every model.
+Download, conversion and storage time are not part of inference timing.
 
 The request crosses the private network from Data-Lab to the AI-Lab gateway.
 Each model is loaded explicitly, every file is sent sequentially, and the model
