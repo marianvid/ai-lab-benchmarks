@@ -6,7 +6,7 @@ This report combines a deterministic 100-file FLEURS `ro_ro` pass with the compl
 
 ## Speech recognition
 
-| Model | Engine | Completed | WER | CER | WER without diacritics | Load | RTF | Audio × real time |
+| Model | Engine | Completed | WER | CER | WER without diacritics |  Load  | RTF | Audio × real time |
 |---|---|---:|---:|---:|---:|---:|---:|---:|
 | Whisper large-v3 | vLLM | 100/100 | 0.087 | 0.028 | 0.079 | 176.3 s | 0.022 | 45.6× |
 | Whisper large-v3-turbo | vLLM | 100/100 | 0.119 | 0.034 | 0.088 | 33.0 s | 0.009 | 113.7× |
