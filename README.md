@@ -201,7 +201,7 @@ The diarization pass uses all 120 files in Echo Synthetic Diarization. They are
 Romanian and have exact RTTM speaker references, but they are synthetic
 mixtures rather than recordings from council chambers, public debates or local
 video streams. Use the result to compare candidates, then validate the winner
-on manually labelled Beacon material.
+on manually labelled material from the intended production domain.
 
 ## Licence
 

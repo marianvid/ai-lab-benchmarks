@@ -59,13 +59,13 @@ overlap (28.97% versus 30.64%) and with overlap (29.70% versus 33.23%).
 
 The licence changes the operational conclusion. Sortformer is CC BY-NC 4.0,
 so it is a useful research baseline but not a production candidate for a
-commercial Beacon deployment. Pyannote is CC BY 4.0 and remains the deployable
+commercial deployment. Pyannote is CC BY 4.0 and remains the deployable
 candidate from this pair. Also, Echo is synthetic; neither score substitutes
 for a test on council or committee recordings.
 
-## What remains before choosing for Beacon
+## What remains before choosing for production
 
-FLEURS is clean read speech. Beacon will encounter council chambers, remote
+FLEURS is clean read speech. Real archival workloads will encounter council chambers, remote
 microphones, overlapping speakers, compression, music, names and political
 vocabulary. The next useful study is not another broad model download; it is a
 small, manually transcribed Romanian set sampled from those real sources.
@@ -74,7 +74,7 @@ Silero processed the 15.9-minute corpus at **179× real time** on CPU and failed
 no requests. That establishes technical viability, not VAD accuracy, because
 FLEURS has no speech-boundary labels. Diarization now has a reproducible
 Romanian synthetic baseline; the next step is a small labelled set drawn from
-Beacon's actual long-form sources.
+the actual long-form sources the system will process.
 
 ---
 

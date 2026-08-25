@@ -26,7 +26,7 @@ a Romanian alignment result.
 
 The result page covers every model that was actually run. Sortformer remains
 restricted to personal, non-commercial evaluation; publishing its benchmark
-result does not make the checkpoint suitable for Beacon's commercial use.
+result does not make the checkpoint suitable for commercial use.
 
 ---
 
