@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "generation": [
+    {
+      "id": "composition",
+      "prompt": "A studio photograph of a red ceramic mug beside a closed blue notebook on a neutral gray table, mug on the left and notebook on the right, soft daylight, no text",
+      "rubric": ["red mug", "blue notebook", "correct left-right placement", "no visible text"]
+    },
+    {
+      "id": "typography",
+      "prompt": "A clean white poster with the exact black headline AI LAB 2026 and the exact smaller line LOCAL MODELS, centered, no other words or letters",
+      "rubric": ["exact headline AI LAB 2026", "exact line LOCAL MODELS", "no extra text", "legible typography"]
+    },
+    {
+      "id": "spatial",
+      "prompt": "A yellow cube between a green glass sphere and a purple metal pyramid, all three objects fully visible on a white shelf, sphere on the left and pyramid on the right",
+      "rubric": ["three objects", "cube in center", "sphere on left", "pyramid on right", "requested colors"]
+    },
+    {
+      "id": "character-sheet",
+      "prompt": "A four-panel comic character sheet of the same small orange fox detective in every panel, identical green hat and blue scarf, front view, side view, running, and reading a clue, clean ink and flat colors, no text",
+      "rubric": ["four panels", "same fox identity", "green hat retained", "blue scarf retained", "four requested poses", "no text"]
+    },
+    {
+      "id": "romanian-scene",
+      "prompt": "Photorealistic early morning on a quiet cobblestone street in Brasov, Romania, old pastel facades, Black Church tower in the distance, light autumn fog, no signs or readable text",
+      "rubric": ["photorealistic", "Brasov architectural cues", "distant church tower", "morning fog", "no readable text"]
+    }
+  ],
+  "edits": [
+    {
+      "id": "mug-color",
+      "source": "qwen-image-benchmark/composition.png",
+      "prompt": "Change only the red ceramic mug to bright yellow. Preserve the notebook, composition, lighting, camera angle, and background.",
+      "rubric": ["mug is yellow", "notebook unchanged", "composition preserved", "lighting preserved"]
+    },
+    {
+      "id": "notebook-label",
+      "source": "qwen-image-benchmark/composition.png",
+      "prompt": "Add the exact white label NOTES to the blue notebook. Do not alter the mug, table, framing, or lighting.",
+      "rubric": ["exact label NOTES", "label on notebook", "mug unchanged", "composition preserved"]
+    },
+    {
+      "id": "background-change",
+      "source": "qwen-image-benchmark/composition.png",
+      "prompt": "Replace only the neutral gray background with a pale mint green wall. Preserve both objects, their positions, scale, and lighting.",
+      "rubric": ["mint background", "both objects retained", "positions preserved", "scale preserved"]
+    }
+  ]
+}

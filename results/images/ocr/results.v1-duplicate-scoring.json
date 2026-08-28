@@ -1,0 +1,625 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-08-28T13:22:30.458587+00:00",
+  "base_url": "http://192.168.50.222:8090",
+  "models": [
+    "ocr-smoke",
+    "ocr-server"
+  ],
+  "cases": [
+    {
+      "model": "ocr-smoke",
+      "case": "clean",
+      "http_status": 200,
+      "model_executed": true,
+      "passed": true,
+      "duration_seconds": 1.26,
+      "expected": "AI LAB BENCHMARK 2026",
+      "recognized": "AILAB BENCHMARK 2026",
+      "exact_match": false,
+      "cer": 0.047619,
+      "mean_confidence": 0.957464,
+      "response": {
+        "text": "AILAB BENCHMARK 2026",
+        "lines": [
+          {
+            "text": "AILAB BENCHMARK 2026",
+            "confidence": 0.9574639201164246,
+            "polygon": [
+              [
+                66.0,
+                52.0
+              ],
+              [
+                717.0,
+                55.0
+              ],
+              [
+                717.0,
+                109.0
+              ],
+              [
+                66.0,
+                107.0
+              ]
+            ]
+          }
+        ],
+        "language": "en",
+        "orientation_degrees": 0,
+        "warnings": []
+      }
+    },
+    {
+      "model": "ocr-smoke",
+      "case": "document",
+      "http_status": 200,
+      "model_executed": true,
+      "passed": true,
+      "duration_seconds": 0.33,
+      "expected": "INVOICE 2048 TOTAL 73.50 EUR STATUS PAID",
+      "recognized": "INVOICE 2048 TOTAL 73.50 EUR STATUS PAID INVOICE 2048 TOTAL 73.50 EUR STATUS PAID",
+      "exact_match": false,
+      "cer": 1.025,
+      "mean_confidence": 0.98662,
+      "response": {
+        "text": "INVOICE 2048\nTOTAL 73.50 EUR\nSTATUS PAID",
+        "lines": [
+          {
+            "text": "INVOICE 2048",
+            "confidence": 0.9942901730537415,
+            "polygon": [
+              [
+                71.0,
+                55.0
+              ],
+              [
+                363.0,
+                55.0
+              ],
+              [
+                363.0,
+                99.0
+              ],
+              [
+                71.0,
+                99.0
+              ]
+            ]
+          },
+          {
+            "text": "TOTAL 73.50 EUR",
+            "confidence": 0.974755048751831,
+            "polygon": [
+              [
+                71.0,
+                142.0
+              ],
+              [
+                440.0,
+                142.0
+              ],
+              [
+                440.0,
+                189.0
+              ],
+              [
+                71.0,
+                189.0
+              ]
+            ]
+          },
+          {
+            "text": "STATUS PAID",
+            "confidence": 0.9908149242401123,
+            "polygon": [
+              [
+                70.0,
+                230.0
+              ],
+              [
+                358.0,
+                230.0
+              ],
+              [
+                358.0,
+                276.0
+              ],
+              [
+                70.0,
+                276.0
+              ]
+            ]
+          }
+        ],
+        "language": "en",
+        "orientation_degrees": 0,
+        "warnings": []
+      }
+    },
+    {
+      "model": "ocr-smoke",
+      "case": "small_text",
+      "http_status": 200,
+      "model_executed": true,
+      "passed": true,
+      "duration_seconds": 0.304,
+      "expected": "MODEL: PP-OCRV5 SERIAL: OCR-8090 DATE: 2026-08-28",
+      "recognized": "MODEL: PP-OCRV5 SERIAL: OCR-8090 DATE: 2026-08-28 MODEL: PP-OCRV5 SERIAL: OCR-8090 DATE: 2026-08-28",
+      "exact_match": false,
+      "cer": 1.020408,
+      "mean_confidence": 0.98995,
+      "response": {
+        "text": "MODEL: PP-OCRV5\nSERIAL: OCR-8090\nDATE: 2026-08-28",
+        "lines": [
+          {
+            "text": "MODEL: PP-OCRV5",
+            "confidence": 0.9905031323432922,
+            "polygon": [
+              [
+                70.0,
+                54.0
+              ],
+              [
+                305.0,
+                54.0
+              ],
+              [
+                305.0,
+                81.0
+              ],
+              [
+                70.0,
+                81.0
+              ]
+            ]
+          },
+          {
+            "text": "SERIAL: OCR-8090",
+            "confidence": 0.9857884645462036,
+            "polygon": [
+              [
+                70.0,
+                122.0
+              ],
+              [
+                296.0,
+                122.0
+              ],
+              [
+                296.0,
+                149.0
+              ],
+              [
+                70.0,
+                149.0
+              ]
+            ]
+          },
+          {
+            "text": "DATE: 2026-08-28",
+            "confidence": 0.9935590028762817,
+            "polygon": [
+              [
+                70.0,
+                192.0
+              ],
+              [
+                282.0,
+                192.0
+              ],
+              [
+                282.0,
+                219.0
+              ],
+              [
+                70.0,
+                219.0
+              ]
+            ]
+          }
+        ],
+        "language": "en",
+        "orientation_degrees": 0,
+        "warnings": []
+      }
+    },
+    {
+      "model": "ocr-smoke",
+      "case": "degraded",
+      "http_status": 200,
+      "model_executed": true,
+      "passed": true,
+      "duration_seconds": 0.616,
+      "expected": "LOCAL AI TEST QUALITY 91.7 PERCENT CHECK: COMPLETE",
+      "recognized": "LOCAL AITEST QUALITY 91.7 PERCENT CHECK:COMPLETE LOCAL AITEST QUALITY 91.7 PERCENT CHECK:COMPLETE",
+      "exact_match": false,
+      "cer": 0.98,
+      "mean_confidence": 0.976775,
+      "response": {
+        "text": "LOCAL AITEST\nQUALITY 91.7 PERCENT\nCHECK:COMPLETE",
+        "lines": [
+          {
+            "text": "LOCAL AITEST",
+            "confidence": 0.9723904132843018,
+            "polygon": [
+              [
+                62.0,
+                64.0
+              ],
+              [
+                329.0,
+                55.0
+              ],
+              [
+                330.0,
+                101.0
+              ],
+              [
+                63.0,
+                109.0
+              ]
+            ]
+          },
+          {
+            "text": "QUALITY 91.7 PERCENT",
+            "confidence": 0.9755573272705078,
+            "polygon": [
+              [
+                66.0,
+                144.0
+              ],
+              [
+                474.0,
+                131.0
+              ],
+              [
+                475.0,
+                174.0
+              ],
+              [
+                67.0,
+                187.0
+              ]
+            ]
+          },
+          {
+            "text": "CHECK:COMPLETE",
+            "confidence": 0.9823784232139587,
+            "polygon": [
+              [
+                68.0,
+                220.0
+              ],
+              [
+                407.0,
+                211.0
+              ],
+              [
+                408.0,
+                256.0
+              ],
+              [
+                69.0,
+                266.0
+              ]
+            ]
+          }
+        ],
+        "language": "en",
+        "orientation_degrees": 0,
+        "warnings": []
+      }
+    },
+    {
+      "model": "ocr-server",
+      "case": "clean",
+      "http_status": 200,
+      "model_executed": true,
+      "passed": true,
+      "duration_seconds": 0.983,
+      "expected": "AI LAB BENCHMARK 2026",
+      "recognized": "AI LAB BENCHMARK 2026",
+      "exact_match": true,
+      "cer": 0.0,
+      "mean_confidence": 0.969589,
+      "response": {
+        "text": "AI LAB BENCHMARK 2026",
+        "lines": [
+          {
+            "text": "AI LAB BENCHMARK 2026",
+            "confidence": 0.9695889353752136,
+            "polygon": [
+              [
+                70.0,
+                61.0
+              ],
+              [
+                713.0,
+                61.0
+              ],
+              [
+                713.0,
+                105.0
+              ],
+              [
+                70.0,
+                105.0
+              ]
+            ]
+          }
+        ],
+        "language": "en",
+        "orientation_degrees": 0,
+        "warnings": []
+      }
+    },
+    {
+      "model": "ocr-server",
+      "case": "document",
+      "http_status": 200,
+      "model_executed": true,
+      "passed": true,
+      "duration_seconds": 0.349,
+      "expected": "INVOICE 2048 TOTAL 73.50 EUR STATUS PAID",
+      "recognized": "INVOICE 2048 TOTAL 73.50 EUR STATUS PAID INVOICE 2048 TOTAL 73.50 EUR STATUS PAID",
+      "exact_match": false,
+      "cer": 1.025,
+      "mean_confidence": 0.980042,
+      "response": {
+        "text": "INVOICE 2048\nTOTAL 73.50 EUR\nSTATUS PAID",
+        "lines": [
+          {
+            "text": "INVOICE 2048",
+            "confidence": 0.9964630007743835,
+            "polygon": [
+              [
+                70.0,
+                55.0
+              ],
+              [
+                363.0,
+                55.0
+              ],
+              [
+                363.0,
+                99.0
+              ],
+              [
+                70.0,
+                99.0
+              ]
+            ]
+          },
+          {
+            "text": "TOTAL 73.50 EUR",
+            "confidence": 0.9788662195205688,
+            "polygon": [
+              [
+                68.0,
+                143.0
+              ],
+              [
+                440.0,
+                143.0
+              ],
+              [
+                440.0,
+                188.0
+              ],
+              [
+                68.0,
+                188.0
+              ]
+            ]
+          },
+          {
+            "text": "STATUS PAID",
+            "confidence": 0.9647982120513916,
+            "polygon": [
+              [
+                69.0,
+                232.0
+              ],
+              [
+                359.0,
+                232.0
+              ],
+              [
+                359.0,
+                274.0
+              ],
+              [
+                69.0,
+                274.0
+              ]
+            ]
+          }
+        ],
+        "language": "en",
+        "orientation_degrees": 0,
+        "warnings": []
+      }
+    },
+    {
+      "model": "ocr-server",
+      "case": "small_text",
+      "http_status": 200,
+      "model_executed": true,
+      "passed": true,
+      "duration_seconds": 0.346,
+      "expected": "MODEL: PP-OCRV5 SERIAL: OCR-8090 DATE: 2026-08-28",
+      "recognized": "MODEL: PP-OCRV5 SERIAL: OCR-8090 DATE: 2026-08-28 MODEL: PP-OCRV5 SERIAL: OCR-8090 DATE: 2026-08-28",
+      "exact_match": false,
+      "cer": 1.020408,
+      "mean_confidence": 0.991068,
+      "response": {
+        "text": "MODEL: PP-OCRV5\nSERIAL: OCR-8090\nDATE: 2026-08-28",
+        "lines": [
+          {
+            "text": "MODEL: PP-OCRV5",
+            "confidence": 0.9954458475112915,
+            "polygon": [
+              [
+                70.0,
+                54.0
+              ],
+              [
+                304.0,
+                54.0
+              ],
+              [
+                304.0,
+                81.0
+              ],
+              [
+                70.0,
+                81.0
+              ]
+            ]
+          },
+          {
+            "text": "SERIAL: OCR-8090",
+            "confidence": 0.9881688952445984,
+            "polygon": [
+              [
+                69.0,
+                121.0
+              ],
+              [
+                296.0,
+                121.0
+              ],
+              [
+                296.0,
+                148.0
+              ],
+              [
+                69.0,
+                148.0
+              ]
+            ]
+          },
+          {
+            "text": "DATE: 2026-08-28",
+            "confidence": 0.9895907044410706,
+            "polygon": [
+              [
+                71.0,
+                193.0
+              ],
+              [
+                282.0,
+                193.0
+              ],
+              [
+                282.0,
+                217.0
+              ],
+              [
+                71.0,
+                217.0
+              ]
+            ]
+          }
+        ],
+        "language": "en",
+        "orientation_degrees": 0,
+        "warnings": []
+      }
+    },
+    {
+      "model": "ocr-server",
+      "case": "degraded",
+      "http_status": 200,
+      "model_executed": true,
+      "passed": true,
+      "duration_seconds": 1.266,
+      "expected": "LOCAL AI TEST QUALITY 91.7 PERCENT CHECK: COMPLETE",
+      "recognized": "LOCALAITEST QUALITY91.7PERCENT CHECK:COMPLETE LOCALAITEST QUALITY91.7PERCENT CHECK:COMPLETE",
+      "exact_match": false,
+      "cer": 0.94,
+      "mean_confidence": 0.985326,
+      "response": {
+        "text": "LOCALAITEST\nQUALITY91.7PERCENT\nCHECK:COMPLETE",
+        "lines": [
+          {
+            "text": "LOCALAITEST",
+            "confidence": 0.9692981839179993,
+            "polygon": [
+              [
+                65.0,
+                68.0
+              ],
+              [
+                325.0,
+                60.0
+              ],
+              [
+                326.0,
+                98.0
+              ],
+              [
+                66.0,
+                105.0
+              ]
+            ]
+          },
+          {
+            "text": "QUALITY91.7PERCENT",
+            "confidence": 0.9934475421905518,
+            "polygon": [
+              [
+                68.0,
+                146.0
+              ],
+              [
+                472.0,
+                136.0
+              ],
+              [
+                473.0,
+                174.0
+              ],
+              [
+                69.0,
+                184.0
+              ]
+            ]
+          },
+          {
+            "text": "CHECK:COMPLETE",
+            "confidence": 0.9932317733764648,
+            "polygon": [
+              [
+                69.0,
+                225.0
+              ],
+              [
+                404.0,
+                216.0
+              ],
+              [
+                405.0,
+                254.0
+              ],
+              [
+                70.0,
+                264.0
+              ]
+            ]
+          }
+        ],
+        "language": "en",
+        "orientation_degrees": 0,
+        "warnings": []
+      }
+    }
+  ],
+  "completed_at": "2026-08-28T13:22:35.945255+00:00",
+  "summary": {
+    "completed": 8,
+    "total": 8,
+    "model_failures": 0
+  }
+}

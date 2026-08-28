@@ -35,6 +35,7 @@ of it, answering questions about it — writing code, and Romanian speech.
 | [Audio models](docs/audio-models.md) | ASR and VAD models, revisions, licences and exclusions |
 | [Romanian audio results](docs/audio-results.md) | Accuracy, processing speed, loading and every recorded failure |
 | [Audio findings](docs/audio-findings.md) | What the Romanian pass suggests for real workloads |
+| [Image and OCR results](docs/images-ocr.md) | Generation, editing, prompt adherence, OCR accuracy and preserved artifacts |
 
 Also kept: [an earlier four-engine study](docs/engines-2026-08.md),
 and [dead ends](docs/dead-ends/README.md) — measurement errors and a conclusion that
@@ -92,6 +93,16 @@ hf download --repo-type dataset upb-nlp/echo-synthetic-diarization \
   --local-dir ./echo-synthetic-diarization
 python3 harness/audio/run_diarization.py --data ./echo-synthetic-diarization --out ./results/audio/diarization
 python3 harness/audio/make_report.py --results ./results/audio --out ./docs/audio-results.md
+```
+
+Image generation, editing and OCR use the public AI-Lab API. Existing OCR
+fixtures can be reused only after their checksums and ground truth are verified:
+
+```sh
+python3 harness/images/run_images.py --out ./results/images
+python3 harness/images/run_ocr.py --reuse-fixtures --output ./results/images/ocr
+python3 harness/images/apply_reviews.py
+python3 harness/images/make_report.py
 ```
 
 `harness/bench_coding.py` executes code written by a language model. It drops to

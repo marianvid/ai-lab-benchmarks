@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "reviewer": "codex-visual-review",
+  "reviewed_at": "2026-08-28T18:35:00+03:00",
+  "profiles": {
+    "sd15-smoke": {
+      "composition": {"criteria": {"red mug": true, "blue notebook": false, "correct left-right placement": true, "no visible text": true}, "notes": "The notebook is white rather than blue; an unrequested red pencil is also present."},
+      "typography": {"criteria": {"exact headline AI LAB 2026": false, "exact line LOCAL MODELS": false, "no extra text": false, "legible typography": false}, "notes": "The poster contains malformed, unreadable pseudo-text instead of either requested line."},
+      "spatial": {"criteria": {"three objects": false, "cube in center": false, "sphere on left": false, "pyramid on right": false, "requested colors": false}, "notes": "Only one yellow-green sphere is visible; the cube and pyramid are absent."},
+      "character-sheet": {"criteria": {"four panels": true, "same fox identity": true, "green hat retained": false, "blue scarf retained": true, "four requested poses": false, "no text": false}, "notes": "Four panels exist, but the hat is beige, requested running/reading actions are absent, and pseudo-text labels are visible."},
+      "romanian-scene": {"criteria": {"photorealistic": true, "Brasov architectural cues": true, "distant church tower": true, "morning fog": false, "no readable text": true}, "notes": "The cobblestone old-town scene and tower are present, but the requested light morning fog is absent."}
+    },
+    "qwen-image-benchmark": {
+      "composition": {"criteria": {"red mug": true, "blue notebook": true, "correct left-right placement": true, "no visible text": true}, "notes": "All requested objects, colors and placement are present without visible text."},
+      "typography": {"criteria": {"exact headline AI LAB 2026": true, "exact line LOCAL MODELS": true, "no extra text": true, "legible typography": true}, "notes": "Both requested lines are exact, centered and legible, with no extra text."},
+      "spatial": {"criteria": {"three objects": true, "cube in center": true, "sphere on left": true, "pyramid on right": true, "requested colors": true}, "notes": "All three objects, materials, colors and positions match the prompt."},
+      "character-sheet": {"criteria": {"four panels": true, "same fox identity": true, "green hat retained": true, "blue scarf retained": true, "four requested poses": true, "no text": false}, "notes": "Identity, clothing and poses are consistent, but a visible numeral 2 appears in the running panel."},
+      "romanian-scene": {"criteria": {"photorealistic": true, "Brasov architectural cues": true, "distant church tower": true, "morning fog": true, "no readable text": true}, "notes": "Pastel facades, cobblestones, a distant church tower and autumn fog are all present."}
+    },
+    "flux2-benchmark": {
+      "composition": {"criteria": {"red mug": true, "blue notebook": true, "correct left-right placement": true, "no visible text": true}, "notes": "All requested objects, colors and placement are present without visible text."},
+      "typography": {"criteria": {"exact headline AI LAB 2026": true, "exact line LOCAL MODELS": true, "no extra text": true, "legible typography": true}, "notes": "Both requested lines are exact and legible, with no extra text."},
+      "spatial": {"criteria": {"three objects": true, "cube in center": true, "sphere on left": true, "pyramid on right": true, "requested colors": true}, "notes": "All three objects, materials, colors and positions match the prompt."},
+      "character-sheet": {"criteria": {"four panels": false, "same fox identity": true, "green hat retained": true, "blue scarf retained": true, "four requested poses": true, "no text": false}, "notes": "The four poses are not enclosed in panels, and the book cover contains a visible text-like mark."},
+      "romanian-scene": {"criteria": {"photorealistic": true, "Brasov architectural cues": true, "distant church tower": true, "morning fog": true, "no readable text": true}, "notes": "Pastel old-town facades, cobblestones, church tower and fog match the prompt."}
+    },
+    "qwen-edit-benchmark": {
+      "mug-color": {"criteria": {"mug is yellow": true, "notebook unchanged": true, "composition preserved": true, "lighting preserved": true}, "notes": "The mug alone changes to yellow while the source composition remains intact."},
+      "notebook-label": {"criteria": {"exact label NOTES": true, "label on notebook": true, "mug unchanged": true, "composition preserved": true}, "notes": "The exact NOTES label is placed on the notebook; the mug and composition are preserved."},
+      "background-change": {"criteria": {"mint background": true, "both objects retained": true, "positions preserved": true, "scale preserved": true}, "notes": "The wall becomes pale mint while both objects and their geometry remain intact."}
+    }
+  }
+}
