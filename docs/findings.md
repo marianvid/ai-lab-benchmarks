@@ -1,5 +1,8 @@
 # Findings
 
+> [!WARNING]
+> **Not recommended for serious agentic software development.** On the tested local hardware and model configurations, local models should not be used as the primary autonomous executor for medium or large coding projects. See [Recommendations](recommendations.md) for the scope, evidence level, and important distinctions behind this conclusion.
+
 Ten things this configuration turned out to do, each one traceable back to the
 table it came from. Every number here appears in one of the measurement pages.
 
