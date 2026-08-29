@@ -4,14 +4,27 @@ This page contains the results themselves, not just links to raw files. Every im
 
 > **How to read this page:** producing an image successfully is not the same as following the prompt. **Pass** means every visible requirement was met. Times come from one run, so use them as practical estimates rather than permanent rankings.
 
-## The two computers
+## Complete test configuration
 
-| | Linux workstation | MacBook Pro |
+These results measure the deployed **AI-Lab system**, including its gateway and engine adapter. They are not bare GPU kernel timings.
+
+| | Linux AI-Lab | macOS AI-Lab |
 |---|---|---|
-| Hardware | RTX PRO 4500 Blackwell, 32 GB GPU memory | Apple M3 Max, 40-core GPU, 128 GB unified memory |
-| Image runtime | ComfyUI on NVIDIA CUDA | ComfyUI on Apple MPS |
+| Physical machine | AOOSTAR GEM12+ Pro | MacBook Pro `Mac15,9` |
+| CPU | AMD Ryzen 7 PRO 8845HS, 8 cores / 16 threads, 35 W target | Apple M3 Max, 16 CPU cores |
+| System memory | 96 GB DDR5-5600 | 128 GB unified memory |
+| GPU | NVIDIA RTX PRO 4500 Blackwell, 32 GB (32,623 MiB usable), ECC on, 200 W cap | Apple M3 Max, 40 GPU cores |
+| GPU connection | External OCuLink dock, about 8 GB/s while loading weights | Integrated unified-memory GPU |
+| Model storage | Two internal Lexar NM790 4 TB NVMe drives | Local/external AI-Lab model roots configured for the benchmark |
+| Operating environment | Proxmox VE host; engines run inside an **unprivileged LXC container** | macOS 15.7.3; AI-Lab runs natively, without LXC |
+| AI-Lab role | Gateway, model loading/unloading, request routing and timing | Native manager using an isolated benchmark configuration on `127.0.0.1:8110` |
+| Engine supervision | systemd, one unit per configured model instance | AI-Lab starts and supervises the local engine processes |
+| Image runtime | ComfyUI behind the private AI-Lab adapter; NVIDIA driver 610.57.04 and CUDA 13 | ComfyUI 0.34.0 behind the same adapter; Python 3.11.7, torch 2.13.0 and Apple MPS |
+| OCR runtime | PaddleOCR 3.x through AI-Lab's isolated OCR service | PaddleOCR 3.x in an isolated local runtime managed by AI-Lab |
 | Directly comparable tests | SD 1.5, Qwen Image, legacy FLUX.2, Qwen Image Edit, both OCR profiles | The same named tests and prompts |
 | Main trade-off | Much higher throughput | Enough shared memory for very large local models |
+
+The OCuLink connection affects model loading because weights cross the cable, but not image generation after the model is resident in GPU memory. Request timing includes the AI-Lab HTTP path and engine adapter because that is the system a real client uses.
 
 ## Model settings
 
