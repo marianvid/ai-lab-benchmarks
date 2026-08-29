@@ -25,7 +25,7 @@
       ]
     },
     "macos": {
-      "hardware": "Apple M3 Max, 128 GB unified memory",
+      "hardware": "Apple M3 Max, 40-core GPU, 128 GB unified memory",
       "os": "macOS 15.7.3",
       "audio_runtime": "Python 3.11.7, mlx-whisper 0.4.3, MLX 0.32.2, FP16 profile",
       "image_runtime": "ComfyUI 0.34.0, Python 3.11.7, torch 2.13.0, Apple MPS for current FLUX runs",

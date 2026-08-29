@@ -11,7 +11,8 @@
     "model_identifier": "Mac15,9",
     "chip": "Apple M3 Max",
     "cpu_cores": 16,
-    "memory_gb": 128
+    "memory_gb": 128,
+    "gpu_cores": 40
   },
   "runtime": {
     "manager": "AI-Lab local public API",

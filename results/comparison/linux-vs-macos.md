@@ -7,7 +7,7 @@ This report compares the published Linux and macOS runs without treating infrast
 | Platform | Hardware | Runtime | Relevant limitation |
 |---|---|---|---|
 | Linux | AOOSTAR GEM12+ Pro, RTX PRO 4500 Blackwell 32 GB over OCuLink | CUDA 13, vLLM nightly, AI-Lab/ComfyUI | OCuLink affects loading, not resident inference. |
-| macOS | MacBook Pro, Apple M3 Max, 128 GB unified memory | macOS 15.7.3, Python 3.11.7, MLX 0.32.2, ComfyUI 0.34.0, torch 2.13.0 | Current FLUX workflows used Apple MPS; legacy FP8 dequantization remains unsupported. |
+| macOS | MacBook Pro, Apple M3 Max, 40-core GPU, 128 GB unified memory | macOS 15.7.3, Python 3.11.7, MLX 0.32.2, ComfyUI 0.34.0, torch 2.13.0 | Current FLUX workflows used Apple MPS; legacy FP8 dequantization remains unsupported. |
 
 ## Direct comparisons
 

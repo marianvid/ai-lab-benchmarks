@@ -3,7 +3,7 @@
 ## Environment
 
 - Platform: macOS 15.7.3 (24G407)
-- Hardware: MacBook Pro Mac15,9, Apple M3 Max, 16 CPU cores, 128 GB unified memory
+- Hardware: MacBook Pro Mac15,9, Apple M3 Max, 16 CPU cores, 40 GPU cores, 128 GB unified memory
 - Runtime: ComfyUI 0.34.0, Python 3.11.7, torch 2.13.0
 - Device reported by ComfyUI during the final FLUX.2 Dev runs: Apple MPS with unified memory
 - Public manager API: `http://127.0.0.1:8110` using the isolated macOS benchmark configuration

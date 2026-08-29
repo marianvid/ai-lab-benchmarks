@@ -363,5 +363,13 @@
         "between_bytes_s": 600
       }
     }
+  },
+  "hardware": {
+    "model": "MacBook Pro",
+    "model_identifier": "Mac15,9",
+    "chip": "Apple M3 Max",
+    "cpu_cores": 16,
+    "gpu_cores": 40,
+    "unified_memory_gb": 128
   }
 }
