@@ -22,7 +22,7 @@ These results measure the deployed **AI-Lab system**, including its gateway and 
 | Image runtime | ComfyUI behind the private AI-Lab adapter; NVIDIA driver 610.57.04 and CUDA 13 | ComfyUI 0.34.0 behind the same adapter; Python 3.11.7, torch 2.13.0 and Apple MPS |
 | OCR runtime | PaddleOCR 3.x through AI-Lab's isolated OCR service | PaddleOCR 3.x in an isolated local runtime managed by AI-Lab |
 | Directly comparable tests | SD 1.5, Qwen Image, legacy FLUX.2, Qwen Image Edit, both OCR profiles | The same named tests and prompts |
-| Main trade-off | Much higher throughput | Enough shared memory for very large local models |
+| Main trade-off | Much higher throughput | Enough shared memory for large local models |
 
 The OCuLink connection affects model loading because weights cross the cable, but not image generation after the model is resident in GPU memory. Request timing includes the AI-Lab HTTP path and engine adapter because that is the system a real client uses.
 
