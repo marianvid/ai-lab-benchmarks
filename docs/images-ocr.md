@@ -17,7 +17,7 @@ These results measure the deployed **AI-Lab system**, including its gateway and 
 | GPU connection | External OCuLink dock, about 8 GB/s while loading weights | Integrated unified-memory GPU |
 | Model storage | Two internal Lexar NM790 4 TB NVMe drives | Local/external AI-Lab model roots configured for the benchmark |
 | Operating environment | Proxmox VE host; engines run inside an **unprivileged LXC container** | macOS 15.7.3; AI-Lab runs natively, without LXC |
-| AI-Lab role | Gateway, model loading/unloading, request routing and timing | Native manager using an isolated benchmark configuration on `127.0.0.1:8110` |
+| AI-Lab role | Gateway, model loading/unloading, request routing and timing | Native manager using an isolated benchmark configuration |
 | Engine supervision | systemd, one unit per configured model instance | AI-Lab starts and supervises the local engine processes |
 | Image runtime | ComfyUI behind the private AI-Lab adapter; NVIDIA driver 610.57.04 and CUDA 13 | ComfyUI 0.34.0 behind the same adapter; Python 3.11.7, torch 2.13.0 and Apple MPS |
 | OCR runtime | PaddleOCR 3.x through AI-Lab's isolated OCR service | PaddleOCR 3.x in an isolated local runtime managed by AI-Lab |
