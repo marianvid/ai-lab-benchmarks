@@ -24,7 +24,7 @@ These results measure the deployed **AI-Lab system**, including its gateway and 
 | Directly comparable tests | SD 1.5, Qwen Image, legacy FLUX.2, Qwen Image Edit, both OCR profiles | The same named tests and prompts |
 | Main trade-off | Much higher throughput | Enough shared memory for large local models |
 
-The OCuLink connection affects model loading because weights cross the cable, but not image generation after the model is resident in GPU memory. Request timing includes the AI-Lab HTTP path and engine adapter because that is the system a real client uses.
+The OCuLink connection affects model loading because weights cross the cable, but not image generation after the model is resident in GPU memory.
 
 ## Model settings
 
