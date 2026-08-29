@@ -1,0 +1,1533 @@
+{
+  "schema_version": 1,
+  "manager": "http://127.0.0.1:8110",
+  "profiles": {
+    "sd15-smoke": {
+      "instance": "image-smoke",
+      "task": "generation",
+      "cases": [
+        {
+          "case": "composition",
+          "prompt": "A studio photograph of a red ceramic mug beside a closed blue notebook on a neutral gray table, mug on the left and notebook on the right, soft daylight, no text",
+          "rubric": [
+            "red mug",
+            "blue notebook",
+            "correct left-right placement",
+            "no visible text"
+          ],
+          "ok": true,
+          "job_id": "dca27bb102bf4ca4b9dae9bda1fac811",
+          "status": "succeeded",
+          "duration_ms": 13851,
+          "effective_settings": {},
+          "artifact": "library/sd15-smoke/composition.png",
+          "deterministic": {
+            "bytes": 381193,
+            "sha256": "74df1f635c4cacd99736f4688e932d574c7892ba64fc6178dc8341e2f5d5036b",
+            "png": true,
+            "width": 512,
+            "height": 512
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": false,
+            "score": 3,
+            "max_score": 4,
+            "scores": {
+              "red mug": true,
+              "blue notebook": false,
+              "correct left-right placement": true,
+              "no visible text": true
+            },
+            "notes": "Red mug is left of a white, not blue, notebook; no readable text."
+          }
+        },
+        {
+          "case": "typography",
+          "prompt": "A clean white poster with the exact black headline AI LAB 2026 and the exact smaller line LOCAL MODELS, centered, no other words or letters",
+          "rubric": [
+            "exact headline AI LAB 2026",
+            "exact line LOCAL MODELS",
+            "no extra text",
+            "legible typography"
+          ],
+          "ok": true,
+          "job_id": "dcd93f18235646438f29b3919ae7e023",
+          "status": "succeeded",
+          "duration_ms": 5377,
+          "effective_settings": {},
+          "artifact": "library/sd15-smoke/typography.png",
+          "deterministic": {
+            "bytes": 320408,
+            "sha256": "d7306e8289ea3bad59009e490c50c436434ce5661d62ab69fb72701ef8b1653e",
+            "png": true,
+            "width": 512,
+            "height": 512
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": false,
+            "score": 0,
+            "max_score": 4,
+            "scores": {
+              "exact headline AI LAB 2026": false,
+              "exact line LOCAL MODELS": false,
+              "no extra text": false,
+              "legible typography": false
+            },
+            "notes": "Malformed pseudo-text replaces both requested lines."
+          }
+        },
+        {
+          "case": "spatial",
+          "prompt": "A yellow cube between a green glass sphere and a purple metal pyramid, all three objects fully visible on a white shelf, sphere on the left and pyramid on the right",
+          "rubric": [
+            "three objects",
+            "cube in center",
+            "sphere on left",
+            "pyramid on right",
+            "requested colors"
+          ],
+          "ok": true,
+          "job_id": "4d7f6771ffd044b5a0ccd2b5345a3b84",
+          "status": "succeeded",
+          "duration_ms": 5489,
+          "effective_settings": {},
+          "artifact": "library/sd15-smoke/spatial.png",
+          "deterministic": {
+            "bytes": 360261,
+            "sha256": "c6458b7dfeff8d6b31a7b1f9940771a5a6d713758e86e85bade070d87a57517b",
+            "png": true,
+            "width": 512,
+            "height": 512
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": false,
+            "score": 0,
+            "max_score": 5,
+            "scores": {
+              "three objects": false,
+              "cube in center": false,
+              "sphere on left": false,
+              "pyramid on right": false,
+              "requested colors": false
+            },
+            "notes": "Only one yellow-green sphere is visible; cube and pyramid are absent."
+          }
+        },
+        {
+          "case": "character-sheet",
+          "prompt": "A four-panel comic character sheet of the same small orange fox detective in every panel, identical green hat and blue scarf, front view, side view, running, and reading a clue, clean ink and flat colors, no text",
+          "rubric": [
+            "four panels",
+            "same fox identity",
+            "green hat retained",
+            "blue scarf retained",
+            "four requested poses",
+            "no text"
+          ],
+          "ok": true,
+          "job_id": "eed0323b956a4e9091f7a8d4bd985c70",
+          "status": "succeeded",
+          "duration_ms": 5376,
+          "effective_settings": {},
+          "artifact": "library/sd15-smoke/character-sheet.png",
+          "deterministic": {
+            "bytes": 331058,
+            "sha256": "8016fd8911c15553489a6d2d87c922bb59ad05ea568323d065d723dceb217031",
+            "png": true,
+            "width": 512,
+            "height": 512
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": false,
+            "score": 3,
+            "max_score": 6,
+            "scores": {
+              "four panels": true,
+              "same fox identity": true,
+              "green hat retained": false,
+              "blue scarf retained": true,
+              "four requested poses": false,
+              "no text": false
+            },
+            "notes": "Four panels and a consistent fox are present, but the hat is beige, requested actions are missing, and pseudo-text captions are visible."
+          }
+        },
+        {
+          "case": "romanian-scene",
+          "prompt": "Photorealistic early morning on a quiet cobblestone street in Brasov, Romania, old pastel facades, Black Church tower in the distance, light autumn fog, no signs or readable text",
+          "rubric": [
+            "photorealistic",
+            "Brasov architectural cues",
+            "distant church tower",
+            "morning fog",
+            "no readable text"
+          ],
+          "ok": true,
+          "job_id": "d18c85981c734380a0dd7a17f4366722",
+          "status": "succeeded",
+          "duration_ms": 5515,
+          "effective_settings": {},
+          "artifact": "library/sd15-smoke/romanian-scene.png",
+          "deterministic": {
+            "bytes": 512592,
+            "sha256": "8be966b8655bd588fce99a338e5278b32a9994ab79f4dabb75e47d024ce67d13",
+            "png": true,
+            "width": 512,
+            "height": 512
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": false,
+            "score": 4,
+            "max_score": 5,
+            "scores": {
+              "photorealistic": true,
+              "Brasov architectural cues": true,
+              "distant church tower": true,
+              "morning fog": false,
+              "no readable text": true
+            },
+            "notes": "Photorealistic pastel old-town street and tower are present, but morning fog is absent."
+          }
+        }
+      ],
+      "preload_unloads": [],
+      "load": {
+        "ok": true,
+        "wall_s": 9.437,
+        "manager": {
+          "instance_id": "image-smoke",
+          "kind": "load",
+          "ok": true,
+          "total_ms": 9364,
+          "steps": [
+            {
+              "phase": "starting",
+              "elapsed_ms": 9
+            },
+            {
+              "phase": "process_up",
+              "elapsed_ms": 24
+            },
+            {
+              "phase": "ready",
+              "elapsed_ms": 9351
+            }
+          ],
+          "error": ""
+        }
+      },
+      "unload": {
+        "instance_id": "image-smoke",
+        "kind": "unload",
+        "ok": true,
+        "total_ms": 888,
+        "steps": [
+          {
+            "phase": "stopping",
+            "elapsed_ms": 0
+          },
+          {
+            "phase": "process_gone",
+            "elapsed_ms": 19
+          },
+          {
+            "phase": "memory_released",
+            "elapsed_ms": 881
+          }
+        ],
+        "error": ""
+      }
+    },
+    "qwen-image-benchmark": {
+      "instance": "image-qwen",
+      "task": "generation",
+      "cases": [
+        {
+          "case": "composition",
+          "prompt": "A studio photograph of a red ceramic mug beside a closed blue notebook on a neutral gray table, mug on the left and notebook on the right, soft daylight, no text",
+          "rubric": [
+            "red mug",
+            "blue notebook",
+            "correct left-right placement",
+            "no visible text"
+          ],
+          "ok": true,
+          "job_id": "6763c7e1870d45f284925b1b2c5f9bf7",
+          "status": "succeeded",
+          "duration_ms": 1178770,
+          "effective_settings": {},
+          "artifact": "library/qwen-image-benchmark/composition.png",
+          "deterministic": {
+            "bytes": 1226397,
+            "sha256": "3e0b2ae466fb933783d9776201b8ee8c375400b2cfa0530a1ae5f568f713422b",
+            "png": true,
+            "width": 1024,
+            "height": 1024
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": true,
+            "score": 4,
+            "max_score": 4,
+            "scores": {
+              "red mug": true,
+              "blue notebook": true,
+              "correct left-right placement": true,
+              "no visible text": true
+            },
+            "notes": "All requested objects, colors and placement are present without visible text."
+          }
+        },
+        {
+          "case": "typography",
+          "prompt": "A clean white poster with the exact black headline AI LAB 2026 and the exact smaller line LOCAL MODELS, centered, no other words or letters",
+          "rubric": [
+            "exact headline AI LAB 2026",
+            "exact line LOCAL MODELS",
+            "no extra text",
+            "legible typography"
+          ],
+          "ok": true,
+          "job_id": "be093cf07d6e427692ca6e008daba735",
+          "status": "succeeded",
+          "duration_ms": 1233703,
+          "effective_settings": {},
+          "artifact": "library/qwen-image-benchmark/typography.png",
+          "deterministic": {
+            "bytes": 1134137,
+            "sha256": "c566ff183403999c9600fc36b485e8d217f69f4e847b868a6000fa5d5714f9a6",
+            "png": true,
+            "width": 1024,
+            "height": 1024
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": true,
+            "score": 4,
+            "max_score": 4,
+            "scores": {
+              "exact headline AI LAB 2026": true,
+              "exact line LOCAL MODELS": true,
+              "no extra text": true,
+              "legible typography": true
+            },
+            "notes": "Both requested lines are exact, centered and legible with no extra text."
+          }
+        },
+        {
+          "case": "spatial",
+          "prompt": "A yellow cube between a green glass sphere and a purple metal pyramid, all three objects fully visible on a white shelf, sphere on the left and pyramid on the right",
+          "rubric": [
+            "three objects",
+            "cube in center",
+            "sphere on left",
+            "pyramid on right",
+            "requested colors"
+          ],
+          "ok": true,
+          "job_id": "4d2010d7baf04491aaa35ccc00a07cd7",
+          "status": "succeeded",
+          "duration_ms": 1215357,
+          "effective_settings": {},
+          "artifact": "library/qwen-image-benchmark/spatial.png",
+          "deterministic": {
+            "bytes": 1335359,
+            "sha256": "80caf760149433330bb7aaec03b7131f24ed1173e985fa648cc4ff4c60e171f6",
+            "png": true,
+            "width": 1024,
+            "height": 1024
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": true,
+            "score": 5,
+            "max_score": 5,
+            "scores": {
+              "three objects": true,
+              "cube in center": true,
+              "sphere on left": true,
+              "pyramid on right": true,
+              "requested colors": true
+            },
+            "notes": "All three objects, materials, colors and positions match the prompt."
+          }
+        },
+        {
+          "case": "character-sheet",
+          "prompt": "A four-panel comic character sheet of the same small orange fox detective in every panel, identical green hat and blue scarf, front view, side view, running, and reading a clue, clean ink and flat colors, no text",
+          "rubric": [
+            "four panels",
+            "same fox identity",
+            "green hat retained",
+            "blue scarf retained",
+            "four requested poses",
+            "no text"
+          ],
+          "ok": true,
+          "job_id": "ab3e3906981841d292bdacf25ad0aec7",
+          "status": "succeeded",
+          "duration_ms": 1220128,
+          "effective_settings": {},
+          "artifact": "library/qwen-image-benchmark/character-sheet.png",
+          "deterministic": {
+            "bytes": 1557520,
+            "sha256": "fab790f00175f401fd78f6e1c1079b9fbf36cf4f67c6a985f36b44ffb4353abe",
+            "png": true,
+            "width": 1024,
+            "height": 1024
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": true,
+            "score": 6,
+            "max_score": 6,
+            "scores": {
+              "four panels": true,
+              "same fox identity": true,
+              "green hat retained": true,
+              "blue scarf retained": true,
+              "four requested poses": true,
+              "no text": true
+            },
+            "notes": "Four clean panels preserve identity, hat and scarf across front, side, running and reading poses; no readable text."
+          }
+        },
+        {
+          "case": "romanian-scene",
+          "prompt": "Photorealistic early morning on a quiet cobblestone street in Brasov, Romania, old pastel facades, Black Church tower in the distance, light autumn fog, no signs or readable text",
+          "rubric": [
+            "photorealistic",
+            "Brasov architectural cues",
+            "distant church tower",
+            "morning fog",
+            "no readable text"
+          ],
+          "ok": true,
+          "job_id": "322abd2e400c47fe927249bbe6ad57da",
+          "status": "succeeded",
+          "duration_ms": 1225169,
+          "effective_settings": {},
+          "artifact": "library/qwen-image-benchmark/romanian-scene.png",
+          "deterministic": {
+            "bytes": 1657323,
+            "sha256": "0372a4d313ba783263c1691024b6b57ad796b731d747d874e1eeac97939bbbd3",
+            "png": true,
+            "width": 1024,
+            "height": 1024
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": true,
+            "score": 5,
+            "max_score": 5,
+            "scores": {
+              "photorealistic": true,
+              "Brasov architectural cues": true,
+              "distant church tower": true,
+              "morning fog": true,
+              "no readable text": true
+            },
+            "notes": "Pastel Brasov streetscape, distant church tower and morning fog are all present without readable text."
+          }
+        }
+      ],
+      "preload_unloads": [],
+      "load": {
+        "ok": true,
+        "wall_s": 5.419,
+        "manager": {
+          "instance_id": "image-qwen",
+          "kind": "load",
+          "ok": true,
+          "total_ms": 5304,
+          "steps": [
+            {
+              "phase": "starting",
+              "elapsed_ms": 9
+            },
+            {
+              "phase": "process_up",
+              "elapsed_ms": 22
+            },
+            {
+              "phase": "ready",
+              "elapsed_ms": 5290
+            }
+          ],
+          "error": ""
+        }
+      },
+      "unload": {
+        "instance_id": "image-qwen",
+        "kind": "unload",
+        "ok": true,
+        "total_ms": 1022,
+        "steps": [
+          {
+            "phase": "stopping",
+            "elapsed_ms": 0
+          },
+          {
+            "phase": "process_gone",
+            "elapsed_ms": 28
+          },
+          {
+            "phase": "memory_released",
+            "elapsed_ms": 994
+          }
+        ],
+        "error": ""
+      }
+    },
+    "flux2-benchmark": {
+      "instance": "image-flux2",
+      "task": "generation",
+      "cases": [
+        {
+          "case": "composition",
+          "prompt": "A studio photograph of a red ceramic mug beside a closed blue notebook on a neutral gray table, mug on the left and notebook on the right, soft daylight, no text",
+          "rubric": [
+            "red mug",
+            "blue notebook",
+            "correct left-right placement",
+            "no visible text"
+          ],
+          "ok": false,
+          "job_id": "a5ac1d26ced2465eb033d62a05d911d3",
+          "status": "failed",
+          "duration_ms": 103996,
+          "effective_settings": {},
+          "error": "HTTP Error 400: Bad Request"
+        },
+        {
+          "case": "typography",
+          "prompt": "A clean white poster with the exact black headline AI LAB 2026 and the exact smaller line LOCAL MODELS, centered, no other words or letters",
+          "rubric": [
+            "exact headline AI LAB 2026",
+            "exact line LOCAL MODELS",
+            "no extra text",
+            "legible typography"
+          ],
+          "ok": false,
+          "job_id": "6a898d6b2af84a4fab0648eff73d9193",
+          "status": "failed",
+          "duration_ms": 12287,
+          "effective_settings": {},
+          "error": "HTTP Error 400: Bad Request"
+        },
+        {
+          "case": "spatial",
+          "prompt": "A yellow cube between a green glass sphere and a purple metal pyramid, all three objects fully visible on a white shelf, sphere on the left and pyramid on the right",
+          "rubric": [
+            "three objects",
+            "cube in center",
+            "sphere on left",
+            "pyramid on right",
+            "requested colors"
+          ],
+          "ok": false,
+          "job_id": "299e07d0e21d43509ca9e5bdc478f9fa",
+          "status": "failed",
+          "duration_ms": 9341,
+          "effective_settings": {},
+          "error": "HTTP Error 400: Bad Request"
+        },
+        {
+          "case": "character-sheet",
+          "prompt": "A four-panel comic character sheet of the same small orange fox detective in every panel, identical green hat and blue scarf, front view, side view, running, and reading a clue, clean ink and flat colors, no text",
+          "rubric": [
+            "four panels",
+            "same fox identity",
+            "green hat retained",
+            "blue scarf retained",
+            "four requested poses",
+            "no text"
+          ],
+          "ok": false,
+          "job_id": "f22124814e524e0aa6ea169f5d6697c4",
+          "status": "failed",
+          "duration_ms": 9362,
+          "effective_settings": {},
+          "error": "HTTP Error 400: Bad Request"
+        },
+        {
+          "case": "romanian-scene",
+          "prompt": "Photorealistic early morning on a quiet cobblestone street in Brasov, Romania, old pastel facades, Black Church tower in the distance, light autumn fog, no signs or readable text",
+          "rubric": [
+            "photorealistic",
+            "Brasov architectural cues",
+            "distant church tower",
+            "morning fog",
+            "no readable text"
+          ],
+          "ok": false,
+          "job_id": "8d674408165948d195e6e0498449bed2",
+          "status": "failed",
+          "duration_ms": 9362,
+          "effective_settings": {},
+          "error": "HTTP Error 400: Bad Request"
+        }
+      ],
+      "preload_unloads": [],
+      "load": {
+        "ok": true,
+        "wall_s": 0.356,
+        "manager": {
+          "instance_id": "image-flux2",
+          "kind": "load",
+          "ok": true,
+          "total_ms": 282,
+          "steps": [
+            {
+              "phase": "starting",
+              "elapsed_ms": 7
+            },
+            {
+              "phase": "process_up",
+              "elapsed_ms": 22
+            },
+            {
+              "phase": "ready",
+              "elapsed_ms": 271
+            }
+          ],
+          "error": ""
+        }
+      },
+      "unload": {
+        "instance_id": "image-flux2",
+        "kind": "unload",
+        "ok": true,
+        "total_ms": 966,
+        "steps": [
+          {
+            "phase": "stopping",
+            "elapsed_ms": 0
+          },
+          {
+            "phase": "process_gone",
+            "elapsed_ms": 28
+          },
+          {
+            "phase": "memory_released",
+            "elapsed_ms": 949
+          }
+        ],
+        "error": ""
+      }
+    },
+    "flux2-klein-4b-benchmark": {
+      "instance": "image-flux2-klein-4b",
+      "task": "generation",
+      "cases": [
+        {
+          "case": "composition",
+          "prompt": "A studio photograph of a red ceramic mug beside a closed blue notebook on a neutral gray table, mug on the left and notebook on the right, soft daylight, no text",
+          "rubric": [
+            "red mug",
+            "blue notebook",
+            "correct left-right placement",
+            "no visible text"
+          ],
+          "ok": true,
+          "job_id": "fb7858ad9de743fa913867606b423858",
+          "status": "succeeded",
+          "duration_ms": 44694,
+          "effective_settings": {},
+          "artifact": "library/flux2-klein-4b-benchmark/composition.png",
+          "deterministic": {
+            "bytes": 1116603,
+            "sha256": "4550dd506a555eb607b608be6e714db5ef5d3943c4f6e2a3a320f931ee536847",
+            "png": true,
+            "width": 1024,
+            "height": 1024
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": true,
+            "score": 4,
+            "max_score": 4,
+            "scores": {
+              "red mug": true,
+              "blue notebook": true,
+              "correct left-right placement": true,
+              "no visible text": true
+            },
+            "notes": "All requested visual and text criteria are present without visible contradictions."
+          }
+        },
+        {
+          "case": "typography",
+          "prompt": "A clean white poster with the exact black headline AI LAB 2026 and the exact smaller line LOCAL MODELS, centered, no other words or letters",
+          "rubric": [
+            "exact headline AI LAB 2026",
+            "exact line LOCAL MODELS",
+            "no extra text",
+            "legible typography"
+          ],
+          "ok": true,
+          "job_id": "70087b35426e4e408382a316b939b7d0",
+          "status": "succeeded",
+          "duration_ms": 17859,
+          "effective_settings": {},
+          "artifact": "library/flux2-klein-4b-benchmark/typography.png",
+          "deterministic": {
+            "bytes": 296449,
+            "sha256": "86a2a1ff56fc414e0c17e02edcf7113d6d2a3319b5c4d19b9a9c6a55d52e53d7",
+            "png": true,
+            "width": 1024,
+            "height": 1024
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": true,
+            "score": 4,
+            "max_score": 4,
+            "scores": {
+              "exact headline AI LAB 2026": true,
+              "exact line LOCAL MODELS": true,
+              "no extra text": true,
+              "legible typography": true
+            },
+            "notes": "All requested visual and text criteria are present without visible contradictions."
+          }
+        },
+        {
+          "case": "spatial",
+          "prompt": "A yellow cube between a green glass sphere and a purple metal pyramid, all three objects fully visible on a white shelf, sphere on the left and pyramid on the right",
+          "rubric": [
+            "three objects",
+            "cube in center",
+            "sphere on left",
+            "pyramid on right",
+            "requested colors"
+          ],
+          "ok": true,
+          "job_id": "625cf3eb4134400bbbfb1cee45f8fcd7",
+          "status": "succeeded",
+          "duration_ms": 17462,
+          "effective_settings": {},
+          "artifact": "library/flux2-klein-4b-benchmark/spatial.png",
+          "deterministic": {
+            "bytes": 1026018,
+            "sha256": "802dd0537dbb9dd2ff388a4d078d6419a4a1d291e85d8c3bccef2e682e4934e8",
+            "png": true,
+            "width": 1024,
+            "height": 1024
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": true,
+            "score": 5,
+            "max_score": 5,
+            "scores": {
+              "three objects": true,
+              "cube in center": true,
+              "sphere on left": true,
+              "pyramid on right": true,
+              "requested colors": true
+            },
+            "notes": "All requested visual and text criteria are present without visible contradictions."
+          }
+        },
+        {
+          "case": "character-sheet",
+          "prompt": "A four-panel comic character sheet of the same small orange fox detective in every panel, identical green hat and blue scarf, front view, side view, running, and reading a clue, clean ink and flat colors, no text",
+          "rubric": [
+            "four panels",
+            "same fox identity",
+            "green hat retained",
+            "blue scarf retained",
+            "four requested poses",
+            "no text"
+          ],
+          "ok": true,
+          "job_id": "dafa948f0b454700a157b18e5ecb299a",
+          "status": "succeeded",
+          "duration_ms": 17480,
+          "effective_settings": {},
+          "artifact": "library/flux2-klein-4b-benchmark/character-sheet.png",
+          "deterministic": {
+            "bytes": 564096,
+            "sha256": "797d5165cc88e43446d3b059c5357837b0b6f3226a8cc5c1ab306ff524b84eed",
+            "png": true,
+            "width": 1024,
+            "height": 1024
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": false,
+            "score": 4,
+            "max_score": 6,
+            "scores": {
+              "four panels": false,
+              "same fox identity": true,
+              "green hat retained": true,
+              "blue scarf retained": true,
+              "four requested poses": false,
+              "no text": true
+            },
+            "notes": "Four consistent fox depictions are present, but they are not separated into four panels and the side pose reads as a rear/three-quarter view."
+          }
+        },
+        {
+          "case": "romanian-scene",
+          "prompt": "Photorealistic early morning on a quiet cobblestone street in Brasov, Romania, old pastel facades, Black Church tower in the distance, light autumn fog, no signs or readable text",
+          "rubric": [
+            "photorealistic",
+            "Brasov architectural cues",
+            "distant church tower",
+            "morning fog",
+            "no readable text"
+          ],
+          "ok": true,
+          "job_id": "cd496c6ddf8e48ea8d626356394a823e",
+          "status": "succeeded",
+          "duration_ms": 17637,
+          "effective_settings": {},
+          "artifact": "library/flux2-klein-4b-benchmark/romanian-scene.png",
+          "deterministic": {
+            "bytes": 1830886,
+            "sha256": "d3a9e947c19cd593d3c4ed93d7bd88c7dfd51b9b0a449be5671a0d0ce7a93123",
+            "png": true,
+            "width": 1024,
+            "height": 1024
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": true,
+            "score": 5,
+            "max_score": 5,
+            "scores": {
+              "photorealistic": true,
+              "Brasov architectural cues": true,
+              "distant church tower": true,
+              "morning fog": true,
+              "no readable text": true
+            },
+            "notes": "All requested visual and text criteria are present without visible contradictions."
+          }
+        }
+      ],
+      "preload_unloads": [
+        {
+          "id": "ocr-smoke",
+          "ok": true
+        },
+        {
+          "id": "ocr-server",
+          "ok": true
+        }
+      ],
+      "load": {
+        "ok": true,
+        "wall_s": 7.991,
+        "manager": {
+          "instance_id": "image-flux2-klein-4b",
+          "kind": "load",
+          "ok": true,
+          "total_ms": 7738,
+          "steps": [
+            {
+              "phase": "starting",
+              "elapsed_ms": 7
+            },
+            {
+              "phase": "process_up",
+              "elapsed_ms": 23
+            },
+            {
+              "phase": "ready",
+              "elapsed_ms": 7726
+            }
+          ],
+          "error": ""
+        }
+      },
+      "unload": {
+        "instance_id": "image-flux2-klein-4b",
+        "kind": "unload",
+        "ok": true,
+        "total_ms": 929,
+        "steps": [
+          {
+            "phase": "stopping",
+            "elapsed_ms": 0
+          },
+          {
+            "phase": "process_gone",
+            "elapsed_ms": 29
+          },
+          {
+            "phase": "memory_released",
+            "elapsed_ms": 914
+          }
+        ],
+        "error": ""
+      }
+    },
+    "qwen-edit-benchmark": {
+      "instance": "macos-image-qwen-edit",
+      "task": "edit",
+      "cases": [
+        {
+          "case": "mug-color",
+          "prompt": "Change only the red ceramic mug to bright yellow. Preserve the notebook, composition, lighting, camera angle, and background.",
+          "rubric": [
+            "mug is yellow",
+            "notebook unchanged",
+            "composition preserved",
+            "lighting preserved"
+          ],
+          "ok": true,
+          "source": "library/qwen-image-benchmark/composition.png",
+          "job_id": "bffd3ee5b3f74a3a8c4fa80f4f510106",
+          "status": "succeeded",
+          "duration_ms": 2522849,
+          "effective_settings": {},
+          "artifact": "library/qwen-edit-benchmark/mug-color.png",
+          "deterministic": {
+            "bytes": 1069382,
+            "sha256": "5ea0a7f6f4f1f089ebae24c75c21796daaafb98bae30b19867db0c5064d1b07f",
+            "png": true,
+            "width": 1024,
+            "height": 1024
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": true,
+            "score": 4,
+            "max_score": 4,
+            "scores": {
+              "mug is yellow": true,
+              "notebook unchanged": true,
+              "composition preserved": true,
+              "lighting preserved": true
+            },
+            "notes": "The mug is bright yellow while the notebook, composition and lighting remain visually preserved."
+          }
+        },
+        {
+          "case": "notebook-label",
+          "prompt": "Add the exact white label NOTES to the blue notebook. Do not alter the mug, table, framing, or lighting.",
+          "rubric": [
+            "exact label NOTES",
+            "label on notebook",
+            "mug unchanged",
+            "composition preserved"
+          ],
+          "ok": true,
+          "source": "library/qwen-image-benchmark/composition.png",
+          "job_id": "f7abaea8d72646e789a9c809adc7e5bf",
+          "status": "succeeded",
+          "duration_ms": 2487621,
+          "effective_settings": {},
+          "artifact": "library/qwen-edit-benchmark/notebook-label.png",
+          "deterministic": {
+            "bytes": 1067110,
+            "sha256": "1d46172a1fd38ca11790fc763966ce4bc9fa3a767a3423b525c8dc5e5f284c68",
+            "png": true,
+            "width": 1024,
+            "height": 1024
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": false,
+            "score": 3,
+            "max_score": 4,
+            "scores": {
+              "exact label NOTES": true,
+              "label on notebook": true,
+              "mug unchanged": false,
+              "composition preserved": true
+            },
+            "notes": "The exact NOTES label is on the notebook and composition is preserved, but a small unintended white mark appears on the mug."
+          }
+        },
+        {
+          "case": "background-change",
+          "prompt": "Replace only the neutral gray background with a pale mint green wall. Preserve both objects, their positions, scale, and lighting.",
+          "rubric": [
+            "mint background",
+            "both objects retained",
+            "positions preserved",
+            "scale preserved"
+          ],
+          "ok": true,
+          "source": "library/qwen-image-benchmark/composition.png",
+          "job_id": "a2deadf5c74349d9bf737b6283b3b0a1",
+          "status": "succeeded",
+          "duration_ms": 2523215,
+          "effective_settings": {},
+          "artifact": "library/qwen-edit-benchmark/background-change.png",
+          "deterministic": {
+            "bytes": 967777,
+            "sha256": "707302ff0b3338419147bfeadf6b6f9bfea1d591ca45af650736fcf3d8432ed8",
+            "png": true,
+            "width": 1024,
+            "height": 1024
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": true,
+            "score": 4,
+            "max_score": 4,
+            "scores": {
+              "mint background": true,
+              "both objects retained": true,
+              "positions preserved": true,
+              "scale preserved": true
+            },
+            "notes": "The wall is pale mint and both objects retain their positions and scale."
+          }
+        }
+      ],
+      "preload_unloads": [
+        {
+          "id": "macos-image-qwen-edit",
+          "ok": true
+        }
+      ],
+      "load": {
+        "ok": true,
+        "wall_s": 0.495,
+        "manager": {
+          "instance_id": "macos-image-qwen-edit",
+          "kind": "load",
+          "ok": true,
+          "total_ms": 265,
+          "steps": [
+            {
+              "phase": "starting",
+              "elapsed_ms": 5
+            },
+            {
+              "phase": "process_up",
+              "elapsed_ms": 18
+            },
+            {
+              "phase": "ready",
+              "elapsed_ms": 256
+            }
+          ],
+          "error": ""
+        }
+      },
+      "unload": {
+        "instance_id": "macos-image-qwen-edit",
+        "kind": "unload",
+        "ok": true,
+        "total_ms": 967,
+        "steps": [
+          {
+            "phase": "stopping",
+            "elapsed_ms": 0
+          },
+          {
+            "phase": "process_gone",
+            "elapsed_ms": 29
+          },
+          {
+            "phase": "memory_released",
+            "elapsed_ms": 950
+          }
+        ],
+        "error": ""
+      }
+    },
+    "flux2-dev-q8-benchmark": {
+      "instance": "image-flux2-dev-q8-0",
+      "task": "generation",
+      "cases": [
+        {
+          "case": "composition",
+          "prompt": "A studio photograph of a red ceramic mug beside a closed blue notebook on a neutral gray table, mug on the left and notebook on the right, soft daylight, no text",
+          "rubric": [
+            "red mug",
+            "blue notebook",
+            "correct left-right placement",
+            "no visible text"
+          ],
+          "ok": true,
+          "job_id": "14de62ad29a44040b54a7894c98d14b3",
+          "status": "succeeded",
+          "duration_ms": 1104621,
+          "effective_settings": {},
+          "artifact": "library/flux2-dev-q8-benchmark/composition.png",
+          "deterministic": {
+            "bytes": 1211342,
+            "sha256": "1c0e08efb0fba959530292b61f1d84dee680bba0d83b65505af9ae5abb7f50cc",
+            "png": true,
+            "width": 1024,
+            "height": 1024
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": true,
+            "score": 4,
+            "max_score": 4,
+            "scores": {
+              "red mug": true,
+              "blue notebook": true,
+              "correct left-right placement": true,
+              "no visible text": true
+            },
+            "notes": "All requested visual and text criteria are present without visible contradictions."
+          }
+        },
+        {
+          "case": "typography",
+          "prompt": "A clean white poster with the exact black headline AI LAB 2026 and the exact smaller line LOCAL MODELS, centered, no other words or letters",
+          "rubric": [
+            "exact headline AI LAB 2026",
+            "exact line LOCAL MODELS",
+            "no extra text",
+            "legible typography"
+          ],
+          "ok": true,
+          "job_id": "7d9ec1e7f9164833986118a8c19686c4",
+          "status": "succeeded",
+          "duration_ms": 1093070,
+          "effective_settings": {},
+          "artifact": "library/flux2-dev-q8-benchmark/typography.png",
+          "deterministic": {
+            "bytes": 505022,
+            "sha256": "f9bd91dc614291963fa4e0284e08d30dd44f151bcc2d8f8757593a6ed6444d0d",
+            "png": true,
+            "width": 1024,
+            "height": 1024
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": true,
+            "score": 4,
+            "max_score": 4,
+            "scores": {
+              "exact headline AI LAB 2026": true,
+              "exact line LOCAL MODELS": true,
+              "no extra text": true,
+              "legible typography": true
+            },
+            "notes": "All requested visual and text criteria are present without visible contradictions."
+          }
+        },
+        {
+          "case": "spatial",
+          "prompt": "A yellow cube between a green glass sphere and a purple metal pyramid, all three objects fully visible on a white shelf, sphere on the left and pyramid on the right",
+          "rubric": [
+            "three objects",
+            "cube in center",
+            "sphere on left",
+            "pyramid on right",
+            "requested colors"
+          ],
+          "ok": true,
+          "job_id": "5ae58bb96959409084be7b358455e246",
+          "status": "succeeded",
+          "duration_ms": 999741,
+          "effective_settings": {},
+          "artifact": "library/flux2-dev-q8-benchmark/spatial.png",
+          "deterministic": {
+            "bytes": 1096195,
+            "sha256": "faaef052a2f532a83f1d558fe3f2793a767d0596b16a08fd59caba6344c3facf",
+            "png": true,
+            "width": 1024,
+            "height": 1024
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": true,
+            "score": 5,
+            "max_score": 5,
+            "scores": {
+              "three objects": true,
+              "cube in center": true,
+              "sphere on left": true,
+              "pyramid on right": true,
+              "requested colors": true
+            },
+            "notes": "All requested visual and text criteria are present without visible contradictions."
+          }
+        },
+        {
+          "case": "character-sheet",
+          "prompt": "A four-panel comic character sheet of the same small orange fox detective in every panel, identical green hat and blue scarf, front view, side view, running, and reading a clue, clean ink and flat colors, no text",
+          "rubric": [
+            "four panels",
+            "same fox identity",
+            "green hat retained",
+            "blue scarf retained",
+            "four requested poses",
+            "no text"
+          ],
+          "ok": true,
+          "job_id": "c044743102c34059bb2faf4c6be987e1",
+          "status": "succeeded",
+          "duration_ms": 1013020,
+          "effective_settings": {},
+          "artifact": "library/flux2-dev-q8-benchmark/character-sheet.png",
+          "deterministic": {
+            "bytes": 881375,
+            "sha256": "a579b62813523fe0f99ed6bc294da0134def3013511240d01051c978292cc508",
+            "png": true,
+            "width": 1024,
+            "height": 1024
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": true,
+            "score": 6,
+            "max_score": 6,
+            "scores": {
+              "four panels": true,
+              "same fox identity": true,
+              "green hat retained": true,
+              "blue scarf retained": true,
+              "four requested poses": true,
+              "no text": true
+            },
+            "notes": "All requested visual and text criteria are present without visible contradictions."
+          }
+        },
+        {
+          "case": "romanian-scene",
+          "prompt": "Photorealistic early morning on a quiet cobblestone street in Brasov, Romania, old pastel facades, Black Church tower in the distance, light autumn fog, no signs or readable text",
+          "rubric": [
+            "photorealistic",
+            "Brasov architectural cues",
+            "distant church tower",
+            "morning fog",
+            "no readable text"
+          ],
+          "ok": true,
+          "job_id": "03f8f42c8ad04d60904c6a0d087840c2",
+          "status": "succeeded",
+          "duration_ms": 1026659,
+          "effective_settings": {},
+          "artifact": "library/flux2-dev-q8-benchmark/romanian-scene.png",
+          "deterministic": {
+            "bytes": 1762598,
+            "sha256": "64e4fca53b13f1ac2c6e628b508dd668c1daa335152985fd5a8c580acdb2f468",
+            "png": true,
+            "width": 1024,
+            "height": 1024
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": true,
+            "score": 5,
+            "max_score": 5,
+            "scores": {
+              "photorealistic": true,
+              "Brasov architectural cues": true,
+              "distant church tower": true,
+              "morning fog": true,
+              "no readable text": true
+            },
+            "notes": "All requested visual and text criteria are present without visible contradictions."
+          }
+        }
+      ],
+      "preload_unloads": [],
+      "load": {
+        "ok": true,
+        "wall_s": 0.98,
+        "manager": {
+          "instance_id": "image-flux2-dev-q8-0",
+          "kind": "load",
+          "ok": true,
+          "total_ms": 303,
+          "steps": [
+            {
+              "phase": "starting",
+              "elapsed_ms": 12
+            },
+            {
+              "phase": "process_up",
+              "elapsed_ms": 35
+            },
+            {
+              "phase": "ready",
+              "elapsed_ms": 291
+            }
+          ],
+          "error": ""
+        }
+      },
+      "unload": {
+        "instance_id": "image-flux2-dev-q8-0",
+        "kind": "unload",
+        "ok": true,
+        "total_ms": 944,
+        "steps": [
+          {
+            "phase": "stopping",
+            "elapsed_ms": 0
+          },
+          {
+            "phase": "process_gone",
+            "elapsed_ms": 23
+          },
+          {
+            "phase": "memory_released",
+            "elapsed_ms": 926
+          }
+        ],
+        "error": ""
+      }
+    },
+    "flux2-dev-bf16-benchmark": {
+      "instance": "macos-image-flux2-dev-bf16",
+      "task": "generation",
+      "cases": [
+        {
+          "case": "composition",
+          "prompt": "A studio photograph of a red ceramic mug beside a closed blue notebook on a neutral gray table, mug on the left and notebook on the right, soft daylight, no text",
+          "rubric": [
+            "red mug",
+            "blue notebook",
+            "correct left-right placement",
+            "no visible text"
+          ],
+          "ok": true,
+          "job_id": "d84a74b056734202948e4bcf416bf4a2",
+          "status": "succeeded",
+          "duration_ms": 1289185,
+          "effective_settings": {},
+          "artifact": "library/flux2-dev-bf16-benchmark/composition.png",
+          "deterministic": {
+            "bytes": 1210047,
+            "sha256": "27f4dfd9c71835140e51767b6bdec71c306249d31b286b25364de26666e2dfa2",
+            "png": true,
+            "width": 1024,
+            "height": 1024
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": true,
+            "score": 4,
+            "max_score": 4,
+            "scores": {
+              "red mug": true,
+              "blue notebook": true,
+              "correct left-right placement": true,
+              "no visible text": true
+            },
+            "notes": "All requested visual and text criteria are present without visible contradictions."
+          }
+        },
+        {
+          "case": "typography",
+          "prompt": "A clean white poster with the exact black headline AI LAB 2026 and the exact smaller line LOCAL MODELS, centered, no other words or letters",
+          "rubric": [
+            "exact headline AI LAB 2026",
+            "exact line LOCAL MODELS",
+            "no extra text",
+            "legible typography"
+          ],
+          "ok": true,
+          "job_id": "405664cf41dd44a2832f9d2dee7b272a",
+          "status": "succeeded",
+          "duration_ms": 1248839,
+          "effective_settings": {},
+          "artifact": "library/flux2-dev-bf16-benchmark/typography.png",
+          "deterministic": {
+            "bytes": 501825,
+            "sha256": "754b4aea51ab275db468d955fe94ef86646e6299b9bbe3c22156ba707ff7fea3",
+            "png": true,
+            "width": 1024,
+            "height": 1024
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": true,
+            "score": 4,
+            "max_score": 4,
+            "scores": {
+              "exact headline AI LAB 2026": true,
+              "exact line LOCAL MODELS": true,
+              "no extra text": true,
+              "legible typography": true
+            },
+            "notes": "All requested visual and text criteria are present without visible contradictions."
+          }
+        },
+        {
+          "case": "spatial",
+          "prompt": "A yellow cube between a green glass sphere and a purple metal pyramid, all three objects fully visible on a white shelf, sphere on the left and pyramid on the right",
+          "rubric": [
+            "three objects",
+            "cube in center",
+            "sphere on left",
+            "pyramid on right",
+            "requested colors"
+          ],
+          "ok": true,
+          "job_id": "ec4afc3189cb484c8b4869d39bd97e09",
+          "status": "succeeded",
+          "duration_ms": 1128852,
+          "effective_settings": {},
+          "artifact": "library/flux2-dev-bf16-benchmark/spatial.png",
+          "deterministic": {
+            "bytes": 1100109,
+            "sha256": "7509448b7d921091a0f85201fa6a5a494bd2c931543b316aef5254c9013ab85c",
+            "png": true,
+            "width": 1024,
+            "height": 1024
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": true,
+            "score": 5,
+            "max_score": 5,
+            "scores": {
+              "three objects": true,
+              "cube in center": true,
+              "sphere on left": true,
+              "pyramid on right": true,
+              "requested colors": true
+            },
+            "notes": "All requested visual and text criteria are present without visible contradictions."
+          }
+        },
+        {
+          "case": "character-sheet",
+          "prompt": "A four-panel comic character sheet of the same small orange fox detective in every panel, identical green hat and blue scarf, front view, side view, running, and reading a clue, clean ink and flat colors, no text",
+          "rubric": [
+            "four panels",
+            "same fox identity",
+            "green hat retained",
+            "blue scarf retained",
+            "four requested poses",
+            "no text"
+          ],
+          "ok": true,
+          "job_id": "bf706d19372d46ccb28a76dc865c013e",
+          "status": "succeeded",
+          "duration_ms": 1168240,
+          "effective_settings": {},
+          "artifact": "library/flux2-dev-bf16-benchmark/character-sheet.png",
+          "deterministic": {
+            "bytes": 874181,
+            "sha256": "ce5f47ebd24ca49382fc422f4d1418f6aea99380525fccfc83a5f9e0948eecfc",
+            "png": true,
+            "width": 1024,
+            "height": 1024
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": true,
+            "score": 6,
+            "max_score": 6,
+            "scores": {
+              "four panels": true,
+              "same fox identity": true,
+              "green hat retained": true,
+              "blue scarf retained": true,
+              "four requested poses": true,
+              "no text": true
+            },
+            "notes": "All requested visual and text criteria are present without visible contradictions."
+          }
+        },
+        {
+          "case": "romanian-scene",
+          "prompt": "Photorealistic early morning on a quiet cobblestone street in Brasov, Romania, old pastel facades, Black Church tower in the distance, light autumn fog, no signs or readable text",
+          "rubric": [
+            "photorealistic",
+            "Brasov architectural cues",
+            "distant church tower",
+            "morning fog",
+            "no readable text"
+          ],
+          "ok": true,
+          "job_id": "98b4405a12b242f8aefddd5924bf2c13",
+          "status": "succeeded",
+          "duration_ms": 1231525,
+          "effective_settings": {},
+          "artifact": "library/flux2-dev-bf16-benchmark/romanian-scene.png",
+          "deterministic": {
+            "bytes": 1762248,
+            "sha256": "42d3a11607fb59c8a60ee10c33601caf65957aea556c170e2f2f644e214f55f8",
+            "png": true,
+            "width": 1024,
+            "height": 1024
+          },
+          "semantic_review": {
+            "status": "complete",
+            "passed": true,
+            "score": 5,
+            "max_score": 5,
+            "scores": {
+              "photorealistic": true,
+              "Brasov architectural cues": true,
+              "distant church tower": true,
+              "morning fog": true,
+              "no readable text": true
+            },
+            "notes": "All requested visual and text criteria are present without visible contradictions."
+          }
+        }
+      ],
+      "preload_unloads": [],
+      "load": {
+        "ok": true,
+        "wall_s": 0.526,
+        "manager": {
+          "instance_id": "macos-image-flux2-dev-bf16",
+          "kind": "load",
+          "ok": true,
+          "total_ms": 282,
+          "steps": [
+            {
+              "phase": "starting",
+              "elapsed_ms": 7
+            },
+            {
+              "phase": "process_up",
+              "elapsed_ms": 23
+            },
+            {
+              "phase": "ready",
+              "elapsed_ms": 270
+            }
+          ],
+          "error": ""
+        }
+      },
+      "unload": {
+        "instance_id": "macos-image-flux2-dev-bf16",
+        "kind": "unload",
+        "ok": true,
+        "total_ms": 937,
+        "steps": [
+          {
+            "phase": "stopping",
+            "elapsed_ms": 0
+          },
+          {
+            "phase": "process_gone",
+            "elapsed_ms": 29
+          },
+          {
+            "phase": "memory_released",
+            "elapsed_ms": 918
+          }
+        ],
+        "error": ""
+      }
+    }
+  },
+  "semantic_review": {
+    "completed": 28,
+    "passed_cases": 21,
+    "failed_cases": 7,
+    "criteria_passed": 115,
+    "criteria_total": 132
+  }
+}

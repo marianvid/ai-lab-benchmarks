@@ -19,7 +19,10 @@ PROFILES = (
     ("sd15-smoke", "image-smoke", "generation"),
     ("qwen-image-benchmark", "image-qwen", "generation"),
     ("flux2-benchmark", "image-flux2", "generation"),
-    ("qwen-edit-benchmark", "image-qwen-edit", "edit"),
+    ("flux2-dev-bf16-benchmark", "macos-image-flux2-dev-bf16", "generation"),
+    ("flux2-dev-q8-benchmark", "image-flux2-dev-q8-0", "generation"),
+    ("flux2-klein-4b-benchmark", "image-flux2-klein-4b", "generation"),
+    ("qwen-edit-benchmark", "macos-image-qwen-edit", "edit"),
 )
 
 
@@ -87,7 +90,7 @@ def multipart(url: str, fields: dict[str, str], image: pathlib.Path,
         return json.load(response)
 
 
-def wait_job(base: str, job_id: str, timeout_s: int = 1800) -> dict:
+def wait_job(base: str, job_id: str, timeout_s: int = 7200) -> dict:
     deadline = time.monotonic() + timeout_s
     while time.monotonic() < deadline:
         job = request(base, f"/api/image-jobs/{job_id}")

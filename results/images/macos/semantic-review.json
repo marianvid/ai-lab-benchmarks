@@ -1,0 +1,453 @@
+{
+  "schema_version": 1,
+  "reviewer": "codex-visual-review",
+  "reviews": [
+    {
+      "profile": "flux2-dev-bf16-benchmark",
+      "case": "character-sheet",
+      "status": "complete",
+      "passed": true,
+      "score": 6,
+      "max_score": 6,
+      "criteria": {
+        "four panels": true,
+        "same fox identity": true,
+        "green hat retained": true,
+        "blue scarf retained": true,
+        "four requested poses": true,
+        "no text": true
+      },
+      "notes": "All requested visual and text criteria are present without visible contradictions."
+    },
+    {
+      "profile": "flux2-dev-bf16-benchmark",
+      "case": "composition",
+      "status": "complete",
+      "passed": true,
+      "score": 4,
+      "max_score": 4,
+      "criteria": {
+        "red mug": true,
+        "blue notebook": true,
+        "correct left-right placement": true,
+        "no visible text": true
+      },
+      "notes": "All requested visual and text criteria are present without visible contradictions."
+    },
+    {
+      "profile": "flux2-dev-bf16-benchmark",
+      "case": "romanian-scene",
+      "status": "complete",
+      "passed": true,
+      "score": 5,
+      "max_score": 5,
+      "criteria": {
+        "photorealistic": true,
+        "Brasov architectural cues": true,
+        "distant church tower": true,
+        "morning fog": true,
+        "no readable text": true
+      },
+      "notes": "All requested visual and text criteria are present without visible contradictions."
+    },
+    {
+      "profile": "flux2-dev-bf16-benchmark",
+      "case": "spatial",
+      "status": "complete",
+      "passed": true,
+      "score": 5,
+      "max_score": 5,
+      "criteria": {
+        "three objects": true,
+        "cube in center": true,
+        "sphere on left": true,
+        "pyramid on right": true,
+        "requested colors": true
+      },
+      "notes": "All requested visual and text criteria are present without visible contradictions."
+    },
+    {
+      "profile": "flux2-dev-bf16-benchmark",
+      "case": "typography",
+      "status": "complete",
+      "passed": true,
+      "score": 4,
+      "max_score": 4,
+      "criteria": {
+        "exact headline AI LAB 2026": true,
+        "exact line LOCAL MODELS": true,
+        "no extra text": true,
+        "legible typography": true
+      },
+      "notes": "All requested visual and text criteria are present without visible contradictions."
+    },
+    {
+      "profile": "flux2-dev-q8-benchmark",
+      "case": "character-sheet",
+      "status": "complete",
+      "passed": true,
+      "score": 6,
+      "max_score": 6,
+      "criteria": {
+        "four panels": true,
+        "same fox identity": true,
+        "green hat retained": true,
+        "blue scarf retained": true,
+        "four requested poses": true,
+        "no text": true
+      },
+      "notes": "All requested visual and text criteria are present without visible contradictions."
+    },
+    {
+      "profile": "flux2-dev-q8-benchmark",
+      "case": "composition",
+      "status": "complete",
+      "passed": true,
+      "score": 4,
+      "max_score": 4,
+      "criteria": {
+        "red mug": true,
+        "blue notebook": true,
+        "correct left-right placement": true,
+        "no visible text": true
+      },
+      "notes": "All requested visual and text criteria are present without visible contradictions."
+    },
+    {
+      "profile": "flux2-dev-q8-benchmark",
+      "case": "romanian-scene",
+      "status": "complete",
+      "passed": true,
+      "score": 5,
+      "max_score": 5,
+      "criteria": {
+        "photorealistic": true,
+        "Brasov architectural cues": true,
+        "distant church tower": true,
+        "morning fog": true,
+        "no readable text": true
+      },
+      "notes": "All requested visual and text criteria are present without visible contradictions."
+    },
+    {
+      "profile": "flux2-dev-q8-benchmark",
+      "case": "spatial",
+      "status": "complete",
+      "passed": true,
+      "score": 5,
+      "max_score": 5,
+      "criteria": {
+        "three objects": true,
+        "cube in center": true,
+        "sphere on left": true,
+        "pyramid on right": true,
+        "requested colors": true
+      },
+      "notes": "All requested visual and text criteria are present without visible contradictions."
+    },
+    {
+      "profile": "flux2-dev-q8-benchmark",
+      "case": "typography",
+      "status": "complete",
+      "passed": true,
+      "score": 4,
+      "max_score": 4,
+      "criteria": {
+        "exact headline AI LAB 2026": true,
+        "exact line LOCAL MODELS": true,
+        "no extra text": true,
+        "legible typography": true
+      },
+      "notes": "All requested visual and text criteria are present without visible contradictions."
+    },
+    {
+      "profile": "flux2-klein-4b-benchmark",
+      "case": "character-sheet",
+      "status": "complete",
+      "passed": false,
+      "score": 4,
+      "max_score": 6,
+      "criteria": {
+        "four panels": false,
+        "same fox identity": true,
+        "green hat retained": true,
+        "blue scarf retained": true,
+        "four requested poses": false,
+        "no text": true
+      },
+      "notes": "Four consistent fox depictions are present, but they are not separated into four panels and the side pose reads as a rear/three-quarter view."
+    },
+    {
+      "profile": "flux2-klein-4b-benchmark",
+      "case": "composition",
+      "status": "complete",
+      "passed": true,
+      "score": 4,
+      "max_score": 4,
+      "criteria": {
+        "red mug": true,
+        "blue notebook": true,
+        "correct left-right placement": true,
+        "no visible text": true
+      },
+      "notes": "All requested visual and text criteria are present without visible contradictions."
+    },
+    {
+      "profile": "flux2-klein-4b-benchmark",
+      "case": "romanian-scene",
+      "status": "complete",
+      "passed": true,
+      "score": 5,
+      "max_score": 5,
+      "criteria": {
+        "photorealistic": true,
+        "Brasov architectural cues": true,
+        "distant church tower": true,
+        "morning fog": true,
+        "no readable text": true
+      },
+      "notes": "All requested visual and text criteria are present without visible contradictions."
+    },
+    {
+      "profile": "flux2-klein-4b-benchmark",
+      "case": "spatial",
+      "status": "complete",
+      "passed": true,
+      "score": 5,
+      "max_score": 5,
+      "criteria": {
+        "three objects": true,
+        "cube in center": true,
+        "sphere on left": true,
+        "pyramid on right": true,
+        "requested colors": true
+      },
+      "notes": "All requested visual and text criteria are present without visible contradictions."
+    },
+    {
+      "profile": "flux2-klein-4b-benchmark",
+      "case": "typography",
+      "status": "complete",
+      "passed": true,
+      "score": 4,
+      "max_score": 4,
+      "criteria": {
+        "exact headline AI LAB 2026": true,
+        "exact line LOCAL MODELS": true,
+        "no extra text": true,
+        "legible typography": true
+      },
+      "notes": "All requested visual and text criteria are present without visible contradictions."
+    },
+    {
+      "profile": "qwen-edit-benchmark",
+      "case": "background-change",
+      "status": "complete",
+      "passed": true,
+      "score": 4,
+      "max_score": 4,
+      "criteria": {
+        "mint background": true,
+        "both objects retained": true,
+        "positions preserved": true,
+        "scale preserved": true
+      },
+      "notes": "The wall is pale mint and both objects retain their positions and scale."
+    },
+    {
+      "profile": "qwen-edit-benchmark",
+      "case": "mug-color",
+      "status": "complete",
+      "passed": true,
+      "score": 4,
+      "max_score": 4,
+      "criteria": {
+        "mug is yellow": true,
+        "notebook unchanged": true,
+        "composition preserved": true,
+        "lighting preserved": true
+      },
+      "notes": "The mug is bright yellow while the notebook, composition and lighting remain visually preserved."
+    },
+    {
+      "profile": "qwen-edit-benchmark",
+      "case": "notebook-label",
+      "status": "complete",
+      "passed": false,
+      "score": 3,
+      "max_score": 4,
+      "criteria": {
+        "exact label NOTES": true,
+        "label on notebook": true,
+        "mug unchanged": false,
+        "composition preserved": true
+      },
+      "notes": "The exact NOTES label is on the notebook and composition is preserved, but a small unintended white mark appears on the mug."
+    },
+    {
+      "profile": "qwen-image-benchmark",
+      "case": "character-sheet",
+      "status": "complete",
+      "passed": true,
+      "score": 6,
+      "max_score": 6,
+      "criteria": {
+        "four panels": true,
+        "same fox identity": true,
+        "green hat retained": true,
+        "blue scarf retained": true,
+        "four requested poses": true,
+        "no text": true
+      },
+      "notes": "Four clean panels preserve identity, hat and scarf across front, side, running and reading poses; no readable text."
+    },
+    {
+      "profile": "qwen-image-benchmark",
+      "case": "composition",
+      "status": "complete",
+      "passed": true,
+      "score": 4,
+      "max_score": 4,
+      "criteria": {
+        "red mug": true,
+        "blue notebook": true,
+        "correct left-right placement": true,
+        "no visible text": true
+      },
+      "notes": "All requested objects, colors and placement are present without visible text."
+    },
+    {
+      "profile": "qwen-image-benchmark",
+      "case": "romanian-scene",
+      "status": "complete",
+      "passed": true,
+      "score": 5,
+      "max_score": 5,
+      "criteria": {
+        "photorealistic": true,
+        "Brasov architectural cues": true,
+        "distant church tower": true,
+        "morning fog": true,
+        "no readable text": true
+      },
+      "notes": "Pastel Brasov streetscape, distant church tower and morning fog are all present without readable text."
+    },
+    {
+      "profile": "qwen-image-benchmark",
+      "case": "spatial",
+      "status": "complete",
+      "passed": true,
+      "score": 5,
+      "max_score": 5,
+      "criteria": {
+        "three objects": true,
+        "cube in center": true,
+        "sphere on left": true,
+        "pyramid on right": true,
+        "requested colors": true
+      },
+      "notes": "All three objects, materials, colors and positions match the prompt."
+    },
+    {
+      "profile": "qwen-image-benchmark",
+      "case": "typography",
+      "status": "complete",
+      "passed": true,
+      "score": 4,
+      "max_score": 4,
+      "criteria": {
+        "exact headline AI LAB 2026": true,
+        "exact line LOCAL MODELS": true,
+        "no extra text": true,
+        "legible typography": true
+      },
+      "notes": "Both requested lines are exact, centered and legible with no extra text."
+    },
+    {
+      "profile": "sd15-smoke",
+      "case": "character-sheet",
+      "status": "complete",
+      "passed": false,
+      "score": 3,
+      "max_score": 6,
+      "criteria": {
+        "four panels": true,
+        "same fox identity": true,
+        "green hat retained": false,
+        "blue scarf retained": true,
+        "four requested poses": false,
+        "no text": false
+      },
+      "notes": "Four panels and a consistent fox are present, but the hat is beige, requested actions are missing, and pseudo-text captions are visible."
+    },
+    {
+      "profile": "sd15-smoke",
+      "case": "composition",
+      "status": "complete",
+      "passed": false,
+      "score": 3,
+      "max_score": 4,
+      "criteria": {
+        "red mug": true,
+        "blue notebook": false,
+        "correct left-right placement": true,
+        "no visible text": true
+      },
+      "notes": "Red mug is left of a white, not blue, notebook; no readable text."
+    },
+    {
+      "profile": "sd15-smoke",
+      "case": "romanian-scene",
+      "status": "complete",
+      "passed": false,
+      "score": 4,
+      "max_score": 5,
+      "criteria": {
+        "photorealistic": true,
+        "Brasov architectural cues": true,
+        "distant church tower": true,
+        "morning fog": false,
+        "no readable text": true
+      },
+      "notes": "Photorealistic pastel old-town street and tower are present, but morning fog is absent."
+    },
+    {
+      "profile": "sd15-smoke",
+      "case": "spatial",
+      "status": "complete",
+      "passed": false,
+      "score": 0,
+      "max_score": 5,
+      "criteria": {
+        "three objects": false,
+        "cube in center": false,
+        "sphere on left": false,
+        "pyramid on right": false,
+        "requested colors": false
+      },
+      "notes": "Only one yellow-green sphere is visible; cube and pyramid are absent."
+    },
+    {
+      "profile": "sd15-smoke",
+      "case": "typography",
+      "status": "complete",
+      "passed": false,
+      "score": 0,
+      "max_score": 4,
+      "criteria": {
+        "exact headline AI LAB 2026": false,
+        "exact line LOCAL MODELS": false,
+        "no extra text": false,
+        "legible typography": false
+      },
+      "notes": "Malformed pseudo-text replaces both requested lines."
+    }
+  ],
+  "summary": {
+    "completed": 28,
+    "passed_cases": 21,
+    "failed_cases": 7,
+    "criteria_passed": 115,
+    "criteria_total": 132
+  }
+}

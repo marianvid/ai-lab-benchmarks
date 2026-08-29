@@ -1,0 +1,30 @@
+{
+  "clean": {
+    "ground_truth": "AI LAB BENCHMARK 2026",
+    "degraded": false,
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "sha256": "cd0d2f3c44414a606fd204c171b01ed7753ddfa53534c6d376666ea56ab0dd8b",
+    "bytes": 13061
+  },
+  "document": {
+    "ground_truth": "INVOICE 2048 TOTAL 73.50 EUR STATUS PAID",
+    "degraded": false,
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "sha256": "8b693a26b86f48626df6490c9c089d0d49fd92f0024decdf62a18615a22cc00c",
+    "bytes": 20248
+  },
+  "small_text": {
+    "ground_truth": "MODEL: PP-OCRV5 SERIAL: OCR-8090 DATE: 2026-08-28",
+    "degraded": false,
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "sha256": "5341e27883816b7442603fadaf4388bc2ba2467988f487f375ed61859eea8aae",
+    "bytes": 14312
+  },
+  "degraded": {
+    "ground_truth": "LOCAL AI TEST QUALITY 91.7 PERCENT CHECK: COMPLETE",
+    "degraded": true,
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "sha256": "6a2aeffab7e91d5e43297742fea528fd1fc0ce2f26ae631a7119a8e775b248fa",
+    "bytes": 271836
+  }
+}

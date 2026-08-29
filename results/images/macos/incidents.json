@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "incidents": [
+    {
+      "category": "infrastructure",
+      "reached_model_execution": false,
+      "outcome": "resolved",
+      "note": "No manager was listening on the initially probed default port 8090."
+    },
+    {
+      "category": "configuration",
+      "reached_model_execution": false,
+      "outcome": "resolved",
+      "note": "The installed macOS config used port 8099 and contained no image profiles; an isolated benchmark config was created without changing the user config."
+    },
+    {
+      "category": "configuration",
+      "reached_model_execution": false,
+      "outcome": "resolved",
+      "note": "Linux workflow weight names were mapped to the installed macOS FP8 variants without changing prompts, cases, steps, dimensions, seeds, or scoring criteria."
+    },
+    {
+      "category": "configuration",
+      "reached_model_execution": false,
+      "outcome": "resolved",
+      "note": "Initial isolated instance model IDs omitted the catalog storage-tier prefix; corrected to benchmark-images-comfyui-generation/* before inference."
+    },
+    {
+      "category": "usage",
+      "reached_model_execution": false,
+      "outcome": "resolved",
+      "note": "A diagnostic shell loop used the reserved zsh variable status and stopped after submission; the submitted job was preserved and inspected separately."
+    },
+    {
+      "category": "infrastructure",
+      "reached_model_execution": false,
+      "outcome": "resolved",
+      "note": "The public manager and adapter normalized ComfyUI validation details to generic HTTP 400; the isolated diagnostic adapter was extended to persist the validation body inside the macOS results area."
+    },
+    {
+      "category": "configuration",
+      "reached_model_execution": false,
+      "outcome": "resolved",
+      "affected_attempts": 10,
+      "note": "Qwen and FLUX workflows were rejected by ComfyUI validation in 2-4 ms because auxiliary CLIP/VAE filenames required installed subdirectory-qualified names. All ten non-executed attempts were removed from model totals and queued for rerun."
+    },
+    {
+      "category": "infrastructure",
+      "reached_model_execution": false,
+      "outcome": "contained",
+      "note": "On macOS, unloading the AI-Lab ComfyUI adapter left its child ComfyUI process alive; subsequent adapters reused it. Benchmark profiles remain serial, but process-lifecycle cleanup requires a separate core fix outside the permitted image/macOS write scope."
+    },
+    {
+      "category": "infrastructure",
+      "reached_model_execution": true,
+      "outcome": "resolved_and_rerun",
+      "affected_attempts": 1,
+      "latency_ms": 120005,
+      "note": "Qwen composition entered model execution but the manager terminated the request at the default 120-second first-byte timeout. It is excluded from model success/failure totals; the isolated image-generation timeout was raised to 1800 seconds and the case was queued for rerun."
+    },
+    {
+      "category": "infrastructure",
+      "reached_model_execution": true,
+      "outcome": "cancelled_for_reconfiguration",
+      "affected_attempts": 1,
+      "note": "The following Qwen typography attempt was cancelled through the public API while the common timeout was being corrected; it is excluded from model totals and queued for rerun."
+    },
+    {
+      "category": "configuration",
+      "reached_model_execution": false,
+      "outcome": "resolved",
+      "affected_attempts": 5,
+      "note": "FLUX UNET validation required the installed subdirectory-qualified filename flux2_dev_fp8mixed/flux2_dev_fp8mixed.safetensors. Five 2-5 ms rejected attempts were excluded from model totals and queued for rerun."
+    },
+    {
+      "category": "infrastructure",
+      "reached_model_execution": true,
+      "outcome": "classified_runtime_incompatible",
+      "affected_attempts": 5,
+      "note": "FLUX reached SamplerCustomAdvanced but failed during FP8 dequantization with RuntimeError: Undefined type Float8_e4m3fn. This is runtime/model-format incompatibility, not OOM or a semantic model failure."
+    },
+    {
+      "category": "runtime",
+      "reached_model_execution": true,
+      "outcome": "observed",
+      "affected_attempts": 15,
+      "note": "The installed ComfyUI Python runtime reports torch 2.13.0 with MPS unavailable; generation ran on CPU fallback. The global runtime was not modified because writes were restricted to image/macOS."
+    },
+    {
+      "category": "runtime",
+      "reached_model_execution": true,
+      "outcome": "diagnostic_excluded",
+      "affected_attempts": 2,
+      "note": "Two dedicated FLUX diagnostic prompts were executed only to recover the masked runtime exception; they are excluded from fixture totals."
+    }
+  ]
+}

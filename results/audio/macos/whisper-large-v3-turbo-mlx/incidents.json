@@ -1,0 +1,9 @@
+[
+  {
+    "stage": "runtime_setup",
+    "reached_model_execution": false,
+    "outcome": "incident",
+    "incident_category": "environment_dependency_warning",
+    "note": "pip reported a python-dateutil constraint conflict inherited from conda-repo-cli; the isolated temporary MLX environment installed and completed all benchmark cases successfully."
+  }
+]

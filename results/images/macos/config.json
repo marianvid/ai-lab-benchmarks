@@ -1,0 +1,367 @@
+{
+  "title": "AI-Lab macOS image benchmark",
+  "host": "127.0.0.1",
+  "port": 8110,
+  "model_roots": [
+    {
+      "id": "benchmark",
+      "name": "Benchmark",
+      "path": "/Volumes/Marian_Backup/test_models",
+      "enabled": true,
+      "writable": false
+    }
+  ],
+  "repositories": [
+    {
+      "id": "images-comfyui-generation",
+      "name": "Image generation",
+      "format": "comfyui",
+      "task": "image-generation",
+      "subpath": "images/generation",
+      "writable": false
+    },
+    {
+      "id": "images-comfyui-edit",
+      "name": "Image editing",
+      "format": "comfyui",
+      "task": "image-edit",
+      "subpath": "images/edit",
+      "writable": false
+    },
+    {
+      "id": "images-paddleocr",
+      "name": "PaddleOCR",
+      "format": "paddleocr",
+      "task": "ocr",
+      "subpath": "images/ocr",
+      "writable": false
+    }
+  ],
+  "instances": [
+    {
+      "id": "image-smoke",
+      "engine": "comfyui",
+      "model_id": "benchmark-images-comfyui-generation/v1-5-pruned-emaonly-fp16",
+      "port": 8111,
+      "params": {}
+    },
+    {
+      "id": "image-qwen",
+      "engine": "comfyui",
+      "model_id": "benchmark-images-comfyui-generation/qwen_image_2512_fp8_e4m3fn",
+      "port": 8112,
+      "params": {}
+    },
+    {
+      "id": "image-flux2",
+      "engine": "comfyui",
+      "model_id": "benchmark-images-comfyui-generation/flux2_dev_fp8mixed",
+      "port": 8113,
+      "params": {}
+    },
+    {
+      "id": "image-flux2-dev-q8-0",
+      "engine": "comfyui",
+      "model_id": "benchmark-images-comfyui-generation/flux2_dev_q8_0",
+      "port": 8114,
+      "params": {}
+    },
+    {
+      "id": "image-flux2-klein-4b",
+      "engine": "comfyui",
+      "model_id": "benchmark-images-comfyui-generation/flux2_klein_4b_bf16",
+      "port": 8115,
+      "params": {}
+    },
+    {
+      "id": "macos-image-qwen-edit",
+      "engine": "comfyui",
+      "model_id": "benchmark-images-comfyui-edit/qwen_image_edit_2511_bf16",
+      "port": 8116,
+      "params": {}
+    },
+    {
+      "id": "ocr-smoke",
+      "engine": "paddleocr",
+      "model_id": "benchmark-images-paddleocr/PP-OCRv5_mobile_det",
+      "port": 8117,
+      "params": {}
+    },
+    {
+      "id": "ocr-server",
+      "engine": "paddleocr",
+      "model_id": "benchmark-images-paddleocr/PP-OCRv5_server_det",
+      "port": 8118,
+      "params": {}
+    },
+    {
+      "id": "macos-image-flux2-dev-bf16",
+      "engine": "comfyui",
+      "model_id": "benchmark-images-comfyui-generation/flux2_dev_bf16",
+      "port": 8119,
+      "params": {}
+    }
+  ],
+  "engines": {
+    "comfyui": {
+      "binary": "/Volumes/Marian_Backup/ai-lab-runtime/comfyui/current/.venv/bin/python",
+      "server": "/Volumes/Marian_Backup/work/ai-lab/benchmark/results/images/macos/diagnostic_comfyui_server.py",
+      "comfyui": "/Volumes/Marian_Backup/ai-lab-runtime/comfyui/current/ComfyUI/main.py",
+      "model_paths": [
+        "/Volumes/Marian_Backup/models/images/generation",
+        "/Volumes/Marian_Backup/models/images/edit",
+        "/Volumes/Marian_Backup/test_models/images/generation",
+        "/Volumes/Marian_Backup/test_models/images/edit"
+      ],
+      "source": {
+        "kind": "git-app",
+        "root": "/Volumes/Marian_Backup/ai-lab-runtime/comfyui",
+        "repository": "https://github.com/comfyanonymous/ComfyUI.git",
+        "application": "ComfyUI",
+        "python": "/opt/homebrew/anaconda3/bin/python3",
+        "uv": "/Users/marianvid/.local/bin/uv",
+        "verify_module": "server"
+      }
+    },
+    "paddleocr": {
+      "binary": "/Volumes/Marian_Backup/ai-lab-runtime/paddleocr/current/bin/python",
+      "server": "/Volumes/Marian_Backup/work/ai-lab/ai_lab/images/server.py",
+      "source": {
+        "package": "paddleocr",
+        "modules": [
+          "paddleocr"
+        ],
+        "root": "/Volumes/Marian_Backup/ai-lab-runtime/paddleocr",
+        "python": "/opt/homebrew/anaconda3/bin/python3",
+        "uv": "/Users/marianvid/.local/bin/uv"
+      }
+    }
+  },
+  "images": {
+    "workflow_root": "/Volumes/Marian_Backup/work/ai-lab/benchmark/results/images/macos/workflows",
+    "state_dir": "/Volumes/Marian_Backup/work/ai-lab/benchmark/results/images/macos/state",
+    "client_wait_s": 7200,
+    "result_ttl_s": 86400,
+    "profiles": {
+      "sd15-smoke": {
+        "description": "SD 1.5 macOS generation benchmark",
+        "version": "macos-1",
+        "task": "generation",
+        "model": "image-smoke",
+        "workflow": "sd15-generation-v1.json",
+        "inputs": {
+          "prompt": [
+            "2",
+            "text"
+          ],
+          "negative_prompt": [
+            "3",
+            "text"
+          ],
+          "seed": [
+            "5",
+            "seed"
+          ],
+          "width": [
+            "4",
+            "width"
+          ],
+          "height": [
+            "4",
+            "height"
+          ],
+          "steps": [
+            "5",
+            "steps"
+          ],
+          "cfg_scale": [
+            "5",
+            "cfg"
+          ]
+        }
+      },
+      "qwen-image-benchmark": {
+        "description": "Qwen Image macOS generation benchmark",
+        "version": "macos-1",
+        "task": "generation",
+        "model": "image-qwen",
+        "workflow": "qwen-image-generation-v1.json",
+        "inputs": {
+          "prompt": [
+            "5",
+            "text"
+          ],
+          "negative_prompt": [
+            "6",
+            "text"
+          ],
+          "seed": [
+            "8",
+            "seed"
+          ],
+          "width": [
+            "7",
+            "width"
+          ],
+          "height": [
+            "7",
+            "height"
+          ],
+          "steps": [
+            "8",
+            "steps"
+          ],
+          "cfg_scale": [
+            "8",
+            "cfg"
+          ]
+        }
+      },
+      "flux2-benchmark": {
+        "description": "FLUX 2 macOS generation benchmark",
+        "version": "macos-1",
+        "task": "generation",
+        "model": "image-flux2",
+        "workflow": "flux2-generation-v1.json",
+        "inputs": {
+          "prompt": [
+            "4",
+            "text"
+          ],
+          "seed": [
+            "10",
+            "noise_seed"
+          ],
+          "steps": [
+            "8",
+            "steps"
+          ]
+        }
+      },
+      "flux2-klein-4b-benchmark": {
+        "description": "FLUX.2 Klein 4B BF16 macOS MPS generation benchmark",
+        "version": "macos-mps-1",
+        "task": "generation",
+        "model": "image-flux2-klein-4b",
+        "workflow": "flux2-klein-4b-generation-v1.json",
+        "inputs": {
+          "prompt": [
+            "4",
+            "text"
+          ],
+          "negative_prompt": [
+            "5",
+            "text"
+          ],
+          "seed": [
+            "10",
+            "noise_seed"
+          ],
+          "width": [
+            "14",
+            "value"
+          ],
+          "height": [
+            "15",
+            "value"
+          ],
+          "steps": [
+            "8",
+            "steps"
+          ],
+          "cfg_scale": [
+            "6",
+            "cfg"
+          ]
+        }
+      },
+      "qwen-edit-benchmark": {
+        "description": "Qwen Image Edit 2511 BF16 macOS MPS benchmark",
+        "version": "macos-mps-1",
+        "task": "edit",
+        "model": "macos-image-qwen-edit",
+        "workflow": "qwen-image-edit-bf16-v1.json",
+        "inputs": {
+          "image": [
+            "1",
+            "image"
+          ],
+          "prompt": [
+            "7",
+            "prompt"
+          ],
+          "seed": [
+            "10",
+            "seed"
+          ],
+          "steps": [
+            "10",
+            "steps"
+          ],
+          "cfg_scale": [
+            "10",
+            "cfg"
+          ]
+        }
+      },
+      "flux2-dev-q8-benchmark": {
+        "description": "FLUX.2 Dev 32B Q8_0 macOS MPS generation benchmark",
+        "version": "macos-mps-q8-1",
+        "task": "generation",
+        "model": "image-flux2-dev-q8-0",
+        "workflow": "flux2-dev-q8-generation-v1.json",
+        "inputs": {
+          "prompt": [
+            "4",
+            "text"
+          ],
+          "seed": [
+            "10",
+            "noise_seed"
+          ],
+          "steps": [
+            "8",
+            "steps"
+          ]
+        }
+      },
+      "flux2-dev-bf16-benchmark": {
+        "description": "FLUX.2 Dev 32B official BF16 macOS MPS generation benchmark",
+        "version": "macos-mps-bf16-1",
+        "task": "generation",
+        "model": "macos-image-flux2-dev-bf16",
+        "workflow": "flux2-dev-bf16-generation-v1.json",
+        "inputs": {
+          "prompt": [
+            "4",
+            "text"
+          ],
+          "seed": [
+            "10",
+            "noise_seed"
+          ],
+          "steps": [
+            "8",
+            "steps"
+          ]
+        }
+      }
+    }
+  },
+  "gateway": {
+    "task_timeouts": {
+      "image-generation": {
+        "first_byte_s": 1800,
+        "between_bytes_s": 1800
+      },
+      "image-edit": {
+        "first_byte_s": 7200,
+        "between_bytes_s": 7200
+      },
+      "ocr": {
+        "first_byte_s": 600,
+        "between_bytes_s": 600
+      }
+    }
+  }
+}

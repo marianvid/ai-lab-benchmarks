@@ -1,0 +1,14 @@
+{
+  "cases": 100,
+  "reached_model_execution": 100,
+  "successful": 100,
+  "model_failures": 0,
+  "incidents": 1,
+  "inference_s": 39.933198,
+  "real_time_factor": 0.041772,
+  "audio_seconds_per_second": 23.939,
+  "wer": 0.117862,
+  "cer": 0.033972,
+  "wer_without_diacritics": 0.088168,
+  "cer_without_diacritics": 0.027809
+}

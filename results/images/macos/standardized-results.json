@@ -1,0 +1,499 @@
+{
+  "schema_version": 1,
+  "benchmark": "image-generation",
+  "platform": {
+    "name": "macOS",
+    "version": "15.7.3",
+    "build": "24G407"
+  },
+  "hardware": {
+    "model": "MacBook Pro",
+    "model_identifier": "Mac15,9",
+    "chip": "Apple M3 Max",
+    "cpu_cores": 16,
+    "memory_gb": 128
+  },
+  "runtime": {
+    "manager": "AI-Lab local public API",
+    "manager_url": "http://127.0.0.1:8110",
+    "comfyui": true,
+    "python": "3.11.7",
+    "torch": "2.13.0",
+    "mps_available": false,
+    "effective_device": "CPU fallback"
+  },
+  "records": [
+    {
+      "platform": "macOS",
+      "hardware_runtime": "Apple M3 Max 128 GB / ComfyUI / Python 3.11.7 / torch 2.13.0 / CPU fallback",
+      "profile": "sd15-smoke",
+      "model": "v1-5-pruned-emaonly-fp16",
+      "fixture_case": "composition",
+      "reached_model_execution": true,
+      "outcome": "success",
+      "semantic_outcome": "fail",
+      "latency_ms": 13851,
+      "resources": {
+        "oom": false,
+        "peak_memory_bytes": null,
+        "mps_available": false
+      },
+      "incident_category": null,
+      "artifact": "library/sd15-smoke/composition.png",
+      "deterministic": {
+        "bytes": 381193,
+        "sha256": "74df1f635c4cacd99736f4688e932d574c7892ba64fc6178dc8341e2f5d5036b",
+        "png": true,
+        "width": 512,
+        "height": 512
+      },
+      "notes": "Red mug is left of a white, not blue, notebook; no readable text."
+    },
+    {
+      "platform": "macOS",
+      "hardware_runtime": "Apple M3 Max 128 GB / ComfyUI / Python 3.11.7 / torch 2.13.0 / CPU fallback",
+      "profile": "sd15-smoke",
+      "model": "v1-5-pruned-emaonly-fp16",
+      "fixture_case": "typography",
+      "reached_model_execution": true,
+      "outcome": "success",
+      "semantic_outcome": "fail",
+      "latency_ms": 5377,
+      "resources": {
+        "oom": false,
+        "peak_memory_bytes": null,
+        "mps_available": false
+      },
+      "incident_category": null,
+      "artifact": "library/sd15-smoke/typography.png",
+      "deterministic": {
+        "bytes": 320408,
+        "sha256": "d7306e8289ea3bad59009e490c50c436434ce5661d62ab69fb72701ef8b1653e",
+        "png": true,
+        "width": 512,
+        "height": 512
+      },
+      "notes": "Malformed pseudo-text replaces both requested lines."
+    },
+    {
+      "platform": "macOS",
+      "hardware_runtime": "Apple M3 Max 128 GB / ComfyUI / Python 3.11.7 / torch 2.13.0 / CPU fallback",
+      "profile": "sd15-smoke",
+      "model": "v1-5-pruned-emaonly-fp16",
+      "fixture_case": "spatial",
+      "reached_model_execution": true,
+      "outcome": "success",
+      "semantic_outcome": "fail",
+      "latency_ms": 5489,
+      "resources": {
+        "oom": false,
+        "peak_memory_bytes": null,
+        "mps_available": false
+      },
+      "incident_category": null,
+      "artifact": "library/sd15-smoke/spatial.png",
+      "deterministic": {
+        "bytes": 360261,
+        "sha256": "c6458b7dfeff8d6b31a7b1f9940771a5a6d713758e86e85bade070d87a57517b",
+        "png": true,
+        "width": 512,
+        "height": 512
+      },
+      "notes": "Only one yellow-green sphere is visible; cube and pyramid are absent."
+    },
+    {
+      "platform": "macOS",
+      "hardware_runtime": "Apple M3 Max 128 GB / ComfyUI / Python 3.11.7 / torch 2.13.0 / CPU fallback",
+      "profile": "sd15-smoke",
+      "model": "v1-5-pruned-emaonly-fp16",
+      "fixture_case": "character-sheet",
+      "reached_model_execution": true,
+      "outcome": "success",
+      "semantic_outcome": "fail",
+      "latency_ms": 5376,
+      "resources": {
+        "oom": false,
+        "peak_memory_bytes": null,
+        "mps_available": false
+      },
+      "incident_category": null,
+      "artifact": "library/sd15-smoke/character-sheet.png",
+      "deterministic": {
+        "bytes": 331058,
+        "sha256": "8016fd8911c15553489a6d2d87c922bb59ad05ea568323d065d723dceb217031",
+        "png": true,
+        "width": 512,
+        "height": 512
+      },
+      "notes": "Four panels and a consistent fox are present, but the hat is beige, requested actions are missing, and pseudo-text captions are visible."
+    },
+    {
+      "platform": "macOS",
+      "hardware_runtime": "Apple M3 Max 128 GB / ComfyUI / Python 3.11.7 / torch 2.13.0 / CPU fallback",
+      "profile": "sd15-smoke",
+      "model": "v1-5-pruned-emaonly-fp16",
+      "fixture_case": "romanian-scene",
+      "reached_model_execution": true,
+      "outcome": "success",
+      "semantic_outcome": "fail",
+      "latency_ms": 5515,
+      "resources": {
+        "oom": false,
+        "peak_memory_bytes": null,
+        "mps_available": false
+      },
+      "incident_category": null,
+      "artifact": "library/sd15-smoke/romanian-scene.png",
+      "deterministic": {
+        "bytes": 512592,
+        "sha256": "8be966b8655bd588fce99a338e5278b32a9994ab79f4dabb75e47d024ce67d13",
+        "png": true,
+        "width": 512,
+        "height": 512
+      },
+      "notes": "Photorealistic pastel old-town street and tower are present, but morning fog is absent."
+    },
+    {
+      "platform": "macOS",
+      "hardware_runtime": "Apple M3 Max 128 GB / ComfyUI / Python 3.11.7 / torch 2.13.0 / CPU fallback",
+      "profile": "qwen-image-benchmark",
+      "model": "qwen_image_2512_fp8_e4m3fn + qwen_2.5_vl_7b_fp8_scaled + qwen_image_vae",
+      "fixture_case": "composition",
+      "reached_model_execution": true,
+      "outcome": "success",
+      "semantic_outcome": "pass",
+      "latency_ms": 1178770,
+      "resources": {
+        "oom": false,
+        "peak_memory_bytes": null,
+        "mps_available": false
+      },
+      "incident_category": null,
+      "artifact": "library/qwen-image-benchmark/composition.png",
+      "deterministic": {
+        "bytes": 1226397,
+        "sha256": "3e0b2ae466fb933783d9776201b8ee8c375400b2cfa0530a1ae5f568f713422b",
+        "png": true,
+        "width": 1024,
+        "height": 1024
+      },
+      "notes": "All requested objects, colors and placement are present without visible text."
+    },
+    {
+      "platform": "macOS",
+      "hardware_runtime": "Apple M3 Max 128 GB / ComfyUI / Python 3.11.7 / torch 2.13.0 / CPU fallback",
+      "profile": "qwen-image-benchmark",
+      "model": "qwen_image_2512_fp8_e4m3fn + qwen_2.5_vl_7b_fp8_scaled + qwen_image_vae",
+      "fixture_case": "typography",
+      "reached_model_execution": true,
+      "outcome": "success",
+      "semantic_outcome": "pass",
+      "latency_ms": 1233703,
+      "resources": {
+        "oom": false,
+        "peak_memory_bytes": null,
+        "mps_available": false
+      },
+      "incident_category": null,
+      "artifact": "library/qwen-image-benchmark/typography.png",
+      "deterministic": {
+        "bytes": 1134137,
+        "sha256": "c566ff183403999c9600fc36b485e8d217f69f4e847b868a6000fa5d5714f9a6",
+        "png": true,
+        "width": 1024,
+        "height": 1024
+      },
+      "notes": "Both requested lines are exact, centered and legible with no extra text."
+    },
+    {
+      "platform": "macOS",
+      "hardware_runtime": "Apple M3 Max 128 GB / ComfyUI / Python 3.11.7 / torch 2.13.0 / CPU fallback",
+      "profile": "qwen-image-benchmark",
+      "model": "qwen_image_2512_fp8_e4m3fn + qwen_2.5_vl_7b_fp8_scaled + qwen_image_vae",
+      "fixture_case": "spatial",
+      "reached_model_execution": true,
+      "outcome": "success",
+      "semantic_outcome": "pass",
+      "latency_ms": 1215357,
+      "resources": {
+        "oom": false,
+        "peak_memory_bytes": null,
+        "mps_available": false
+      },
+      "incident_category": null,
+      "artifact": "library/qwen-image-benchmark/spatial.png",
+      "deterministic": {
+        "bytes": 1335359,
+        "sha256": "80caf760149433330bb7aaec03b7131f24ed1173e985fa648cc4ff4c60e171f6",
+        "png": true,
+        "width": 1024,
+        "height": 1024
+      },
+      "notes": "All three objects, materials, colors and positions match the prompt."
+    },
+    {
+      "platform": "macOS",
+      "hardware_runtime": "Apple M3 Max 128 GB / ComfyUI / Python 3.11.7 / torch 2.13.0 / CPU fallback",
+      "profile": "qwen-image-benchmark",
+      "model": "qwen_image_2512_fp8_e4m3fn + qwen_2.5_vl_7b_fp8_scaled + qwen_image_vae",
+      "fixture_case": "character-sheet",
+      "reached_model_execution": true,
+      "outcome": "success",
+      "semantic_outcome": "pass",
+      "latency_ms": 1220128,
+      "resources": {
+        "oom": false,
+        "peak_memory_bytes": null,
+        "mps_available": false
+      },
+      "incident_category": null,
+      "artifact": "library/qwen-image-benchmark/character-sheet.png",
+      "deterministic": {
+        "bytes": 1557520,
+        "sha256": "fab790f00175f401fd78f6e1c1079b9fbf36cf4f67c6a985f36b44ffb4353abe",
+        "png": true,
+        "width": 1024,
+        "height": 1024
+      },
+      "notes": "Four clean panels preserve identity, hat and scarf across front, side, running and reading poses; no readable text."
+    },
+    {
+      "platform": "macOS",
+      "hardware_runtime": "Apple M3 Max 128 GB / ComfyUI / Python 3.11.7 / torch 2.13.0 / CPU fallback",
+      "profile": "qwen-image-benchmark",
+      "model": "qwen_image_2512_fp8_e4m3fn + qwen_2.5_vl_7b_fp8_scaled + qwen_image_vae",
+      "fixture_case": "romanian-scene",
+      "reached_model_execution": true,
+      "outcome": "success",
+      "semantic_outcome": "pass",
+      "latency_ms": 1225169,
+      "resources": {
+        "oom": false,
+        "peak_memory_bytes": null,
+        "mps_available": false
+      },
+      "incident_category": null,
+      "artifact": "library/qwen-image-benchmark/romanian-scene.png",
+      "deterministic": {
+        "bytes": 1657323,
+        "sha256": "0372a4d313ba783263c1691024b6b57ad796b731d747d874e1eeac97939bbbd3",
+        "png": true,
+        "width": 1024,
+        "height": 1024
+      },
+      "notes": "Pastel Brasov streetscape, distant church tower and morning fog are all present without readable text."
+    },
+    {
+      "platform": "macOS",
+      "hardware_runtime": "Apple M3 Max 128 GB / ComfyUI / Python 3.11.7 / torch 2.13.0 / CPU fallback",
+      "profile": "flux2-benchmark",
+      "model": "flux2_dev_fp8mixed + mistral_3_small_flux2_fp8 + flux2-vae",
+      "fixture_case": "composition",
+      "reached_model_execution": true,
+      "outcome": "runtime_incompatible",
+      "semantic_outcome": "not_applicable",
+      "latency_ms": 103996,
+      "resources": {
+        "oom": false,
+        "peak_memory_bytes": null,
+        "mps_available": false
+      },
+      "incident_category": "runtime_compatibility",
+      "artifact": null,
+      "deterministic": null,
+      "notes": "RuntimeError at SamplerCustomAdvanced during FP8 dequantization: Undefined type Float8_e4m3fn."
+    },
+    {
+      "platform": "macOS",
+      "hardware_runtime": "Apple M3 Max 128 GB / ComfyUI / Python 3.11.7 / torch 2.13.0 / CPU fallback",
+      "profile": "flux2-benchmark",
+      "model": "flux2_dev_fp8mixed + mistral_3_small_flux2_fp8 + flux2-vae",
+      "fixture_case": "typography",
+      "reached_model_execution": true,
+      "outcome": "runtime_incompatible",
+      "semantic_outcome": "not_applicable",
+      "latency_ms": 12287,
+      "resources": {
+        "oom": false,
+        "peak_memory_bytes": null,
+        "mps_available": false
+      },
+      "incident_category": "runtime_compatibility",
+      "artifact": null,
+      "deterministic": null,
+      "notes": "RuntimeError at SamplerCustomAdvanced during FP8 dequantization: Undefined type Float8_e4m3fn."
+    },
+    {
+      "platform": "macOS",
+      "hardware_runtime": "Apple M3 Max 128 GB / ComfyUI / Python 3.11.7 / torch 2.13.0 / CPU fallback",
+      "profile": "flux2-benchmark",
+      "model": "flux2_dev_fp8mixed + mistral_3_small_flux2_fp8 + flux2-vae",
+      "fixture_case": "spatial",
+      "reached_model_execution": true,
+      "outcome": "runtime_incompatible",
+      "semantic_outcome": "not_applicable",
+      "latency_ms": 9341,
+      "resources": {
+        "oom": false,
+        "peak_memory_bytes": null,
+        "mps_available": false
+      },
+      "incident_category": "runtime_compatibility",
+      "artifact": null,
+      "deterministic": null,
+      "notes": "RuntimeError at SamplerCustomAdvanced during FP8 dequantization: Undefined type Float8_e4m3fn."
+    },
+    {
+      "platform": "macOS",
+      "hardware_runtime": "Apple M3 Max 128 GB / ComfyUI / Python 3.11.7 / torch 2.13.0 / CPU fallback",
+      "profile": "flux2-benchmark",
+      "model": "flux2_dev_fp8mixed + mistral_3_small_flux2_fp8 + flux2-vae",
+      "fixture_case": "character-sheet",
+      "reached_model_execution": true,
+      "outcome": "runtime_incompatible",
+      "semantic_outcome": "not_applicable",
+      "latency_ms": 9362,
+      "resources": {
+        "oom": false,
+        "peak_memory_bytes": null,
+        "mps_available": false
+      },
+      "incident_category": "runtime_compatibility",
+      "artifact": null,
+      "deterministic": null,
+      "notes": "RuntimeError at SamplerCustomAdvanced during FP8 dequantization: Undefined type Float8_e4m3fn."
+    },
+    {
+      "platform": "macOS",
+      "hardware_runtime": "Apple M3 Max 128 GB / ComfyUI / Python 3.11.7 / torch 2.13.0 / CPU fallback",
+      "profile": "flux2-benchmark",
+      "model": "flux2_dev_fp8mixed + mistral_3_small_flux2_fp8 + flux2-vae",
+      "fixture_case": "romanian-scene",
+      "reached_model_execution": true,
+      "outcome": "runtime_incompatible",
+      "semantic_outcome": "not_applicable",
+      "latency_ms": 9362,
+      "resources": {
+        "oom": false,
+        "peak_memory_bytes": null,
+        "mps_available": false
+      },
+      "incident_category": "runtime_compatibility",
+      "artifact": null,
+      "deterministic": null,
+      "notes": "RuntimeError at SamplerCustomAdvanced during FP8 dequantization: Undefined type Float8_e4m3fn."
+    }
+  ],
+  "incidents": [
+    {
+      "category": "infrastructure",
+      "reached_model_execution": false,
+      "outcome": "resolved",
+      "note": "No manager was listening on the initially probed default port 8090."
+    },
+    {
+      "category": "configuration",
+      "reached_model_execution": false,
+      "outcome": "resolved",
+      "note": "The installed macOS config used port 8099 and contained no image profiles; an isolated benchmark config was created without changing the user config."
+    },
+    {
+      "category": "configuration",
+      "reached_model_execution": false,
+      "outcome": "resolved",
+      "note": "Linux workflow weight names were mapped to the installed macOS FP8 variants without changing prompts, cases, steps, dimensions, seeds, or scoring criteria."
+    },
+    {
+      "category": "configuration",
+      "reached_model_execution": false,
+      "outcome": "resolved",
+      "note": "Initial isolated instance model IDs omitted the catalog storage-tier prefix; corrected to benchmark-images-comfyui-generation/* before inference."
+    },
+    {
+      "category": "usage",
+      "reached_model_execution": false,
+      "outcome": "resolved",
+      "note": "A diagnostic shell loop used the reserved zsh variable status and stopped after submission; the submitted job was preserved and inspected separately."
+    },
+    {
+      "category": "infrastructure",
+      "reached_model_execution": false,
+      "outcome": "resolved",
+      "note": "The public manager and adapter normalized ComfyUI validation details to generic HTTP 400; the isolated diagnostic adapter was extended to persist the validation body inside the macOS results area."
+    },
+    {
+      "category": "configuration",
+      "reached_model_execution": false,
+      "outcome": "resolved",
+      "affected_attempts": 10,
+      "note": "Qwen and FLUX workflows were rejected by ComfyUI validation in 2-4 ms because auxiliary CLIP/VAE filenames required installed subdirectory-qualified names. All ten non-executed attempts were removed from model totals and queued for rerun."
+    },
+    {
+      "category": "infrastructure",
+      "reached_model_execution": false,
+      "outcome": "contained",
+      "note": "On macOS, unloading the AI-Lab ComfyUI adapter left its child ComfyUI process alive; subsequent adapters reused it. Benchmark profiles remain serial, but process-lifecycle cleanup requires a separate core fix outside the permitted image/macOS write scope."
+    },
+    {
+      "category": "infrastructure",
+      "reached_model_execution": true,
+      "outcome": "resolved_and_rerun",
+      "affected_attempts": 1,
+      "latency_ms": 120005,
+      "note": "Qwen composition entered model execution but the manager terminated the request at the default 120-second first-byte timeout. It is excluded from model success/failure totals; the isolated image-generation timeout was raised to 1800 seconds and the case was queued for rerun."
+    },
+    {
+      "category": "infrastructure",
+      "reached_model_execution": true,
+      "outcome": "cancelled_for_reconfiguration",
+      "affected_attempts": 1,
+      "note": "The following Qwen typography attempt was cancelled through the public API while the common timeout was being corrected; it is excluded from model totals and queued for rerun."
+    },
+    {
+      "category": "configuration",
+      "reached_model_execution": false,
+      "outcome": "resolved",
+      "affected_attempts": 5,
+      "note": "FLUX UNET validation required the installed subdirectory-qualified filename flux2_dev_fp8mixed/flux2_dev_fp8mixed.safetensors. Five 2-5 ms rejected attempts were excluded from model totals and queued for rerun."
+    },
+    {
+      "category": "infrastructure",
+      "reached_model_execution": true,
+      "outcome": "classified_runtime_incompatible",
+      "affected_attempts": 5,
+      "note": "FLUX reached SamplerCustomAdvanced but failed during FP8 dequantization with RuntimeError: Undefined type Float8_e4m3fn. This is runtime/model-format incompatibility, not OOM or a semantic model failure."
+    },
+    {
+      "category": "runtime",
+      "reached_model_execution": true,
+      "outcome": "observed",
+      "affected_attempts": 15,
+      "note": "The installed ComfyUI Python runtime reports torch 2.13.0 with MPS unavailable; generation ran on CPU fallback. The global runtime was not modified because writes were restricted to image/macOS."
+    },
+    {
+      "category": "runtime",
+      "reached_model_execution": true,
+      "outcome": "diagnostic_excluded",
+      "affected_attempts": 2,
+      "note": "Two dedicated FLUX diagnostic prompts were executed only to recover the masked runtime exception; they are excluded from fixture totals."
+    }
+  ],
+  "summary": {
+    "profiles": [
+      "sd15-smoke",
+      "qwen-image-benchmark",
+      "flux2-benchmark"
+    ],
+    "fixture_cases": 15,
+    "reached_model_execution": 15,
+    "generated_artifacts": 10,
+    "execution_successes": 10,
+    "genuine_execution_failures": 0,
+    "runtime_incompatible": 5,
+    "model_ooms": 0,
+    "semantic_passes": 5,
+    "semantic_failures": 5,
+    "semantic_criteria_passed": 34,
+    "semantic_criteria_total": 48
+  }
+}

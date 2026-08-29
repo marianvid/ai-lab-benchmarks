@@ -1,0 +1,352 @@
+{
+  "schema_version": 1,
+  "title": "Linux vs macOS benchmark comparison",
+  "comparison_policy": {
+    "direct_only_when": [
+      "same model or named profile",
+      "same fixture selection",
+      "same metric definition"
+    ],
+    "separate_categories": [
+      "model_execution",
+      "semantic_review",
+      "runtime_model_format_incompatibility",
+      "oom",
+      "infrastructure_configuration_usage"
+    ]
+  },
+  "platforms": {
+    "linux": {
+      "hardware": "AOOSTAR GEM12+ Pro, AMD Ryzen 7 PRO 8845HS, 96 GB DDR5, NVIDIA RTX PRO 4500 Blackwell 32 GB via OCuLink",
+      "audio_runtime": "vLLM 0.26.1rc1.dev949 nightly, CUDA 13",
+      "image_runtime": "AI-Lab/ComfyUI on NVIDIA GPU",
+      "limitations": [
+        "OCuLink affects loading but not inference after model weights are resident in VRAM"
+      ]
+    },
+    "macos": {
+      "hardware": "Apple M3 Max, 128 GB unified memory",
+      "os": "macOS 15.7.3",
+      "audio_runtime": "Python 3.11.7, mlx-whisper 0.4.3, MLX 0.32.2, FP16 profile",
+      "image_runtime": "ComfyUI 0.34.0, Python 3.11.7, torch 2.13.0, Apple MPS for current FLUX runs",
+      "limitations": [
+        "Legacy FLUX FP8 dequantization is unsupported by the active runtime"
+      ]
+    }
+  },
+  "direct_comparisons": {
+    "audio": [
+      {
+        "model": "Whisper large-v3-turbo",
+        "fixture": "google/fleurs ro_ro test, 100 deterministic evenly spaced rows, 955.98 seconds",
+        "linux": {
+          "engine": "vLLM",
+          "format": "Safetensors",
+          "reached_model_execution": 100,
+          "execution_successes": 100,
+          "genuine_model_failures": 0,
+          "wer": 0.118776,
+          "cer": 0.034498,
+          "wer_without_diacritics": 0.088168,
+          "cer_without_diacritics": 0.028335,
+          "inference_s": 8.405,
+          "real_time_factor": 0.0088,
+          "audio_seconds_per_second": 113.735,
+          "oom": 0
+        },
+        "macos": {
+          "engine": "mlx-whisper",
+          "profile": "whisper-large-v3-turbo-mlx-fp16",
+          "reached_model_execution": 100,
+          "execution_successes": 100,
+          "genuine_model_failures": 0,
+          "wer": 0.117862,
+          "cer": 0.033972,
+          "wer_without_diacritics": 0.088168,
+          "cer_without_diacritics": 0.027809,
+          "inference_s": 39.933198,
+          "real_time_factor": 0.041772,
+          "audio_seconds_per_second": 23.939,
+          "oom": 0
+        },
+        "comparison": {
+          "wer_macos_minus_linux": -0.000914,
+          "cer_macos_minus_linux": -0.000526,
+          "linux_throughput_multiplier": 4.751,
+          "interpretation": "Accuracy is effectively unchanged in one run; Linux throughput is 4.751x higher."
+        }
+      }
+    ],
+    "image_generation": [
+      {
+        "profile": "sd15-smoke",
+        "fixtures": [
+          "composition",
+          "typography",
+          "spatial",
+          "character-sheet",
+          "romanian-scene"
+        ],
+        "linux": {
+          "reached_model_execution": 5,
+          "execution_successes": 5,
+          "genuine_model_failures": 0,
+          "runtime_incompatible": 0,
+          "oom": 0,
+          "semantic_passes": 0,
+          "semantic_failures": 5,
+          "criteria_passed": 10,
+          "criteria_total": 24,
+          "mean_latency_s": 1.7818
+        },
+        "macos": {
+          "reached_model_execution": 5,
+          "execution_successes": 5,
+          "genuine_model_failures": 0,
+          "runtime_incompatible": 0,
+          "oom": 0,
+          "semantic_passes": 0,
+          "semantic_failures": 5,
+          "criteria_passed": 10,
+          "criteria_total": 24,
+          "mean_latency_s": 7.1216
+        },
+        "comparison": {
+          "linux_speed_multiplier": 3.997,
+          "interpretation": "Identical semantic outcome; Linux mean observed case latency is lower."
+        }
+      },
+      {
+        "profile": "qwen-image-benchmark",
+        "fixtures": [
+          "composition",
+          "typography",
+          "spatial",
+          "character-sheet",
+          "romanian-scene"
+        ],
+        "caveat": "Named profile and fixtures match, but installed weight variants and runtimes differ.",
+        "linux": {
+          "reached_model_execution": 5,
+          "execution_successes": 5,
+          "genuine_model_failures": 0,
+          "runtime_incompatible": 0,
+          "oom": 0,
+          "semantic_passes": 4,
+          "semantic_failures": 1,
+          "criteria_passed": 23,
+          "criteria_total": 24,
+          "mean_latency_s": 38.1902
+        },
+        "macos": {
+          "reached_model_execution": 5,
+          "execution_successes": 5,
+          "genuine_model_failures": 0,
+          "runtime_incompatible": 0,
+          "oom": 0,
+          "semantic_passes": 5,
+          "semantic_failures": 0,
+          "criteria_passed": 24,
+          "criteria_total": 24,
+          "mean_latency_s": 1214.6254
+        },
+        "comparison": {
+          "linux_speed_multiplier": 31.804,
+          "interpretation": "macOS gains one semantic pass and one criterion; Linux is much faster, while macOS used CPU fallback."
+        }
+      },
+      {
+        "profile": "flux2-benchmark",
+        "fixtures": [
+          "composition",
+          "typography",
+          "spatial",
+          "character-sheet",
+          "romanian-scene"
+        ],
+        "linux": {
+          "reached_model_execution": 5,
+          "execution_successes": 5,
+          "generated_images": 5,
+          "genuine_model_failures": 0,
+          "runtime_incompatible": 0,
+          "oom": 0,
+          "semantic_passes": 4,
+          "semantic_failures": 1,
+          "criteria_passed": 22,
+          "criteria_total": 24,
+          "mean_latency_s": 49.7166
+        },
+        "macos": {
+          "reached_model_execution": 5,
+          "execution_successes": 0,
+          "generated_images": 0,
+          "genuine_model_failures": 0,
+          "runtime_incompatible": 5,
+          "oom": 0,
+          "semantic_passes": null,
+          "semantic_failures": null,
+          "criteria_passed": null,
+          "criteria_total": null,
+          "mean_latency_s": null
+        },
+        "comparison": {
+          "latency_comparable": false,
+          "semantic_comparable": false,
+          "interpretation": "macOS FP8 dequantization failed in the runtime; this is not a model failure or OOM."
+        }
+      }
+    ],
+    "image_editing": [
+      {
+        "profile": "qwen-edit-benchmark",
+        "fixtures": [
+          "mug-color",
+          "notebook-label",
+          "background-change"
+        ],
+        "linux": {
+          "execution_successes": 3,
+          "semantic_passes": 3,
+          "mean_latency_s": 155.7587
+        },
+        "macos": {
+          "execution_successes": 3,
+          "semantic_passes": 2,
+          "semantic_failures": 1,
+          "criteria_passed": 11,
+          "criteria_total": 12,
+          "mean_latency_s": 2511.0,
+          "oom": 0
+        },
+        "comparison": {
+          "linux_speed_multiplier_approx": 16.1,
+          "interpretation": "Both execute all edits; macOS introduces a small unintended mug change in the notebook-label fixture."
+        }
+      }
+    ],
+    "ocr": [
+      {
+        "profiles": [
+          "ocr-smoke",
+          "ocr-server"
+        ],
+        "fixtures": 8,
+        "linux": {
+          "executed": 8,
+          "exact_matches": 5,
+          "mean_cer_by_profile": [
+            0.021905,
+            0.025
+          ]
+        },
+        "macos": {
+          "executed": 8,
+          "exact_matches": 5,
+          "mean_cer_by_profile": [
+            0.021905,
+            0.025
+          ],
+          "model_failures": 0
+        },
+        "comparison": {
+          "interpretation": "Identical published accuracy on the shared checksum-pinned fixtures."
+        }
+      }
+    ]
+  },
+  "unmatched_linux_results": [
+    {
+      "area": "vad",
+      "profiles": [
+        "Silero VAD"
+      ],
+      "status": "fara baseline direct"
+    },
+    {
+      "area": "diarization",
+      "profiles": [
+        "NVIDIA Sortformer 4-speaker v1",
+        "Pyannote Speaker Diarization Community-1"
+      ],
+      "status": "fara baseline direct"
+    },
+    {
+      "area": "asr",
+      "profiles": [
+        "Whisper large-v3",
+        "Qwen3-ASR-0.6B",
+        "Qwen3-ASR-1.7B",
+        "Parakeet TDT 0.6B v3",
+        "Canary 1B v2",
+        "Nemotron 3.5 ASR Streaming 0.6B"
+      ],
+      "status": "fara baseline direct"
+    }
+  ],
+  "incidents": {
+    "macos_audio": {
+      "pre_model_incidents": 1,
+      "genuine_model_failures": 0,
+      "note": "Dependency warning during temporary environment setup; excluded from model totals."
+    },
+    "macos_images": {
+      "genuine_model_failures": 0,
+      "runtime_model_format_incompatible": 5,
+      "oom": 0,
+      "note": "Corrected pre-execution configuration/infrastructure attempts, timeout reruns, cancelled reruns, and diagnostic prompts are retained in the source incident log and excluded from model totals.",
+      "current_generation_successes": 20,
+      "editing_successes": 3,
+      "ocr_successes": 8
+    },
+    "linux_images": {
+      "genuine_model_failures": 0,
+      "oom": 0,
+      "note": "Published report separates infrastructure/workflow incidents and counts none as model failures."
+    }
+  },
+  "sources": [
+    "../audio/asr/summary.json",
+    "../../docs/audio-results.md",
+    "../audio/macos/whisper-large-v3-turbo-mlx/raw.json",
+    "../audio/macos/whisper-large-v3-turbo-mlx/summary.json",
+    "../audio/macos/whisper-large-v3-turbo-mlx/standardized-cases.jsonl",
+    "../audio/macos/whisper-large-v3-turbo-mlx/incidents.json",
+    "../images/summary.json",
+    "../images/semantic-review.json",
+    "../../docs/images-ocr.md",
+    "../images/macos/summary.json",
+    "../images/macos/standardized-results.json",
+    "../images/macos/semantic-review.json",
+    "../images/macos/incidents.json",
+    "../images/macos/config.json",
+    "../images/macos/ocr/results.json",
+    "../images/macos/report.md"
+  ],
+  "macos_only_current_flux": [
+    {
+      "profile": "flux2-klein-4b-benchmark",
+      "execution_successes": 5,
+      "semantic_passes": 4,
+      "criteria_passed": 22,
+      "criteria_total": 24,
+      "mean_latency_s": 23.0
+    },
+    {
+      "profile": "flux2-dev-q8-benchmark",
+      "execution_successes": 5,
+      "semantic_passes": 5,
+      "criteria_passed": 24,
+      "criteria_total": 24,
+      "mean_latency_s": 1047.0
+    },
+    {
+      "profile": "flux2-dev-bf16-benchmark",
+      "execution_successes": 5,
+      "semantic_passes": 5,
+      "criteria_passed": 24,
+      "criteria_total": 24,
+      "mean_latency_s": 1213.0
+    }
+  ]
+}

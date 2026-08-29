@@ -36,6 +36,8 @@ of it, answering questions about it — writing code, and Romanian speech.
 | [Romanian audio results](docs/audio-results.md) | Accuracy, processing speed, loading and every recorded failure |
 | [Audio findings](docs/audio-findings.md) | What the Romanian pass suggests for real workloads |
 | [Image and OCR results](docs/images-ocr.md) | Generation, editing, prompt adherence, OCR accuracy and preserved artifacts |
+| [macOS image results](results/images/macos/report.md) | M3 Max generation, editing, OCR, semantic review and supported FLUX formats |
+| [Linux vs macOS](results/comparison/linux-vs-macos.md) | Direct cross-platform comparisons and explicit non-comparable cases |
 
 Also kept: [an earlier four-engine study](docs/engines-2026-08.md),
 and [dead ends](docs/dead-ends/README.md) — measurement errors and a conclusion that
