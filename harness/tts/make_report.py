@@ -145,7 +145,7 @@ def main() -> int:
         "These measurements cover intelligibility, predicted naturalness, speaker retention,",
         "stability and machine cost. They do not score acting, pacing, emphasis or fit with a",
         "particular programme.", "",
-        "---", "", "[← index](../README.md) · [TTS method](tts-method.md) · [TTS models](tts-models.md) · [Listening samples](tts-listening.md)", "",
+        "---", "", "[← index](../README.md) · [TTS method](tts-method.md) · [TTS models](tts-models.md) · [Listening samples](https://marianvid.github.io/ai-lab-benchmarks/docs/tts-listening.html)", "",
     ])
     Path(args.out_md).write_text("\n".join(lines), encoding="utf-8")
     return 0

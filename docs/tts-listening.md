@@ -11,7 +11,7 @@ pages.
 ## Shared cloning voice
 
 The cloning samples below used this Romanian FLEURS recording as their voice
-reference: [listen to the reference](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/_fixtures/fleurs-ro-reference.wav).
+reference: <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/_fixtures/fleurs-ro-reference.wav"></audio>.
 The English output therefore also tests cross-language voice transfer.
 
 The reference comes from the FLEURS `ro_ro` test split, CC BY 4.0, published by
@@ -27,11 +27,11 @@ interpretable.
 
 | Model | Audio |
 |---|---|
-| OmniVoice 0.6B | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/omnivoice-0.6b-v1/audio/en-smoke.wav) |
-| Qwen3-TTS 0.6B Base | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/qwen3-tts-0.6b-base-v1/audio/en-smoke.wav) |
-| FireRedTTS3 Base | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/fireredtts3-base-v1/audio/en-smoke.wav) |
-| FireRedTTS3 Instruct, clone mode | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/fireredtts3-instruct-patched-v1/audio/en-smoke.wav) |
-| Fish Audio S2 Pro | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/fish-s2-pro-v1/audio/en-smoke.wav) |
+| OmniVoice 0.6B | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/omnivoice-0.6b-v1/audio/en-smoke.wav"></audio> |
+| Qwen3-TTS 0.6B Base | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/qwen3-tts-0.6b-base-v1/audio/en-smoke.wav"></audio> |
+| FireRedTTS3 Base | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fireredtts3-base-v1/audio/en-smoke.wav"></audio> |
+| FireRedTTS3 Instruct, clone mode | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fireredtts3-instruct-patched-v1/audio/en-smoke.wav"></audio> |
+| Fish Audio S2 Pro | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fish-s2-pro-v1/audio/en-smoke.wav"></audio> |
 
 ### Emphasis
 
@@ -40,11 +40,11 @@ interpretable.
 
 | Model | Audio |
 |---|---|
-| OmniVoice 0.6B | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/omnivoice-0.6b-v1/audio/en-emphasis.wav) |
-| Qwen3-TTS 0.6B Base | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/qwen3-tts-0.6b-base-v1/audio/en-emphasis.wav) |
-| FireRedTTS3 Base | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/fireredtts3-base-v1/audio/en-emphasis.wav) |
-| FireRedTTS3 Instruct, clone mode | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/fireredtts3-instruct-patched-v1/audio/en-emphasis.wav) |
-| Fish Audio S2 Pro | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/fish-s2-pro-v1/audio/en-emphasis.wav) |
+| OmniVoice 0.6B | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/omnivoice-0.6b-v1/audio/en-emphasis.wav"></audio> |
+| Qwen3-TTS 0.6B Base | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/qwen3-tts-0.6b-base-v1/audio/en-emphasis.wav"></audio> |
+| FireRedTTS3 Base | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fireredtts3-base-v1/audio/en-emphasis.wav"></audio> |
+| FireRedTTS3 Instruct, clone mode | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fireredtts3-instruct-patched-v1/audio/en-emphasis.wav"></audio> |
+| Fish Audio S2 Pro | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fish-s2-pro-v1/audio/en-emphasis.wav"></audio> |
 
 ### Numbers and date
 
@@ -53,11 +53,11 @@ interpretable.
 
 | Model | Audio |
 |---|---|
-| OmniVoice 0.6B | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/omnivoice-0.6b-v1/audio/en-numbers.wav) |
-| Qwen3-TTS 0.6B Base | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/qwen3-tts-0.6b-base-v1/audio/en-numbers.wav) |
-| FireRedTTS3 Base | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/fireredtts3-base-v1/audio/en-numbers.wav) |
-| FireRedTTS3 Instruct, clone mode | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/fireredtts3-instruct-patched-v1/audio/en-numbers.wav) |
-| Fish Audio S2 Pro | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/fish-s2-pro-v1/audio/en-numbers.wav) |
+| OmniVoice 0.6B | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/omnivoice-0.6b-v1/audio/en-numbers.wav"></audio> |
+| Qwen3-TTS 0.6B Base | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/qwen3-tts-0.6b-base-v1/audio/en-numbers.wav"></audio> |
+| FireRedTTS3 Base | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fireredtts3-base-v1/audio/en-numbers.wav"></audio> |
+| FireRedTTS3 Instruct, clone mode | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fireredtts3-instruct-patched-v1/audio/en-numbers.wav"></audio> |
+| Fish Audio S2 Pro | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fish-s2-pro-v1/audio/en-numbers.wav"></audio> |
 
 ## Romanian cloning
 
@@ -68,12 +68,12 @@ interpretable.
 
 | Model | Audio |
 |---|---|
-| MMS TTS Romanian, fixed voice | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/mms-tts-ron-v1/audio/ro-diacritics.wav) |
-| OmniVoice 0.6B | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/omnivoice-0.6b-v1/audio/ro-diacritics.wav) |
-| Qwen3-TTS 0.6B Base | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/qwen3-tts-0.6b-base-v1/audio/ro-diacritics.wav) |
-| FireRedTTS3 Base | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/fireredtts3-base-v1/audio/ro-diacritics.wav) |
-| FireRedTTS3 Instruct, clone mode | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/fireredtts3-instruct-patched-v1/audio/ro-diacritics.wav) |
-| Fish Audio S2 Pro | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/fish-s2-pro-v1/audio/ro-diacritics.wav) |
+| MMS TTS Romanian, fixed voice | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/mms-tts-ron-v1/audio/ro-diacritics.wav"></audio> |
+| OmniVoice 0.6B | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/omnivoice-0.6b-v1/audio/ro-diacritics.wav"></audio> |
+| Qwen3-TTS 0.6B Base | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/qwen3-tts-0.6b-base-v1/audio/ro-diacritics.wav"></audio> |
+| FireRedTTS3 Base | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fireredtts3-base-v1/audio/ro-diacritics.wav"></audio> |
+| FireRedTTS3 Instruct, clone mode | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fireredtts3-instruct-patched-v1/audio/ro-diacritics.wav"></audio> |
+| Fish Audio S2 Pro | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fish-s2-pro-v1/audio/ro-diacritics.wav"></audio> |
 
 ### Numbers and date
 
@@ -82,12 +82,12 @@ interpretable.
 
 | Model | Audio |
 |---|---|
-| MMS TTS Romanian, fixed voice | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/mms-tts-ron-v1/audio/ro-numbers.wav) |
-| OmniVoice 0.6B | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/omnivoice-0.6b-v1/audio/ro-numbers.wav) |
-| Qwen3-TTS 0.6B Base | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/qwen3-tts-0.6b-base-v1/audio/ro-numbers.wav) |
-| FireRedTTS3 Base | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/fireredtts3-base-v1/audio/ro-numbers.wav) |
-| FireRedTTS3 Instruct, clone mode | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/fireredtts3-instruct-patched-v1/audio/ro-numbers.wav) |
-| Fish Audio S2 Pro | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/fish-s2-pro-v1/audio/ro-numbers.wav) |
+| MMS TTS Romanian, fixed voice | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/mms-tts-ron-v1/audio/ro-numbers.wav"></audio> |
+| OmniVoice 0.6B | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/omnivoice-0.6b-v1/audio/ro-numbers.wav"></audio> |
+| Qwen3-TTS 0.6B Base | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/qwen3-tts-0.6b-base-v1/audio/ro-numbers.wav"></audio> |
+| FireRedTTS3 Base | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fireredtts3-base-v1/audio/ro-numbers.wav"></audio> |
+| FireRedTTS3 Instruct, clone mode | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fireredtts3-instruct-patched-v1/audio/ro-numbers.wav"></audio> |
+| Fish Audio S2 Pro | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fish-s2-pro-v1/audio/ro-numbers.wav"></audio> |
 
 ### Longer narration
 
@@ -100,12 +100,12 @@ interpretable.
 
 | Model | Audio |
 |---|---|
-| MMS TTS Romanian, fixed voice | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/mms-tts-ron-v1/audio/ro-long.wav) |
-| OmniVoice 0.6B | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/omnivoice-0.6b-v1/audio/ro-long.wav) |
-| Qwen3-TTS 0.6B Base | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/qwen3-tts-0.6b-base-v1/audio/ro-long.wav) |
-| FireRedTTS3 Base | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/fireredtts3-base-v1/audio/ro-long.wav) |
-| FireRedTTS3 Instruct, clone mode | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/fireredtts3-instruct-patched-v1/audio/ro-long.wav) |
-| Fish Audio S2 Pro | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/fish-s2-pro-v1/audio/ro-long.wav) |
+| MMS TTS Romanian, fixed voice | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/mms-tts-ron-v1/audio/ro-long.wav"></audio> |
+| OmniVoice 0.6B | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/omnivoice-0.6b-v1/audio/ro-long.wav"></audio> |
+| Qwen3-TTS 0.6B Base | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/qwen3-tts-0.6b-base-v1/audio/ro-long.wav"></audio> |
+| FireRedTTS3 Base | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fireredtts3-base-v1/audio/ro-long.wav"></audio> |
+| FireRedTTS3 Instruct, clone mode | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fireredtts3-instruct-patched-v1/audio/ro-long.wav"></audio> |
+| Fish Audio S2 Pro | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fish-s2-pro-v1/audio/ro-long.wav"></audio> |
 
 ## Designed voices
 
@@ -114,12 +114,12 @@ the voice instruction as well as the spoken text.
 
 | Model | Language | Voice instruction | Prompt | Audio |
 |---|---|---|---|---|
-| FireRedTTS3 Instruct | English | calm, authoritative, gender-neutral narrator; mature, intelligent, low pitch, measured pace, restrained emotion | Humanity does not need another prophecy. It needs a mirror that can tell the truth without raising its voice. | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/fireredtts3-instruct-patched-v1/audio/design-en-authoritative.wav) |
-| FireRedTTS3 Instruct | English | warm, empathetic adult voice; intimate but not sentimental, gentle pace, clear diction, subtle hope | You are not alone in facing change. We can decide together what to release and what deserves to remain. | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/fireredtts3-instruct-patched-v1/audio/design-en-empathetic.wav) |
-| FireRedTTS3 Instruct | English | restrained urgent warning from a serious documentary narrator; controlled tension, precise articulation, no shouting | Warning. Power without responsibility is not progress; it is merely an error waiting to happen. | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/fireredtts3-instruct-patched-v1/audio/design-en-warning.wav) |
-| OmniVoice 0.6B | Romanian | male, middle-aged, low pitch | Omenirea nu are nevoie de o profeție, ci de o oglindă care spune adevărul fără să ridice vocea. | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/omnivoice-0.6b-design-v1/audio/design-authoritative.wav) |
-| OmniVoice 0.6B | Romanian | female, young adult, moderate pitch | Nu ești singur în fața schimbării. Putem înțelege împreună ce pierdem și ce alegem să păstrăm. | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/omnivoice-0.6b-design-v1/audio/design-empathetic.wav) |
-| OmniVoice 0.6B | Romanian | female, middle-aged, very low pitch | Atenție. Puterea fără responsabilitate nu este progres; este o eroare care așteaptă să se întâmple. | [listen](https://cdn.jsdelivr.net/gh/marianvid/ai-lab-benchmarks@95da71032e2b152c70e959798720df448cee015f/samples/tts/results/omnivoice-0.6b-design-v1/audio/design-warning.wav) |
+| FireRedTTS3 Instruct | English | calm, authoritative, gender-neutral narrator; mature, intelligent, low pitch, measured pace, restrained emotion | Humanity does not need another prophecy. It needs a mirror that can tell the truth without raising its voice. | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fireredtts3-instruct-patched-v1/audio/design-en-authoritative.wav"></audio> |
+| FireRedTTS3 Instruct | English | warm, empathetic adult voice; intimate but not sentimental, gentle pace, clear diction, subtle hope | You are not alone in facing change. We can decide together what to release and what deserves to remain. | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fireredtts3-instruct-patched-v1/audio/design-en-empathetic.wav"></audio> |
+| FireRedTTS3 Instruct | English | restrained urgent warning from a serious documentary narrator; controlled tension, precise articulation, no shouting | Warning. Power without responsibility is not progress; it is merely an error waiting to happen. | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fireredtts3-instruct-patched-v1/audio/design-en-warning.wav"></audio> |
+| OmniVoice 0.6B | Romanian | male, middle-aged, low pitch | Omenirea nu are nevoie de o profeție, ci de o oglindă care spune adevărul fără să ridice vocea. | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/omnivoice-0.6b-design-v1/audio/design-authoritative.wav"></audio> |
+| OmniVoice 0.6B | Romanian | female, young adult, moderate pitch | Nu ești singur în fața schimbării. Putem înțelege împreună ce pierdem și ce alegem să păstrăm. | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/omnivoice-0.6b-design-v1/audio/design-empathetic.wav"></audio> |
+| OmniVoice 0.6B | Romanian | female, middle-aged, very low pitch | Atenție. Puterea fără responsabilitate nu este progres; este o eroare care așteaptă să se întâmple. | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/omnivoice-0.6b-design-v1/audio/design-warning.wav"></audio> |
 
 ---
 

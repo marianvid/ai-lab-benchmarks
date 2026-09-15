@@ -39,7 +39,7 @@ of it, answering questions about it — writing code, and Romanian speech.
 | [TTS models](docs/tts-models.md) | Synthesis checkpoints, revisions, runtime patches and licence constraints |
 | [TTS results](docs/tts-results.md) | Automatic intelligibility, naturalness, voice similarity, speed and memory scores |
 | [TTS findings](docs/tts-findings.md) | Automatic English/Romanian verdicts and their measured limits |
-| [TTS listening samples](docs/tts-listening.md) | Prompts and audio files with no listening score or preferred answer |
+| [TTS listening samples](https://marianvid.github.io/ai-lab-benchmarks/docs/tts-listening.html) | Prompts and audio files with no listening score or preferred answer |
 | [Images and OCR results](docs/images-ocr.md) | Visual Linux–macOS comparisons, prompts, processing times, OCR output and practical recommendations |
 | [Agentic coding probe](docs/agentic-coding.md) | Architect-directed repository edits with tools and hidden tests |
 

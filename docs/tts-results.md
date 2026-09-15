@@ -37,4 +37,4 @@ particular programme.
 
 ---
 
-[← index](../README.md) · [TTS method](tts-method.md) · [TTS models](tts-models.md) · [Listening samples](tts-listening.md)
+[← index](../README.md) · [TTS method](tts-method.md) · [TTS models](tts-models.md) · [Listening samples](https://marianvid.github.io/ai-lab-benchmarks/docs/tts-listening.html)

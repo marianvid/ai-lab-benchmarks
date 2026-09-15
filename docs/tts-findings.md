@@ -110,4 +110,4 @@ operational decision.
 
 ---
 
-[← index](../README.md) · [TTS method](tts-method.md) · [TTS results](tts-results.md) · [Listening samples](tts-listening.md)
+[← index](../README.md) · [TTS method](tts-method.md) · [TTS results](tts-results.md) · [Listening samples](https://marianvid.github.io/ai-lab-benchmarks/docs/tts-listening.html)

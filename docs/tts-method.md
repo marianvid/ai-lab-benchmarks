@@ -4,7 +4,7 @@ This study asks whether locally hosted speech synthesis is good enough for a
 Romanian-and-English narrated channel. It is a one-machine candidate-selection
 study, not a general model leaderboard. The full raw audio stays on the private
 AI-Lab host. The repository publishes the deterministic manifests, harness,
-checksums, measurements and a small [listening subset](tts-listening.md).
+checksums, measurements and a small [listening subset](https://marianvid.github.io/ai-lab-benchmarks/docs/tts-listening.html).
 
 ## Two complementary passes
 
