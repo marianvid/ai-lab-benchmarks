@@ -8,58 +8,68 @@ listening to them first. Automatic measurements and their verdicts remain on
 the separate [TTS results](tts-results.md) and [TTS findings](tts-findings.md)
 pages.
 
-## Shared cloning voice
-
-The cloning samples below used this Romanian FLEURS recording as their voice
-reference: <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/_fixtures/fleurs-ro-reference.wav"></audio>.
-The English output therefore also tests cross-language voice transfer.
-
-The reference comes from the FLEURS `ro_ro` test split, CC BY 4.0, published by
-Google through Hugging Face. It is included only to make the cloning samples
-interpretable.
-
 ## English cloning
 
-### Neutral narration
+These examples come from the 100-case English benchmark. Each model received a
+native English reference from the same LibriTTS speaker. The short sentences
+were selected by text before any generated file was heard.
 
-> Humanity has always built mirrors. Artificial intelligence is merely the
-> first mirror that can answer back.
+### Female voice
 
-| Model | Audio |
-|---|---|
-| OmniVoice 0.6B | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/omnivoice-0.6b-v1/audio/en-smoke.wav"></audio> |
-| Qwen3-TTS 0.6B Base | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/qwen3-tts-0.6b-base-v1/audio/en-smoke.wav"></audio> |
-| FireRedTTS3 Base | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fireredtts3-base-v1/audio/en-smoke.wav"></audio> |
-| FireRedTTS3 Instruct, clone mode | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fireredtts3-instruct-patched-v1/audio/en-smoke.wav"></audio> |
-| Fish Audio S2 Pro | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fish-s2-pro-v1/audio/en-smoke.wav"></audio> |
+Reference: <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/_fixtures/libritts-en100/8555/reference.wav"></audio>
 
-### Emphasis
-
-> The question is not whether machines will become more human. The question is
-> whether humans will remain humane.
+> The Captain of the Guards hesitated to obey this order.
 
 | Model | Audio |
 |---|---|
-| OmniVoice 0.6B | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/omnivoice-0.6b-v1/audio/en-emphasis.wav"></audio> |
-| Qwen3-TTS 0.6B Base | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/qwen3-tts-0.6b-base-v1/audio/en-emphasis.wav"></audio> |
-| FireRedTTS3 Base | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fireredtts3-base-v1/audio/en-emphasis.wav"></audio> |
-| FireRedTTS3 Instruct, clone mode | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fireredtts3-instruct-patched-v1/audio/en-emphasis.wav"></audio> |
-| Fish Audio S2 Pro | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fish-s2-pro-v1/audio/en-emphasis.wav"></audio> |
+| OmniVoice 0.6B | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/libritts-omnivoice-en100-v1/audio/spk-8555-02.wav"></audio> |
+| Qwen3-TTS 0.6B Base | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/libritts-qwen-en100-v1/audio/spk-8555-02.wav"></audio> |
+| FireRedTTS3 Base | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/libritts-firered-base-en100-v1/audio/spk-8555-02.wav"></audio> |
+| FireRedTTS3 Instruct, clone mode | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/libritts-firered-instruct-en100-v1/audio/spk-8555-02.wav"></audio> |
+| Fish Audio S2 Pro | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/libritts-fish-en100-v1/audio/spk-8555-02.wav"></audio> |
 
-### Numbers and date
-
-> At 6:45 p.m. on January 24th, 2027, the system reported 97.3 percent
-> confidence and a cost of 1,249 dollars.
+> Trot had listened carefully to the Majordomo's speech.
 
 | Model | Audio |
 |---|---|
-| OmniVoice 0.6B | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/omnivoice-0.6b-v1/audio/en-numbers.wav"></audio> |
-| Qwen3-TTS 0.6B Base | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/qwen3-tts-0.6b-base-v1/audio/en-numbers.wav"></audio> |
-| FireRedTTS3 Base | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fireredtts3-base-v1/audio/en-numbers.wav"></audio> |
-| FireRedTTS3 Instruct, clone mode | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fireredtts3-instruct-patched-v1/audio/en-numbers.wav"></audio> |
-| Fish Audio S2 Pro | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/fish-s2-pro-v1/audio/en-numbers.wav"></audio> |
+| OmniVoice 0.6B | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/libritts-omnivoice-en100-v1/audio/spk-8555-06.wav"></audio> |
+| Qwen3-TTS 0.6B Base | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/libritts-qwen-en100-v1/audio/spk-8555-06.wav"></audio> |
+| FireRedTTS3 Base | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/libritts-firered-base-en100-v1/audio/spk-8555-06.wav"></audio> |
+| FireRedTTS3 Instruct, clone mode | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/libritts-firered-instruct-en100-v1/audio/spk-8555-06.wav"></audio> |
+| Fish Audio S2 Pro | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/libritts-fish-en100-v1/audio/spk-8555-06.wav"></audio> |
+
+### Male voice
+
+Reference: <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/_fixtures/libritts-en100/7729/reference.wav"></audio>
+
+> There was no doubt of the earnestness of their purpose.
+
+| Model | Audio |
+|---|---|
+| OmniVoice 0.6B | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/libritts-omnivoice-en100-v1/audio/spk-7729-02.wav"></audio> |
+| Qwen3-TTS 0.6B Base | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/libritts-qwen-en100-v1/audio/spk-7729-02.wav"></audio> |
+| FireRedTTS3 Base | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/libritts-firered-base-en100-v1/audio/spk-7729-02.wav"></audio> |
+| FireRedTTS3 Instruct, clone mode | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/libritts-firered-instruct-en100-v1/audio/spk-7729-02.wav"></audio> |
+| Fish Audio S2 Pro | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/libritts-fish-en100-v1/audio/spk-7729-02.wav"></audio> |
+
+> Their distinctive characters, however, display one broad and unfailing
+> difference.
+
+| Model | Audio |
+|---|---|
+| OmniVoice 0.6B | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/libritts-omnivoice-en100-v1/audio/spk-7729-07.wav"></audio> |
+| Qwen3-TTS 0.6B Base | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/libritts-qwen-en100-v1/audio/spk-7729-07.wav"></audio> |
+| FireRedTTS3 Base | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/libritts-firered-base-en100-v1/audio/spk-7729-07.wav"></audio> |
+| FireRedTTS3 Instruct, clone mode | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/libritts-firered-instruct-en100-v1/audio/spk-7729-07.wav"></audio> |
+| Fish Audio S2 Pro | <audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/results/libritts-fish-en100-v1/audio/spk-7729-07.wav"></audio> |
 
 ## Romanian cloning
+
+The Romanian examples use this Romanian FLEURS voice reference:
+<audio controls preload="none" src="https://marianvid.github.io/ai-lab-benchmarks/samples/tts/_fixtures/fleurs-ro-reference.wav"></audio>
+
+The FLEURS and LibriTTS references are CC BY 4.0. They are included only to
+make the cloning samples interpretable.
 
 ### Diacritics
 

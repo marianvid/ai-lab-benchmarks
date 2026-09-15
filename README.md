@@ -247,6 +247,6 @@ on manually labelled material from the intended production domain.
 ## Licence
 
 MIT for the harness, the documents and the results. Evaluation sets are not
-ours. They are not redistributed, apart from the attributed FLEURS reference
-clip on the TTS listening page. Each keeps its own licence, recorded in the
-dataset manifest or the accompanying sample README.
+ours. They are not redistributed, apart from the attributed FLEURS and
+LibriTTS reference clips on the TTS listening page. Each keeps its own licence,
+recorded in the dataset manifest or the accompanying sample README.
