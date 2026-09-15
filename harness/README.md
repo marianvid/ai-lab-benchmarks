@@ -45,22 +45,6 @@ Romanian speech has its own small harness under `audio/`:
 
 Every one of them reports correctness and speed from the same run.
 
-Speech synthesis has a separate multi-runtime harness under `tts/`. Generated
-audio and voice references stay private; manifests, checksums and metrics are
-publishable.
-
-| Script | Purpose |
-|---|---|
-| `tts/prepare_libritts.py` | Selects five female and five male LibriTTS speakers, one enrollment clip and ten held-out targets each |
-| `tts/run_libritts.py` | Runs OmniVoice, Qwen3-TTS, FireRed Base/Instruct or Fish with the same 100 cases |
-| `tts/make_libritts_baseline.py` | Places the human targets in the result schema to calibrate ASR and MOS evaluators |
-| `tts/score_asr.py` | Measures corpus WER/CER with a deployed AI-Lab recogniser |
-| `tts/score_utmos.py` | Predicts naturalness with UTMOS22 strong |
-| `tts/score_libritts_similarity.py` | Compares generated speech with held-out and enrollment speaker embeddings |
-| `tts/make_report.py` | Generates the English TTS result page and speaker-bootstrap intervals |
-| `tts/validate_results.py` | Verifies the shared case set, target hashes, unique outputs and all 1,800 metric rows |
-| `tts/make_listening_pack.py` | Builds a private, per-prompt blinded listening pack; generated audio and the reveal map are not committed |
-
 ## Helpers
 
 | Script | Purpose |

@@ -35,11 +35,6 @@ of it, answering questions about it — writing code, and Romanian speech.
 | [Audio models](docs/audio-models.md) | ASR and VAD models, revisions, licences and exclusions |
 | [Romanian audio results](docs/audio-results.md) | Accuracy, processing speed, loading and every recorded failure |
 | [Audio findings](docs/audio-findings.md) | What the Romanian pass suggests for real workloads |
-| [TTS method](docs/tts-method.md) | Bilingual smoke test and 100-case, ten-speaker English cloning evaluation |
-| [TTS models](docs/tts-models.md) | Synthesis checkpoints, revisions, runtime patches and licence constraints |
-| [TTS results](docs/tts-results.md) | Automatic intelligibility, naturalness, voice similarity, speed and memory scores |
-| [TTS findings](docs/tts-findings.md) | Automatic English/Romanian verdicts and their measured limits |
-| [TTS listening samples](https://marianvid.github.io/ai-lab-benchmarks/docs/tts-listening.html) | Prompts and audio files with no listening score or preferred answer |
 | [Images and OCR results](docs/images-ocr.md) | Visual Linux–macOS comparisons, prompts, processing times, OCR output and practical recommendations |
 | [Agentic coding probe](docs/agentic-coding.md) | Architect-directed repository edits with tools and hidden tests |
 
@@ -69,7 +64,6 @@ speed.
 | Wikipedia | whole articles, 2 165 to 5 227 characters, six languages | a real long prompt rather than a sentence |
 | FLEURS `ro_ro` | Romanian read speech with human transcriptions | one official test split can measure both ASR accuracy and processing speed |
 | Echo Synthetic Diarization | Romanian synthetic meetings with RTTM speaker turns | compares diarization on 2–5 speakers, with and without overlap |
-| LibriTTS `test-clean` | clean English recordings with speaker and transcript references | tests cloning on 10 held-out sentences for each of 10 balanced speakers |
 
 Three of them are built on FLORES, so the same sentences are being sorted,
 understood and translated. A weakness in one language shows up in all three at
@@ -100,17 +94,6 @@ hf download --repo-type dataset upb-nlp/echo-synthetic-diarization \
   --local-dir ./echo-synthetic-diarization
 python3 harness/audio/run_diarization.py --data ./echo-synthetic-diarization --out ./results/audio/diarization
 python3 harness/audio/make_report.py --results ./results/audio --out ./docs/audio-results.md
-```
-
-The TTS harness prepares a deterministic LibriTTS subset, runs each installed
-engine in its pinned environment, and scores generated files separately:
-
-```sh
-python3 harness/tts/prepare_libritts.py ./LibriTTS/test-clean --out ./libritts-en100
-python3 harness/tts/run_libritts.py --engine ENGINE --model MODEL \
-  --manifest ./libritts-en100/manifest.json --data ./libritts-en100 --out RESULT
-python3 harness/tts/make_report.py --results ./results/tts \
-  --out-json ./results/tts/libritts-en100-summary.json --out-md ./docs/tts-results.md
 ```
 
 Image generation, editing and OCR use the public AI-Lab API. Existing OCR
@@ -246,7 +229,6 @@ on manually labelled material from the intended production domain.
 
 ## Licence
 
-MIT for the harness, the documents and the results. Evaluation sets are not
-ours. They are not redistributed, apart from the attributed FLEURS and
-LibriTTS reference clips on the TTS listening page. Each keeps its own licence,
-recorded in the dataset manifest or the accompanying sample README.
+MIT for the harness, the documents and the results. The evaluation sets are not
+ours and are not here; each keeps its own licence, recorded in
+`eval-data/MANIFEST.json` once fetched.

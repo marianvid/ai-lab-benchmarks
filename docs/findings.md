@@ -300,26 +300,15 @@ A summary of the above, arranged by what you are trying to do.
 | Getting through a lot of input quickly | Qwen3-Coder-30B-A3B | reads prompts faster than anything else here; keep it away from prose |
 | Already running Qwen3.6-35B and wanting more speed | change the engine before you change the model | 13× the throughput under load, at a cost of 0.006 F1 |
 
-## Audio
+## Speech recognition
 
-The speech tests produce five direct automatic verdicts on this machine.
+The speech-recognition tests produce two direct automatic verdicts on this
+machine.
 
 | Task | Automatic verdict | Measured reason |
 |---|---|---|
 | Romanian transcription | Canary 1B v2 | lowest WER, 6.1%, at 32× real time |
 | High-volume transcription | Parakeet TDT 0.6B v3 | fastest successful ASR, 143× real time, with 12.1% Romanian WER |
-| English voice cloning | FireRedTTS3 Base | best held-out voice similarity, 0.721, tied lowest WER, 2.8% |
-| Compact English synthesis | Qwen3-TTS 0.6B Base | highest predicted naturalness, 4.428, using about 4.3 GB of GPU memory |
-| English designed voices | FireRedTTS3 Instruct | three-sample probe: zero ASR word errors and 4.515 predicted naturalness |
-
-FireRed Base is the automatic cloning winner. Qwen is the better small English
-candidate. Fish S2 Pro does not justify its 5.666 real-time factor for cloning:
-it retained less of the reference voice than FireRed Base. OmniVoice is fast
-and strong in Romanian, but its non-commercial checkpoint licence rules it out
-as the default for a monetised channel.
-
-The synthesis scores do not measure whether a voice suits a particular
-programme. That choice is outside this benchmark.
 
 ## What this does not tell you
 
