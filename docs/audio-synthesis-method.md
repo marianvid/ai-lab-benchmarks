@@ -1,8 +1,8 @@
 # English speech and sound generation — method
 
-This pass replaces the withdrawn mixed-language TTS experiment. It tests only
-natural English synthesis. No Romanian reference voice is reused, translated or
-used to condition an English output.
+This study measures natural English speech synthesis and English
+text-to-sound-effects generation. Voice-cloning cases use a native-English
+reference clip.
 
 The machine is the same [RTX PRO 4500 Blackwell system](machine.md) used by the
 rest of this repository. Each result is one deterministic run. It is useful for
@@ -59,9 +59,9 @@ shared embedding space. Higher means closer *within this set*; it is not a
 calibrated quality score and does not prove that every event occurred in the
 requested order.
 
-Stable Audio 3 small-sfx and medium were planned but not measured: both model
-repositories required authenticated acceptance of their gated licence on this
-machine. The harness records no fabricated substitute result.
+Stable Audio 3 small-sfx and medium are not included because both model
+repositories require authenticated acceptance of their gated licence. No
+result is reported for either model.
 
 ## Listening material
 
@@ -71,7 +71,7 @@ the file and compare it with the text or sound description directly.
 
 ## Licences
 
-| Model | Licence relevant to this pass |
+| Model | Licence relevant to these tests |
 |---|---|
 | Qwen3-TTS 1.7B VoiceDesign / CustomVoice | Apache-2.0 |
 | [Chatterbox Turbo](https://github.com/resemble-ai/chatterbox) | MIT; generated files contain its PerTh watermark |

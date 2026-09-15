@@ -36,10 +36,10 @@ occupancies on this machine, not parameter-count estimates.
   UTMOS case, so VoiceDesign is the stronger expressive default.
 - **Paralinguistic events and latency:** Chatterbox Turbo is much faster and its
   ordinary text survives intact. `chuckle` scores well; explicit laugh and cough
-  reduce UTMOS. It is a useful specialist, not the quality winner of this pass.
+  reduce UTMOS. It is a useful specialist, not the quality winner in these
+  measurements.
 - **Dialogue experiment:** Dia2 is intelligible but slow and scores well below
-  Qwen on UTMOS. It should remain in benchmark storage rather than become the
-  default speech engine.
+  Qwen on UTMOS. It is not recommended as the default speech engine.
 
 UTMOS does not verify whether “British”, “Indian English” or another requested
 accent is correct. No automatic accent verdict is claimed. The generated files
@@ -59,8 +59,8 @@ production-ready automatically.
 The model's licence is the practical blocker: this TangoFlux release is marked
 for research/non-commercial use. It demonstrates that local text-to-SFX is
 technically realistic on this GPU, but it is not the recommended engine for a
-commercial channel. Stable Audio 3 remains unmeasured until its gated licence
-is accepted and authenticated.
+commercial channel. Stable Audio 3 is not included because its gated licence
+was not authenticated for these tests.
 
 ## Reproducibility
 
