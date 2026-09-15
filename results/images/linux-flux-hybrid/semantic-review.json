@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "reviewer": "codex-visual-review",
+  "reviewed_at": "2026-09-15T03:00:00+03:00",
+  "profiles": {
+    "flux2-dev-q8-benchmark": {
+      "composition": {"criteria": {"red mug": true, "blue notebook": true, "correct left-right placement": true, "no visible text": true}, "notes": "All requested objects, colors and placement are present without visible text."},
+      "typography": {"criteria": {"exact headline AI LAB 2026": true, "exact line LOCAL MODELS": true, "no extra text": true, "legible typography": true}, "notes": "Both requested lines are exact, centered and legible, with no extra text."},
+      "spatial": {"criteria": {"three objects": true, "cube in center": true, "sphere on left": true, "pyramid on right": true, "requested colors": true}, "notes": "All three requested objects, colors and positions are correct."},
+      "character-sheet": {"criteria": {"four panels": true, "same fox identity": true, "green hat retained": true, "blue scarf retained": true, "four requested poses": true, "no text": true}, "notes": "The four requested views/actions preserve the same fox, hat and scarf, without readable text."},
+      "romanian-scene": {"criteria": {"photorealistic": true, "Brasov architectural cues": true, "distant church tower": true, "morning fog": true, "no readable text": true}, "notes": "Pastel old-town facades, cobblestones, the distant church tower and autumn fog are present."}
+    },
+    "flux2-dev-bf16-benchmark": {
+      "composition": {"criteria": {"red mug": true, "blue notebook": true, "correct left-right placement": true, "no visible text": true}, "notes": "All requested objects, colors and placement are present without visible text."},
+      "typography": {"criteria": {"exact headline AI LAB 2026": true, "exact line LOCAL MODELS": true, "no extra text": true, "legible typography": true}, "notes": "Both requested lines are exact, centered and legible, with no extra text."},
+      "spatial": {"criteria": {"three objects": true, "cube in center": true, "sphere on left": true, "pyramid on right": true, "requested colors": true}, "notes": "All three requested objects, colors and positions are correct."},
+      "character-sheet": {"criteria": {"four panels": true, "same fox identity": true, "green hat retained": true, "blue scarf retained": true, "four requested poses": true, "no text": true}, "notes": "The four requested views/actions preserve the same fox, hat and scarf, without readable text."},
+      "romanian-scene": {"criteria": {"photorealistic": true, "Brasov architectural cues": true, "distant church tower": true, "morning fog": true, "no readable text": true}, "notes": "Pastel old-town facades, cobblestones, the distant church tower and autumn fog are present."}
+    }
+  }
+}

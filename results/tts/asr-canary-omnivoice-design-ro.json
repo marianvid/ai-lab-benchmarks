@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "evaluator": "canary-1b-v2",
+  "language": "ro",
+  "load": {
+    "instance_id": "canary-1b-v2",
+    "kind": "load",
+    "ok": true,
+    "total_ms": 28703,
+    "steps": [
+      {
+        "phase": "starting",
+        "elapsed_ms": 53
+      },
+      {
+        "phase": "process_up",
+        "elapsed_ms": 173
+      },
+      {
+        "phase": "ready",
+        "elapsed_ms": 28636
+      }
+    ],
+    "error": ""
+  },
+  "models": {
+    "omnivoice-0.6b-design-v1": {
+      "wer": 0.40816326530612246,
+      "cer": 0.38434163701067614,
+      "wer_without_diacritics": 0.40816326530612246,
+      "completed": 3,
+      "by_mode": {
+        "voice-design": {
+          "wer": 0.40816326530612246,
+          "cer": 0.38434163701067614,
+          "wer_without_diacritics": 0.40816326530612246
+        }
+      },
+      "cases": [
+        {
+          "id": "design-authoritative",
+          "reference": "Omenirea nu are nevoie de o profeție, ci de o oglindă care spune adevărul fără să ridice vocea.",
+          "hypothesis": "Omenirea nu are nevoie de o profeție, ci de o oglindă care spune adevărul fără să ridice vocea.",
+          "seconds": 1.320451,
+          "mode": "voice-design",
+          "word_errors": 0,
+          "reference_words": 18,
+          "character_errors": 0,
+          "reference_characters": 93
+        },
+        {
+          "id": "design-empathetic",
+          "reference": "Nu ești singur în fața schimbării. Putem înțelege împreună ce pierdem și ce alegem să păstrăm.",
+          "hypothesis": "",
+          "seconds": 0.08548,
+          "mode": "voice-design",
+          "word_errors": 16,
+          "reference_words": 16,
+          "character_errors": 92,
+          "reference_characters": 92
+        },
+        {
+          "id": "design-warning",
+          "reference": "Atenție. Puterea fără responsabilitate nu este progres; este o eroare care așteaptă să se întâmple.",
+          "hypothesis": "Trebuie spus, responsabilitatea nu este progres, este o eroare care așteaptă să se întâmple.",
+          "seconds": 0.200379,
+          "mode": "voice-design",
+          "word_errors": 4,
+          "reference_words": 15,
+          "character_errors": 16,
+          "reference_characters": 96
+        }
+      ]
+    }
+  }
+}

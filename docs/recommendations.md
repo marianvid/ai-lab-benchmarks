@@ -7,13 +7,13 @@
 
 This recommendation requires four explicit distinctions:
 
-1. **Controlled benchmark results are not agentic-coding results.** The published benchmark measures bounded capabilities such as inference speed, resource use, image generation, OCR, audio processing, and narrowly scoped coding tasks. A model passing those tests has not thereby demonstrated that it can autonomously maintain a real software project over many dependent actions.
+1. **The new controlled agentic probe is still not a project-level result.** It measures four bounded repositories, at most fourteen tool turns each, with deterministic hidden tests. A model passing those tasks has not thereby demonstrated that it can autonomously maintain a real software project over many dependent actions. See [Agentic coding probe](agentic-coding.md).
 
 2. **The recommendation is based on repeated operational trials and the owner's experience.** The owner has repeatedly attempted to build agentic coding workflows that included local models. Those practical trials exposed failures of continuity, state tracking, architectural judgment, tool use, recovery, and sustained execution that short isolated tests do not capture. They are experience-based evidence, not a controlled agentic benchmark score.
 
 3. **The conclusion is scoped to the tested configurations.** It does not claim that every local model or every local deployment is inherently unsuitable. It states that the tested models, quantizations, hardware, context constraints, and orchestration setup are not adequate as the primary autonomous development system for serious medium or large projects. Small, bounded, independently verifiable tasks may still be appropriate. A substantially stronger local configuration, or frontier-class models, is required for the broader role.
 
-4. **Exhaustive agentic evaluation is outside this benchmark's current scope.** A rigorous answer would require reproducible repositories, long-horizon tasks, controlled tool access, repeated runs, failure taxonomy, intervention accounting, regression testing, and objective completion criteria. Agentic coding benchmarks may be added later to identify the practical limits more precisely, but this is not currently a priority for the author.
+4. **Exhaustive agentic evaluation remains outside this benchmark's scope.** The new probe adds reproducible repositories, controlled tools and objective tests, but it is one pass over four short tasks. A rigorous project-level answer still requires longer horizons, repeated runs, failure taxonomy, intervention accounting and regression testing.
 
 ## Practical use
 

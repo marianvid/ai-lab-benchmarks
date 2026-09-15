@@ -1,0 +1,5216 @@
+{
+  "schema_version": 1,
+  "metric": "cosine-speaker-similarity",
+  "evaluator": "pyannote/wespeaker-voxceleb-resnet34-LM",
+  "dataset": "LibriTTS test-clean",
+  "models": {
+    "libritts-ground-truth-en100-v1": {
+      "completed": 100,
+      "cases": [
+        {
+          "id": "spk-121-00",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.769299,
+          "target_to_reference": 0.769299
+        },
+        {
+          "id": "spk-121-01",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.833712,
+          "target_to_reference": 0.833712
+        },
+        {
+          "id": "spk-121-02",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.740965,
+          "target_to_reference": 0.740965
+        },
+        {
+          "id": "spk-121-03",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.677766,
+          "target_to_reference": 0.677766
+        },
+        {
+          "id": "spk-121-04",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.733489,
+          "target_to_reference": 0.733489
+        },
+        {
+          "id": "spk-121-05",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.627802,
+          "target_to_reference": 0.627802
+        },
+        {
+          "id": "spk-121-06",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.544663,
+          "target_to_reference": 0.544663
+        },
+        {
+          "id": "spk-121-07",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.638338,
+          "target_to_reference": 0.638338
+        },
+        {
+          "id": "spk-121-08",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.777483,
+          "target_to_reference": 0.777483
+        },
+        {
+          "id": "spk-121-09",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.848506,
+          "target_to_reference": 0.848506
+        },
+        {
+          "id": "spk-237-00",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.905812,
+          "target_to_reference": 0.905812
+        },
+        {
+          "id": "spk-237-01",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.869902,
+          "target_to_reference": 0.869902
+        },
+        {
+          "id": "spk-237-02",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.862131,
+          "target_to_reference": 0.862131
+        },
+        {
+          "id": "spk-237-03",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.804758,
+          "target_to_reference": 0.804758
+        },
+        {
+          "id": "spk-237-04",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.794283,
+          "target_to_reference": 0.794283
+        },
+        {
+          "id": "spk-237-05",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.819716,
+          "target_to_reference": 0.819716
+        },
+        {
+          "id": "spk-237-06",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.81244,
+          "target_to_reference": 0.81244
+        },
+        {
+          "id": "spk-237-07",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.792587,
+          "target_to_reference": 0.792587
+        },
+        {
+          "id": "spk-237-08",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.652974,
+          "target_to_reference": 0.652974
+        },
+        {
+          "id": "spk-237-09",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.774899,
+          "target_to_reference": 0.774899
+        },
+        {
+          "id": "spk-3729-00",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.852378,
+          "target_to_reference": 0.852378
+        },
+        {
+          "id": "spk-3729-01",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.85615,
+          "target_to_reference": 0.85615
+        },
+        {
+          "id": "spk-3729-02",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.769083,
+          "target_to_reference": 0.769083
+        },
+        {
+          "id": "spk-3729-03",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.720466,
+          "target_to_reference": 0.720466
+        },
+        {
+          "id": "spk-3729-04",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.36522,
+          "target_to_reference": 0.36522
+        },
+        {
+          "id": "spk-3729-05",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.745448,
+          "target_to_reference": 0.745448
+        },
+        {
+          "id": "spk-3729-06",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.752942,
+          "target_to_reference": 0.752942
+        },
+        {
+          "id": "spk-3729-07",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.733784,
+          "target_to_reference": 0.733784
+        },
+        {
+          "id": "spk-3729-08",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.759662,
+          "target_to_reference": 0.759662
+        },
+        {
+          "id": "spk-3729-09",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.790038,
+          "target_to_reference": 0.790038
+        },
+        {
+          "id": "spk-5142-00",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.66876,
+          "target_to_reference": 0.66876
+        },
+        {
+          "id": "spk-5142-01",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.753373,
+          "target_to_reference": 0.753373
+        },
+        {
+          "id": "spk-5142-02",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.718869,
+          "target_to_reference": 0.718869
+        },
+        {
+          "id": "spk-5142-03",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.572227,
+          "target_to_reference": 0.572227
+        },
+        {
+          "id": "spk-5142-04",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.63743,
+          "target_to_reference": 0.63743
+        },
+        {
+          "id": "spk-5142-05",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.736088,
+          "target_to_reference": 0.736088
+        },
+        {
+          "id": "spk-5142-06",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.718729,
+          "target_to_reference": 0.718729
+        },
+        {
+          "id": "spk-5142-07",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.811141,
+          "target_to_reference": 0.811141
+        },
+        {
+          "id": "spk-5142-08",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.700724,
+          "target_to_reference": 0.700724
+        },
+        {
+          "id": "spk-5142-09",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.856223,
+          "target_to_reference": 0.856223
+        },
+        {
+          "id": "spk-8555-00",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.635023,
+          "target_to_reference": 0.635023
+        },
+        {
+          "id": "spk-8555-01",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.803179,
+          "target_to_reference": 0.803179
+        },
+        {
+          "id": "spk-8555-02",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.688968,
+          "target_to_reference": 0.688968
+        },
+        {
+          "id": "spk-8555-03",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.865072,
+          "target_to_reference": 0.865072
+        },
+        {
+          "id": "spk-8555-04",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.711529,
+          "target_to_reference": 0.711529
+        },
+        {
+          "id": "spk-8555-05",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.794607,
+          "target_to_reference": 0.794607
+        },
+        {
+          "id": "spk-8555-06",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.651971,
+          "target_to_reference": 0.651971
+        },
+        {
+          "id": "spk-8555-07",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.698092,
+          "target_to_reference": 0.698092
+        },
+        {
+          "id": "spk-8555-08",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.689032,
+          "target_to_reference": 0.689032
+        },
+        {
+          "id": "spk-8555-09",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.677612,
+          "target_to_reference": 0.677612
+        },
+        {
+          "id": "spk-1089-00",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.804167,
+          "target_to_reference": 0.804167
+        },
+        {
+          "id": "spk-1089-01",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.714674,
+          "target_to_reference": 0.714674
+        },
+        {
+          "id": "spk-1089-02",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.796986,
+          "target_to_reference": 0.796986
+        },
+        {
+          "id": "spk-1089-03",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.709824,
+          "target_to_reference": 0.709824
+        },
+        {
+          "id": "spk-1089-04",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.782985,
+          "target_to_reference": 0.782985
+        },
+        {
+          "id": "spk-1089-05",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.840515,
+          "target_to_reference": 0.840515
+        },
+        {
+          "id": "spk-1089-06",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.83617,
+          "target_to_reference": 0.83617
+        },
+        {
+          "id": "spk-1089-07",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.838462,
+          "target_to_reference": 0.838462
+        },
+        {
+          "id": "spk-1089-08",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.822586,
+          "target_to_reference": 0.822586
+        },
+        {
+          "id": "spk-1089-09",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.864881,
+          "target_to_reference": 0.864881
+        },
+        {
+          "id": "spk-260-00",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.803903,
+          "target_to_reference": 0.803903
+        },
+        {
+          "id": "spk-260-01",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.838238,
+          "target_to_reference": 0.838238
+        },
+        {
+          "id": "spk-260-02",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.729474,
+          "target_to_reference": 0.729474
+        },
+        {
+          "id": "spk-260-03",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.815341,
+          "target_to_reference": 0.815341
+        },
+        {
+          "id": "spk-260-04",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.869578,
+          "target_to_reference": 0.869578
+        },
+        {
+          "id": "spk-260-05",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.829375,
+          "target_to_reference": 0.829375
+        },
+        {
+          "id": "spk-260-06",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.840271,
+          "target_to_reference": 0.840271
+        },
+        {
+          "id": "spk-260-07",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.867413,
+          "target_to_reference": 0.867413
+        },
+        {
+          "id": "spk-260-08",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.689048,
+          "target_to_reference": 0.689048
+        },
+        {
+          "id": "spk-260-09",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.465026,
+          "target_to_reference": 0.465026
+        },
+        {
+          "id": "spk-5639-00",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.774604,
+          "target_to_reference": 0.774604
+        },
+        {
+          "id": "spk-5639-01",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.694646,
+          "target_to_reference": 0.694646
+        },
+        {
+          "id": "spk-5639-02",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.792234,
+          "target_to_reference": 0.792234
+        },
+        {
+          "id": "spk-5639-03",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.765787,
+          "target_to_reference": 0.765787
+        },
+        {
+          "id": "spk-5639-04",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.781789,
+          "target_to_reference": 0.781789
+        },
+        {
+          "id": "spk-5639-05",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.840177,
+          "target_to_reference": 0.840177
+        },
+        {
+          "id": "spk-5639-06",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.811241,
+          "target_to_reference": 0.811241
+        },
+        {
+          "id": "spk-5639-07",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.820379,
+          "target_to_reference": 0.820379
+        },
+        {
+          "id": "spk-5639-08",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.823509,
+          "target_to_reference": 0.823509
+        },
+        {
+          "id": "spk-5639-09",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.816367,
+          "target_to_reference": 0.816367
+        },
+        {
+          "id": "spk-7729-00",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.781776,
+          "target_to_reference": 0.781776
+        },
+        {
+          "id": "spk-7729-01",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.806522,
+          "target_to_reference": 0.806522
+        },
+        {
+          "id": "spk-7729-02",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.738627,
+          "target_to_reference": 0.738627
+        },
+        {
+          "id": "spk-7729-03",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.849427,
+          "target_to_reference": 0.849427
+        },
+        {
+          "id": "spk-7729-04",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.884357,
+          "target_to_reference": 0.884357
+        },
+        {
+          "id": "spk-7729-05",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.715462,
+          "target_to_reference": 0.715462
+        },
+        {
+          "id": "spk-7729-06",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.878763,
+          "target_to_reference": 0.878763
+        },
+        {
+          "id": "spk-7729-07",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.887808,
+          "target_to_reference": 0.887808
+        },
+        {
+          "id": "spk-7729-08",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.905666,
+          "target_to_reference": 0.905666
+        },
+        {
+          "id": "spk-7729-09",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.861822,
+          "target_to_reference": 0.861822
+        },
+        {
+          "id": "spk-908-00",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.780286,
+          "target_to_reference": 0.780286
+        },
+        {
+          "id": "spk-908-01",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.860343,
+          "target_to_reference": 0.860343
+        },
+        {
+          "id": "spk-908-02",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.778379,
+          "target_to_reference": 0.778379
+        },
+        {
+          "id": "spk-908-03",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.689981,
+          "target_to_reference": 0.689981
+        },
+        {
+          "id": "spk-908-04",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.735701,
+          "target_to_reference": 0.735701
+        },
+        {
+          "id": "spk-908-05",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.732914,
+          "target_to_reference": 0.732914
+        },
+        {
+          "id": "spk-908-06",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.72295,
+          "target_to_reference": 0.72295
+        },
+        {
+          "id": "spk-908-07",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.741013,
+          "target_to_reference": 0.741013
+        },
+        {
+          "id": "spk-908-08",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.725792,
+          "target_to_reference": 0.725792
+        },
+        {
+          "id": "spk-908-09",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 1.0,
+          "generated_to_reference": 0.739105,
+          "target_to_reference": 0.739105
+        }
+      ],
+      "generated_to_target": {
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "by_gender": {
+          "F": 1.0,
+          "M": 1.0
+        },
+        "by_speaker": {
+          "1089": 1.0,
+          "121": 1.0,
+          "237": 1.0,
+          "260": 1.0,
+          "3729": 1.0,
+          "5142": 1.0,
+          "5639": 1.0,
+          "7729": 1.0,
+          "8555": 1.0,
+          "908": 1.0
+        }
+      },
+      "generated_to_reference": {
+        "mean": 0.765117,
+        "min": 0.36522,
+        "max": 0.905812,
+        "by_gender": {
+          "F": 0.740307,
+          "M": 0.789927
+        },
+        "by_speaker": {
+          "1089": 0.801125,
+          "121": 0.719202,
+          "237": 0.80895,
+          "260": 0.774767,
+          "3729": 0.734517,
+          "5142": 0.717356,
+          "5639": 0.792073,
+          "7729": 0.831023,
+          "8555": 0.721508,
+          "908": 0.750646
+        }
+      },
+      "target_to_reference": {
+        "mean": 0.765117,
+        "min": 0.36522,
+        "max": 0.905812,
+        "by_gender": {
+          "F": 0.740307,
+          "M": 0.789927
+        },
+        "by_speaker": {
+          "1089": 0.801125,
+          "121": 0.719202,
+          "237": 0.80895,
+          "260": 0.774767,
+          "3729": 0.734517,
+          "5142": 0.717356,
+          "5639": 0.792073,
+          "7729": 0.831023,
+          "8555": 0.721508,
+          "908": 0.750646
+        }
+      }
+    },
+    "libritts-omnivoice-en100-v1": {
+      "completed": 100,
+      "cases": [
+        {
+          "id": "spk-121-00",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.688764,
+          "generated_to_reference": 0.829953,
+          "target_to_reference": 0.769299
+        },
+        {
+          "id": "spk-121-01",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.729604,
+          "generated_to_reference": 0.769224,
+          "target_to_reference": 0.833712
+        },
+        {
+          "id": "spk-121-02",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.681623,
+          "generated_to_reference": 0.741159,
+          "target_to_reference": 0.740965
+        },
+        {
+          "id": "spk-121-03",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.565554,
+          "generated_to_reference": 0.772599,
+          "target_to_reference": 0.677766
+        },
+        {
+          "id": "spk-121-04",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.518767,
+          "generated_to_reference": 0.603407,
+          "target_to_reference": 0.733489
+        },
+        {
+          "id": "spk-121-05",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.723142,
+          "generated_to_reference": 0.709898,
+          "target_to_reference": 0.627802
+        },
+        {
+          "id": "spk-121-06",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.55273,
+          "generated_to_reference": 0.785433,
+          "target_to_reference": 0.544663
+        },
+        {
+          "id": "spk-121-07",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.661542,
+          "generated_to_reference": 0.749963,
+          "target_to_reference": 0.638338
+        },
+        {
+          "id": "spk-121-08",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.777208,
+          "generated_to_reference": 0.740846,
+          "target_to_reference": 0.777483
+        },
+        {
+          "id": "spk-121-09",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.744671,
+          "generated_to_reference": 0.778995,
+          "target_to_reference": 0.848506
+        },
+        {
+          "id": "spk-237-00",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.796953,
+          "generated_to_reference": 0.863349,
+          "target_to_reference": 0.905812
+        },
+        {
+          "id": "spk-237-01",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.751291,
+          "generated_to_reference": 0.755103,
+          "target_to_reference": 0.869902
+        },
+        {
+          "id": "spk-237-02",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.791469,
+          "generated_to_reference": 0.830943,
+          "target_to_reference": 0.862131
+        },
+        {
+          "id": "spk-237-03",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.813444,
+          "generated_to_reference": 0.874989,
+          "target_to_reference": 0.804758
+        },
+        {
+          "id": "spk-237-04",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.798129,
+          "generated_to_reference": 0.844164,
+          "target_to_reference": 0.794283
+        },
+        {
+          "id": "spk-237-05",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.794179,
+          "generated_to_reference": 0.874692,
+          "target_to_reference": 0.819716
+        },
+        {
+          "id": "spk-237-06",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.762687,
+          "generated_to_reference": 0.817324,
+          "target_to_reference": 0.81244
+        },
+        {
+          "id": "spk-237-07",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.83927,
+          "generated_to_reference": 0.8626,
+          "target_to_reference": 0.792587
+        },
+        {
+          "id": "spk-237-08",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.693435,
+          "generated_to_reference": 0.825354,
+          "target_to_reference": 0.652974
+        },
+        {
+          "id": "spk-237-09",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.783289,
+          "generated_to_reference": 0.852129,
+          "target_to_reference": 0.774899
+        },
+        {
+          "id": "spk-3729-00",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.774197,
+          "generated_to_reference": 0.78101,
+          "target_to_reference": 0.852378
+        },
+        {
+          "id": "spk-3729-01",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.719655,
+          "generated_to_reference": 0.784169,
+          "target_to_reference": 0.85615
+        },
+        {
+          "id": "spk-3729-02",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.602006,
+          "generated_to_reference": 0.691761,
+          "target_to_reference": 0.769083
+        },
+        {
+          "id": "spk-3729-03",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.496578,
+          "generated_to_reference": 0.633887,
+          "target_to_reference": 0.720466
+        },
+        {
+          "id": "spk-3729-04",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.408705,
+          "generated_to_reference": 0.630794,
+          "target_to_reference": 0.36522
+        },
+        {
+          "id": "spk-3729-05",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.621333,
+          "generated_to_reference": 0.705923,
+          "target_to_reference": 0.745448
+        },
+        {
+          "id": "spk-3729-06",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.643937,
+          "generated_to_reference": 0.740296,
+          "target_to_reference": 0.752942
+        },
+        {
+          "id": "spk-3729-07",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.609692,
+          "generated_to_reference": 0.78415,
+          "target_to_reference": 0.733784
+        },
+        {
+          "id": "spk-3729-08",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.47806,
+          "generated_to_reference": 0.656376,
+          "target_to_reference": 0.759662
+        },
+        {
+          "id": "spk-3729-09",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.713004,
+          "generated_to_reference": 0.75598,
+          "target_to_reference": 0.790038
+        },
+        {
+          "id": "spk-5142-00",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.627778,
+          "generated_to_reference": 0.650218,
+          "target_to_reference": 0.66876
+        },
+        {
+          "id": "spk-5142-01",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.626201,
+          "generated_to_reference": 0.652387,
+          "target_to_reference": 0.753373
+        },
+        {
+          "id": "spk-5142-02",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.460084,
+          "generated_to_reference": 0.553334,
+          "target_to_reference": 0.718869
+        },
+        {
+          "id": "spk-5142-03",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.461124,
+          "generated_to_reference": 0.629048,
+          "target_to_reference": 0.572227
+        },
+        {
+          "id": "spk-5142-04",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.596743,
+          "generated_to_reference": 0.721364,
+          "target_to_reference": 0.63743
+        },
+        {
+          "id": "spk-5142-05",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.67143,
+          "generated_to_reference": 0.724061,
+          "target_to_reference": 0.736088
+        },
+        {
+          "id": "spk-5142-06",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.411531,
+          "generated_to_reference": 0.595222,
+          "target_to_reference": 0.718729
+        },
+        {
+          "id": "spk-5142-07",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.688599,
+          "generated_to_reference": 0.708047,
+          "target_to_reference": 0.811141
+        },
+        {
+          "id": "spk-5142-08",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.662761,
+          "generated_to_reference": 0.678021,
+          "target_to_reference": 0.700724
+        },
+        {
+          "id": "spk-5142-09",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.763466,
+          "generated_to_reference": 0.720967,
+          "target_to_reference": 0.856223
+        },
+        {
+          "id": "spk-8555-00",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.593816,
+          "generated_to_reference": 0.770133,
+          "target_to_reference": 0.635023
+        },
+        {
+          "id": "spk-8555-01",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.769856,
+          "generated_to_reference": 0.872985,
+          "target_to_reference": 0.803179
+        },
+        {
+          "id": "spk-8555-02",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.622379,
+          "generated_to_reference": 0.764689,
+          "target_to_reference": 0.688968
+        },
+        {
+          "id": "spk-8555-03",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.79492,
+          "generated_to_reference": 0.834404,
+          "target_to_reference": 0.865072
+        },
+        {
+          "id": "spk-8555-04",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.631454,
+          "generated_to_reference": 0.821971,
+          "target_to_reference": 0.711529
+        },
+        {
+          "id": "spk-8555-05",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.662274,
+          "generated_to_reference": 0.803809,
+          "target_to_reference": 0.794607
+        },
+        {
+          "id": "spk-8555-06",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.579479,
+          "generated_to_reference": 0.754332,
+          "target_to_reference": 0.651971
+        },
+        {
+          "id": "spk-8555-07",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.661156,
+          "generated_to_reference": 0.879744,
+          "target_to_reference": 0.698092
+        },
+        {
+          "id": "spk-8555-08",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.523516,
+          "generated_to_reference": 0.80476,
+          "target_to_reference": 0.689032
+        },
+        {
+          "id": "spk-8555-09",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.662224,
+          "generated_to_reference": 0.883638,
+          "target_to_reference": 0.677612
+        },
+        {
+          "id": "spk-1089-00",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.802045,
+          "generated_to_reference": 0.825208,
+          "target_to_reference": 0.804167
+        },
+        {
+          "id": "spk-1089-01",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.671345,
+          "generated_to_reference": 0.720972,
+          "target_to_reference": 0.714674
+        },
+        {
+          "id": "spk-1089-02",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.671677,
+          "generated_to_reference": 0.789188,
+          "target_to_reference": 0.796986
+        },
+        {
+          "id": "spk-1089-03",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.668211,
+          "generated_to_reference": 0.786849,
+          "target_to_reference": 0.709824
+        },
+        {
+          "id": "spk-1089-04",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.691768,
+          "generated_to_reference": 0.744081,
+          "target_to_reference": 0.782985
+        },
+        {
+          "id": "spk-1089-05",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.7598,
+          "generated_to_reference": 0.821543,
+          "target_to_reference": 0.840515
+        },
+        {
+          "id": "spk-1089-06",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.78764,
+          "generated_to_reference": 0.854118,
+          "target_to_reference": 0.83617
+        },
+        {
+          "id": "spk-1089-07",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.779035,
+          "generated_to_reference": 0.811692,
+          "target_to_reference": 0.838462
+        },
+        {
+          "id": "spk-1089-08",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.794637,
+          "generated_to_reference": 0.810582,
+          "target_to_reference": 0.822586
+        },
+        {
+          "id": "spk-1089-09",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.76567,
+          "generated_to_reference": 0.802865,
+          "target_to_reference": 0.864881
+        },
+        {
+          "id": "spk-260-00",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.690116,
+          "generated_to_reference": 0.768934,
+          "target_to_reference": 0.803903
+        },
+        {
+          "id": "spk-260-01",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.659188,
+          "generated_to_reference": 0.71163,
+          "target_to_reference": 0.838238
+        },
+        {
+          "id": "spk-260-02",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.574913,
+          "generated_to_reference": 0.64658,
+          "target_to_reference": 0.729474
+        },
+        {
+          "id": "spk-260-03",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.662092,
+          "generated_to_reference": 0.745969,
+          "target_to_reference": 0.815341
+        },
+        {
+          "id": "spk-260-04",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.778898,
+          "generated_to_reference": 0.816039,
+          "target_to_reference": 0.869578
+        },
+        {
+          "id": "spk-260-05",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.69078,
+          "generated_to_reference": 0.806143,
+          "target_to_reference": 0.829375
+        },
+        {
+          "id": "spk-260-06",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.655476,
+          "generated_to_reference": 0.728481,
+          "target_to_reference": 0.840271
+        },
+        {
+          "id": "spk-260-07",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.759117,
+          "generated_to_reference": 0.816554,
+          "target_to_reference": 0.867413
+        },
+        {
+          "id": "spk-260-08",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.534605,
+          "generated_to_reference": 0.70708,
+          "target_to_reference": 0.689048
+        },
+        {
+          "id": "spk-260-09",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.231766,
+          "generated_to_reference": 0.668758,
+          "target_to_reference": 0.465026
+        },
+        {
+          "id": "spk-5639-00",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.726611,
+          "generated_to_reference": 0.854945,
+          "target_to_reference": 0.774604
+        },
+        {
+          "id": "spk-5639-01",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.624987,
+          "generated_to_reference": 0.775343,
+          "target_to_reference": 0.694646
+        },
+        {
+          "id": "spk-5639-02",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.718702,
+          "generated_to_reference": 0.851208,
+          "target_to_reference": 0.792234
+        },
+        {
+          "id": "spk-5639-03",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.708435,
+          "generated_to_reference": 0.800024,
+          "target_to_reference": 0.765787
+        },
+        {
+          "id": "spk-5639-04",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.697055,
+          "generated_to_reference": 0.874649,
+          "target_to_reference": 0.781789
+        },
+        {
+          "id": "spk-5639-05",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.7549,
+          "generated_to_reference": 0.85416,
+          "target_to_reference": 0.840177
+        },
+        {
+          "id": "spk-5639-06",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.760097,
+          "generated_to_reference": 0.842833,
+          "target_to_reference": 0.811241
+        },
+        {
+          "id": "spk-5639-07",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.731691,
+          "generated_to_reference": 0.85283,
+          "target_to_reference": 0.820379
+        },
+        {
+          "id": "spk-5639-08",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.792782,
+          "generated_to_reference": 0.870812,
+          "target_to_reference": 0.823509
+        },
+        {
+          "id": "spk-5639-09",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.701011,
+          "generated_to_reference": 0.837243,
+          "target_to_reference": 0.816367
+        },
+        {
+          "id": "spk-7729-00",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.596944,
+          "generated_to_reference": 0.716751,
+          "target_to_reference": 0.781776
+        },
+        {
+          "id": "spk-7729-01",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.67285,
+          "generated_to_reference": 0.789201,
+          "target_to_reference": 0.806522
+        },
+        {
+          "id": "spk-7729-02",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.598855,
+          "generated_to_reference": 0.761374,
+          "target_to_reference": 0.738627
+        },
+        {
+          "id": "spk-7729-03",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.677519,
+          "generated_to_reference": 0.809117,
+          "target_to_reference": 0.849427
+        },
+        {
+          "id": "spk-7729-04",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.705533,
+          "generated_to_reference": 0.738876,
+          "target_to_reference": 0.884357
+        },
+        {
+          "id": "spk-7729-05",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.615015,
+          "generated_to_reference": 0.778291,
+          "target_to_reference": 0.715462
+        },
+        {
+          "id": "spk-7729-06",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.795198,
+          "generated_to_reference": 0.823725,
+          "target_to_reference": 0.878763
+        },
+        {
+          "id": "spk-7729-07",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.703705,
+          "generated_to_reference": 0.807106,
+          "target_to_reference": 0.887808
+        },
+        {
+          "id": "spk-7729-08",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.768898,
+          "generated_to_reference": 0.855928,
+          "target_to_reference": 0.905666
+        },
+        {
+          "id": "spk-7729-09",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.747472,
+          "generated_to_reference": 0.866942,
+          "target_to_reference": 0.861822
+        },
+        {
+          "id": "spk-908-00",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.743148,
+          "generated_to_reference": 0.691798,
+          "target_to_reference": 0.780286
+        },
+        {
+          "id": "spk-908-01",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.765761,
+          "generated_to_reference": 0.801827,
+          "target_to_reference": 0.860343
+        },
+        {
+          "id": "spk-908-02",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.695684,
+          "generated_to_reference": 0.818555,
+          "target_to_reference": 0.778379
+        },
+        {
+          "id": "spk-908-03",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.675566,
+          "generated_to_reference": 0.813113,
+          "target_to_reference": 0.689981
+        },
+        {
+          "id": "spk-908-04",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.65518,
+          "generated_to_reference": 0.769413,
+          "target_to_reference": 0.735701
+        },
+        {
+          "id": "spk-908-05",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.636446,
+          "generated_to_reference": 0.778642,
+          "target_to_reference": 0.732914
+        },
+        {
+          "id": "spk-908-06",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.655269,
+          "generated_to_reference": 0.808268,
+          "target_to_reference": 0.72295
+        },
+        {
+          "id": "spk-908-07",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.648059,
+          "generated_to_reference": 0.825962,
+          "target_to_reference": 0.741013
+        },
+        {
+          "id": "spk-908-08",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.68547,
+          "generated_to_reference": 0.778925,
+          "target_to_reference": 0.725792
+        },
+        {
+          "id": "spk-908-09",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.650785,
+          "generated_to_reference": 0.815839,
+          "target_to_reference": 0.739105
+        }
+      ],
+      "generated_to_target": {
+        "mean": 0.675441,
+        "min": 0.231766,
+        "max": 0.83927,
+        "by_gender": {
+          "F": 0.660114,
+          "M": 0.690768
+        },
+        "by_speaker": {
+          "1089": 0.739183,
+          "121": 0.664361,
+          "237": 0.782415,
+          "260": 0.623695,
+          "3729": 0.606717,
+          "5142": 0.596972,
+          "5639": 0.721627,
+          "7729": 0.688199,
+          "8555": 0.650107,
+          "908": 0.681137
+        }
+      },
+      "generated_to_reference": {
+        "mean": 0.775166,
+        "min": 0.553334,
+        "max": 0.883638,
+        "by_gender": {
+          "F": 0.757392,
+          "M": 0.792939
+        },
+        "by_speaker": {
+          "1089": 0.79671,
+          "121": 0.748148,
+          "237": 0.840065,
+          "260": 0.741617,
+          "3729": 0.716435,
+          "5142": 0.663267,
+          "5639": 0.841405,
+          "7729": 0.794731,
+          "8555": 0.819047,
+          "908": 0.790234
+        }
+      },
+      "target_to_reference": {
+        "mean": 0.765117,
+        "min": 0.36522,
+        "max": 0.905812,
+        "by_gender": {
+          "F": 0.740307,
+          "M": 0.789927
+        },
+        "by_speaker": {
+          "1089": 0.801125,
+          "121": 0.719202,
+          "237": 0.80895,
+          "260": 0.774767,
+          "3729": 0.734517,
+          "5142": 0.717356,
+          "5639": 0.792073,
+          "7729": 0.831023,
+          "8555": 0.721508,
+          "908": 0.750646
+        }
+      }
+    },
+    "libritts-qwen-en100-v1": {
+      "completed": 100,
+      "cases": [
+        {
+          "id": "spk-121-00",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.661981,
+          "generated_to_reference": 0.835878,
+          "target_to_reference": 0.769299
+        },
+        {
+          "id": "spk-121-01",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.761126,
+          "generated_to_reference": 0.832735,
+          "target_to_reference": 0.833712
+        },
+        {
+          "id": "spk-121-02",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.638173,
+          "generated_to_reference": 0.738049,
+          "target_to_reference": 0.740965
+        },
+        {
+          "id": "spk-121-03",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.634123,
+          "generated_to_reference": 0.786425,
+          "target_to_reference": 0.677766
+        },
+        {
+          "id": "spk-121-04",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.628254,
+          "generated_to_reference": 0.774398,
+          "target_to_reference": 0.733489
+        },
+        {
+          "id": "spk-121-05",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.511439,
+          "generated_to_reference": 0.791613,
+          "target_to_reference": 0.627802
+        },
+        {
+          "id": "spk-121-06",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.4549,
+          "generated_to_reference": 0.709231,
+          "target_to_reference": 0.544663
+        },
+        {
+          "id": "spk-121-07",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.538826,
+          "generated_to_reference": 0.761289,
+          "target_to_reference": 0.638338
+        },
+        {
+          "id": "spk-121-08",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.759652,
+          "generated_to_reference": 0.7717,
+          "target_to_reference": 0.777483
+        },
+        {
+          "id": "spk-121-09",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.778045,
+          "generated_to_reference": 0.825174,
+          "target_to_reference": 0.848506
+        },
+        {
+          "id": "spk-237-00",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.798048,
+          "generated_to_reference": 0.815558,
+          "target_to_reference": 0.905812
+        },
+        {
+          "id": "spk-237-01",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.726627,
+          "generated_to_reference": 0.715488,
+          "target_to_reference": 0.869902
+        },
+        {
+          "id": "spk-237-02",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.794582,
+          "generated_to_reference": 0.783379,
+          "target_to_reference": 0.862131
+        },
+        {
+          "id": "spk-237-03",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.834895,
+          "generated_to_reference": 0.824208,
+          "target_to_reference": 0.804758
+        },
+        {
+          "id": "spk-237-04",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.774831,
+          "generated_to_reference": 0.845271,
+          "target_to_reference": 0.794283
+        },
+        {
+          "id": "spk-237-05",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.753841,
+          "generated_to_reference": 0.831996,
+          "target_to_reference": 0.819716
+        },
+        {
+          "id": "spk-237-06",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.780451,
+          "generated_to_reference": 0.810863,
+          "target_to_reference": 0.81244
+        },
+        {
+          "id": "spk-237-07",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.798476,
+          "generated_to_reference": 0.825498,
+          "target_to_reference": 0.792587
+        },
+        {
+          "id": "spk-237-08",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.613473,
+          "generated_to_reference": 0.844475,
+          "target_to_reference": 0.652974
+        },
+        {
+          "id": "spk-237-09",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.763105,
+          "generated_to_reference": 0.828726,
+          "target_to_reference": 0.774899
+        },
+        {
+          "id": "spk-3729-00",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.806054,
+          "generated_to_reference": 0.791016,
+          "target_to_reference": 0.852378
+        },
+        {
+          "id": "spk-3729-01",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.750195,
+          "generated_to_reference": 0.771414,
+          "target_to_reference": 0.85615
+        },
+        {
+          "id": "spk-3729-02",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.674154,
+          "generated_to_reference": 0.726341,
+          "target_to_reference": 0.769083
+        },
+        {
+          "id": "spk-3729-03",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.645673,
+          "generated_to_reference": 0.647135,
+          "target_to_reference": 0.720466
+        },
+        {
+          "id": "spk-3729-04",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.389689,
+          "generated_to_reference": 0.647594,
+          "target_to_reference": 0.36522
+        },
+        {
+          "id": "spk-3729-05",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.720642,
+          "generated_to_reference": 0.800705,
+          "target_to_reference": 0.745448
+        },
+        {
+          "id": "spk-3729-06",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.655557,
+          "generated_to_reference": 0.790961,
+          "target_to_reference": 0.752942
+        },
+        {
+          "id": "spk-3729-07",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.762188,
+          "generated_to_reference": 0.841471,
+          "target_to_reference": 0.733784
+        },
+        {
+          "id": "spk-3729-08",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.547922,
+          "generated_to_reference": 0.593524,
+          "target_to_reference": 0.759662
+        },
+        {
+          "id": "spk-3729-09",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.625813,
+          "generated_to_reference": 0.738558,
+          "target_to_reference": 0.790038
+        },
+        {
+          "id": "spk-5142-00",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.633252,
+          "generated_to_reference": 0.688803,
+          "target_to_reference": 0.66876
+        },
+        {
+          "id": "spk-5142-01",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.67858,
+          "generated_to_reference": 0.755549,
+          "target_to_reference": 0.753373
+        },
+        {
+          "id": "spk-5142-02",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.542505,
+          "generated_to_reference": 0.630155,
+          "target_to_reference": 0.718869
+        },
+        {
+          "id": "spk-5142-03",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.373886,
+          "generated_to_reference": 0.667529,
+          "target_to_reference": 0.572227
+        },
+        {
+          "id": "spk-5142-04",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.567693,
+          "generated_to_reference": 0.667276,
+          "target_to_reference": 0.63743
+        },
+        {
+          "id": "spk-5142-05",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.74106,
+          "generated_to_reference": 0.814448,
+          "target_to_reference": 0.736088
+        },
+        {
+          "id": "spk-5142-06",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.632541,
+          "generated_to_reference": 0.658447,
+          "target_to_reference": 0.718729
+        },
+        {
+          "id": "spk-5142-07",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.673719,
+          "generated_to_reference": 0.701301,
+          "target_to_reference": 0.811141
+        },
+        {
+          "id": "spk-5142-08",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.717877,
+          "generated_to_reference": 0.721767,
+          "target_to_reference": 0.700724
+        },
+        {
+          "id": "spk-5142-09",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.7088,
+          "generated_to_reference": 0.723737,
+          "target_to_reference": 0.856223
+        },
+        {
+          "id": "spk-8555-00",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.648942,
+          "generated_to_reference": 0.647572,
+          "target_to_reference": 0.635023
+        },
+        {
+          "id": "spk-8555-01",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.682729,
+          "generated_to_reference": 0.769026,
+          "target_to_reference": 0.803179
+        },
+        {
+          "id": "spk-8555-02",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.432248,
+          "generated_to_reference": 0.69841,
+          "target_to_reference": 0.688968
+        },
+        {
+          "id": "spk-8555-03",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.752495,
+          "generated_to_reference": 0.719165,
+          "target_to_reference": 0.865072
+        },
+        {
+          "id": "spk-8555-04",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.547248,
+          "generated_to_reference": 0.756659,
+          "target_to_reference": 0.711529
+        },
+        {
+          "id": "spk-8555-05",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.69268,
+          "generated_to_reference": 0.735234,
+          "target_to_reference": 0.794607
+        },
+        {
+          "id": "spk-8555-06",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.564903,
+          "generated_to_reference": 0.69391,
+          "target_to_reference": 0.651971
+        },
+        {
+          "id": "spk-8555-07",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.569657,
+          "generated_to_reference": 0.759158,
+          "target_to_reference": 0.698092
+        },
+        {
+          "id": "spk-8555-08",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.569646,
+          "generated_to_reference": 0.704118,
+          "target_to_reference": 0.689032
+        },
+        {
+          "id": "spk-8555-09",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.621576,
+          "generated_to_reference": 0.751395,
+          "target_to_reference": 0.677612
+        },
+        {
+          "id": "spk-1089-00",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.802532,
+          "generated_to_reference": 0.80832,
+          "target_to_reference": 0.804167
+        },
+        {
+          "id": "spk-1089-01",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.708388,
+          "generated_to_reference": 0.76527,
+          "target_to_reference": 0.714674
+        },
+        {
+          "id": "spk-1089-02",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.72384,
+          "generated_to_reference": 0.766941,
+          "target_to_reference": 0.796986
+        },
+        {
+          "id": "spk-1089-03",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.737507,
+          "generated_to_reference": 0.790924,
+          "target_to_reference": 0.709824
+        },
+        {
+          "id": "spk-1089-04",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.537743,
+          "generated_to_reference": 0.569235,
+          "target_to_reference": 0.782985
+        },
+        {
+          "id": "spk-1089-05",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.74953,
+          "generated_to_reference": 0.837619,
+          "target_to_reference": 0.840515
+        },
+        {
+          "id": "spk-1089-06",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.821136,
+          "generated_to_reference": 0.853633,
+          "target_to_reference": 0.83617
+        },
+        {
+          "id": "spk-1089-07",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.803471,
+          "generated_to_reference": 0.816885,
+          "target_to_reference": 0.838462
+        },
+        {
+          "id": "spk-1089-08",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.804434,
+          "generated_to_reference": 0.76041,
+          "target_to_reference": 0.822586
+        },
+        {
+          "id": "spk-1089-09",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.787812,
+          "generated_to_reference": 0.804043,
+          "target_to_reference": 0.864881
+        },
+        {
+          "id": "spk-260-00",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.700109,
+          "generated_to_reference": 0.808042,
+          "target_to_reference": 0.803903
+        },
+        {
+          "id": "spk-260-01",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.744085,
+          "generated_to_reference": 0.826945,
+          "target_to_reference": 0.838238
+        },
+        {
+          "id": "spk-260-02",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.715755,
+          "generated_to_reference": 0.8422,
+          "target_to_reference": 0.729474
+        },
+        {
+          "id": "spk-260-03",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.756937,
+          "generated_to_reference": 0.828748,
+          "target_to_reference": 0.815341
+        },
+        {
+          "id": "spk-260-04",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.802006,
+          "generated_to_reference": 0.886774,
+          "target_to_reference": 0.869578
+        },
+        {
+          "id": "spk-260-05",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.780149,
+          "generated_to_reference": 0.849498,
+          "target_to_reference": 0.829375
+        },
+        {
+          "id": "spk-260-06",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.758115,
+          "generated_to_reference": 0.85224,
+          "target_to_reference": 0.840271
+        },
+        {
+          "id": "spk-260-07",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.810773,
+          "generated_to_reference": 0.88321,
+          "target_to_reference": 0.867413
+        },
+        {
+          "id": "spk-260-08",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.609171,
+          "generated_to_reference": 0.855906,
+          "target_to_reference": 0.689048
+        },
+        {
+          "id": "spk-260-09",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.347586,
+          "generated_to_reference": 0.795744,
+          "target_to_reference": 0.465026
+        },
+        {
+          "id": "spk-5639-00",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.734095,
+          "generated_to_reference": 0.791387,
+          "target_to_reference": 0.774604
+        },
+        {
+          "id": "spk-5639-01",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.578074,
+          "generated_to_reference": 0.700788,
+          "target_to_reference": 0.694646
+        },
+        {
+          "id": "spk-5639-02",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.720827,
+          "generated_to_reference": 0.807601,
+          "target_to_reference": 0.792234
+        },
+        {
+          "id": "spk-5639-03",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.76521,
+          "generated_to_reference": 0.817914,
+          "target_to_reference": 0.765787
+        },
+        {
+          "id": "spk-5639-04",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.594565,
+          "generated_to_reference": 0.746676,
+          "target_to_reference": 0.781789
+        },
+        {
+          "id": "spk-5639-05",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.695045,
+          "generated_to_reference": 0.799911,
+          "target_to_reference": 0.840177
+        },
+        {
+          "id": "spk-5639-06",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.751941,
+          "generated_to_reference": 0.763364,
+          "target_to_reference": 0.811241
+        },
+        {
+          "id": "spk-5639-07",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.726139,
+          "generated_to_reference": 0.840061,
+          "target_to_reference": 0.820379
+        },
+        {
+          "id": "spk-5639-08",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.765281,
+          "generated_to_reference": 0.838089,
+          "target_to_reference": 0.823509
+        },
+        {
+          "id": "spk-5639-09",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.689759,
+          "generated_to_reference": 0.80779,
+          "target_to_reference": 0.816367
+        },
+        {
+          "id": "spk-7729-00",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.666479,
+          "generated_to_reference": 0.764231,
+          "target_to_reference": 0.781776
+        },
+        {
+          "id": "spk-7729-01",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.680557,
+          "generated_to_reference": 0.746605,
+          "target_to_reference": 0.806522
+        },
+        {
+          "id": "spk-7729-02",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.660086,
+          "generated_to_reference": 0.809677,
+          "target_to_reference": 0.738627
+        },
+        {
+          "id": "spk-7729-03",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.756647,
+          "generated_to_reference": 0.861834,
+          "target_to_reference": 0.849427
+        },
+        {
+          "id": "spk-7729-04",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.73362,
+          "generated_to_reference": 0.764377,
+          "target_to_reference": 0.884357
+        },
+        {
+          "id": "spk-7729-05",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.675291,
+          "generated_to_reference": 0.776557,
+          "target_to_reference": 0.715462
+        },
+        {
+          "id": "spk-7729-06",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.783464,
+          "generated_to_reference": 0.822476,
+          "target_to_reference": 0.878763
+        },
+        {
+          "id": "spk-7729-07",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.78356,
+          "generated_to_reference": 0.82988,
+          "target_to_reference": 0.887808
+        },
+        {
+          "id": "spk-7729-08",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.815061,
+          "generated_to_reference": 0.860321,
+          "target_to_reference": 0.905666
+        },
+        {
+          "id": "spk-7729-09",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.777171,
+          "generated_to_reference": 0.840386,
+          "target_to_reference": 0.861822
+        },
+        {
+          "id": "spk-908-00",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.658238,
+          "generated_to_reference": 0.585352,
+          "target_to_reference": 0.780286
+        },
+        {
+          "id": "spk-908-01",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.764566,
+          "generated_to_reference": 0.756875,
+          "target_to_reference": 0.860343
+        },
+        {
+          "id": "spk-908-02",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.650636,
+          "generated_to_reference": 0.757666,
+          "target_to_reference": 0.778379
+        },
+        {
+          "id": "spk-908-03",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.57403,
+          "generated_to_reference": 0.731172,
+          "target_to_reference": 0.689981
+        },
+        {
+          "id": "spk-908-04",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.632945,
+          "generated_to_reference": 0.711664,
+          "target_to_reference": 0.735701
+        },
+        {
+          "id": "spk-908-05",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.669388,
+          "generated_to_reference": 0.750215,
+          "target_to_reference": 0.732914
+        },
+        {
+          "id": "spk-908-06",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.589349,
+          "generated_to_reference": 0.709847,
+          "target_to_reference": 0.72295
+        },
+        {
+          "id": "spk-908-07",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.613552,
+          "generated_to_reference": 0.76802,
+          "target_to_reference": 0.741013
+        },
+        {
+          "id": "spk-908-08",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.66214,
+          "generated_to_reference": 0.714564,
+          "target_to_reference": 0.725792
+        },
+        {
+          "id": "spk-908-09",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.690683,
+          "generated_to_reference": 0.76911,
+          "target_to_reference": 0.739105
+        }
+      ],
+      "generated_to_target": {
+        "mean": 0.682943,
+        "min": 0.347586,
+        "max": 0.834895,
+        "by_gender": {
+          "F": 0.658695,
+          "M": 0.70719
+        },
+        "by_speaker": {
+          "1089": 0.747639,
+          "121": 0.636652,
+          "237": 0.763833,
+          "260": 0.702469,
+          "3729": 0.657789,
+          "5142": 0.626991,
+          "5639": 0.702094,
+          "7729": 0.733194,
+          "8555": 0.608212,
+          "908": 0.650553
+        }
+      },
+      "generated_to_reference": {
+        "mean": 0.770113,
+        "min": 0.569235,
+        "max": 0.886774,
+        "by_gender": {
+          "F": 0.751287,
+          "M": 0.78894
+        },
+        "by_speaker": {
+          "1089": 0.777328,
+          "121": 0.782649,
+          "237": 0.812546,
+          "260": 0.842931,
+          "3729": 0.734872,
+          "5142": 0.702901,
+          "5639": 0.791358,
+          "7729": 0.807634,
+          "8555": 0.723465,
+          "908": 0.725448
+        }
+      },
+      "target_to_reference": {
+        "mean": 0.765117,
+        "min": 0.36522,
+        "max": 0.905812,
+        "by_gender": {
+          "F": 0.740307,
+          "M": 0.789927
+        },
+        "by_speaker": {
+          "1089": 0.801125,
+          "121": 0.719202,
+          "237": 0.80895,
+          "260": 0.774767,
+          "3729": 0.734517,
+          "5142": 0.717356,
+          "5639": 0.792073,
+          "7729": 0.831023,
+          "8555": 0.721508,
+          "908": 0.750646
+        }
+      }
+    },
+    "libritts-firered-base-en100-v1": {
+      "completed": 100,
+      "cases": [
+        {
+          "id": "spk-121-00",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.742414,
+          "generated_to_reference": 0.892651,
+          "target_to_reference": 0.769299
+        },
+        {
+          "id": "spk-121-01",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.796596,
+          "generated_to_reference": 0.906543,
+          "target_to_reference": 0.833712
+        },
+        {
+          "id": "spk-121-02",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.720247,
+          "generated_to_reference": 0.878611,
+          "target_to_reference": 0.740965
+        },
+        {
+          "id": "spk-121-03",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.60496,
+          "generated_to_reference": 0.852961,
+          "target_to_reference": 0.677766
+        },
+        {
+          "id": "spk-121-04",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.607997,
+          "generated_to_reference": 0.766395,
+          "target_to_reference": 0.733489
+        },
+        {
+          "id": "spk-121-05",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.650182,
+          "generated_to_reference": 0.83934,
+          "target_to_reference": 0.627802
+        },
+        {
+          "id": "spk-121-06",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.559907,
+          "generated_to_reference": 0.816555,
+          "target_to_reference": 0.544663
+        },
+        {
+          "id": "spk-121-07",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.627044,
+          "generated_to_reference": 0.824668,
+          "target_to_reference": 0.638338
+        },
+        {
+          "id": "spk-121-08",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.791884,
+          "generated_to_reference": 0.841497,
+          "target_to_reference": 0.777483
+        },
+        {
+          "id": "spk-121-09",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.803324,
+          "generated_to_reference": 0.903313,
+          "target_to_reference": 0.848506
+        },
+        {
+          "id": "spk-237-00",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.809381,
+          "generated_to_reference": 0.853994,
+          "target_to_reference": 0.905812
+        },
+        {
+          "id": "spk-237-01",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.8011,
+          "generated_to_reference": 0.867025,
+          "target_to_reference": 0.869902
+        },
+        {
+          "id": "spk-237-02",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.806974,
+          "generated_to_reference": 0.898613,
+          "target_to_reference": 0.862131
+        },
+        {
+          "id": "spk-237-03",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.806159,
+          "generated_to_reference": 0.863261,
+          "target_to_reference": 0.804758
+        },
+        {
+          "id": "spk-237-04",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.783314,
+          "generated_to_reference": 0.843916,
+          "target_to_reference": 0.794283
+        },
+        {
+          "id": "spk-237-05",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.818385,
+          "generated_to_reference": 0.890244,
+          "target_to_reference": 0.819716
+        },
+        {
+          "id": "spk-237-06",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.796409,
+          "generated_to_reference": 0.878344,
+          "target_to_reference": 0.81244
+        },
+        {
+          "id": "spk-237-07",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.827996,
+          "generated_to_reference": 0.903101,
+          "target_to_reference": 0.792587
+        },
+        {
+          "id": "spk-237-08",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.638826,
+          "generated_to_reference": 0.817188,
+          "target_to_reference": 0.652974
+        },
+        {
+          "id": "spk-237-09",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.777765,
+          "generated_to_reference": 0.850848,
+          "target_to_reference": 0.774899
+        },
+        {
+          "id": "spk-3729-00",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.815706,
+          "generated_to_reference": 0.844256,
+          "target_to_reference": 0.852378
+        },
+        {
+          "id": "spk-3729-01",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.725333,
+          "generated_to_reference": 0.807983,
+          "target_to_reference": 0.85615
+        },
+        {
+          "id": "spk-3729-02",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.710875,
+          "generated_to_reference": 0.809001,
+          "target_to_reference": 0.769083
+        },
+        {
+          "id": "spk-3729-03",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.598265,
+          "generated_to_reference": 0.749418,
+          "target_to_reference": 0.720466
+        },
+        {
+          "id": "spk-3729-04",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.272179,
+          "generated_to_reference": 0.827647,
+          "target_to_reference": 0.36522
+        },
+        {
+          "id": "spk-3729-05",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.676072,
+          "generated_to_reference": 0.786943,
+          "target_to_reference": 0.745448
+        },
+        {
+          "id": "spk-3729-06",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.632212,
+          "generated_to_reference": 0.775144,
+          "target_to_reference": 0.752942
+        },
+        {
+          "id": "spk-3729-07",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.664776,
+          "generated_to_reference": 0.813049,
+          "target_to_reference": 0.733784
+        },
+        {
+          "id": "spk-3729-08",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.602833,
+          "generated_to_reference": 0.749724,
+          "target_to_reference": 0.759662
+        },
+        {
+          "id": "spk-3729-09",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.752307,
+          "generated_to_reference": 0.805299,
+          "target_to_reference": 0.790038
+        },
+        {
+          "id": "spk-5142-00",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.648588,
+          "generated_to_reference": 0.759336,
+          "target_to_reference": 0.66876
+        },
+        {
+          "id": "spk-5142-01",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.768265,
+          "generated_to_reference": 0.803499,
+          "target_to_reference": 0.753373
+        },
+        {
+          "id": "spk-5142-02",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.658927,
+          "generated_to_reference": 0.760082,
+          "target_to_reference": 0.718869
+        },
+        {
+          "id": "spk-5142-03",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.553496,
+          "generated_to_reference": 0.790511,
+          "target_to_reference": 0.572227
+        },
+        {
+          "id": "spk-5142-04",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.620809,
+          "generated_to_reference": 0.834509,
+          "target_to_reference": 0.63743
+        },
+        {
+          "id": "spk-5142-05",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.788979,
+          "generated_to_reference": 0.814273,
+          "target_to_reference": 0.736088
+        },
+        {
+          "id": "spk-5142-06",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.667586,
+          "generated_to_reference": 0.800026,
+          "target_to_reference": 0.718729
+        },
+        {
+          "id": "spk-5142-07",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.722684,
+          "generated_to_reference": 0.817041,
+          "target_to_reference": 0.811141
+        },
+        {
+          "id": "spk-5142-08",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.705151,
+          "generated_to_reference": 0.8607,
+          "target_to_reference": 0.700724
+        },
+        {
+          "id": "spk-5142-09",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.849936,
+          "generated_to_reference": 0.863297,
+          "target_to_reference": 0.856223
+        },
+        {
+          "id": "spk-8555-00",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.607122,
+          "generated_to_reference": 0.835237,
+          "target_to_reference": 0.635023
+        },
+        {
+          "id": "spk-8555-01",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.78461,
+          "generated_to_reference": 0.860154,
+          "target_to_reference": 0.803179
+        },
+        {
+          "id": "spk-8555-02",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.564478,
+          "generated_to_reference": 0.784843,
+          "target_to_reference": 0.688968
+        },
+        {
+          "id": "spk-8555-03",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.76553,
+          "generated_to_reference": 0.812152,
+          "target_to_reference": 0.865072
+        },
+        {
+          "id": "spk-8555-04",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.716624,
+          "generated_to_reference": 0.845082,
+          "target_to_reference": 0.711529
+        },
+        {
+          "id": "spk-8555-05",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.759252,
+          "generated_to_reference": 0.849254,
+          "target_to_reference": 0.794607
+        },
+        {
+          "id": "spk-8555-06",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.543862,
+          "generated_to_reference": 0.787243,
+          "target_to_reference": 0.651971
+        },
+        {
+          "id": "spk-8555-07",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.606522,
+          "generated_to_reference": 0.850581,
+          "target_to_reference": 0.698092
+        },
+        {
+          "id": "spk-8555-08",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.589319,
+          "generated_to_reference": 0.842013,
+          "target_to_reference": 0.689032
+        },
+        {
+          "id": "spk-8555-09",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.568357,
+          "generated_to_reference": 0.844769,
+          "target_to_reference": 0.677612
+        },
+        {
+          "id": "spk-1089-00",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.760388,
+          "generated_to_reference": 0.814311,
+          "target_to_reference": 0.804167
+        },
+        {
+          "id": "spk-1089-01",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.763816,
+          "generated_to_reference": 0.740787,
+          "target_to_reference": 0.714674
+        },
+        {
+          "id": "spk-1089-02",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.73247,
+          "generated_to_reference": 0.823267,
+          "target_to_reference": 0.796986
+        },
+        {
+          "id": "spk-1089-03",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.786972,
+          "generated_to_reference": 0.799486,
+          "target_to_reference": 0.709824
+        },
+        {
+          "id": "spk-1089-04",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.688268,
+          "generated_to_reference": 0.8059,
+          "target_to_reference": 0.782985
+        },
+        {
+          "id": "spk-1089-05",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.7631,
+          "generated_to_reference": 0.835046,
+          "target_to_reference": 0.840515
+        },
+        {
+          "id": "spk-1089-06",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.835856,
+          "generated_to_reference": 0.815792,
+          "target_to_reference": 0.83617
+        },
+        {
+          "id": "spk-1089-07",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.8046,
+          "generated_to_reference": 0.848603,
+          "target_to_reference": 0.838462
+        },
+        {
+          "id": "spk-1089-08",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.764799,
+          "generated_to_reference": 0.803559,
+          "target_to_reference": 0.822586
+        },
+        {
+          "id": "spk-1089-09",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.786006,
+          "generated_to_reference": 0.854732,
+          "target_to_reference": 0.864881
+        },
+        {
+          "id": "spk-260-00",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.721843,
+          "generated_to_reference": 0.827988,
+          "target_to_reference": 0.803903
+        },
+        {
+          "id": "spk-260-01",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.726761,
+          "generated_to_reference": 0.837705,
+          "target_to_reference": 0.838238
+        },
+        {
+          "id": "spk-260-02",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.683913,
+          "generated_to_reference": 0.826509,
+          "target_to_reference": 0.729474
+        },
+        {
+          "id": "spk-260-03",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.778642,
+          "generated_to_reference": 0.844849,
+          "target_to_reference": 0.815341
+        },
+        {
+          "id": "spk-260-04",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.827292,
+          "generated_to_reference": 0.866722,
+          "target_to_reference": 0.869578
+        },
+        {
+          "id": "spk-260-05",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.788618,
+          "generated_to_reference": 0.859848,
+          "target_to_reference": 0.829375
+        },
+        {
+          "id": "spk-260-06",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.799563,
+          "generated_to_reference": 0.845028,
+          "target_to_reference": 0.840271
+        },
+        {
+          "id": "spk-260-07",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.815056,
+          "generated_to_reference": 0.877822,
+          "target_to_reference": 0.867413
+        },
+        {
+          "id": "spk-260-08",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.685553,
+          "generated_to_reference": 0.817348,
+          "target_to_reference": 0.689048
+        },
+        {
+          "id": "spk-260-09",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.36978,
+          "generated_to_reference": 0.80325,
+          "target_to_reference": 0.465026
+        },
+        {
+          "id": "spk-5639-00",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.761629,
+          "generated_to_reference": 0.874739,
+          "target_to_reference": 0.774604
+        },
+        {
+          "id": "spk-5639-01",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.643019,
+          "generated_to_reference": 0.813663,
+          "target_to_reference": 0.694646
+        },
+        {
+          "id": "spk-5639-02",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.763296,
+          "generated_to_reference": 0.877295,
+          "target_to_reference": 0.792234
+        },
+        {
+          "id": "spk-5639-03",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.750415,
+          "generated_to_reference": 0.873299,
+          "target_to_reference": 0.765787
+        },
+        {
+          "id": "spk-5639-04",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.729124,
+          "generated_to_reference": 0.889036,
+          "target_to_reference": 0.781789
+        },
+        {
+          "id": "spk-5639-05",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.80019,
+          "generated_to_reference": 0.867182,
+          "target_to_reference": 0.840177
+        },
+        {
+          "id": "spk-5639-06",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.759286,
+          "generated_to_reference": 0.879069,
+          "target_to_reference": 0.811241
+        },
+        {
+          "id": "spk-5639-07",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.749835,
+          "generated_to_reference": 0.869705,
+          "target_to_reference": 0.820379
+        },
+        {
+          "id": "spk-5639-08",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.782373,
+          "generated_to_reference": 0.884791,
+          "target_to_reference": 0.823509
+        },
+        {
+          "id": "spk-5639-09",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.80687,
+          "generated_to_reference": 0.896967,
+          "target_to_reference": 0.816367
+        },
+        {
+          "id": "spk-7729-00",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.771684,
+          "generated_to_reference": 0.829104,
+          "target_to_reference": 0.781776
+        },
+        {
+          "id": "spk-7729-01",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.814843,
+          "generated_to_reference": 0.866093,
+          "target_to_reference": 0.806522
+        },
+        {
+          "id": "spk-7729-02",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.713491,
+          "generated_to_reference": 0.854784,
+          "target_to_reference": 0.738627
+        },
+        {
+          "id": "spk-7729-03",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.828537,
+          "generated_to_reference": 0.88908,
+          "target_to_reference": 0.849427
+        },
+        {
+          "id": "spk-7729-04",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.86953,
+          "generated_to_reference": 0.870046,
+          "target_to_reference": 0.884357
+        },
+        {
+          "id": "spk-7729-05",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.682123,
+          "generated_to_reference": 0.83033,
+          "target_to_reference": 0.715462
+        },
+        {
+          "id": "spk-7729-06",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.848677,
+          "generated_to_reference": 0.874159,
+          "target_to_reference": 0.878763
+        },
+        {
+          "id": "spk-7729-07",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.807338,
+          "generated_to_reference": 0.877236,
+          "target_to_reference": 0.887808
+        },
+        {
+          "id": "spk-7729-08",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.795762,
+          "generated_to_reference": 0.880312,
+          "target_to_reference": 0.905666
+        },
+        {
+          "id": "spk-7729-09",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.800185,
+          "generated_to_reference": 0.899168,
+          "target_to_reference": 0.861822
+        },
+        {
+          "id": "spk-908-00",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.790736,
+          "generated_to_reference": 0.82164,
+          "target_to_reference": 0.780286
+        },
+        {
+          "id": "spk-908-01",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.755724,
+          "generated_to_reference": 0.809322,
+          "target_to_reference": 0.860343
+        },
+        {
+          "id": "spk-908-02",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.725933,
+          "generated_to_reference": 0.844357,
+          "target_to_reference": 0.778379
+        },
+        {
+          "id": "spk-908-03",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.613201,
+          "generated_to_reference": 0.81952,
+          "target_to_reference": 0.689981
+        },
+        {
+          "id": "spk-908-04",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.700673,
+          "generated_to_reference": 0.824532,
+          "target_to_reference": 0.735701
+        },
+        {
+          "id": "spk-908-05",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.67237,
+          "generated_to_reference": 0.828176,
+          "target_to_reference": 0.732914
+        },
+        {
+          "id": "spk-908-06",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.660001,
+          "generated_to_reference": 0.840996,
+          "target_to_reference": 0.72295
+        },
+        {
+          "id": "spk-908-07",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.66178,
+          "generated_to_reference": 0.845396,
+          "target_to_reference": 0.741013
+        },
+        {
+          "id": "spk-908-08",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.701252,
+          "generated_to_reference": 0.827703,
+          "target_to_reference": 0.725792
+        },
+        {
+          "id": "spk-908-09",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.704409,
+          "generated_to_reference": 0.850016,
+          "target_to_reference": 0.739105
+        }
+      ],
+      "generated_to_target": {
+        "mean": 0.720591,
+        "min": 0.272179,
+        "max": 0.86953,
+        "by_gender": {
+          "F": 0.69423,
+          "M": 0.746952
+        },
+        "by_speaker": {
+          "1089": 0.768628,
+          "121": 0.690455,
+          "237": 0.786631,
+          "260": 0.719702,
+          "3729": 0.645056,
+          "5142": 0.698442,
+          "5639": 0.754604,
+          "7729": 0.793217,
+          "8555": 0.650568,
+          "908": 0.698608
+        }
+      },
+      "generated_to_reference": {
+        "mean": 0.838284,
+        "min": 0.740787,
+        "max": 0.906543,
+        "by_gender": {
+          "F": 0.831443,
+          "M": 0.845125
+        },
+        "by_speaker": {
+          "1089": 0.814148,
+          "121": 0.852253,
+          "237": 0.866653,
+          "260": 0.840707,
+          "3729": 0.796846,
+          "5142": 0.810327,
+          "5639": 0.872575,
+          "7729": 0.867031,
+          "8555": 0.831133,
+          "908": 0.831166
+        }
+      },
+      "target_to_reference": {
+        "mean": 0.765117,
+        "min": 0.36522,
+        "max": 0.905812,
+        "by_gender": {
+          "F": 0.740307,
+          "M": 0.789927
+        },
+        "by_speaker": {
+          "1089": 0.801125,
+          "121": 0.719202,
+          "237": 0.80895,
+          "260": 0.774767,
+          "3729": 0.734517,
+          "5142": 0.717356,
+          "5639": 0.792073,
+          "7729": 0.831023,
+          "8555": 0.721508,
+          "908": 0.750646
+        }
+      }
+    },
+    "libritts-firered-instruct-en100-v1": {
+      "completed": 100,
+      "cases": [
+        {
+          "id": "spk-121-00",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.647534,
+          "generated_to_reference": 0.759019,
+          "target_to_reference": 0.769299
+        },
+        {
+          "id": "spk-121-01",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.76719,
+          "generated_to_reference": 0.782695,
+          "target_to_reference": 0.833712
+        },
+        {
+          "id": "spk-121-02",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.575497,
+          "generated_to_reference": 0.735992,
+          "target_to_reference": 0.740965
+        },
+        {
+          "id": "spk-121-03",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.53586,
+          "generated_to_reference": 0.701725,
+          "target_to_reference": 0.677766
+        },
+        {
+          "id": "spk-121-04",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.537068,
+          "generated_to_reference": 0.670161,
+          "target_to_reference": 0.733489
+        },
+        {
+          "id": "spk-121-05",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.625146,
+          "generated_to_reference": 0.732801,
+          "target_to_reference": 0.627802
+        },
+        {
+          "id": "spk-121-06",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.565,
+          "generated_to_reference": 0.687988,
+          "target_to_reference": 0.544663
+        },
+        {
+          "id": "spk-121-07",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.66151,
+          "generated_to_reference": 0.742635,
+          "target_to_reference": 0.638338
+        },
+        {
+          "id": "spk-121-08",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.608884,
+          "generated_to_reference": 0.647816,
+          "target_to_reference": 0.777483
+        },
+        {
+          "id": "spk-121-09",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.723518,
+          "generated_to_reference": 0.753855,
+          "target_to_reference": 0.848506
+        },
+        {
+          "id": "spk-237-00",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.645634,
+          "generated_to_reference": 0.683189,
+          "target_to_reference": 0.905812
+        },
+        {
+          "id": "spk-237-01",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.642893,
+          "generated_to_reference": 0.679582,
+          "target_to_reference": 0.869902
+        },
+        {
+          "id": "spk-237-02",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.671239,
+          "generated_to_reference": 0.687862,
+          "target_to_reference": 0.862131
+        },
+        {
+          "id": "spk-237-03",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.589532,
+          "generated_to_reference": 0.653541,
+          "target_to_reference": 0.804758
+        },
+        {
+          "id": "spk-237-04",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.586544,
+          "generated_to_reference": 0.695314,
+          "target_to_reference": 0.794283
+        },
+        {
+          "id": "spk-237-05",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.555511,
+          "generated_to_reference": 0.670454,
+          "target_to_reference": 0.819716
+        },
+        {
+          "id": "spk-237-06",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.584972,
+          "generated_to_reference": 0.702117,
+          "target_to_reference": 0.81244
+        },
+        {
+          "id": "spk-237-07",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.576242,
+          "generated_to_reference": 0.679027,
+          "target_to_reference": 0.792587
+        },
+        {
+          "id": "spk-237-08",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.528863,
+          "generated_to_reference": 0.736176,
+          "target_to_reference": 0.652974
+        },
+        {
+          "id": "spk-237-09",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.635266,
+          "generated_to_reference": 0.710911,
+          "target_to_reference": 0.774899
+        },
+        {
+          "id": "spk-3729-00",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.703715,
+          "generated_to_reference": 0.681706,
+          "target_to_reference": 0.852378
+        },
+        {
+          "id": "spk-3729-01",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.63902,
+          "generated_to_reference": 0.679457,
+          "target_to_reference": 0.85615
+        },
+        {
+          "id": "spk-3729-02",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.582085,
+          "generated_to_reference": 0.699179,
+          "target_to_reference": 0.769083
+        },
+        {
+          "id": "spk-3729-03",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.586676,
+          "generated_to_reference": 0.674191,
+          "target_to_reference": 0.720466
+        },
+        {
+          "id": "spk-3729-04",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.127525,
+          "generated_to_reference": 0.553042,
+          "target_to_reference": 0.36522
+        },
+        {
+          "id": "spk-3729-05",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.570039,
+          "generated_to_reference": 0.65041,
+          "target_to_reference": 0.745448
+        },
+        {
+          "id": "spk-3729-06",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.604371,
+          "generated_to_reference": 0.685851,
+          "target_to_reference": 0.752942
+        },
+        {
+          "id": "spk-3729-07",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.538484,
+          "generated_to_reference": 0.669647,
+          "target_to_reference": 0.733784
+        },
+        {
+          "id": "spk-3729-08",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.551268,
+          "generated_to_reference": 0.591919,
+          "target_to_reference": 0.759662
+        },
+        {
+          "id": "spk-3729-09",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.607946,
+          "generated_to_reference": 0.683772,
+          "target_to_reference": 0.790038
+        },
+        {
+          "id": "spk-5142-00",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.652798,
+          "generated_to_reference": 0.660576,
+          "target_to_reference": 0.66876
+        },
+        {
+          "id": "spk-5142-01",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.749406,
+          "generated_to_reference": 0.713555,
+          "target_to_reference": 0.753373
+        },
+        {
+          "id": "spk-5142-02",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.588451,
+          "generated_to_reference": 0.583309,
+          "target_to_reference": 0.718869
+        },
+        {
+          "id": "spk-5142-03",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.41798,
+          "generated_to_reference": 0.601078,
+          "target_to_reference": 0.572227
+        },
+        {
+          "id": "spk-5142-04",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.613553,
+          "generated_to_reference": 0.657479,
+          "target_to_reference": 0.63743
+        },
+        {
+          "id": "spk-5142-05",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.639518,
+          "generated_to_reference": 0.673307,
+          "target_to_reference": 0.736088
+        },
+        {
+          "id": "spk-5142-06",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.553617,
+          "generated_to_reference": 0.70802,
+          "target_to_reference": 0.718729
+        },
+        {
+          "id": "spk-5142-07",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.712052,
+          "generated_to_reference": 0.770185,
+          "target_to_reference": 0.811141
+        },
+        {
+          "id": "spk-5142-08",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.743158,
+          "generated_to_reference": 0.719817,
+          "target_to_reference": 0.700724
+        },
+        {
+          "id": "spk-5142-09",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.666929,
+          "generated_to_reference": 0.670339,
+          "target_to_reference": 0.856223
+        },
+        {
+          "id": "spk-8555-00",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.544635,
+          "generated_to_reference": 0.648419,
+          "target_to_reference": 0.635023
+        },
+        {
+          "id": "spk-8555-01",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.607327,
+          "generated_to_reference": 0.638477,
+          "target_to_reference": 0.803179
+        },
+        {
+          "id": "spk-8555-02",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.360437,
+          "generated_to_reference": 0.530219,
+          "target_to_reference": 0.688968
+        },
+        {
+          "id": "spk-8555-03",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.641185,
+          "generated_to_reference": 0.611051,
+          "target_to_reference": 0.865072
+        },
+        {
+          "id": "spk-8555-04",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.633375,
+          "generated_to_reference": 0.615439,
+          "target_to_reference": 0.711529
+        },
+        {
+          "id": "spk-8555-05",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.627642,
+          "generated_to_reference": 0.674839,
+          "target_to_reference": 0.794607
+        },
+        {
+          "id": "spk-8555-06",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.472257,
+          "generated_to_reference": 0.664122,
+          "target_to_reference": 0.651971
+        },
+        {
+          "id": "spk-8555-07",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.426861,
+          "generated_to_reference": 0.626266,
+          "target_to_reference": 0.698092
+        },
+        {
+          "id": "spk-8555-08",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.496808,
+          "generated_to_reference": 0.654409,
+          "target_to_reference": 0.689032
+        },
+        {
+          "id": "spk-8555-09",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.49265,
+          "generated_to_reference": 0.672243,
+          "target_to_reference": 0.677612
+        },
+        {
+          "id": "spk-1089-00",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.635945,
+          "generated_to_reference": 0.704599,
+          "target_to_reference": 0.804167
+        },
+        {
+          "id": "spk-1089-01",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.619421,
+          "generated_to_reference": 0.68886,
+          "target_to_reference": 0.714674
+        },
+        {
+          "id": "spk-1089-02",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.642179,
+          "generated_to_reference": 0.69723,
+          "target_to_reference": 0.796986
+        },
+        {
+          "id": "spk-1089-03",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.625396,
+          "generated_to_reference": 0.694009,
+          "target_to_reference": 0.709824
+        },
+        {
+          "id": "spk-1089-04",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.68579,
+          "generated_to_reference": 0.725682,
+          "target_to_reference": 0.782985
+        },
+        {
+          "id": "spk-1089-05",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.668706,
+          "generated_to_reference": 0.699093,
+          "target_to_reference": 0.840515
+        },
+        {
+          "id": "spk-1089-06",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.68317,
+          "generated_to_reference": 0.718506,
+          "target_to_reference": 0.83617
+        },
+        {
+          "id": "spk-1089-07",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.673294,
+          "generated_to_reference": 0.73719,
+          "target_to_reference": 0.838462
+        },
+        {
+          "id": "spk-1089-08",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.634923,
+          "generated_to_reference": 0.686096,
+          "target_to_reference": 0.822586
+        },
+        {
+          "id": "spk-1089-09",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.675351,
+          "generated_to_reference": 0.685243,
+          "target_to_reference": 0.864881
+        },
+        {
+          "id": "spk-260-00",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.64198,
+          "generated_to_reference": 0.729111,
+          "target_to_reference": 0.803903
+        },
+        {
+          "id": "spk-260-01",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.675473,
+          "generated_to_reference": 0.778146,
+          "target_to_reference": 0.838238
+        },
+        {
+          "id": "spk-260-02",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.584764,
+          "generated_to_reference": 0.692732,
+          "target_to_reference": 0.729474
+        },
+        {
+          "id": "spk-260-03",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.665008,
+          "generated_to_reference": 0.757951,
+          "target_to_reference": 0.815341
+        },
+        {
+          "id": "spk-260-04",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.713838,
+          "generated_to_reference": 0.752894,
+          "target_to_reference": 0.869578
+        },
+        {
+          "id": "spk-260-05",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.638826,
+          "generated_to_reference": 0.730247,
+          "target_to_reference": 0.829375
+        },
+        {
+          "id": "spk-260-06",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.685296,
+          "generated_to_reference": 0.732343,
+          "target_to_reference": 0.840271
+        },
+        {
+          "id": "spk-260-07",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.686479,
+          "generated_to_reference": 0.738209,
+          "target_to_reference": 0.867413
+        },
+        {
+          "id": "spk-260-08",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.600467,
+          "generated_to_reference": 0.675949,
+          "target_to_reference": 0.689048
+        },
+        {
+          "id": "spk-260-09",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.348485,
+          "generated_to_reference": 0.713454,
+          "target_to_reference": 0.465026
+        },
+        {
+          "id": "spk-5639-00",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.73423,
+          "generated_to_reference": 0.79885,
+          "target_to_reference": 0.774604
+        },
+        {
+          "id": "spk-5639-01",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.55721,
+          "generated_to_reference": 0.716354,
+          "target_to_reference": 0.694646
+        },
+        {
+          "id": "spk-5639-02",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.738068,
+          "generated_to_reference": 0.829269,
+          "target_to_reference": 0.792234
+        },
+        {
+          "id": "spk-5639-03",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.720332,
+          "generated_to_reference": 0.795601,
+          "target_to_reference": 0.765787
+        },
+        {
+          "id": "spk-5639-04",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.637447,
+          "generated_to_reference": 0.796772,
+          "target_to_reference": 0.781789
+        },
+        {
+          "id": "spk-5639-05",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.773364,
+          "generated_to_reference": 0.832389,
+          "target_to_reference": 0.840177
+        },
+        {
+          "id": "spk-5639-06",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.710622,
+          "generated_to_reference": 0.814273,
+          "target_to_reference": 0.811241
+        },
+        {
+          "id": "spk-5639-07",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.716967,
+          "generated_to_reference": 0.802943,
+          "target_to_reference": 0.820379
+        },
+        {
+          "id": "spk-5639-08",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.758045,
+          "generated_to_reference": 0.801896,
+          "target_to_reference": 0.823509
+        },
+        {
+          "id": "spk-5639-09",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.739606,
+          "generated_to_reference": 0.784195,
+          "target_to_reference": 0.816367
+        },
+        {
+          "id": "spk-7729-00",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.689752,
+          "generated_to_reference": 0.749314,
+          "target_to_reference": 0.781776
+        },
+        {
+          "id": "spk-7729-01",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.708392,
+          "generated_to_reference": 0.810387,
+          "target_to_reference": 0.806522
+        },
+        {
+          "id": "spk-7729-02",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.686886,
+          "generated_to_reference": 0.803948,
+          "target_to_reference": 0.738627
+        },
+        {
+          "id": "spk-7729-03",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.76465,
+          "generated_to_reference": 0.791624,
+          "target_to_reference": 0.849427
+        },
+        {
+          "id": "spk-7729-04",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.76952,
+          "generated_to_reference": 0.790222,
+          "target_to_reference": 0.884357
+        },
+        {
+          "id": "spk-7729-05",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.692258,
+          "generated_to_reference": 0.767049,
+          "target_to_reference": 0.715462
+        },
+        {
+          "id": "spk-7729-06",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.76856,
+          "generated_to_reference": 0.767992,
+          "target_to_reference": 0.878763
+        },
+        {
+          "id": "spk-7729-07",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.775845,
+          "generated_to_reference": 0.81079,
+          "target_to_reference": 0.887808
+        },
+        {
+          "id": "spk-7729-08",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.681232,
+          "generated_to_reference": 0.771261,
+          "target_to_reference": 0.905666
+        },
+        {
+          "id": "spk-7729-09",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.723608,
+          "generated_to_reference": 0.804617,
+          "target_to_reference": 0.861822
+        },
+        {
+          "id": "spk-908-00",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.665197,
+          "generated_to_reference": 0.659423,
+          "target_to_reference": 0.780286
+        },
+        {
+          "id": "spk-908-01",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.669384,
+          "generated_to_reference": 0.618064,
+          "target_to_reference": 0.860343
+        },
+        {
+          "id": "spk-908-02",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.576403,
+          "generated_to_reference": 0.618356,
+          "target_to_reference": 0.778379
+        },
+        {
+          "id": "spk-908-03",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.498497,
+          "generated_to_reference": 0.62843,
+          "target_to_reference": 0.689981
+        },
+        {
+          "id": "spk-908-04",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.584458,
+          "generated_to_reference": 0.582714,
+          "target_to_reference": 0.735701
+        },
+        {
+          "id": "spk-908-05",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.609484,
+          "generated_to_reference": 0.638763,
+          "target_to_reference": 0.732914
+        },
+        {
+          "id": "spk-908-06",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.516151,
+          "generated_to_reference": 0.667255,
+          "target_to_reference": 0.72295
+        },
+        {
+          "id": "spk-908-07",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.510518,
+          "generated_to_reference": 0.689946,
+          "target_to_reference": 0.741013
+        },
+        {
+          "id": "spk-908-08",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.480855,
+          "generated_to_reference": 0.536601,
+          "target_to_reference": 0.725792
+        },
+        {
+          "id": "spk-908-09",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.567804,
+          "generated_to_reference": 0.615053,
+          "target_to_reference": 0.739105
+        }
+      ],
+      "generated_to_target": {
+        "mean": 0.622258,
+        "min": 0.127525,
+        "max": 0.775845,
+        "by_gender": {
+          "F": 0.588313,
+          "M": 0.656203
+        },
+        "by_speaker": {
+          "1089": 0.654417,
+          "121": 0.624721,
+          "237": 0.60167,
+          "260": 0.624062,
+          "3729": 0.551113,
+          "5142": 0.633746,
+          "5639": 0.708589,
+          "7729": 0.72607,
+          "8555": 0.530318,
+          "908": 0.567875
+        }
+      },
+      "generated_to_reference": {
+        "mean": 0.702071,
+        "min": 0.530219,
+        "max": 0.832389,
+        "by_gender": {
+          "F": 0.675504,
+          "M": 0.728638
+        },
+        "by_speaker": {
+          "1089": 0.703651,
+          "121": 0.721469,
+          "237": 0.689817,
+          "260": 0.730104,
+          "3729": 0.656917,
+          "5142": 0.675767,
+          "5639": 0.797254,
+          "7729": 0.78672,
+          "8555": 0.633548,
+          "908": 0.62546
+        }
+      },
+      "target_to_reference": {
+        "mean": 0.765117,
+        "min": 0.36522,
+        "max": 0.905812,
+        "by_gender": {
+          "F": 0.740307,
+          "M": 0.789927
+        },
+        "by_speaker": {
+          "1089": 0.801125,
+          "121": 0.719202,
+          "237": 0.80895,
+          "260": 0.774767,
+          "3729": 0.734517,
+          "5142": 0.717356,
+          "5639": 0.792073,
+          "7729": 0.831023,
+          "8555": 0.721508,
+          "908": 0.750646
+        }
+      }
+    },
+    "libritts-fish-en100-v1": {
+      "completed": 100,
+      "cases": [
+        {
+          "id": "spk-121-00",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.531746,
+          "generated_to_reference": 0.767391,
+          "target_to_reference": 0.769299
+        },
+        {
+          "id": "spk-121-01",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.717459,
+          "generated_to_reference": 0.769461,
+          "target_to_reference": 0.833712
+        },
+        {
+          "id": "spk-121-02",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.602738,
+          "generated_to_reference": 0.732196,
+          "target_to_reference": 0.740965
+        },
+        {
+          "id": "spk-121-03",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.519587,
+          "generated_to_reference": 0.684499,
+          "target_to_reference": 0.677766
+        },
+        {
+          "id": "spk-121-04",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.479316,
+          "generated_to_reference": 0.604991,
+          "target_to_reference": 0.733489
+        },
+        {
+          "id": "spk-121-05",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.559631,
+          "generated_to_reference": 0.64213,
+          "target_to_reference": 0.627802
+        },
+        {
+          "id": "spk-121-06",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.504546,
+          "generated_to_reference": 0.667084,
+          "target_to_reference": 0.544663
+        },
+        {
+          "id": "spk-121-07",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.52477,
+          "generated_to_reference": 0.718013,
+          "target_to_reference": 0.638338
+        },
+        {
+          "id": "spk-121-08",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.636839,
+          "generated_to_reference": 0.65732,
+          "target_to_reference": 0.777483
+        },
+        {
+          "id": "spk-121-09",
+          "speaker": "121",
+          "gender": "F",
+          "generated_to_target": 0.670692,
+          "generated_to_reference": 0.79181,
+          "target_to_reference": 0.848506
+        },
+        {
+          "id": "spk-237-00",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.735386,
+          "generated_to_reference": 0.800356,
+          "target_to_reference": 0.905812
+        },
+        {
+          "id": "spk-237-01",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.691029,
+          "generated_to_reference": 0.714513,
+          "target_to_reference": 0.869902
+        },
+        {
+          "id": "spk-237-02",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.766683,
+          "generated_to_reference": 0.77948,
+          "target_to_reference": 0.862131
+        },
+        {
+          "id": "spk-237-03",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.73259,
+          "generated_to_reference": 0.797679,
+          "target_to_reference": 0.804758
+        },
+        {
+          "id": "spk-237-04",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.717986,
+          "generated_to_reference": 0.793288,
+          "target_to_reference": 0.794283
+        },
+        {
+          "id": "spk-237-05",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.750452,
+          "generated_to_reference": 0.845201,
+          "target_to_reference": 0.819716
+        },
+        {
+          "id": "spk-237-06",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.743755,
+          "generated_to_reference": 0.831162,
+          "target_to_reference": 0.81244
+        },
+        {
+          "id": "spk-237-07",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.760338,
+          "generated_to_reference": 0.822805,
+          "target_to_reference": 0.792587
+        },
+        {
+          "id": "spk-237-08",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.530963,
+          "generated_to_reference": 0.710699,
+          "target_to_reference": 0.652974
+        },
+        {
+          "id": "spk-237-09",
+          "speaker": "237",
+          "gender": "F",
+          "generated_to_target": 0.728538,
+          "generated_to_reference": 0.8409,
+          "target_to_reference": 0.774899
+        },
+        {
+          "id": "spk-3729-00",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.702054,
+          "generated_to_reference": 0.724603,
+          "target_to_reference": 0.852378
+        },
+        {
+          "id": "spk-3729-01",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.536961,
+          "generated_to_reference": 0.618258,
+          "target_to_reference": 0.85615
+        },
+        {
+          "id": "spk-3729-02",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.519501,
+          "generated_to_reference": 0.657535,
+          "target_to_reference": 0.769083
+        },
+        {
+          "id": "spk-3729-03",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.629128,
+          "generated_to_reference": 0.56995,
+          "target_to_reference": 0.720466
+        },
+        {
+          "id": "spk-3729-04",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.29165,
+          "generated_to_reference": 0.670692,
+          "target_to_reference": 0.36522
+        },
+        {
+          "id": "spk-3729-05",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.614869,
+          "generated_to_reference": 0.614207,
+          "target_to_reference": 0.745448
+        },
+        {
+          "id": "spk-3729-06",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.521383,
+          "generated_to_reference": 0.647975,
+          "target_to_reference": 0.752942
+        },
+        {
+          "id": "spk-3729-07",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.626372,
+          "generated_to_reference": 0.665199,
+          "target_to_reference": 0.733784
+        },
+        {
+          "id": "spk-3729-08",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.557841,
+          "generated_to_reference": 0.634186,
+          "target_to_reference": 0.759662
+        },
+        {
+          "id": "spk-3729-09",
+          "speaker": "3729",
+          "gender": "F",
+          "generated_to_target": 0.590985,
+          "generated_to_reference": 0.639908,
+          "target_to_reference": 0.790038
+        },
+        {
+          "id": "spk-5142-00",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.629532,
+          "generated_to_reference": 0.699829,
+          "target_to_reference": 0.66876
+        },
+        {
+          "id": "spk-5142-01",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.663853,
+          "generated_to_reference": 0.682165,
+          "target_to_reference": 0.753373
+        },
+        {
+          "id": "spk-5142-02",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.464549,
+          "generated_to_reference": 0.586196,
+          "target_to_reference": 0.718869
+        },
+        {
+          "id": "spk-5142-03",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.41245,
+          "generated_to_reference": 0.631806,
+          "target_to_reference": 0.572227
+        },
+        {
+          "id": "spk-5142-04",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.537816,
+          "generated_to_reference": 0.597464,
+          "target_to_reference": 0.63743
+        },
+        {
+          "id": "spk-5142-05",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.585594,
+          "generated_to_reference": 0.600432,
+          "target_to_reference": 0.736088
+        },
+        {
+          "id": "spk-5142-06",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.526213,
+          "generated_to_reference": 0.547543,
+          "target_to_reference": 0.718729
+        },
+        {
+          "id": "spk-5142-07",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.733126,
+          "generated_to_reference": 0.711496,
+          "target_to_reference": 0.811141
+        },
+        {
+          "id": "spk-5142-08",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.703827,
+          "generated_to_reference": 0.720763,
+          "target_to_reference": 0.700724
+        },
+        {
+          "id": "spk-5142-09",
+          "speaker": "5142",
+          "gender": "F",
+          "generated_to_target": 0.737702,
+          "generated_to_reference": 0.712205,
+          "target_to_reference": 0.856223
+        },
+        {
+          "id": "spk-8555-00",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.459281,
+          "generated_to_reference": 0.624377,
+          "target_to_reference": 0.635023
+        },
+        {
+          "id": "spk-8555-01",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.597256,
+          "generated_to_reference": 0.664595,
+          "target_to_reference": 0.803179
+        },
+        {
+          "id": "spk-8555-02",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.464222,
+          "generated_to_reference": 0.597451,
+          "target_to_reference": 0.688968
+        },
+        {
+          "id": "spk-8555-03",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.634616,
+          "generated_to_reference": 0.628634,
+          "target_to_reference": 0.865072
+        },
+        {
+          "id": "spk-8555-04",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.555802,
+          "generated_to_reference": 0.639059,
+          "target_to_reference": 0.711529
+        },
+        {
+          "id": "spk-8555-05",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.593723,
+          "generated_to_reference": 0.647532,
+          "target_to_reference": 0.794607
+        },
+        {
+          "id": "spk-8555-06",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.488472,
+          "generated_to_reference": 0.646637,
+          "target_to_reference": 0.651971
+        },
+        {
+          "id": "spk-8555-07",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.519209,
+          "generated_to_reference": 0.653882,
+          "target_to_reference": 0.698092
+        },
+        {
+          "id": "spk-8555-08",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.438938,
+          "generated_to_reference": 0.616055,
+          "target_to_reference": 0.689032
+        },
+        {
+          "id": "spk-8555-09",
+          "speaker": "8555",
+          "gender": "F",
+          "generated_to_target": 0.492562,
+          "generated_to_reference": 0.651284,
+          "target_to_reference": 0.677612
+        },
+        {
+          "id": "spk-1089-00",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.710951,
+          "generated_to_reference": 0.729742,
+          "target_to_reference": 0.804167
+        },
+        {
+          "id": "spk-1089-01",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.731234,
+          "generated_to_reference": 0.706198,
+          "target_to_reference": 0.714674
+        },
+        {
+          "id": "spk-1089-02",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.648569,
+          "generated_to_reference": 0.697848,
+          "target_to_reference": 0.796986
+        },
+        {
+          "id": "spk-1089-03",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.656949,
+          "generated_to_reference": 0.758684,
+          "target_to_reference": 0.709824
+        },
+        {
+          "id": "spk-1089-04",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.586654,
+          "generated_to_reference": 0.635932,
+          "target_to_reference": 0.782985
+        },
+        {
+          "id": "spk-1089-05",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.714773,
+          "generated_to_reference": 0.733865,
+          "target_to_reference": 0.840515
+        },
+        {
+          "id": "spk-1089-06",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.767717,
+          "generated_to_reference": 0.742803,
+          "target_to_reference": 0.83617
+        },
+        {
+          "id": "spk-1089-07",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.651543,
+          "generated_to_reference": 0.728639,
+          "target_to_reference": 0.838462
+        },
+        {
+          "id": "spk-1089-08",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.707423,
+          "generated_to_reference": 0.716522,
+          "target_to_reference": 0.822586
+        },
+        {
+          "id": "spk-1089-09",
+          "speaker": "1089",
+          "gender": "M",
+          "generated_to_target": 0.642831,
+          "generated_to_reference": 0.669451,
+          "target_to_reference": 0.864881
+        },
+        {
+          "id": "spk-260-00",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.664217,
+          "generated_to_reference": 0.723377,
+          "target_to_reference": 0.803903
+        },
+        {
+          "id": "spk-260-01",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.710966,
+          "generated_to_reference": 0.70681,
+          "target_to_reference": 0.838238
+        },
+        {
+          "id": "spk-260-02",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.558121,
+          "generated_to_reference": 0.628635,
+          "target_to_reference": 0.729474
+        },
+        {
+          "id": "spk-260-03",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.594077,
+          "generated_to_reference": 0.681313,
+          "target_to_reference": 0.815341
+        },
+        {
+          "id": "spk-260-04",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.75394,
+          "generated_to_reference": 0.761357,
+          "target_to_reference": 0.869578
+        },
+        {
+          "id": "spk-260-05",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.727692,
+          "generated_to_reference": 0.731934,
+          "target_to_reference": 0.829375
+        },
+        {
+          "id": "spk-260-06",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.754475,
+          "generated_to_reference": 0.779419,
+          "target_to_reference": 0.840271
+        },
+        {
+          "id": "spk-260-07",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.751053,
+          "generated_to_reference": 0.790401,
+          "target_to_reference": 0.867413
+        },
+        {
+          "id": "spk-260-08",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.598472,
+          "generated_to_reference": 0.679175,
+          "target_to_reference": 0.689048
+        },
+        {
+          "id": "spk-260-09",
+          "speaker": "260",
+          "gender": "M",
+          "generated_to_target": 0.283446,
+          "generated_to_reference": 0.702254,
+          "target_to_reference": 0.465026
+        },
+        {
+          "id": "spk-5639-00",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.711679,
+          "generated_to_reference": 0.741152,
+          "target_to_reference": 0.774604
+        },
+        {
+          "id": "spk-5639-01",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.570924,
+          "generated_to_reference": 0.728701,
+          "target_to_reference": 0.694646
+        },
+        {
+          "id": "spk-5639-02",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.751789,
+          "generated_to_reference": 0.828399,
+          "target_to_reference": 0.792234
+        },
+        {
+          "id": "spk-5639-03",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.646979,
+          "generated_to_reference": 0.77089,
+          "target_to_reference": 0.765787
+        },
+        {
+          "id": "spk-5639-04",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.679149,
+          "generated_to_reference": 0.769041,
+          "target_to_reference": 0.781789
+        },
+        {
+          "id": "spk-5639-05",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.707455,
+          "generated_to_reference": 0.742048,
+          "target_to_reference": 0.840177
+        },
+        {
+          "id": "spk-5639-06",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.597915,
+          "generated_to_reference": 0.747817,
+          "target_to_reference": 0.811241
+        },
+        {
+          "id": "spk-5639-07",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.59511,
+          "generated_to_reference": 0.693582,
+          "target_to_reference": 0.820379
+        },
+        {
+          "id": "spk-5639-08",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.723047,
+          "generated_to_reference": 0.768963,
+          "target_to_reference": 0.823509
+        },
+        {
+          "id": "spk-5639-09",
+          "speaker": "5639",
+          "gender": "M",
+          "generated_to_target": 0.685054,
+          "generated_to_reference": 0.779457,
+          "target_to_reference": 0.816367
+        },
+        {
+          "id": "spk-7729-00",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.676627,
+          "generated_to_reference": 0.746432,
+          "target_to_reference": 0.781776
+        },
+        {
+          "id": "spk-7729-01",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.666371,
+          "generated_to_reference": 0.773512,
+          "target_to_reference": 0.806522
+        },
+        {
+          "id": "spk-7729-02",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.659011,
+          "generated_to_reference": 0.788111,
+          "target_to_reference": 0.738627
+        },
+        {
+          "id": "spk-7729-03",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.790131,
+          "generated_to_reference": 0.868593,
+          "target_to_reference": 0.849427
+        },
+        {
+          "id": "spk-7729-04",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.771175,
+          "generated_to_reference": 0.795965,
+          "target_to_reference": 0.884357
+        },
+        {
+          "id": "spk-7729-05",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.683689,
+          "generated_to_reference": 0.782102,
+          "target_to_reference": 0.715462
+        },
+        {
+          "id": "spk-7729-06",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.830877,
+          "generated_to_reference": 0.843777,
+          "target_to_reference": 0.878763
+        },
+        {
+          "id": "spk-7729-07",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.781903,
+          "generated_to_reference": 0.815573,
+          "target_to_reference": 0.887808
+        },
+        {
+          "id": "spk-7729-08",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.768608,
+          "generated_to_reference": 0.846846,
+          "target_to_reference": 0.905666
+        },
+        {
+          "id": "spk-7729-09",
+          "speaker": "7729",
+          "gender": "M",
+          "generated_to_target": 0.704919,
+          "generated_to_reference": 0.834387,
+          "target_to_reference": 0.861822
+        },
+        {
+          "id": "spk-908-00",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.602673,
+          "generated_to_reference": 0.540258,
+          "target_to_reference": 0.780286
+        },
+        {
+          "id": "spk-908-01",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.635904,
+          "generated_to_reference": 0.615074,
+          "target_to_reference": 0.860343
+        },
+        {
+          "id": "spk-908-02",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.513094,
+          "generated_to_reference": 0.641967,
+          "target_to_reference": 0.778379
+        },
+        {
+          "id": "spk-908-03",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.443353,
+          "generated_to_reference": 0.608386,
+          "target_to_reference": 0.689981
+        },
+        {
+          "id": "spk-908-04",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.414281,
+          "generated_to_reference": 0.540626,
+          "target_to_reference": 0.735701
+        },
+        {
+          "id": "spk-908-05",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.534988,
+          "generated_to_reference": 0.621369,
+          "target_to_reference": 0.732914
+        },
+        {
+          "id": "spk-908-06",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.570698,
+          "generated_to_reference": 0.752897,
+          "target_to_reference": 0.72295
+        },
+        {
+          "id": "spk-908-07",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.570234,
+          "generated_to_reference": 0.701916,
+          "target_to_reference": 0.741013
+        },
+        {
+          "id": "spk-908-08",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.610224,
+          "generated_to_reference": 0.633883,
+          "target_to_reference": 0.725792
+        },
+        {
+          "id": "spk-908-09",
+          "speaker": "908",
+          "gender": "M",
+          "generated_to_target": 0.506984,
+          "generated_to_reference": 0.637317,
+          "target_to_reference": 0.739105
+        }
+      ],
+      "generated_to_target": {
+        "mean": 0.623545,
+        "min": 0.283446,
+        "max": 0.830877,
+        "by_gender": {
+          "F": 0.594691,
+          "M": 0.652399
+        },
+        "by_speaker": {
+          "1089": 0.681864,
+          "121": 0.574732,
+          "237": 0.715772,
+          "260": 0.639646,
+          "3729": 0.559074,
+          "5142": 0.599466,
+          "5639": 0.66691,
+          "7729": 0.733331,
+          "8555": 0.524408,
+          "908": 0.540243
+        }
+      },
+      "generated_to_reference": {
+        "mean": 0.705363,
+        "min": 0.540258,
+        "max": 0.868593,
+        "by_gender": {
+          "F": 0.685458,
+          "M": 0.725268
+        },
+        "by_speaker": {
+          "1089": 0.711968,
+          "121": 0.703489,
+          "237": 0.793608,
+          "260": 0.718468,
+          "3729": 0.644251,
+          "5142": 0.64899,
+          "5639": 0.757005,
+          "7729": 0.80953,
+          "8555": 0.636951,
+          "908": 0.629369
+        }
+      },
+      "target_to_reference": {
+        "mean": 0.765117,
+        "min": 0.36522,
+        "max": 0.905812,
+        "by_gender": {
+          "F": 0.740307,
+          "M": 0.789927
+        },
+        "by_speaker": {
+          "1089": 0.801125,
+          "121": 0.719202,
+          "237": 0.80895,
+          "260": 0.774767,
+          "3729": 0.734517,
+          "5142": 0.717356,
+          "5639": 0.792073,
+          "7729": 0.831023,
+          "8555": 0.721508,
+          "908": 0.750646
+        }
+      }
+    }
+  }
+}

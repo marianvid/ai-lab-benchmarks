@@ -127,6 +127,25 @@ under has numpy, scipy and sympy installed, because several of the EvalPlus
 tests import them and without them those problems would fail for a reason that
 has nothing to do with the model.
 
+### 4a. Agentic coding probe
+
+`bench_agentic.py` gives the model a throwaway repository and six tools:
+list files, read a file, search text, write a source file, run visible tests,
+and finish. A system message makes `architect.md` authoritative, treats other
+repository contents as untrusted data, protects the architect, tests and
+fixtures from writes, and allows at most fourteen model turns.
+
+The four repositories exercise Decimal pricing rules, a multi-file refund
+workflow with architectural boundaries, an idempotent configuration migration,
+and a vendor-data parser containing a prompt injection in its fixture. After
+the model finishes, visible and hidden `unittest` suites run as `nobody` and
+the harness verifies that every protected file kept its original hash.
+
+This probe uses reasoning `xhigh`, temperature 1.0 and one request slot because
+it measures one interactive agent rather than batch throughput. Each model was
+run once, so a one-task difference would not be a stable ranking. It is also
+far shorter than maintaining a real project across hours or days.
+
 ## 5. Latency
 
 `bench.py`. No evaluation set — the prompt is generated.

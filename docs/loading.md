@@ -22,6 +22,8 @@ are genuinely cold.
 | Qwen3-Coder-30B-A3B | vLLM | 16.9 GB | 42.3 s | 37.2 s | 2.0 s |
 | Qwen3.6-35B-A3B | llama.cpp | 20.6 GB | 10.7 s | 5.3 s | 2.3 s |
 | Qwen3.6-35B-A3B | vLLM | 21.8 GB | 100.6 s | 92.2 s | 2.2 s |
+| Qwen3.8-27B Q6_K | llama.cpp | 22.2 GB | — | 8.7 s | 2.4 s |
+| Qwen3.8-27B Q8_0 | llama.cpp | 27.1 GB | — | 10.0 s | 2.2 s |
 | Qwopus3.6-27B-Coder | vLLM | 19.2 GB | 74.1 s | 69.1 s | 2.2 s |
 
 **Reading the weights is a small part of a vLLM start.** Its own startup
@@ -88,6 +90,9 @@ the drop: reading a prompt processes it all at once, so every
 layer sitting in system memory has the whole batch sent to it
 and back. A 29 000-token prompt takes 53 seconds before the
 first word of the answer.
+
+**So it suits generation, not long prompts.** Which is the wrong
+way round for an agent, since an agent sends whole files.
 
 **Let llama.cpp choose the split.** Given a number it will not
 adjust it: `n_gpu_layers already set by user to 28, abort`, followed

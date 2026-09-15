@@ -1,0 +1,684 @@
+{
+  "schema_version": 1,
+  "metric": "NISQA-v2",
+  "models": {
+    "mms-tts-ron-v1": {
+      "mean": {
+        "mos": 4.085798,
+        "noisiness": 3.468574,
+        "discontinuity": 4.489297,
+        "coloration": 3.923792,
+        "loudness": 4.23974
+      },
+      "completed": 7,
+      "cases": [
+        {
+          "id": "ro-neutral",
+          "language": "ro",
+          "mos": 4.386445,
+          "noisiness": 4.199297,
+          "discontinuity": 4.55664,
+          "coloration": 4.039023,
+          "loudness": 4.345705
+        },
+        {
+          "id": "ro-diacritics",
+          "language": "ro",
+          "mos": 3.489937,
+          "noisiness": 3.032275,
+          "discontinuity": 4.379642,
+          "coloration": 3.629323,
+          "loudness": 3.858744
+        },
+        {
+          "id": "ro-numbers",
+          "language": "ro",
+          "mos": 3.990538,
+          "noisiness": 3.177826,
+          "discontinuity": 4.130787,
+          "coloration": 3.63957,
+          "loudness": 4.19714
+        },
+        {
+          "id": "ro-foreign-names",
+          "language": "ro",
+          "mos": 4.529718,
+          "noisiness": 4.298163,
+          "discontinuity": 4.693232,
+          "coloration": 4.206975,
+          "loudness": 4.4935
+        },
+        {
+          "id": "ro-question",
+          "language": "ro",
+          "mos": 3.956783,
+          "noisiness": 2.810704,
+          "discontinuity": 4.624573,
+          "coloration": 4.081324,
+          "loudness": 4.351267
+        },
+        {
+          "id": "ro-warning",
+          "language": "ro",
+          "mos": 3.898495,
+          "noisiness": 2.532997,
+          "discontinuity": 4.506487,
+          "coloration": 3.873434,
+          "loudness": 4.232965
+        },
+        {
+          "id": "ro-long",
+          "language": "ro",
+          "mos": 4.34867,
+          "noisiness": 4.228756,
+          "discontinuity": 4.533721,
+          "coloration": 3.996892,
+          "loudness": 4.198861
+        }
+      ]
+    },
+    "omnivoice-0.6b-v1": {
+      "mean": {
+        "mos": 3.663692,
+        "noisiness": 3.848425,
+        "discontinuity": 4.185373,
+        "coloration": 3.574321,
+        "loudness": 3.875087
+      },
+      "completed": 10,
+      "cases": [
+        {
+          "id": "en-smoke",
+          "language": "en",
+          "mos": 3.677903,
+          "noisiness": 4.183265,
+          "discontinuity": 4.3006,
+          "coloration": 3.520629,
+          "loudness": 3.79689
+        },
+        {
+          "id": "ro-neutral",
+          "language": "ro",
+          "mos": 3.485485,
+          "noisiness": 3.587662,
+          "discontinuity": 3.985906,
+          "coloration": 3.356329,
+          "loudness": 3.805356
+        },
+        {
+          "id": "ro-diacritics",
+          "language": "ro",
+          "mos": 3.832038,
+          "noisiness": 3.937664,
+          "discontinuity": 4.274301,
+          "coloration": 3.781211,
+          "loudness": 4.031555
+        },
+        {
+          "id": "ro-numbers",
+          "language": "ro",
+          "mos": 3.726963,
+          "noisiness": 3.830361,
+          "discontinuity": 4.309914,
+          "coloration": 3.750051,
+          "loudness": 3.943975
+        },
+        {
+          "id": "ro-foreign-names",
+          "language": "ro",
+          "mos": 3.748261,
+          "noisiness": 4.127179,
+          "discontinuity": 4.154304,
+          "coloration": 3.440391,
+          "loudness": 3.854215
+        },
+        {
+          "id": "ro-question",
+          "language": "ro",
+          "mos": 3.531392,
+          "noisiness": 3.665028,
+          "discontinuity": 4.279066,
+          "coloration": 3.620141,
+          "loudness": 3.959672
+        },
+        {
+          "id": "ro-warning",
+          "language": "ro",
+          "mos": 3.260448,
+          "noisiness": 3.552908,
+          "discontinuity": 3.682056,
+          "coloration": 3.329175,
+          "loudness": 3.800828
+        },
+        {
+          "id": "ro-long",
+          "language": "ro",
+          "mos": 3.856661,
+          "noisiness": 4.245447,
+          "discontinuity": 4.254343,
+          "coloration": 3.656368,
+          "loudness": 3.972238
+        },
+        {
+          "id": "en-emphasis",
+          "language": "en",
+          "mos": 3.744653,
+          "noisiness": 3.608568,
+          "discontinuity": 4.271372,
+          "coloration": 3.678357,
+          "loudness": 3.830173
+        },
+        {
+          "id": "en-numbers",
+          "language": "en",
+          "mos": 3.773116,
+          "noisiness": 3.746163,
+          "discontinuity": 4.34187,
+          "coloration": 3.610559,
+          "loudness": 3.755965
+        }
+      ]
+    },
+    "omnivoice-0.6b-design-v1": {
+      "mean": {
+        "mos": 3.143886,
+        "noisiness": 3.731542,
+        "discontinuity": 3.367322,
+        "coloration": 3.235608,
+        "loudness": 3.253978
+      },
+      "completed": 3,
+      "cases": [
+        {
+          "id": "design-authoritative",
+          "language": "ro",
+          "mos": 4.638391,
+          "noisiness": 4.407087,
+          "discontinuity": 4.3887,
+          "coloration": 4.172488,
+          "loudness": 4.318854
+        },
+        {
+          "id": "design-empathetic",
+          "language": "ro",
+          "mos": 1.020392,
+          "noisiness": 2.66121,
+          "discontinuity": 1.682628,
+          "coloration": 1.485855,
+          "loudness": 1.449353
+        },
+        {
+          "id": "design-warning",
+          "language": "ro",
+          "mos": 3.772875,
+          "noisiness": 4.12633,
+          "discontinuity": 4.030639,
+          "coloration": 4.048482,
+          "loudness": 3.993728
+        }
+      ]
+    },
+    "qwen3-tts-0.6b-base-v1": {
+      "mean": {
+        "mos": 3.224075,
+        "noisiness": 3.320395,
+        "discontinuity": 3.930766,
+        "coloration": 3.203057,
+        "loudness": 3.499099
+      },
+      "completed": 10,
+      "cases": [
+        {
+          "id": "en-smoke",
+          "language": "en",
+          "mos": 3.159186,
+          "noisiness": 3.270545,
+          "discontinuity": 3.97344,
+          "coloration": 3.018237,
+          "loudness": 3.345459
+        },
+        {
+          "id": "ro-neutral",
+          "language": "ro",
+          "mos": 3.148442,
+          "noisiness": 3.160186,
+          "discontinuity": 3.900236,
+          "coloration": 3.232014,
+          "loudness": 3.499897
+        },
+        {
+          "id": "ro-diacritics",
+          "language": "ro",
+          "mos": 3.480597,
+          "noisiness": 3.584708,
+          "discontinuity": 4.141668,
+          "coloration": 3.347667,
+          "loudness": 3.720841
+        },
+        {
+          "id": "ro-numbers",
+          "language": "ro",
+          "mos": 2.934406,
+          "noisiness": 3.184389,
+          "discontinuity": 3.783744,
+          "coloration": 2.873588,
+          "loudness": 3.307569
+        },
+        {
+          "id": "ro-foreign-names",
+          "language": "ro",
+          "mos": 3.537249,
+          "noisiness": 3.550962,
+          "discontinuity": 4.147723,
+          "coloration": 3.662196,
+          "loudness": 3.589679
+        },
+        {
+          "id": "ro-question",
+          "language": "ro",
+          "mos": 3.521747,
+          "noisiness": 3.272564,
+          "discontinuity": 4.13284,
+          "coloration": 3.514147,
+          "loudness": 3.819534
+        },
+        {
+          "id": "ro-warning",
+          "language": "ro",
+          "mos": 2.972056,
+          "noisiness": 3.095819,
+          "discontinuity": 3.516545,
+          "coloration": 3.009781,
+          "loudness": 3.492905
+        },
+        {
+          "id": "ro-long",
+          "language": "ro",
+          "mos": 3.551536,
+          "noisiness": 3.668218,
+          "discontinuity": 4.071347,
+          "coloration": 3.447802,
+          "loudness": 3.800998
+        },
+        {
+          "id": "en-emphasis",
+          "language": "en",
+          "mos": 3.306659,
+          "noisiness": 3.428979,
+          "discontinuity": 4.070849,
+          "coloration": 3.304977,
+          "loudness": 3.522591
+        },
+        {
+          "id": "en-numbers",
+          "language": "en",
+          "mos": 2.628875,
+          "noisiness": 2.987581,
+          "discontinuity": 3.569265,
+          "coloration": 2.620161,
+          "loudness": 2.891522
+        }
+      ]
+    },
+    "fireredtts3-base-v1": {
+      "mean": {
+        "mos": 3.304686,
+        "noisiness": 3.233199,
+        "discontinuity": 3.780391,
+        "coloration": 3.261846,
+        "loudness": 3.521414
+      },
+      "completed": 10,
+      "cases": [
+        {
+          "id": "en-smoke",
+          "language": "en",
+          "mos": 3.371461,
+          "noisiness": 3.075261,
+          "discontinuity": 3.783002,
+          "coloration": 3.336468,
+          "loudness": 3.556913
+        },
+        {
+          "id": "ro-neutral",
+          "language": "ro",
+          "mos": 3.080515,
+          "noisiness": 3.138133,
+          "discontinuity": 3.415923,
+          "coloration": 3.046951,
+          "loudness": 3.515808
+        },
+        {
+          "id": "ro-diacritics",
+          "language": "ro",
+          "mos": 3.58159,
+          "noisiness": 3.348982,
+          "discontinuity": 4.128559,
+          "coloration": 3.650736,
+          "loudness": 3.87732
+        },
+        {
+          "id": "ro-numbers",
+          "language": "ro",
+          "mos": 3.351416,
+          "noisiness": 3.33668,
+          "discontinuity": 3.827211,
+          "coloration": 3.332655,
+          "loudness": 3.482441
+        },
+        {
+          "id": "ro-foreign-names",
+          "language": "ro",
+          "mos": 3.405105,
+          "noisiness": 3.448375,
+          "discontinuity": 3.894192,
+          "coloration": 3.277656,
+          "loudness": 3.540072
+        },
+        {
+          "id": "ro-question",
+          "language": "ro",
+          "mos": 3.163339,
+          "noisiness": 2.852897,
+          "discontinuity": 3.73175,
+          "coloration": 2.953199,
+          "loudness": 3.457373
+        },
+        {
+          "id": "ro-warning",
+          "language": "ro",
+          "mos": 2.58731,
+          "noisiness": 2.970051,
+          "discontinuity": 2.724311,
+          "coloration": 2.794322,
+          "loudness": 3.32179
+        },
+        {
+          "id": "ro-long",
+          "language": "ro",
+          "mos": 3.284846,
+          "noisiness": 2.992887,
+          "discontinuity": 3.949396,
+          "coloration": 3.183345,
+          "loudness": 3.293736
+        },
+        {
+          "id": "en-emphasis",
+          "language": "en",
+          "mos": 3.52915,
+          "noisiness": 3.537662,
+          "discontinuity": 4.031302,
+          "coloration": 3.38518,
+          "loudness": 3.633895
+        },
+        {
+          "id": "en-numbers",
+          "language": "en",
+          "mos": 3.69213,
+          "noisiness": 3.631063,
+          "discontinuity": 4.318259,
+          "coloration": 3.657953,
+          "loudness": 3.534788
+        }
+      ]
+    },
+    "fireredtts3-instruct-patched-v1": {
+      "mean": {
+        "mos": 3.601006,
+        "noisiness": 3.367539,
+        "discontinuity": 4.119974,
+        "coloration": 3.458125,
+        "loudness": 3.612992
+      },
+      "completed": 16,
+      "cases": [
+        {
+          "id": "en-smoke",
+          "language": "en",
+          "mos": 3.166865,
+          "noisiness": 2.974882,
+          "discontinuity": 3.961585,
+          "coloration": 3.097171,
+          "loudness": 3.402309
+        },
+        {
+          "id": "ro-neutral",
+          "language": "ro",
+          "mos": 2.896312,
+          "noisiness": 2.974163,
+          "discontinuity": 3.751066,
+          "coloration": 2.716454,
+          "loudness": 3.138416
+        },
+        {
+          "id": "ro-diacritics",
+          "language": "ro",
+          "mos": 2.297169,
+          "noisiness": 2.254424,
+          "discontinuity": 3.616727,
+          "coloration": 2.415279,
+          "loudness": 2.452287
+        },
+        {
+          "id": "ro-numbers",
+          "language": "ro",
+          "mos": 3.23404,
+          "noisiness": 3.042723,
+          "discontinuity": 4.012787,
+          "coloration": 3.073928,
+          "loudness": 3.430511
+        },
+        {
+          "id": "ro-foreign-names",
+          "language": "ro",
+          "mos": 2.623669,
+          "noisiness": 2.669318,
+          "discontinuity": 3.682311,
+          "coloration": 2.600048,
+          "loudness": 2.982308
+        },
+        {
+          "id": "ro-question",
+          "language": "ro",
+          "mos": 3.119481,
+          "noisiness": 2.788802,
+          "discontinuity": 3.989246,
+          "coloration": 3.094008,
+          "loudness": 3.234293
+        },
+        {
+          "id": "ro-warning",
+          "language": "ro",
+          "mos": 2.892825,
+          "noisiness": 2.920898,
+          "discontinuity": 3.202713,
+          "coloration": 2.746806,
+          "loudness": 3.048389
+        },
+        {
+          "id": "ro-long",
+          "language": "ro",
+          "mos": 2.844121,
+          "noisiness": 2.80353,
+          "discontinuity": 3.84738,
+          "coloration": 2.732204,
+          "loudness": 3.092634
+        },
+        {
+          "id": "en-emphasis",
+          "language": "en",
+          "mos": 2.84342,
+          "noisiness": 2.73291,
+          "discontinuity": 3.983615,
+          "coloration": 2.698299,
+          "loudness": 2.867885
+        },
+        {
+          "id": "en-numbers",
+          "language": "en",
+          "mos": 3.244801,
+          "noisiness": 2.90137,
+          "discontinuity": 4.053776,
+          "coloration": 3.077863,
+          "loudness": 3.123074
+        },
+        {
+          "id": "design-authoritative",
+          "language": "ro",
+          "mos": 4.548845,
+          "noisiness": 4.169551,
+          "discontinuity": 4.636342,
+          "coloration": 4.432496,
+          "loudness": 4.484931
+        },
+        {
+          "id": "design-empathetic",
+          "language": "ro",
+          "mos": 4.583108,
+          "noisiness": 4.055114,
+          "discontinuity": 4.458879,
+          "coloration": 4.359201,
+          "loudness": 4.475348
+        },
+        {
+          "id": "design-warning",
+          "language": "ro",
+          "mos": 4.439174,
+          "noisiness": 4.284973,
+          "discontinuity": 4.421172,
+          "coloration": 4.428582,
+          "loudness": 4.459652
+        },
+        {
+          "id": "design-en-authoritative",
+          "language": "en",
+          "mos": 4.762877,
+          "noisiness": 4.188212,
+          "discontinuity": 4.687389,
+          "coloration": 4.557301,
+          "loudness": 4.346972
+        },
+        {
+          "id": "design-en-empathetic",
+          "language": "en",
+          "mos": 5.146232,
+          "noisiness": 4.451086,
+          "discontinuity": 4.779194,
+          "coloration": 4.655437,
+          "loudness": 4.538395
+        },
+        {
+          "id": "design-en-warning",
+          "language": "en",
+          "mos": 4.973155,
+          "noisiness": 4.668673,
+          "discontinuity": 4.835398,
+          "coloration": 4.644925,
+          "loudness": 4.730468
+        }
+      ]
+    },
+    "fish-s2-pro-v1": {
+      "mean": {
+        "mos": 3.406298,
+        "noisiness": 3.388197,
+        "discontinuity": 3.971503,
+        "coloration": 3.353505,
+        "loudness": 3.442772
+      },
+      "completed": 10,
+      "cases": [
+        {
+          "id": "en-smoke",
+          "language": "en",
+          "mos": 3.441138,
+          "noisiness": 3.635026,
+          "discontinuity": 4.103761,
+          "coloration": 3.264747,
+          "loudness": 3.524782
+        },
+        {
+          "id": "ro-neutral",
+          "language": "ro",
+          "mos": 3.444337,
+          "noisiness": 3.294075,
+          "discontinuity": 4.018517,
+          "coloration": 3.349928,
+          "loudness": 3.413341
+        },
+        {
+          "id": "ro-diacritics",
+          "language": "ro",
+          "mos": 3.43079,
+          "noisiness": 3.512337,
+          "discontinuity": 4.111167,
+          "coloration": 3.339924,
+          "loudness": 3.585003
+        },
+        {
+          "id": "ro-numbers",
+          "language": "ro",
+          "mos": 3.364955,
+          "noisiness": 3.253414,
+          "discontinuity": 3.833626,
+          "coloration": 3.301795,
+          "loudness": 3.34807
+        },
+        {
+          "id": "ro-foreign-names",
+          "language": "ro",
+          "mos": 3.442037,
+          "noisiness": 3.487223,
+          "discontinuity": 3.944054,
+          "coloration": 3.450665,
+          "loudness": 3.684683
+        },
+        {
+          "id": "ro-question",
+          "language": "ro",
+          "mos": 3.588639,
+          "noisiness": 3.200808,
+          "discontinuity": 4.053053,
+          "coloration": 3.631406,
+          "loudness": 3.607342
+        },
+        {
+          "id": "ro-warning",
+          "language": "ro",
+          "mos": 3.225611,
+          "noisiness": 3.09983,
+          "discontinuity": 3.672417,
+          "coloration": 3.147829,
+          "loudness": 3.363903
+        },
+        {
+          "id": "ro-long",
+          "language": "ro",
+          "mos": 3.49288,
+          "noisiness": 3.691506,
+          "discontinuity": 3.920868,
+          "coloration": 3.433476,
+          "loudness": 3.340419
+        },
+        {
+          "id": "en-emphasis",
+          "language": "en",
+          "mos": 3.103441,
+          "noisiness": 3.235801,
+          "discontinuity": 3.944364,
+          "coloration": 3.102591,
+          "loudness": 3.150063
+        },
+        {
+          "id": "en-numbers",
+          "language": "en",
+          "mos": 3.529151,
+          "noisiness": 3.471951,
+          "discontinuity": 4.113208,
+          "coloration": 3.512691,
+          "loudness": 3.410117
+        }
+      ]
+    }
+  }
+}

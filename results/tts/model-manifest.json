@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-09-15",
+  "storage_tier": "benchmark",
+  "models": [
+    {
+      "id": "facebook/mms-tts-ron",
+      "revision": "a5a01da3afe329b26e1f629a86e86dec8f59d02f",
+      "stored_bytes": 290620237,
+      "license": "CC-BY-NC-4.0"
+    },
+    {
+      "id": "k2-fsa/OmniVoice",
+      "revision": "c5fdb5ccb189668d56333f77ba2629f4cd7535f4",
+      "stored_bytes": 3267473879,
+      "license": "CC-BY-NC-4.0",
+      "runtime": "omnivoice 0.2.1",
+      "runtime_revision": "08be0b4ccbac3e13e374e86fbfead4b4cac343e2"
+    },
+    {
+      "id": "Qwen/Qwen3-TTS-12Hz-0.6B-Base",
+      "revision": "5d83992436eae1d760afd27aff78a71d676296fc",
+      "stored_bytes": 2516109448,
+      "license": "Apache-2.0",
+      "runtime": "qwen-tts 0.1.1"
+    },
+    {
+      "id": "FireRedTeam/FireRedTTS3",
+      "revision": "dcf1bdcd1b8b25b382fa84c3e34eb82e3054a610",
+      "stored_bytes": 20776636394,
+      "license": "Apache-2.0",
+      "runtime_revision": "7a1f3a7282ff184cc1c7f070556baaf5f08b5216",
+      "local_patch": "harness/tts/patches/fireredtts3-instruct-return-arity.patch"
+    },
+    {
+      "id": "fishaudio/s2-pro",
+      "revision": "1de9996b6be38b745688de084d87a5633f714e4e",
+      "stored_bytes": 11011633674,
+      "license": "Fish Audio Research License",
+      "runtime_revision": "befe4001745417f8c42131739d862b8a6fdbd15a"
+    }
+  ]
+}

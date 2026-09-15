@@ -35,7 +35,13 @@ of it, answering questions about it — writing code, and Romanian speech.
 | [Audio models](docs/audio-models.md) | ASR and VAD models, revisions, licences and exclusions |
 | [Romanian audio results](docs/audio-results.md) | Accuracy, processing speed, loading and every recorded failure |
 | [Audio findings](docs/audio-findings.md) | What the Romanian pass suggests for real workloads |
+| [TTS method](docs/tts-method.md) | Bilingual smoke test and 100-case, ten-speaker English cloning evaluation |
+| [TTS models](docs/tts-models.md) | Synthesis checkpoints, revisions, runtime patches and licence constraints |
+| [TTS results](docs/tts-results.md) | Automatic intelligibility, naturalness, voice similarity, speed and memory scores |
+| [TTS findings](docs/tts-findings.md) | Automatic English/Romanian verdicts and their measured limits |
+| [TTS listening samples](docs/tts-listening.md) | Prompts and audio files with no listening score or preferred answer |
 | [Images and OCR results](docs/images-ocr.md) | Visual Linux–macOS comparisons, prompts, processing times, OCR output and practical recommendations |
+| [Agentic coding probe](docs/agentic-coding.md) | Architect-directed repository edits with tools and hidden tests |
 
 Also kept: [an earlier four-engine study](docs/engines-2026-08.md),
 and [dead ends](docs/dead-ends/README.md) — measurement errors and a conclusion that
@@ -63,6 +69,7 @@ speed.
 | Wikipedia | whole articles, 2 165 to 5 227 characters, six languages | a real long prompt rather than a sentence |
 | FLEURS `ro_ro` | Romanian read speech with human transcriptions | one official test split can measure both ASR accuracy and processing speed |
 | Echo Synthetic Diarization | Romanian synthetic meetings with RTTM speaker turns | compares diarization on 2–5 speakers, with and without overlap |
+| LibriTTS `test-clean` | clean English recordings with speaker and transcript references | tests cloning on 10 held-out sentences for each of 10 balanced speakers |
 
 Three of them are built on FLORES, so the same sentences are being sorted,
 understood and translated. A weakness in one language shows up in all three at
@@ -95,6 +102,17 @@ python3 harness/audio/run_diarization.py --data ./echo-synthetic-diarization --o
 python3 harness/audio/make_report.py --results ./results/audio --out ./docs/audio-results.md
 ```
 
+The TTS harness prepares a deterministic LibriTTS subset, runs each installed
+engine in its pinned environment, and scores generated files separately:
+
+```sh
+python3 harness/tts/prepare_libritts.py ./LibriTTS/test-clean --out ./libritts-en100
+python3 harness/tts/run_libritts.py --engine ENGINE --model MODEL \
+  --manifest ./libritts-en100/manifest.json --data ./libritts-en100 --out RESULT
+python3 harness/tts/make_report.py --results ./results/tts \
+  --out-json ./results/tts/libritts-en100-summary.json --out-md ./docs/tts-results.md
+```
+
 Image generation, editing and OCR use the public AI-Lab API. Existing OCR
 fixtures can be reused only after their checksums and ground truth are verified:
 
@@ -103,6 +121,15 @@ python3 harness/images/run_images.py --out ./results/images
 python3 harness/images/run_ocr.py --reuse-fixtures --output ./results/images/ocr
 python3 harness/images/apply_reviews.py
 python3 harness/images/make_report.py
+```
+
+The short agentic coding probe runs against one already-loaded
+OpenAI-compatible endpoint:
+
+```sh
+python3 harness/bench_agentic.py --base http://127.0.0.1:8110 \
+  --model MODEL_ID --label RUN_LABEL \
+  --out ./results/qwen38-agentic/RUN_LABEL-agentic.json
 ```
 
 `harness/bench_coding.py` executes code written by a language model. It drops to
@@ -127,18 +154,21 @@ examples in that set, so a handful of sentences judged differently moves the
 score by that much on its own. Two models at 0.889 and 0.895 have not been
 separated by this benchmark.
 
-### Every measurement is one question and one answer
+### Most measurements are one question and one answer
 
-The model is asked something, it replies, the exchange ends. Nothing here sends
-a follow-up.
+The classification, comprehension, translation and standard coding tests ask
+one question, receive one reply, and end. The separate four-task
+[agentic coding probe](docs/agentic-coding.md) is the exception: it permits up
+to 14 tool-use turns over a throwaway repository.
 
 That leaves out how a model behaves inside an agent that goes back and forth
 twenty times over the same code, or in a conversation whose history keeps
 growing. Both work the engine differently: the same text is re-sent repeatedly,
 and an engine can reuse the part of a prompt it has already processed.
 
-**What to do with that:** the throughput figures describe batch work — many
-independent requests. They do not describe an agent session.
+**What to do with that:** the throughput figures still describe batch work —
+many independent requests. Use the agentic page for the short tool loop, while
+recognising that four small tasks do not represent a long software project.
 
 ### The coding problems are in every model's training data
 
@@ -216,6 +246,7 @@ on manually labelled material from the intended production domain.
 
 ## Licence
 
-MIT for the harness, the documents and the results. The evaluation sets are not
-ours and are not here; each keeps its own licence, recorded in
-`eval-data/MANIFEST.json` once fetched.
+MIT for the harness, the documents and the results. Evaluation sets are not
+ours. They are not redistributed, apart from the attributed FLEURS reference
+clip on the TTS listening page. Each keeps its own licence, recorded in the
+dataset manifest or the accompanying sample README.

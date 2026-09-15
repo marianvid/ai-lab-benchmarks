@@ -17,14 +17,14 @@ These results measure the deployed **[AI-Lab](https://github.com/marianvid/ai-la
 | GPU connection | External OCuLink dock, about 8 GB/s while loading weights | Integrated unified-memory GPU |
 | Model storage | Two internal Lexar NM790 4 TB NVMe drives | Local/external [AI-Lab](https://github.com/marianvid/ai-lab) model roots configured for the benchmark |
 | Operating environment | Proxmox VE host; engines run inside an **unprivileged LXC container** | macOS 15.7.3; [AI-Lab](https://github.com/marianvid/ai-lab) runs natively, without LXC |
-| [AI-Lab](https://github.com/marianvid/ai-lab) role | Gateway, model loading/unloading, request routing and timing | Native manager using an isolated benchmark configuration |
+| [AI-Lab](https://github.com/marianvid/ai-lab) role | Gateway, model loading/unloading, request routing and timing | Native manager using an isolated benchmark configuration on `127.0.0.1:8110` |
 | Engine supervision | systemd, one unit per configured model instance | [AI-Lab](https://github.com/marianvid/ai-lab) starts and supervises the local engine processes |
 | Image runtime | ComfyUI behind the private [AI-Lab](https://github.com/marianvid/ai-lab) adapter; NVIDIA driver 610.57.04 and CUDA 13 | ComfyUI 0.34.0 behind the same adapter; Python 3.11.7, torch 2.13.0 and Apple MPS |
 | OCR runtime | PaddleOCR 3.x through [AI-Lab](https://github.com/marianvid/ai-lab)'s isolated OCR service | PaddleOCR 3.x in an isolated local runtime managed by [AI-Lab](https://github.com/marianvid/ai-lab) |
 | Directly comparable tests | SD 1.5, Qwen Image, legacy FLUX.2, Qwen Image Edit, both OCR profiles | The same named tests and prompts |
-| Main trade-off | Much higher throughput | Enough shared memory for large local models |
+| Main trade-off | Much higher throughput | Enough shared memory for very large local models |
 
-The OCuLink connection affects model loading because weights cross the cable, but not image generation after the model is resident in GPU memory.
+The OCuLink connection affects model loading because weights cross the cable, but not image generation after the model is resident in GPU memory. Request timing includes the [AI-Lab](https://github.com/marianvid/ai-lab) HTTP path and engine adapter because that is the system a real client uses.
 
 ## Model settings
 
@@ -37,11 +37,11 @@ Shared profiles use the same workflow settings on both computers. Fixed seeds gi
 | FLUX.2 Dev FP8 legacy | 1024×1024 | 20 steps, Euler | Direct compatibility test |
 | Qwen Image Edit BF16 | 1024×1024 source | 40 steps, Euler/simple, CFG 4 | Controlled edits |
 | FLUX.2 Klein 4B BF16 · Mac only | 1024×1024 | 4 steps, Euler, CFG 1 | Interactive generation |
-| FLUX.2 Dev Q8_0 / BF16 · Mac only | 1024×1024 | 20 steps, Euler | Full-size FLUX |
+| FLUX.2 Dev Q8_0 / BF16 | 1024×1024 | 20 steps, Euler | Full-size FLUX, directly compared on both machines |
 
 ## Image generation, test by test
 
-The first table under each prompt is the fair Linux–Mac comparison. Newer Mac-compatible FLUX options have no matching Linux run here, so they are shown separately rather than mixed into a misleading ranking.
+The first table under each prompt is the fair Linux–Mac comparison. FLUX.2 Klein remains Mac-only and is shown separately.
 
 ### Objects, colours and placement
 
@@ -56,6 +56,8 @@ The first table under each prompt is the fair Linux–Mac comparison. Newer Mac-
 | **SD 1.5** | <img src="../results/images/library/sd15-smoke/composition.png" width="220" alt="SD 1.5"><br>**SD 1.5**<br>4.85 s · 3/4 criteria · **Needs attention** | <img src="../results/images/macos/library/sd15-smoke/composition.png" width="220" alt="SD 1.5"><br>**SD 1.5**<br>13.85 s · 3/4 criteria · **Needs attention** |
 | **Qwen Image** | <img src="../results/images/library/qwen-image-benchmark/composition.png" width="220" alt="Qwen Image"><br>**Qwen Image**<br>56.18 s · 4/4 criteria · **Pass** | <img src="../results/images/macos/library/qwen-image-benchmark/composition.png" width="220" alt="Qwen Image"><br>**Qwen Image**<br>19 min 39 s · 4/4 criteria · **Pass** |
 | **FLUX.2 Dev FP8 (legacy)** | <img src="../results/images/library/flux2-benchmark/composition.png" width="220" alt="FLUX.2 Dev FP8 (legacy)"><br>**FLUX.2 Dev FP8 (legacy)**<br>1 min 14 s · 4/4 criteria · **Pass** | **FLUX.2 Dev FP8 (legacy)**<br>No image: FP8 is unsupported by the Mac runtime |
+| **FLUX.2 Dev 32B Q8_0** | <img src="../results/images/library/flux2-dev-q8-benchmark/composition.png" width="220" alt="FLUX.2 Dev 32B Q8_0"><br>**FLUX.2 Dev 32B Q8_0**<br>2 min 13 s · 4/4 criteria · **Pass** | <img src="../results/images/macos/library/flux2-dev-q8-benchmark/composition.png" width="220" alt="FLUX.2 Dev 32B Q8_0"><br>**FLUX.2 Dev 32B Q8_0**<br>18 min 25 s · 4/4 criteria · **Pass** |
+| **FLUX.2 Dev 32B BF16** | <img src="../results/images/library/flux2-dev-bf16-benchmark/composition.png" width="220" alt="FLUX.2 Dev 32B BF16"><br>**FLUX.2 Dev 32B BF16**<br>2 min 56 s · 4/4 criteria · **Pass** | <img src="../results/images/macos/library/flux2-dev-bf16-benchmark/composition.png" width="220" alt="FLUX.2 Dev 32B BF16"><br>**FLUX.2 Dev 32B BF16**<br>21 min 29 s · 4/4 criteria · **Pass** |
 
 **Visible differences:**
 
@@ -67,8 +69,6 @@ The first table under each prompt is the fair Linux–Mac comparison. Newer Mac-
 | Model | Mac result |
 |---|---|
 | **FLUX.2 Klein 4B BF16** | <img src="../results/images/macos/library/flux2-klein-4b-benchmark/composition.png" width="220" alt="FLUX.2 Klein 4B BF16"><br>**FLUX.2 Klein 4B BF16**<br>44.69 s · 4/4 criteria · **Pass** |
-| **FLUX.2 Dev 32B Q8_0** | <img src="../results/images/macos/library/flux2-dev-q8-benchmark/composition.png" width="220" alt="FLUX.2 Dev 32B Q8_0"><br>**FLUX.2 Dev 32B Q8_0**<br>18 min 25 s · 4/4 criteria · **Pass** |
-| **FLUX.2 Dev 32B BF16** | <img src="../results/images/macos/library/flux2-dev-bf16-benchmark/composition.png" width="220" alt="FLUX.2 Dev 32B BF16"><br>**FLUX.2 Dev 32B BF16**<br>21 min 29 s · 4/4 criteria · **Pass** |
 
 ### Exact text
 
@@ -83,6 +83,8 @@ The first table under each prompt is the fair Linux–Mac comparison. Newer Mac-
 | **SD 1.5** | <img src="../results/images/library/sd15-smoke/typography.png" width="220" alt="SD 1.5"><br>**SD 1.5**<br>1.01 s · 0/4 criteria · **Needs attention** | <img src="../results/images/macos/library/sd15-smoke/typography.png" width="220" alt="SD 1.5"><br>**SD 1.5**<br>5.38 s · 0/4 criteria · **Needs attention** |
 | **Qwen Image** | <img src="../results/images/library/qwen-image-benchmark/typography.png" width="220" alt="Qwen Image"><br>**Qwen Image**<br>33.46 s · 4/4 criteria · **Pass** | <img src="../results/images/macos/library/qwen-image-benchmark/typography.png" width="220" alt="Qwen Image"><br>**Qwen Image**<br>20 min 34 s · 4/4 criteria · **Pass** |
 | **FLUX.2 Dev FP8 (legacy)** | <img src="../results/images/library/flux2-benchmark/typography.png" width="220" alt="FLUX.2 Dev FP8 (legacy)"><br>**FLUX.2 Dev FP8 (legacy)**<br>43.61 s · 4/4 criteria · **Pass** | **FLUX.2 Dev FP8 (legacy)**<br>No image: FP8 is unsupported by the Mac runtime |
+| **FLUX.2 Dev 32B Q8_0** | <img src="../results/images/library/flux2-dev-q8-benchmark/typography.png" width="220" alt="FLUX.2 Dev 32B Q8_0"><br>**FLUX.2 Dev 32B Q8_0**<br>1 min 57 s · 4/4 criteria · **Pass** | <img src="../results/images/macos/library/flux2-dev-q8-benchmark/typography.png" width="220" alt="FLUX.2 Dev 32B Q8_0"><br>**FLUX.2 Dev 32B Q8_0**<br>18 min 13 s · 4/4 criteria · **Pass** |
+| **FLUX.2 Dev 32B BF16** | <img src="../results/images/library/flux2-dev-bf16-benchmark/typography.png" width="220" alt="FLUX.2 Dev 32B BF16"><br>**FLUX.2 Dev 32B BF16**<br>2 min 11 s · 4/4 criteria · **Pass** | <img src="../results/images/macos/library/flux2-dev-bf16-benchmark/typography.png" width="220" alt="FLUX.2 Dev 32B BF16"><br>**FLUX.2 Dev 32B BF16**<br>20 min 49 s · 4/4 criteria · **Pass** |
 
 **Visible differences:**
 
@@ -94,8 +96,6 @@ The first table under each prompt is the fair Linux–Mac comparison. Newer Mac-
 | Model | Mac result |
 |---|---|
 | **FLUX.2 Klein 4B BF16** | <img src="../results/images/macos/library/flux2-klein-4b-benchmark/typography.png" width="220" alt="FLUX.2 Klein 4B BF16"><br>**FLUX.2 Klein 4B BF16**<br>17.86 s · 4/4 criteria · **Pass** |
-| **FLUX.2 Dev 32B Q8_0** | <img src="../results/images/macos/library/flux2-dev-q8-benchmark/typography.png" width="220" alt="FLUX.2 Dev 32B Q8_0"><br>**FLUX.2 Dev 32B Q8_0**<br>18 min 13 s · 4/4 criteria · **Pass** |
-| **FLUX.2 Dev 32B BF16** | <img src="../results/images/macos/library/flux2-dev-bf16-benchmark/typography.png" width="220" alt="FLUX.2 Dev 32B BF16"><br>**FLUX.2 Dev 32B BF16**<br>20 min 49 s · 4/4 criteria · **Pass** |
 
 ### Spatial instructions
 
@@ -110,6 +110,8 @@ The first table under each prompt is the fair Linux–Mac comparison. Newer Mac-
 | **SD 1.5** | <img src="../results/images/library/sd15-smoke/spatial.png" width="220" alt="SD 1.5"><br>**SD 1.5**<br>1.01 s · 0/5 criteria · **Needs attention** | <img src="../results/images/macos/library/sd15-smoke/spatial.png" width="220" alt="SD 1.5"><br>**SD 1.5**<br>5.49 s · 0/5 criteria · **Needs attention** |
 | **Qwen Image** | <img src="../results/images/library/qwen-image-benchmark/spatial.png" width="220" alt="Qwen Image"><br>**Qwen Image**<br>33.65 s · 5/5 criteria · **Pass** | <img src="../results/images/macos/library/qwen-image-benchmark/spatial.png" width="220" alt="Qwen Image"><br>**Qwen Image**<br>20 min 15 s · 5/5 criteria · **Pass** |
 | **FLUX.2 Dev FP8 (legacy)** | <img src="../results/images/library/flux2-benchmark/spatial.png" width="220" alt="FLUX.2 Dev FP8 (legacy)"><br>**FLUX.2 Dev FP8 (legacy)**<br>43.91 s · 5/5 criteria · **Pass** | **FLUX.2 Dev FP8 (legacy)**<br>No image: FP8 is unsupported by the Mac runtime |
+| **FLUX.2 Dev 32B Q8_0** | <img src="../results/images/library/flux2-dev-q8-benchmark/spatial.png" width="220" alt="FLUX.2 Dev 32B Q8_0"><br>**FLUX.2 Dev 32B Q8_0**<br>1 min 58 s · 5/5 criteria · **Pass** | <img src="../results/images/macos/library/flux2-dev-q8-benchmark/spatial.png" width="220" alt="FLUX.2 Dev 32B Q8_0"><br>**FLUX.2 Dev 32B Q8_0**<br>16 min 40 s · 5/5 criteria · **Pass** |
+| **FLUX.2 Dev 32B BF16** | <img src="../results/images/library/flux2-dev-bf16-benchmark/spatial.png" width="220" alt="FLUX.2 Dev 32B BF16"><br>**FLUX.2 Dev 32B BF16**<br>2 min 11 s · 5/5 criteria · **Pass** | <img src="../results/images/macos/library/flux2-dev-bf16-benchmark/spatial.png" width="220" alt="FLUX.2 Dev 32B BF16"><br>**FLUX.2 Dev 32B BF16**<br>18 min 49 s · 5/5 criteria · **Pass** |
 
 **Visible differences:**
 
@@ -121,8 +123,6 @@ The first table under each prompt is the fair Linux–Mac comparison. Newer Mac-
 | Model | Mac result |
 |---|---|
 | **FLUX.2 Klein 4B BF16** | <img src="../results/images/macos/library/flux2-klein-4b-benchmark/spatial.png" width="220" alt="FLUX.2 Klein 4B BF16"><br>**FLUX.2 Klein 4B BF16**<br>17.46 s · 5/5 criteria · **Pass** |
-| **FLUX.2 Dev 32B Q8_0** | <img src="../results/images/macos/library/flux2-dev-q8-benchmark/spatial.png" width="220" alt="FLUX.2 Dev 32B Q8_0"><br>**FLUX.2 Dev 32B Q8_0**<br>16 min 40 s · 5/5 criteria · **Pass** |
-| **FLUX.2 Dev 32B BF16** | <img src="../results/images/macos/library/flux2-dev-bf16-benchmark/spatial.png" width="220" alt="FLUX.2 Dev 32B BF16"><br>**FLUX.2 Dev 32B BF16**<br>18 min 49 s · 5/5 criteria · **Pass** |
 
 ### Character consistency
 
@@ -137,6 +137,8 @@ The first table under each prompt is the fair Linux–Mac comparison. Newer Mac-
 | **SD 1.5** | <img src="../results/images/library/sd15-smoke/character-sheet.png" width="220" alt="SD 1.5"><br>**SD 1.5**<br>1.02 s · 3/6 criteria · **Needs attention** | <img src="../results/images/macos/library/sd15-smoke/character-sheet.png" width="220" alt="SD 1.5"><br>**SD 1.5**<br>5.38 s · 3/6 criteria · **Needs attention** |
 | **Qwen Image** | <img src="../results/images/library/qwen-image-benchmark/character-sheet.png" width="220" alt="Qwen Image"><br>**Qwen Image**<br>33.79 s · 5/6 criteria · **Needs attention** | <img src="../results/images/macos/library/qwen-image-benchmark/character-sheet.png" width="220" alt="Qwen Image"><br>**Qwen Image**<br>20 min 20 s · 6/6 criteria · **Pass** |
 | **FLUX.2 Dev FP8 (legacy)** | <img src="../results/images/library/flux2-benchmark/character-sheet.png" width="220" alt="FLUX.2 Dev FP8 (legacy)"><br>**FLUX.2 Dev FP8 (legacy)**<br>43.88 s · 4/6 criteria · **Needs attention** | **FLUX.2 Dev FP8 (legacy)**<br>No image: FP8 is unsupported by the Mac runtime |
+| **FLUX.2 Dev 32B Q8_0** | <img src="../results/images/library/flux2-dev-q8-benchmark/character-sheet.png" width="220" alt="FLUX.2 Dev 32B Q8_0"><br>**FLUX.2 Dev 32B Q8_0**<br>1 min 57 s · 6/6 criteria · **Pass** | <img src="../results/images/macos/library/flux2-dev-q8-benchmark/character-sheet.png" width="220" alt="FLUX.2 Dev 32B Q8_0"><br>**FLUX.2 Dev 32B Q8_0**<br>16 min 53 s · 6/6 criteria · **Pass** |
+| **FLUX.2 Dev 32B BF16** | <img src="../results/images/library/flux2-dev-bf16-benchmark/character-sheet.png" width="220" alt="FLUX.2 Dev 32B BF16"><br>**FLUX.2 Dev 32B BF16**<br>2 min 11 s · 6/6 criteria · **Pass** | <img src="../results/images/macos/library/flux2-dev-bf16-benchmark/character-sheet.png" width="220" alt="FLUX.2 Dev 32B BF16"><br>**FLUX.2 Dev 32B BF16**<br>19 min 28 s · 6/6 criteria · **Pass** |
 
 **Visible differences:**
 
@@ -150,8 +152,6 @@ The first table under each prompt is the fair Linux–Mac comparison. Newer Mac-
 | Model | Mac result |
 |---|---|
 | **FLUX.2 Klein 4B BF16** | <img src="../results/images/macos/library/flux2-klein-4b-benchmark/character-sheet.png" width="220" alt="FLUX.2 Klein 4B BF16"><br>**FLUX.2 Klein 4B BF16**<br>17.48 s · 4/6 criteria · **Needs attention** |
-| **FLUX.2 Dev 32B Q8_0** | <img src="../results/images/macos/library/flux2-dev-q8-benchmark/character-sheet.png" width="220" alt="FLUX.2 Dev 32B Q8_0"><br>**FLUX.2 Dev 32B Q8_0**<br>16 min 53 s · 6/6 criteria · **Pass** |
-| **FLUX.2 Dev 32B BF16** | <img src="../results/images/macos/library/flux2-dev-bf16-benchmark/character-sheet.png" width="220" alt="FLUX.2 Dev 32B BF16"><br>**FLUX.2 Dev 32B BF16**<br>19 min 28 s · 6/6 criteria · **Pass** |
 
 **Visible differences:**
 
@@ -170,6 +170,8 @@ The first table under each prompt is the fair Linux–Mac comparison. Newer Mac-
 | **SD 1.5** | <img src="../results/images/library/sd15-smoke/romanian-scene.png" width="220" alt="SD 1.5"><br>**SD 1.5**<br>1.01 s · 4/5 criteria · **Needs attention** | <img src="../results/images/macos/library/sd15-smoke/romanian-scene.png" width="220" alt="SD 1.5"><br>**SD 1.5**<br>5.51 s · 4/5 criteria · **Needs attention** |
 | **Qwen Image** | <img src="../results/images/library/qwen-image-benchmark/romanian-scene.png" width="220" alt="Qwen Image"><br>**Qwen Image**<br>33.87 s · 5/5 criteria · **Pass** | <img src="../results/images/macos/library/qwen-image-benchmark/romanian-scene.png" width="220" alt="Qwen Image"><br>**Qwen Image**<br>20 min 25 s · 5/5 criteria · **Pass** |
 | **FLUX.2 Dev FP8 (legacy)** | <img src="../results/images/library/flux2-benchmark/romanian-scene.png" width="220" alt="FLUX.2 Dev FP8 (legacy)"><br>**FLUX.2 Dev FP8 (legacy)**<br>43.52 s · 5/5 criteria · **Pass** | **FLUX.2 Dev FP8 (legacy)**<br>No image: FP8 is unsupported by the Mac runtime |
+| **FLUX.2 Dev 32B Q8_0** | <img src="../results/images/library/flux2-dev-q8-benchmark/romanian-scene.png" width="220" alt="FLUX.2 Dev 32B Q8_0"><br>**FLUX.2 Dev 32B Q8_0**<br>1 min 57 s · 5/5 criteria · **Pass** | <img src="../results/images/macos/library/flux2-dev-q8-benchmark/romanian-scene.png" width="220" alt="FLUX.2 Dev 32B Q8_0"><br>**FLUX.2 Dev 32B Q8_0**<br>17 min 7 s · 5/5 criteria · **Pass** |
+| **FLUX.2 Dev 32B BF16** | <img src="../results/images/library/flux2-dev-bf16-benchmark/romanian-scene.png" width="220" alt="FLUX.2 Dev 32B BF16"><br>**FLUX.2 Dev 32B BF16**<br>2 min 11 s · 5/5 criteria · **Pass** | <img src="../results/images/macos/library/flux2-dev-bf16-benchmark/romanian-scene.png" width="220" alt="FLUX.2 Dev 32B BF16"><br>**FLUX.2 Dev 32B BF16**<br>20 min 32 s · 5/5 criteria · **Pass** |
 
 **Visible differences:**
 
@@ -181,8 +183,6 @@ The first table under each prompt is the fair Linux–Mac comparison. Newer Mac-
 | Model | Mac result |
 |---|---|
 | **FLUX.2 Klein 4B BF16** | <img src="../results/images/macos/library/flux2-klein-4b-benchmark/romanian-scene.png" width="220" alt="FLUX.2 Klein 4B BF16"><br>**FLUX.2 Klein 4B BF16**<br>17.64 s · 5/5 criteria · **Pass** |
-| **FLUX.2 Dev 32B Q8_0** | <img src="../results/images/macos/library/flux2-dev-q8-benchmark/romanian-scene.png" width="220" alt="FLUX.2 Dev 32B Q8_0"><br>**FLUX.2 Dev 32B Q8_0**<br>17 min 7 s · 5/5 criteria · **Pass** |
-| **FLUX.2 Dev 32B BF16** | <img src="../results/images/macos/library/flux2-dev-bf16-benchmark/romanian-scene.png" width="220" alt="FLUX.2 Dev 32B BF16"><br>**FLUX.2 Dev 32B BF16**<br>20 min 32 s · 5/5 criteria · **Pass** |
 
 ## Image editing, test by test
 
@@ -291,6 +291,7 @@ The first Mac OCR row includes model start-up. This explains why the clean test 
 
 - About 32× faster for Qwen Image and 16× faster for Qwen Image Edit in these runs.
 - Runs the legacy FLUX.2 FP8 model successfully.
+- FLUX.2 Dev Q8_0 and BF16 both passed all 24 prompt criteria; Q8_0 is the practical upper-quality option.
 - Qwen Image Edit passed all three preservation tests.
 - Low, predictable OCR latency after the service is available.
 
@@ -317,7 +318,7 @@ The first Mac OCR row includes model start-up. This explains why the clean test 
 ### What to choose
 
 - **FLUX.2 Klein on Mac** for quick drafts and interactive work.
-- **FLUX.2 Dev Q8_0 on Mac** for full-size local FLUX; BF16 added time without improving this small rubric set.
+- **FLUX.2 Dev Q8_0 on either machine** for full-size local FLUX; Linux is much faster, while Mac avoids a separate GPU-memory ceiling.
 - **Qwen Image** when exact text and prompt adherence matter more than latency.
 - **Linux GPU** for volume generation or editing.
 - **Mobile OCR** for speed and degraded-text spacing; **server OCR** when exact clean-text recovery matters more than footprint.
@@ -325,6 +326,6 @@ The first Mac OCR row includes model start-up. This explains why the clean test 
 ## Limits
 
 - Each image was generated once. These are evidence-backed practical timings, not statistical averages.
-- Mac-only FLUX Klein, Q8_0 and BF16 have no matching Linux run and are not presented as direct comparisons.
+- FLUX.2 Klein is Mac-only. Q8_0 and BF16 are direct Linux–Mac comparisons.
 - Qwen uses platform-specific runtimes and installed weight variants even though prompts and workflow settings match.
 - A prompt miss is a visible quality issue, not a crash or execution failure.

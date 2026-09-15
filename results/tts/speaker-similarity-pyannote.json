@@ -1,0 +1,341 @@
+{
+  "schema_version": 1,
+  "metric": "cosine-speaker-similarity",
+  "evaluator": "pyannote/wespeaker-voxceleb-resnet34-LM",
+  "reference": "/test_models/audio/tts/_fixtures/fleurs-ro-reference.wav",
+  "models": {
+    "mms-tts-ron-v1": {
+      "mean": 0.308449,
+      "min": 0.27379,
+      "max": 0.334815,
+      "completed": 7,
+      "cases": [
+        {
+          "id": "ro-neutral",
+          "language": "ro",
+          "similarity": 0.309326
+        },
+        {
+          "id": "ro-diacritics",
+          "language": "ro",
+          "similarity": 0.316805
+        },
+        {
+          "id": "ro-numbers",
+          "language": "ro",
+          "similarity": 0.32309
+        },
+        {
+          "id": "ro-foreign-names",
+          "language": "ro",
+          "similarity": 0.27379
+        },
+        {
+          "id": "ro-question",
+          "language": "ro",
+          "similarity": 0.296679
+        },
+        {
+          "id": "ro-warning",
+          "language": "ro",
+          "similarity": 0.304637
+        },
+        {
+          "id": "ro-long",
+          "language": "ro",
+          "similarity": 0.334815
+        }
+      ]
+    },
+    "omnivoice-0.6b-v1": {
+      "mean": 0.803332,
+      "min": 0.752328,
+      "max": 0.863284,
+      "completed": 10,
+      "cases": [
+        {
+          "id": "en-smoke",
+          "language": "en",
+          "similarity": 0.757495
+        },
+        {
+          "id": "ro-neutral",
+          "language": "ro",
+          "similarity": 0.799458
+        },
+        {
+          "id": "ro-diacritics",
+          "language": "ro",
+          "similarity": 0.797075
+        },
+        {
+          "id": "ro-numbers",
+          "language": "ro",
+          "similarity": 0.786711
+        },
+        {
+          "id": "ro-foreign-names",
+          "language": "ro",
+          "similarity": 0.844758
+        },
+        {
+          "id": "ro-question",
+          "language": "ro",
+          "similarity": 0.782923
+        },
+        {
+          "id": "ro-warning",
+          "language": "ro",
+          "similarity": 0.802522
+        },
+        {
+          "id": "ro-long",
+          "language": "ro",
+          "similarity": 0.863284
+        },
+        {
+          "id": "en-emphasis",
+          "language": "en",
+          "similarity": 0.752328
+        },
+        {
+          "id": "en-numbers",
+          "language": "en",
+          "similarity": 0.846765
+        }
+      ]
+    },
+    "qwen3-tts-0.6b-base-v1": {
+      "mean": 0.725148,
+      "min": 0.659907,
+      "max": 0.774958,
+      "completed": 10,
+      "cases": [
+        {
+          "id": "en-smoke",
+          "language": "en",
+          "similarity": 0.734472
+        },
+        {
+          "id": "ro-neutral",
+          "language": "ro",
+          "similarity": 0.727532
+        },
+        {
+          "id": "ro-diacritics",
+          "language": "ro",
+          "similarity": 0.680097
+        },
+        {
+          "id": "ro-numbers",
+          "language": "ro",
+          "similarity": 0.749613
+        },
+        {
+          "id": "ro-foreign-names",
+          "language": "ro",
+          "similarity": 0.71985
+        },
+        {
+          "id": "ro-question",
+          "language": "ro",
+          "similarity": 0.741891
+        },
+        {
+          "id": "ro-warning",
+          "language": "ro",
+          "similarity": 0.71477
+        },
+        {
+          "id": "ro-long",
+          "language": "ro",
+          "similarity": 0.774958
+        },
+        {
+          "id": "en-emphasis",
+          "language": "en",
+          "similarity": 0.659907
+        },
+        {
+          "id": "en-numbers",
+          "language": "en",
+          "similarity": 0.748388
+        }
+      ]
+    },
+    "fireredtts3-base-v1": {
+      "mean": 0.819957,
+      "min": 0.738154,
+      "max": 0.856047,
+      "completed": 10,
+      "cases": [
+        {
+          "id": "en-smoke",
+          "language": "en",
+          "similarity": 0.825827
+        },
+        {
+          "id": "ro-neutral",
+          "language": "ro",
+          "similarity": 0.8068
+        },
+        {
+          "id": "ro-diacritics",
+          "language": "ro",
+          "similarity": 0.809563
+        },
+        {
+          "id": "ro-numbers",
+          "language": "ro",
+          "similarity": 0.848078
+        },
+        {
+          "id": "ro-foreign-names",
+          "language": "ro",
+          "similarity": 0.834043
+        },
+        {
+          "id": "ro-question",
+          "language": "ro",
+          "similarity": 0.738154
+        },
+        {
+          "id": "ro-warning",
+          "language": "ro",
+          "similarity": 0.784182
+        },
+        {
+          "id": "ro-long",
+          "language": "ro",
+          "similarity": 0.856047
+        },
+        {
+          "id": "en-emphasis",
+          "language": "en",
+          "similarity": 0.84246
+        },
+        {
+          "id": "en-numbers",
+          "language": "en",
+          "similarity": 0.854412
+        }
+      ]
+    },
+    "fireredtts3-instruct-patched-v1": {
+      "mean": 0.669872,
+      "min": 0.602714,
+      "max": 0.716624,
+      "completed": 10,
+      "cases": [
+        {
+          "id": "en-smoke",
+          "language": "en",
+          "similarity": 0.647638
+        },
+        {
+          "id": "ro-neutral",
+          "language": "ro",
+          "similarity": 0.713758
+        },
+        {
+          "id": "ro-diacritics",
+          "language": "ro",
+          "similarity": 0.610369
+        },
+        {
+          "id": "ro-numbers",
+          "language": "ro",
+          "similarity": 0.694686
+        },
+        {
+          "id": "ro-foreign-names",
+          "language": "ro",
+          "similarity": 0.683336
+        },
+        {
+          "id": "ro-question",
+          "language": "ro",
+          "similarity": 0.68312
+        },
+        {
+          "id": "ro-warning",
+          "language": "ro",
+          "similarity": 0.680237
+        },
+        {
+          "id": "ro-long",
+          "language": "ro",
+          "similarity": 0.716624
+        },
+        {
+          "id": "en-emphasis",
+          "language": "en",
+          "similarity": 0.602714
+        },
+        {
+          "id": "en-numbers",
+          "language": "en",
+          "similarity": 0.666238
+        }
+      ]
+    },
+    "fish-s2-pro-v1": {
+      "mean": 0.723234,
+      "min": 0.65869,
+      "max": 0.79176,
+      "completed": 10,
+      "cases": [
+        {
+          "id": "en-smoke",
+          "language": "en",
+          "similarity": 0.664178
+        },
+        {
+          "id": "ro-neutral",
+          "language": "ro",
+          "similarity": 0.79176
+        },
+        {
+          "id": "ro-diacritics",
+          "language": "ro",
+          "similarity": 0.73895
+        },
+        {
+          "id": "ro-numbers",
+          "language": "ro",
+          "similarity": 0.775247
+        },
+        {
+          "id": "ro-foreign-names",
+          "language": "ro",
+          "similarity": 0.743619
+        },
+        {
+          "id": "ro-question",
+          "language": "ro",
+          "similarity": 0.65869
+        },
+        {
+          "id": "ro-warning",
+          "language": "ro",
+          "similarity": 0.69829
+        },
+        {
+          "id": "ro-long",
+          "language": "ro",
+          "similarity": 0.745322
+        },
+        {
+          "id": "en-emphasis",
+          "language": "en",
+          "similarity": 0.714884
+        },
+        {
+          "id": "en-numbers",
+          "language": "en",
+          "similarity": 0.701404
+        }
+      ]
+    }
+  }
+}

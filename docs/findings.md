@@ -300,6 +300,27 @@ A summary of the above, arranged by what you are trying to do.
 | Getting through a lot of input quickly | Qwen3-Coder-30B-A3B | reads prompts faster than anything else here; keep it away from prose |
 | Already running Qwen3.6-35B and wanting more speed | change the engine before you change the model | 13× the throughput under load, at a cost of 0.006 F1 |
 
+## Audio
+
+The speech tests produce five direct automatic verdicts on this machine.
+
+| Task | Automatic verdict | Measured reason |
+|---|---|---|
+| Romanian transcription | Canary 1B v2 | lowest WER, 6.1%, at 32× real time |
+| High-volume transcription | Parakeet TDT 0.6B v3 | fastest successful ASR, 143× real time, with 12.1% Romanian WER |
+| English voice cloning | FireRedTTS3 Base | best held-out voice similarity, 0.721, tied lowest WER, 2.8% |
+| Compact English synthesis | Qwen3-TTS 0.6B Base | highest predicted naturalness, 4.428, using about 4.3 GB of GPU memory |
+| English designed voices | FireRedTTS3 Instruct | three-sample probe: zero ASR word errors and 4.515 predicted naturalness |
+
+FireRed Base is the automatic cloning winner. Qwen is the better small English
+candidate. Fish S2 Pro does not justify its 5.666 real-time factor for cloning:
+it retained less of the reference voice than FireRed Base. OmniVoice is fast
+and strong in Romanian, but its non-commercial checkpoint licence rules it out
+as the default for a monetised channel.
+
+The synthesis scores do not measure whether a voice suits a particular
+programme. That choice is outside this benchmark.
+
 ## What this does not tell you
 
 Four limits worth holding on to while reading any of the above.
@@ -308,10 +329,11 @@ Four limits worth holding on to while reading any of the above.
 there is no way to say how much a number would move if the same test ran again.
 Treat differences under 0.02 F1 as no difference at all.
 
-**Every measurement is one question and one answer.** Nothing here sends a
-follow-up. That leaves out how a model behaves inside an agent that goes back
-and forth twenty times over the same code, or in a conversation whose history
-keeps growing, and both of those work the engine quite differently.
+**Most measurements are one question and one answer.** The four-task
+[agentic coding probe](agentic-coding.md) now sends follow-up tool results and
+allows up to fourteen turns, but it is too small and short to represent an
+agent maintaining a real project. The throughput tables remain independent
+batch requests rather than agent sessions.
 
 **Twenty languages, all of them well-resourced.** Nothing here says anything
 about languages with little text on the internet, which is exactly where models

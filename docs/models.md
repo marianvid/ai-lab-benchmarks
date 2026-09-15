@@ -3,8 +3,9 @@
 Speech models are listed separately in [Audio models](audio-models.md). This
 page retains the original text study and its engine comparisons.
 
-Ten combinations of model and engine. Three models appear in both formats, so
-the engine can be compared with everything else held constant.
+Twelve combinations of model and engine are recorded. Three models appear in
+both formats, so the engine can be compared with everything else held constant.
+The two Qwen3.8 quantisations have coding and agentic-probe results only.
 
 | Model | Engine | Format | On disk | Parameters | Kind |
 |---|---|---|---:|---|---|
@@ -18,6 +19,8 @@ the engine can be compared with everything else held constant.
 | GLM-4.7-Flash | vLLM | NVFP4 | 20 GB | ~30B total, ~3.6B active¹ | MoE |
 | Gemma-4-31B | vLLM | NVFP4 | 22 GB | 31B, all active | dense |
 | Gemma-4-31B | llama.cpp | GGUF Q4_K_XL | 18 GB | 31B, all active | dense |
+| Qwen3.8-27B | llama.cpp | GGUF Q6_K | 23.9 GB | 27B, all active | dense |
+| Qwen3.8-27B | llama.cpp | GGUF Q8_0 | 29.1 GB | 27B, all active | dense |
 
 ¹ GLM-4.7-Flash publishes no parameter count. This one is computed from its
 `config.json`: 47 layers, 64 experts of which 4 are active per token plus one
@@ -41,6 +44,7 @@ model, so its VRAM figures describe the setting, not the model.
 | Gemma-4-E4B | a quarter the size of the others |
 | GLM-4.7-Flash | weakest on most tasks; a set with no weak entry shows nothing about its own resolution |
 | Gemma-4-31B | the only large dense model here, on both engines. Everything else of this size computes 3-4B parameters per token; this one computes all 31B |
+| Qwen3.8-27B Q6_K / Q8_0 | newer dense coding/agent candidate, tested twice to see whether Q8 buys measurable quality over Q6 |
 
 ## Terms
 
@@ -52,9 +56,11 @@ memory like a 26B model and runs closer to the speed of a 4B one.
 **Dense** — every parameter is used for every token. Slower per token at the
 same size.
 
-**Q4_K_XL, Q4_K_M, Q4_0** — llama.cpp quantisation recipes, all near 4 bits per
+**Q4_K_XL, Q4_K_M, Q4_0, Q6_K, Q8_0** — llama.cpp quantisation recipes. The
+first three are near 4 bits per
 weight. XL keeps more precision in the layers that lose most from rounding;
-`_0` is the simplest and smallest.
+`_0` is the simplest form. Q6_K and Q8_0 retain progressively more precision
+and consume more storage and VRAM.
 
 ## Settings
 

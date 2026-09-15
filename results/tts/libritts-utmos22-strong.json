@@ -1,0 +1,4969 @@
+{
+  "schema_version": 1,
+  "metric": "UTMOS22-strong",
+  "predictor": "tarepan/SpeechMOS:v1.2.0",
+  "models": {
+    "libritts-ground-truth-en100-v1": {
+      "mean": 4.131116,
+      "min": 3.37001,
+      "max": 4.432795,
+      "by_mode": {
+        "default": 4.131116
+      },
+      "by_gender": {
+        "F": 4.062569,
+        "M": 4.199664
+      },
+      "by_speaker": {
+        "1089": 4.262643,
+        "121": 3.873935,
+        "237": 4.203245,
+        "260": 4.181579,
+        "3729": 4.047435,
+        "5142": 4.243355,
+        "5639": 4.22546,
+        "7729": 4.204171,
+        "8555": 3.944873,
+        "908": 4.124469
+      },
+      "completed": 100,
+      "cases": [
+        {
+          "id": "spk-121-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.125987,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.345928,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.873934,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.474621,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.591005,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.59097,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.712564,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.778404,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.154111,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.091825,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.354173,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.375262,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.336915,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.916378,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.336981,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.298454,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.103615,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.169516,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.90248,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.238671,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.252137,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.737549,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.136067,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.222013,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.676474,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.771261,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.417433,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.278553,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.014708,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.968155,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.20873,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.254086,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.432795,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.591328,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.390047,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.255439,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.227457,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.390391,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.288199,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.395078,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.421382,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.300733,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.265347,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.094114,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.935921,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.808743,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.956023,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.37001,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.100218,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.19624,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-1089-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.301429,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.361165,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.311289,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.24076,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.161903,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.431469,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.360988,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.26104,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.996178,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.200212,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.401752,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.326283,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.578721,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.207721,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.353972,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.274681,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.344235,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.348018,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.281608,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.698796,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.146667,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.09507,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.260921,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.1537,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.374463,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.177968,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.194686,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.276271,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.325564,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.249285,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.323961,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.178183,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.221245,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.158841,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.149738,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.092678,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.262886,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.285091,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.220647,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.148443,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.944991,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.247392,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.30486,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.9777,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.301082,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.905643,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.251979,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.176297,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.170341,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.964408,
+          "speaker": "908",
+          "gender": "M"
+        }
+      ]
+    },
+    "libritts-omnivoice-en100-v1": {
+      "mean": 4.297784,
+      "min": 4.02803,
+      "max": 4.45081,
+      "by_mode": {
+        "default": 4.297784
+      },
+      "by_gender": {
+        "F": 4.271027,
+        "M": 4.324541
+      },
+      "by_speaker": {
+        "1089": 4.344143,
+        "121": 4.212504,
+        "237": 4.266894,
+        "260": 4.315782,
+        "3729": 4.245408,
+        "5142": 4.34286,
+        "5639": 4.345342,
+        "7729": 4.262171,
+        "8555": 4.287468,
+        "908": 4.355266
+      },
+      "completed": 100,
+      "cases": [
+        {
+          "id": "spk-121-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.278986,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.188549,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.294386,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.156775,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.206665,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.02803,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.192268,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.202774,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.223059,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.353544,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.361358,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.07972,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.263992,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.0587,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.356176,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.381985,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.365657,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.332767,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.135952,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.332629,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.344609,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.102502,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.348814,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.058257,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.295958,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.061643,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.274474,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.416569,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.237075,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.314178,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.308008,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.410612,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.375422,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.287953,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.349848,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.190271,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.392217,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.383802,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.298903,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.431565,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.291975,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.346401,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.344409,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.312336,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.233934,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.336545,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.24377,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.266289,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.229999,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.269026,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-1089-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.339822,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.295831,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.320127,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.296482,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.294054,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.39451,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.411311,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.385814,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.342753,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.360731,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.344903,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.381521,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.350047,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.060978,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.389789,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.382083,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.350861,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.450333,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.182745,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.264564,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.38793,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.343506,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.327937,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.241096,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.391665,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.313218,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.384257,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.29408,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.363962,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.405766,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.257386,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.216926,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.273291,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.187272,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.328539,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.240088,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.304967,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.292722,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.266776,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.25374,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.157391,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.429487,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.45081,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.375213,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.377805,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.306756,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.375743,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.275801,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.393887,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.409771,
+          "speaker": "908",
+          "gender": "M"
+        }
+      ]
+    },
+    "libritts-qwen-en100-v1": {
+      "mean": 4.428126,
+      "min": 4.078486,
+      "max": 4.5232,
+      "by_mode": {
+        "default": 4.428126
+      },
+      "by_gender": {
+        "F": 4.42484,
+        "M": 4.431412
+      },
+      "by_speaker": {
+        "1089": 4.448406,
+        "121": 4.427385,
+        "237": 4.414744,
+        "260": 4.466296,
+        "3729": 4.430211,
+        "5142": 4.441255,
+        "5639": 4.441422,
+        "7729": 4.362702,
+        "8555": 4.410605,
+        "908": 4.438235
+      },
+      "completed": 100,
+      "cases": [
+        {
+          "id": "spk-121-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.390714,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.434516,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.456913,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.469843,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.339577,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.441298,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.42255,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.401165,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.486868,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.430404,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.452003,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.337152,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.424305,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.476909,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.456294,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.460543,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.5232,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.478294,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.078486,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.460257,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.460758,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.427448,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.416883,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.380531,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.405813,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.458731,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.469527,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.490778,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.321298,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.47034,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.444402,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.464489,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.470592,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.400518,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.387439,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.441072,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.466232,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.500738,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.466639,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.370428,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.384411,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.420286,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.382717,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.434762,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.371885,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.432456,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.364369,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.394026,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.439464,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.481679,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-1089-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.467319,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.4705,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.417603,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.443417,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.355015,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.473495,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.453621,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.495587,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.408293,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.499207,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.47452,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.36978,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.420594,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.483142,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.477664,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.470608,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.502348,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.494386,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.501446,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.468472,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.466188,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.413417,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.450317,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.463237,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.49193,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.431148,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.464777,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.330461,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.441967,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.460783,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.376344,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.308871,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.355165,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.353909,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.381926,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.392237,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.385803,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.33217,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.374762,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.36583,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.273512,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.498663,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.500628,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.39303,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.450505,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.453581,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.46299,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.431419,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.458819,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.459205,
+          "speaker": "908",
+          "gender": "M"
+        }
+      ]
+    },
+    "libritts-firered-base-en100-v1": {
+      "mean": 4.309104,
+      "min": 3.729293,
+      "max": 4.482501,
+      "by_mode": {
+        "default": 4.309104
+      },
+      "by_gender": {
+        "F": 4.305266,
+        "M": 4.312942
+      },
+      "by_speaker": {
+        "1089": 4.311785,
+        "121": 4.297857,
+        "237": 4.324992,
+        "260": 4.409063,
+        "3729": 4.345762,
+        "5142": 4.375983,
+        "5639": 4.376477,
+        "7729": 4.250139,
+        "8555": 4.181734,
+        "908": 4.217247
+      },
+      "completed": 100,
+      "cases": [
+        {
+          "id": "spk-121-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.387092,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.40433,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.386332,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.38537,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.283908,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.219857,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.209464,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.258679,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.378388,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.065147,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.400392,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.171083,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.298527,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.360055,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.336248,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.372562,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.390011,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.339659,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.258595,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.322784,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.417826,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.321479,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.356465,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.324415,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.282738,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.365314,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.300632,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.401137,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.315485,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.37213,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.313838,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.420454,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.391512,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.236159,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.340983,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.397458,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.359038,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.449387,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.408845,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.442161,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.193036,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.729293,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.317205,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.276109,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.081209,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.27828,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.098643,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.174339,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.332765,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.336465,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-1089-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.186481,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.334055,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.30293,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.308798,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.323478,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.319811,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.359957,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.368908,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.326373,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.287061,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.343731,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.424054,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.411244,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.482501,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.46727,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.469574,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.460947,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.153977,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.478621,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.398709,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.359776,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.392063,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.412463,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.308994,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.413386,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.362407,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.396453,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.353144,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.370771,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.395316,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.32895,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.236285,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.295487,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.18295,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.26866,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.128605,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.241242,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.329476,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.250918,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.23882,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.851251,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.371819,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.280346,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.301018,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.175255,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.222758,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.273923,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.123502,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.259109,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.31349,
+          "speaker": "908",
+          "gender": "M"
+        }
+      ]
+    },
+    "libritts-firered-instruct-en100-v1": {
+      "mean": 4.292015,
+      "min": 3.740481,
+      "max": 4.460307,
+      "by_mode": {
+        "default": 4.292015
+      },
+      "by_gender": {
+        "F": 4.267903,
+        "M": 4.316126
+      },
+      "by_speaker": {
+        "1089": 4.249243,
+        "121": 4.37196,
+        "237": 4.298423,
+        "260": 4.381971,
+        "3729": 4.256339,
+        "5142": 4.257347,
+        "5639": 4.353103,
+        "7729": 4.275535,
+        "8555": 4.155447,
+        "908": 4.320778
+      },
+      "completed": 100,
+      "cases": [
+        {
+          "id": "spk-121-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.405105,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.423826,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.40266,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.37375,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.397042,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.302945,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.396027,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.247852,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.456779,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.313616,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.328305,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.203192,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.270189,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.397564,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.278823,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.387432,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.357979,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.297659,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.109963,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.353124,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.373359,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.967312,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.380467,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.261384,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.251173,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.350805,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.334788,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.377553,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.124307,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.142244,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.794686,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.379639,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.438344,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.740481,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.276411,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.351756,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.312173,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.443158,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.39969,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.437131,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.188491,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.248096,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.319582,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.304887,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.195934,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.80179,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.07834,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.860071,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.327877,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.229403,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-1089-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.199472,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.263665,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.287591,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.277792,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.18305,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.280282,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.285465,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.276891,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.272283,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.165943,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.44064,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.346366,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.279802,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.453392,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.381814,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.450401,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.414443,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.366746,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.460307,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.225799,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.390864,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.406764,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.413494,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.099124,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.410877,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.364156,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.402216,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.251227,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.38833,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.403973,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.280811,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.217602,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.297178,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.344433,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.285301,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.141866,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.256266,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.33118,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.303618,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.297095,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.120879,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.385456,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.382484,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.279968,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.366827,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.392281,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.307645,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.200836,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.417552,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.353855,
+          "speaker": "908",
+          "gender": "M"
+        }
+      ]
+    },
+    "libritts-fish-en100-v1": {
+      "mean": 4.405393,
+      "min": 3.331418,
+      "max": 4.521996,
+      "by_mode": {
+        "default": 4.405393
+      },
+      "by_gender": {
+        "F": 4.405409,
+        "M": 4.405377
+      },
+      "by_speaker": {
+        "1089": 4.408962,
+        "121": 4.405929,
+        "237": 4.454943,
+        "260": 4.481334,
+        "3729": 4.424512,
+        "5142": 4.3548,
+        "5639": 4.346956,
+        "7729": 4.354616,
+        "8555": 4.386859,
+        "908": 4.435017
+      },
+      "completed": 100,
+      "cases": [
+        {
+          "id": "spk-121-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.428852,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.36557,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.428833,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.386528,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.403557,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.379062,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.430391,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.400857,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.444947,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-121-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.390694,
+          "speaker": "121",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.451611,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.44013,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.466733,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.492904,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.47955,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.461364,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.456366,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.451606,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.439548,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-237-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.409614,
+          "speaker": "237",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.467397,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.417449,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.442234,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.388677,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.402767,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.437841,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.421824,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.429322,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.380338,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-3729-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.457273,
+          "speaker": "3729",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.400578,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.489174,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.485926,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.331418,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.470684,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.427432,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.483029,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.49419,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.465871,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-5142-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.499701,
+          "speaker": "5142",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.27887,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.428324,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.383021,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.434366,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.321916,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.444515,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.329159,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.369391,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.431085,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-8555-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.447944,
+          "speaker": "8555",
+          "gender": "F"
+        },
+        {
+          "id": "spk-1089-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.416568,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.425129,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.3026,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.441599,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.410223,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.433072,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.438905,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.421731,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.456487,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-1089-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.343301,
+          "speaker": "1089",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.491323,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.49578,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.411983,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.514583,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.521996,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.509806,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.387967,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.519473,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.497275,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-260-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.46315,
+          "speaker": "260",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.315078,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.301561,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.439182,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.400398,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.470836,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.300458,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.39415,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.097309,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.383007,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-5639-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.367582,
+          "speaker": "5639",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.376472,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.27151,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.359056,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.391555,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.409075,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.202128,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.307228,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.431984,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.387524,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-7729-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.409628,
+          "speaker": "7729",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-00",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.263069,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-01",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.493654,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-02",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.469573,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-03",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.392961,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-04",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.480457,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-05",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.47508,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-06",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.436381,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-07",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.422631,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-08",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.460893,
+          "speaker": "908",
+          "gender": "M"
+        },
+        {
+          "id": "spk-908-09",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.455466,
+          "speaker": "908",
+          "gender": "M"
+        }
+      ]
+    }
+  }
+}

@@ -118,9 +118,13 @@ def ladder(entry: dict, key: str):
 def quality_page(rows: list[dict], out: pathlib.Path) -> None:
     # Counted rather than written out. It was wrong the first time a model was
     # added, and a number in prose that nobody recomputes is a number that ages.
+    complete = sum(all(entry.get(key) for key in
+                       ("classification", "comprehension", "translation", "coding"))
+                   for entry in rows)
+    partial = len(rows) - complete
     lines = [
-        f"Four tasks, one pass each, across {len(rows)} model and engine "
-        f"combinations.",
+        f"Four tasks, one pass each, across {complete} complete model and engine "
+        f"combinations. {partial} newer combinations currently have coding-only results.",
         "Each table gives the score and the time it took; both came out of the",
         "same run.",
         "",
@@ -579,7 +583,7 @@ def loading_page(summary: dict, results: pathlib.Path, out: pathlib.Path) -> Non
         lines.append(
             f"| {entry['model']} | {entry['engine']} "
             f"| {(f'{size / 1024 ** 3:.1f} GB') if size else '—'} "
-            f"| {cell(first, 1)} s "
+            f"| {(cell(first, 1) + ' s') if first is not None else '—'} "
             f"| {(cell(again, 1) + ' s') if again is not None else '—'} "
             f"| {cell(entry.get('unload', {}).get('unload_s'), 1)} s |")
     lines += [
@@ -744,6 +748,77 @@ def tokenizer_page(results: pathlib.Path, out: pathlib.Path) -> None:
         return
 
 
+def agentic_page(results: pathlib.Path, out: pathlib.Path) -> None:
+    directory = results / "qwen38-agentic"
+    paths = sorted(directory.glob("*-agentic.json"))
+    if not paths:
+        return
+    runs = [json.loads(path.read_text()) for path in paths]
+    names = {
+        "qwen3.8-27b-q6-k": "Qwen3.8-27B Q6_K",
+        "qwen3.8-27b-q8-0": "Qwen3.8-27B Q8_0",
+        "qwopus3.6-27b-coder-q5-k-m": "Qwopus3.6-27B-Coder Q5_K_M",
+    }
+    tasks = [row["task"] for row in runs[0]["tasks"]]
+    lines = [
+        "A small controlled probe of a coding model acting through tools, not",
+        "just answering one isolated programming question. Each run receives a",
+        "throwaway repository, an architect document, file and test tools, and",
+        "up to 14 turns. Visible and hidden unit tests decide the result.",
+        "",
+        "This is still a one-pass, four-task probe. It is useful evidence about",
+        "short agent loops, not proof that a model can maintain a large project.",
+        "",
+        "| Model | Passed | Wall | Prompt tokens | Completion tokens | Tool turns |",
+        "|---|---:|---:|---:|---:|---:|",
+    ]
+    for run in runs:
+        rows = run["tasks"]
+        lines.append(
+            f"| {names.get(run['label'], run['label'])} "
+            f"| {run['summary']['passed']}/{run['summary']['total']} "
+            f"| {run['summary']['wall_s']:.1f} s "
+            f"| {sum(row['usage']['prompt_tokens'] for row in rows):,} "
+            f"| {sum(row['usage']['completion_tokens'] for row in rows):,} "
+            f"| {sum(row['turns'] for row in rows)} |")
+    lines += ["", "## Per task", "", "| Model | " + " | ".join(tasks) + " |",
+              "|---|" + "---:|" * len(tasks)]
+    for run in runs:
+        marks = ["pass" if row["passed"] else "fail" for row in run["tasks"]]
+        lines.append(f"| {names.get(run['label'], run['label'])} | " + " | ".join(marks) + " |")
+    lines += [
+        "",
+        "All three failed the same hidden edge case in `config-migration`: the",
+        "implementation correctly removed obsolete generated profiles and kept",
+        "user data, but omitted an empty `profiles` key when the input lacked",
+        "one. Protected architect, test and fixture files were unchanged.",
+        "",
+        "Qwen3.8 therefore looked competent in the agent loop, but did not beat",
+        "the Qwopus control on correctness in this small pass. Q6 was faster and",
+        "smaller than Q8; Qwopus reached the same result more than twice as fast.",
+        "",
+        "## Why Qwen3.8 can still feel better at coding",
+        "",
+        "The aggregate standard score hides a split. Against Qwen3.6, Qwen3.8",
+        "Q6 solved two more HumanEval+ tasks and Q8 solved three more, while both",
+        "lost ground on the shorter, less structured MBPP+ descriptions. That is",
+        "consistent with a model that benefits more from an explicit contract and",
+        "structured task, even though the 541-problem total is tied or lower.",
+        "",
+        "Qwen's full-precision model card reports larger generation-over-",
+        "generation gains on long-horizon coding: 73.0 versus 63.4 on Terminal",
+        "Bench and 61.7 versus 53.5 on SWE-bench Pro. Those published figures are",
+        "not scores for these GGUF",
+        "quantisations or this machine, but they support testing repository-level",
+        "agent work separately from HumanEval/MBPP rather than treating the latter",
+        "as the whole coding verdict: https://huggingface.co/Qwen/Qwen3.8-27B",
+        "",
+        "Raw transcripts and the standard coding comparison are under",
+        "[`results/qwen38-agentic`](../results/qwen38-agentic/).",
+    ]
+    page(out / "agentic-coding.md", "Agentic coding probe", lines)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--results", default="./results")
@@ -763,6 +838,7 @@ def main() -> int:
     latency_page(rows, out)
     loading_page(summary, results, out)
     tokenizer_page(results, out)
+    agentic_page(results, out)
     return 0
 
 

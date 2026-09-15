@@ -1,6 +1,6 @@
 # Quality
 
-Four tasks, one pass each, across 10 model and engine combinations.
+Four tasks, one pass each, across 10 complete model and engine combinations. 2 newer combinations currently have coding-only results.
 Each table gives the score and the time it took; both came out of the
 same run.
 
@@ -48,6 +48,8 @@ politics. 4 080 sentences in 20 languages, of which 15% are political.
 | Qwen3-Coder-30B-A3B | vLLM | **0.726** | 0.933 | 49.9 | 4756.3 | 81.76 |
 | Qwen3.6-35B-A3B | llama.cpp | **0.895** | 0.969 | 8.03 | 626.1 | 507.86 |
 | Qwen3.6-35B-A3B | vLLM | **0.889** | 0.967 | 53.6 | 4507.8 | 76.11 |
+| Qwen3.8-27B Q6_K | llama.cpp | — | — | — | — | — |
+| Qwen3.8-27B Q8_0 | llama.cpp | — | — | — | — | — |
 | Qwopus3.6-27B-Coder | vLLM | **0.906** | 0.971 | 19.69 | 1531.0 | 207.2 |
 
 **Accuracy is higher than F1 for every model, and the gap matters.**
@@ -80,6 +82,8 @@ total, always the same 100 so every model is asked the same things.
 | Qwen3-Coder-30B-A3B | vLLM | **0.847** | 0 | 59.54 | 33.59 |
 | Qwen3.6-35B-A3B | llama.cpp | **0.913** | 2 | 4.33 | 461.76 |
 | Qwen3.6-35B-A3B | vLLM | **0.895** | 0 | 30.53 | 65.51 |
+| Qwen3.8-27B Q6_K | llama.cpp | — | — | — | — |
+| Qwen3.8-27B Q8_0 | llama.cpp | — | — | — | — |
 | Qwopus3.6-27B-Coder | vLLM | **0.915** | 0 | 19.92 | 100.41 |
 
 **Guessing scores 0.25**, because there are four options. Subtract it
@@ -135,6 +139,8 @@ model, scored against FLORES's human translations.
 | Qwen3-Coder-30B-A3B | vLLM | **45.38** | 8.25 | 115.15 |
 | Qwen3.6-35B-A3B | llama.cpp | **54.24** | 1.93 | 492.87 |
 | Qwen3.6-35B-A3B | vLLM | **53.79** | 9.65 | 98.49 |
+| Qwen3.8-27B Q6_K | llama.cpp | — | — | — |
+| Qwen3.8-27B Q8_0 | llama.cpp | — | — | — |
 | Qwopus3.6-27B-Coder | vLLM | **52.99** | 5.03 | 188.89 |
 
 **The values are low because the language mix is hard.** These 19
@@ -161,6 +167,8 @@ that came with the problem; it passes or it does not.
 | Qwen3-Coder-30B-A3B | vLLM | **0.791** | 428/541 | 0.890 | 0.749 | 153.6 |
 | Qwen3.6-35B-A3B | llama.cpp | **0.808** | 437/541 | 0.902 | 0.767 | 486.95 |
 | Qwen3.6-35B-A3B | vLLM | **0.810** | 438/541 | 0.902 | 0.770 | 147.69 |
+| Qwen3.8-27B Q6_K | llama.cpp | **0.810** | 438/541 | 0.914 | 0.765 | 894.72 |
+| Qwen3.8-27B Q8_0 | llama.cpp | **0.806** | 436/541 | 0.920 | 0.757 | 839.01 |
 | Qwopus3.6-27B-Coder | vLLM | **0.815** | 441/541 | 0.932 | 0.765 | 304.9 |
 
 **HumanEval+ scores higher than MBPP+ for every model.** HumanEval gives

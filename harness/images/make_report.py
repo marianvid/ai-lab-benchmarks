@@ -13,11 +13,11 @@ DIRECT = (
     ("sd15-smoke", "SD 1.5"),
     ("qwen-image-benchmark", "Qwen Image"),
     ("flux2-benchmark", "FLUX.2 Dev FP8 (legacy)"),
+    ("flux2-dev-q8-benchmark", "FLUX.2 Dev 32B Q8_0"),
+    ("flux2-dev-bf16-benchmark", "FLUX.2 Dev 32B BF16"),
 )
 MAC_ONLY = (
     ("flux2-klein-4b-benchmark", "FLUX.2 Klein 4B BF16"),
-    ("flux2-dev-q8-benchmark", "FLUX.2 Dev 32B Q8_0"),
-    ("flux2-dev-bf16-benchmark", "FLUX.2 Dev 32B BF16"),
 )
 TITLES = {
     "composition": "Objects, colours and placement",
@@ -158,11 +158,11 @@ def main() -> int:
         "| FLUX.2 Dev FP8 legacy | 1024×1024 | 20 steps, Euler | Direct compatibility test |",
         "| Qwen Image Edit BF16 | 1024×1024 source | 40 steps, Euler/simple, CFG 4 | Controlled edits |",
         "| FLUX.2 Klein 4B BF16 · Mac only | 1024×1024 | 4 steps, Euler, CFG 1 | Interactive generation |",
-        "| FLUX.2 Dev Q8_0 / BF16 · Mac only | 1024×1024 | 20 steps, Euler | Full-size FLUX |",
+        "| FLUX.2 Dev Q8_0 / BF16 | 1024×1024 | 20 steps, Euler | Full-size FLUX, directly compared on both machines |",
         "",
         "## Image generation, test by test",
         "",
-        "The first table under each prompt is the fair Linux–Mac comparison. Newer Mac-compatible FLUX options have no matching Linux run here, so they are shown separately rather than mixed into a misleading ranking.",
+        "The first table under each prompt is the fair Linux–Mac comparison. FLUX.2 Klein remains Mac-only and is shown separately.",
     ]
 
     for item in definitions["generation"]:
@@ -253,6 +253,7 @@ def main() -> int:
         "### Linux workstation", "", "**Advantages**", "",
         "- About 32× faster for Qwen Image and 16× faster for Qwen Image Edit in these runs.",
         "- Runs the legacy FLUX.2 FP8 model successfully.",
+        "- FLUX.2 Dev Q8_0 and BF16 both passed all 24 prompt criteria; Q8_0 is the practical upper-quality option.",
         "- Qwen Image Edit passed all three preservation tests.",
         "- Low, predictable OCR latency after the service is available.",
         "", "**Disadvantages**", "",
@@ -269,13 +270,13 @@ def main() -> int:
         "- OCR has a visible cold-start cost for occasional single images.",
         "", "### What to choose", "",
         "- **FLUX.2 Klein on Mac** for quick drafts and interactive work.",
-        "- **FLUX.2 Dev Q8_0 on Mac** for full-size local FLUX; BF16 added time without improving this small rubric set.",
+        "- **FLUX.2 Dev Q8_0 on either machine** for full-size local FLUX; Linux is much faster, while Mac avoids a separate GPU-memory ceiling.",
         "- **Qwen Image** when exact text and prompt adherence matter more than latency.",
         "- **Linux GPU** for volume generation or editing.",
         "- **Mobile OCR** for speed and degraded-text spacing; **server OCR** when exact clean-text recovery matters more than footprint.",
         "", "## Limits", "",
         "- Each image was generated once. These are evidence-backed practical timings, not statistical averages.",
-        "- Mac-only FLUX Klein, Q8_0 and BF16 have no matching Linux run and are not presented as direct comparisons.",
+        "- FLUX.2 Klein is Mac-only. Q8_0 and BF16 are direct Linux–Mac comparisons.",
         "- Qwen uses platform-specific runtimes and installed weight variants even though prompts and workflow settings match.",
         "- A prompt miss is a visible quality issue, not a crash or execution failure.",
     ]
