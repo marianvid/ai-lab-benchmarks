@@ -1,0 +1,442 @@
+{
+  "schema_version": 2,
+  "engine": "dia2",
+  "model_path": "/test_models/audio/tts/dia2-2b",
+  "manifest_sha256": "f02066ad71c4700cff023da5669ca129e7d8bd2da9ab364f334ba240c58abaeb",
+  "load_s": 0.000118,
+  "load_vram_bytes": 0,
+  "platform": "Linux-7.0.14-12-pve-x86_64-with-glibc2.41",
+  "python": "3.13.5",
+  "torch": "2.9.1+cu128",
+  "cuda": "12.8",
+  "gpu": "NVIDIA RTX PRO 4500 Blackwell",
+  "cases": [
+    {
+      "id": "late-train",
+      "category": "natural-dialogue",
+      "language": "en",
+      "text": "You made it. I was beginning to think the last train had left without you. It nearly did. The doors were closing when the guard saw me running. Then I owe that guard a very good coffee.",
+      "script": "[S1] You made it. I was beginning to think the last train had left without you.\n[S2] It nearly did. The doors were closing when the guard saw me running.\n[S1] Then I owe that guard a very good coffee.",
+      "ok": true,
+      "seconds": 81.851653,
+      "audio_duration_s": 10.72,
+      "rtf": 7.635415,
+      "sample_rate": 24000,
+      "sha256": "3d3e083d46ef225d156f8abdf32d8503f761d733dd7da983b9a104aa8977aaa1",
+      "timestamps": [
+        [
+          "You",
+          0.0
+        ],
+        [
+          "made",
+          0.4
+        ],
+        [
+          "it.",
+          0.64
+        ],
+        [
+          "I",
+          0.88
+        ],
+        [
+          "was",
+          1.04
+        ],
+        [
+          "beginning",
+          1.2
+        ],
+        [
+          "to",
+          1.44
+        ],
+        [
+          "think",
+          1.6
+        ],
+        [
+          "the",
+          1.76
+        ],
+        [
+          "last",
+          1.92
+        ],
+        [
+          "train",
+          2.16
+        ],
+        [
+          "had",
+          2.4
+        ],
+        [
+          "left",
+          2.56
+        ],
+        [
+          "without",
+          2.72
+        ],
+        [
+          "you.",
+          3.04
+        ],
+        [
+          "It",
+          3.52
+        ],
+        [
+          "nearly",
+          4.08
+        ],
+        [
+          "did.",
+          4.48
+        ],
+        [
+          "The",
+          5.04
+        ],
+        [
+          "doors",
+          5.52
+        ],
+        [
+          "were",
+          5.92
+        ],
+        [
+          "closing",
+          6.08
+        ],
+        [
+          "when",
+          6.48
+        ],
+        [
+          "the",
+          6.72
+        ],
+        [
+          "guard",
+          6.88
+        ],
+        [
+          "saw",
+          7.12
+        ],
+        [
+          "me",
+          7.44
+        ],
+        [
+          "running.",
+          7.6
+        ],
+        [
+          "Then",
+          8.08
+        ],
+        [
+          "I",
+          8.64
+        ],
+        [
+          "owe",
+          8.8
+        ],
+        [
+          "that",
+          8.96
+        ],
+        [
+          "guard",
+          9.12
+        ],
+        [
+          "a",
+          9.28
+        ],
+        [
+          "very",
+          9.44
+        ],
+        [
+          "good",
+          9.6
+        ],
+        [
+          "coffee.",
+          9.76
+        ]
+      ],
+      "peak_vram_bytes": 15232438272,
+      "max_rss_bytes": 16592429056
+    },
+    {
+      "id": "control-room",
+      "category": "dramatic-dialogue",
+      "language": "en",
+      "text": "The pressure is still rising. Tell me you have another idea. I do, but you are not going to like it. I stopped liking this plan three alarms ago. Go ahead.",
+      "script": "[S1] The pressure is still rising. Tell me you have another idea.\n[S2] I do, but you are not going to like it.\n[S1] I stopped liking this plan three alarms ago. Go ahead.",
+      "ok": true,
+      "seconds": 40.930391,
+      "audio_duration_s": 10.4,
+      "rtf": 3.935614,
+      "sample_rate": 24000,
+      "sha256": "5b06851693aeedf5e04cf4c0c71b4a46bfb691644fc38e266c5a7dccab48bdf8",
+      "timestamps": [
+        [
+          "The",
+          0.0
+        ],
+        [
+          "pressure",
+          0.4
+        ],
+        [
+          "is",
+          0.72
+        ],
+        [
+          "still",
+          0.88
+        ],
+        [
+          "rising.",
+          1.12
+        ],
+        [
+          "Tell",
+          1.6
+        ],
+        [
+          "me",
+          2.08
+        ],
+        [
+          "you",
+          2.24
+        ],
+        [
+          "have",
+          2.4
+        ],
+        [
+          "another",
+          2.56
+        ],
+        [
+          "idea.",
+          2.72
+        ],
+        [
+          "I",
+          3.12
+        ],
+        [
+          "do,",
+          3.68
+        ],
+        [
+          "but",
+          4.0
+        ],
+        [
+          "you",
+          4.48
+        ],
+        [
+          "are",
+          4.8
+        ],
+        [
+          "not",
+          4.96
+        ],
+        [
+          "going",
+          5.2
+        ],
+        [
+          "to",
+          5.44
+        ],
+        [
+          "like",
+          5.6
+        ],
+        [
+          "it.",
+          5.92
+        ],
+        [
+          "I",
+          6.16
+        ],
+        [
+          "stopped",
+          6.72
+        ],
+        [
+          "liking",
+          7.04
+        ],
+        [
+          "this",
+          7.28
+        ],
+        [
+          "plan",
+          7.52
+        ],
+        [
+          "three",
+          7.76
+        ],
+        [
+          "alarms",
+          8.0
+        ],
+        [
+          "ago.",
+          8.4
+        ],
+        [
+          "Go",
+          8.72
+        ],
+        [
+          "ahead.",
+          9.28
+        ]
+      ],
+      "peak_vram_bytes": 15233564672,
+      "max_rss_bytes": 16799866880
+    },
+    {
+      "id": "animated-heist",
+      "category": "character-dialogue",
+      "language": "en",
+      "text": "Remind me why the tiny one is carrying the enormous key. Because the enormous one stepped on the alarm. Fair point. Tiny one, lead the way.",
+      "script": "[S1] Remind me why the tiny one is carrying the enormous key.\n[S2] Because the enormous one stepped on the alarm.\n[S1] Fair point. Tiny one, lead the way.",
+      "ok": true,
+      "seconds": 42.327158,
+      "audio_duration_s": 11.28,
+      "rtf": 3.752408,
+      "sample_rate": 24000,
+      "sha256": "c36f2460dee745b339c3da77a06a59436b9202c7f285abc1285d86f23965342f",
+      "timestamps": [
+        [
+          "Remind",
+          0.0
+        ],
+        [
+          "me",
+          0.56
+        ],
+        [
+          "why",
+          0.72
+        ],
+        [
+          "the",
+          1.28
+        ],
+        [
+          "tiny",
+          1.84
+        ],
+        [
+          "one",
+          2.24
+        ],
+        [
+          "is",
+          2.48
+        ],
+        [
+          "carrying",
+          2.64
+        ],
+        [
+          "the",
+          3.12
+        ],
+        [
+          "enormous",
+          3.52
+        ],
+        [
+          "key.",
+          4.08
+        ],
+        [
+          "Because",
+          4.64
+        ],
+        [
+          "the",
+          5.2
+        ],
+        [
+          "enormous",
+          5.44
+        ],
+        [
+          "one",
+          5.92
+        ],
+        [
+          "stepped",
+          6.32
+        ],
+        [
+          "on",
+          6.64
+        ],
+        [
+          "the",
+          6.88
+        ],
+        [
+          "alarm.",
+          7.04
+        ],
+        [
+          "Fair",
+          7.6
+        ],
+        [
+          "point.",
+          8.16
+        ],
+        [
+          "Tiny",
+          8.72
+        ],
+        [
+          "one,",
+          9.28
+        ],
+        [
+          "lead",
+          9.76
+        ],
+        [
+          "the",
+          10.32
+        ],
+        [
+          "way.",
+          10.48
+        ]
+      ],
+      "peak_vram_bytes": 15233532928,
+      "max_rss_bytes": 16829812736
+    }
+  ]
+}

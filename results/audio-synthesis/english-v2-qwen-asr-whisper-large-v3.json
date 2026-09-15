@@ -1,0 +1,314 @@
+{
+  "schema_version": 1,
+  "evaluator": "whisper-large-v3",
+  "language": "en",
+  "load": {
+    "instance_id": "whisper-large-v3",
+    "kind": "load",
+    "ok": true,
+    "total_ms": 28553,
+    "steps": [
+      {
+        "phase": "starting",
+        "elapsed_ms": 50
+      },
+      {
+        "phase": "process_up",
+        "elapsed_ms": 170
+      },
+      {
+        "phase": "ready",
+        "elapsed_ms": 28489
+      }
+    ],
+    "error": ""
+  },
+  "models": {
+    "english-v2-qwen-voicedesign": {
+      "wer": 0.03731343283582089,
+      "cer": 0.03450807635829662,
+      "wer_without_diacritics": 0.03731343283582089,
+      "completed": 11,
+      "by_mode": {
+        "default": {
+          "wer": 0.03731343283582089,
+          "cer": 0.03450807635829662,
+          "wer_without_diacritics": 0.03731343283582089
+        }
+      },
+      "by_speaker": {
+        "null": {
+          "wer": 0.03731343283582089,
+          "cer": 0.03450807635829662,
+          "completed": 11
+        }
+      },
+      "cases": [
+        {
+          "id": "us-documentary",
+          "reference": "At first light, the city seems almost still. Delivery trucks turn onto empty streets, kitchen lights come on, and the day begins before most people notice.",
+          "hypothesis": " At first light, the city seems almost still. Delivery trucks turn onto empty streets, kitchen lights come on, and the day begins before most people notice.",
+          "seconds": 0.41311,
+          "mode": "default",
+          "word_errors": 0,
+          "reference_words": 26,
+          "character_errors": 0,
+          "reference_characters": 150,
+          "speaker": null
+        },
+        {
+          "id": "uk-editorial",
+          "reference": "We tend to imagine progress as a straight road. In practice, it is a series of detours, revisions, and decisions made with incomplete information.",
+          "hypothesis": " We tend to imagine progress as a straight road. In practice, it is a series of detours, revisions, and decisions made with incomplete information.",
+          "seconds": 0.162292,
+          "mode": "default",
+          "word_errors": 0,
+          "reference_words": 24,
+          "character_errors": 0,
+          "reference_characters": 141,
+          "speaker": null
+        },
+        {
+          "id": "india-explainer",
+          "reference": "The interesting part is not the amount of data. It is the pattern hiding inside it, and whether that pattern still holds when the conditions change.",
+          "hypothesis": " The interesting part is not the amount of data. It is the pattern hiding inside it, and whether that pattern still holds when the conditions change.",
+          "seconds": 0.154839,
+          "mode": "default",
+          "word_errors": 0,
+          "reference_words": 26,
+          "character_errors": 0,
+          "reference_characters": 145,
+          "speaker": null
+        },
+        {
+          "id": "us-urban-conversation",
+          "reference": "Look, I hear you. But if we're going to change the plan, let's do it now, while we still have room to make it work.",
+          "hypothesis": " Look, I hear you. But if we're going to change the plan, let's do it now, while we still have room to make it work.",
+          "seconds": 0.161126,
+          "mode": "default",
+          "word_errors": 0,
+          "reference_words": 27,
+          "character_errors": 0,
+          "reference_characters": 110,
+          "speaker": null
+        },
+        {
+          "id": "close-whisper",
+          "reference": "Keep your voice down. There is someone in the next room, and I do not want them to know we are still awake.",
+          "hypothesis": " Keep your voice down. There is someone in the next room and I do not want them to know we are still awake.",
+          "seconds": 0.135772,
+          "mode": "default",
+          "word_errors": 0,
+          "reference_words": 23,
+          "character_errors": 0,
+          "reference_characters": 104,
+          "speaker": null
+        },
+        {
+          "id": "restrained-grief",
+          "reference": "I kept the light on because some part of me still expected you to walk through the door. I know that does not make sense anymore.",
+          "hypothesis": " I kept the light on because some part of me still expected you to walk through the door. I know that does not make sense anymore.",
+          "seconds": 0.149042,
+          "mode": "default",
+          "word_errors": 0,
+          "reference_words": 26,
+          "character_errors": 0,
+          "reference_characters": 127,
+          "speaker": null
+        },
+        {
+          "id": "controlled-warning",
+          "reference": "Step away from the railing. Do it slowly, and keep your eyes on me. We have time, but I need you to listen now.",
+          "hypothesis": " Step away from the railing. Do it slowly and keep your eyes on me. We have time, but I need you to listen now.",
+          "seconds": 0.150151,
+          "mode": "default",
+          "word_errors": 0,
+          "reference_words": 24,
+          "character_errors": 0,
+          "reference_characters": 106,
+          "speaker": null
+        },
+        {
+          "id": "quiet-wonder",
+          "reference": "There it is. After all those years of looking, the signal was waiting in the quietest part of the sky.",
+          "hypothesis": " There it is. After all those years of looking, the signal was waiting in the quietest part of the sky.",
+          "seconds": 0.132527,
+          "mode": "default",
+          "word_errors": 0,
+          "reference_words": 20,
+          "character_errors": 0,
+          "reference_characters": 99,
+          "speaker": null
+        },
+        {
+          "id": "animated-sidekick",
+          "reference": "Good news: I found the map. Less good news: the map is currently underneath a dragon who appears to be a very light sleeper.",
+          "hypothesis": " Good news! I found the map. Less good news, the map is currently underneath a dragon who appears to be a very light sleeper.",
+          "seconds": 0.150568,
+          "mode": "default",
+          "word_errors": 0,
+          "reference_words": 24,
+          "character_errors": 0,
+          "reference_characters": 120,
+          "speaker": null
+        },
+        {
+          "id": "old-storyteller",
+          "reference": "The sea was calm that morning, which should have warned us. Out there, calm water often means something below is listening.",
+          "hypothesis": " The sea was calm that morning, but should have warned us. Out there, calm water often means something below is listening.",
+          "seconds": 0.137371,
+          "mode": "default",
+          "word_errors": 1,
+          "reference_words": 21,
+          "character_errors": 5,
+          "reference_characters": 119,
+          "speaker": null
+        },
+        {
+          "id": "precision",
+          "reference": "On Thursday, February nineteenth, Dr. Maya Chen approved version 3.7. The total was 14,805 dollars and 60 cents, reference code A Z nine forty-two.",
+          "hypothesis": " On Thursday, February 19th, Dr. Maya Chen approved version 3.7. The total was $14,805.60, reference code AZ942.",
+          "seconds": 0.171191,
+          "mode": "default",
+          "word_errors": 9,
+          "reference_words": 27,
+          "character_errors": 42,
+          "reference_characters": 141,
+          "speaker": null
+        }
+      ]
+    },
+    "english-v2-qwen-customvoice": {
+      "wer": 0.10344827586206896,
+      "cer": 0.09753231492361927,
+      "wer_without_diacritics": 0.10344827586206896,
+      "completed": 7,
+      "by_mode": {
+        "default": {
+          "wer": 0.10344827586206896,
+          "cer": 0.09753231492361927,
+          "wer_without_diacritics": 0.10344827586206896
+        }
+      },
+      "by_speaker": {
+        "Aiden": {
+          "wer": 0.09375,
+          "cer": 0.08299595141700405,
+          "completed": 4
+        },
+        "Ryan": {
+          "wer": 0.11538461538461539,
+          "cer": 0.11764705882352941,
+          "completed": 3
+        }
+      },
+      "cases": [
+        {
+          "id": "us-documentary--aiden",
+          "reference": "At first light, the city seems almost still. Delivery trucks turn onto empty streets, kitchen lights come on, and the day begins before most people notice.",
+          "hypothesis": " At first light, the city seems almost still. Delivery trucks turn onto empty streets, kitchen lights come on, and the day begins before most people notice.",
+          "seconds": 0.16432,
+          "mode": "default",
+          "word_errors": 0,
+          "reference_words": 26,
+          "character_errors": 0,
+          "reference_characters": 150,
+          "speaker": "Aiden"
+        },
+        {
+          "id": "us-urban-conversation--ryan",
+          "reference": "Look, I hear you. But if we're going to change the plan, let's do it now, while we still have room to make it work.",
+          "hypothesis": " Look, I hear you, but if we're going to change the plan, let's do it now while we still have room to make it work.",
+          "seconds": 0.156308,
+          "mode": "default",
+          "word_errors": 0,
+          "reference_words": 27,
+          "character_errors": 0,
+          "reference_characters": 110,
+          "speaker": "Ryan"
+        },
+        {
+          "id": "close-whisper--aiden",
+          "reference": "Keep your voice down. There is someone in the next room, and I do not want them to know we are still awake.",
+          "hypothesis": " Keep your voice down. There is someone in the next room, and I do not want them to know we are still awake.",
+          "seconds": 0.13839,
+          "mode": "default",
+          "word_errors": 0,
+          "reference_words": 23,
+          "character_errors": 0,
+          "reference_characters": 104,
+          "speaker": "Aiden"
+        },
+        {
+          "id": "controlled-warning--ryan",
+          "reference": "Step away from the railing. Do it slowly, and keep your eyes on me. We have time, but I need you to listen now.",
+          "hypothesis": " Step away from the railing. Do it slowly and keep your eyes on me. We have time, but I need you to listen now.",
+          "seconds": 0.150744,
+          "mode": "default",
+          "word_errors": 0,
+          "reference_words": 24,
+          "character_errors": 0,
+          "reference_characters": 106,
+          "speaker": "Ryan"
+        },
+        {
+          "id": "quiet-wonder--aiden",
+          "reference": "There it is. After all those years of looking, the signal was waiting in the quietest part of the sky.",
+          "hypothesis": " There it is! After all those years of looking, the signal was waiting in the quietest part of the sky.",
+          "seconds": 0.133105,
+          "mode": "default",
+          "word_errors": 0,
+          "reference_words": 20,
+          "character_errors": 0,
+          "reference_characters": 99,
+          "speaker": "Aiden"
+        },
+        {
+          "id": "precision--aiden",
+          "reference": "On Thursday, February nineteenth, Dr. Maya Chen approved version 3.7. The total was 14,805 dollars and 60 cents, reference code A Z nine forty-two.",
+          "hypothesis": " On Thursday, February 19th, Dr. Maya Chen approved version 3.7. The total was $14,805.60, reference code AZ-942.",
+          "seconds": 0.174623,
+          "mode": "default",
+          "word_errors": 9,
+          "reference_words": 27,
+          "character_errors": 41,
+          "reference_characters": 141,
+          "speaker": "Aiden"
+        },
+        {
+          "id": "precision--ryan",
+          "reference": "On Thursday, February nineteenth, Dr. Maya Chen approved version 3.7. The total was 14,805 dollars and 60 cents, reference code A Z nine forty-two.",
+          "hypothesis": " On Thursday, February 19th, Dr. Maya Chen approved version 3.7. The total was $14,805.60, reference code AZ942.",
+          "seconds": 0.171409,
+          "mode": "default",
+          "word_errors": 9,
+          "reference_words": 27,
+          "character_errors": 42,
+          "reference_characters": 141,
+          "speaker": "Ryan"
+        }
+      ]
+    }
+  },
+  "unload": {
+    "instance_id": "whisper-large-v3",
+    "kind": "unload",
+    "ok": true,
+    "total_ms": 1910,
+    "steps": [
+      {
+        "phase": "stopping",
+        "elapsed_ms": 9
+      },
+      {
+        "phase": "process_gone",
+        "elapsed_ms": 740
+      },
+      {
+        "phase": "memory_released",
+        "elapsed_ms": 1874
+      }
+    ],
+    "error": ""
+  }
+}

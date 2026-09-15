@@ -85,8 +85,9 @@ def main() -> int:
             aggregate_ascii = [0, 0, 0, 0]
             by_mode: dict[str, list[int]] = {}
             by_mode_ascii: dict[str, list[int]] = {}
+            language_aliases = {"en": {"en", "English"}, "ro": {"ro", "Romanian"}}
             for case in raw["cases"]:
-                if not case.get("ok") or case["language"] != args.language:
+                if not case.get("ok") or case["language"] not in language_aliases[args.language]:
                     continue
                 audio = root / "audio" / f"{case['id']}.wav"
                 started = time.perf_counter()
@@ -94,15 +95,16 @@ def main() -> int:
                     response = multipart(args.manager + "/v1/audio/transcriptions",
                                          {"model": args.evaluator, "language": args.language}, audio)
                     hypothesis = response.get("text", "")
-                    score = counts(case["text"], hypothesis)
-                    score_ascii = counts(case["text"], hypothesis, True)
+                    reference = case.get("expected_text", case["text"])
+                    score = counts(reference, hypothesis)
+                    score_ascii = counts(reference, hypothesis, True)
                     aggregate = [a + b for a, b in zip(aggregate, score)]
                     aggregate_ascii = [a + b for a, b in zip(aggregate_ascii, score_ascii)]
                     mode = case.get("mode", "default")
                     by_mode[mode] = [a + b for a, b in zip(by_mode.get(mode, [0, 0, 0, 0]), score)]
                     by_mode_ascii[mode] = [a + b for a, b in zip(
                         by_mode_ascii.get(mode, [0, 0, 0, 0]), score_ascii)]
-                    record = {"id": case["id"], "reference": case["text"],
+                    record = {"id": case["id"], "reference": reference,
                               "hypothesis": hypothesis, "seconds": round(time.perf_counter() - started, 6),
                               "mode": mode,
                               "word_errors": score[0], "reference_words": score[1],

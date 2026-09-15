@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "metric": "UTMOS22-strong",
+  "predictor": "tarepan/SpeechMOS:v1.2.0",
+  "models": {
+    "english-v2-chatterbox-turbo": {
+      "mean": 3.66913,
+      "min": 3.09766,
+      "max": 4.128252,
+      "by_mode": {
+        "default": 3.66913
+      },
+      "completed": 5,
+      "cases": [
+        {
+          "id": "natural-conversation",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.967344
+        },
+        {
+          "id": "dry-chuckle",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.128252
+        },
+        {
+          "id": "relieved-laugh",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.313817
+        },
+        {
+          "id": "recovering-cough",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.09766
+        },
+        {
+          "id": "animated-sidekick",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.838577
+        }
+      ]
+    }
+  }
+}

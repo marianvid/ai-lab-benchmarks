@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "metric": "UTMOS22-strong",
+  "predictor": "tarepan/SpeechMOS:v1.2.0",
+  "models": {
+    "english-v2-dia2-2b": {
+      "mean": 3.139712,
+      "min": 2.7752,
+      "max": 3.405802,
+      "by_mode": {
+        "default": 3.139712
+      },
+      "completed": 3,
+      "cases": [
+        {
+          "id": "late-train",
+          "language": "en",
+          "mode": "default",
+          "mos": 2.7752
+        },
+        {
+          "id": "control-room",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.238134
+        },
+        {
+          "id": "animated-heist",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.405802
+        }
+      ]
+    }
+  }
+}

@@ -7,8 +7,8 @@ import argparse
 import json
 from pathlib import Path
 
+import soundfile as sf
 import torch
-import torchaudio
 
 
 def main() -> int:
@@ -31,8 +31,8 @@ def main() -> int:
             if not case.get("ok"):
                 continue
             path = root / "audio" / f"{case['id']}.wav"
-            audio, rate = torchaudio.load(str(path))
-            audio = audio.mean(dim=0, keepdim=True).to(device)
+            samples, rate = sf.read(path, dtype="float32", always_2d=True)
+            audio = torch.from_numpy(samples.mean(axis=1)).unsqueeze(0).to(device)
             with torch.inference_mode():
                 score = float(predictor(audio, rate).cpu().item())
             row = {"id": case["id"], "language": case["language"],

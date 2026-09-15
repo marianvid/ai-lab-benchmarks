@@ -35,6 +35,9 @@ of it, answering questions about it — writing code, and Romanian speech.
 | [Audio models](docs/audio-models.md) | ASR and VAD models, revisions, licences and exclusions |
 | [Romanian audio results](docs/audio-results.md) | Accuracy, processing speed, loading and every recorded failure |
 | [Audio findings](docs/audio-findings.md) | What the Romanian pass suggests for real workloads |
+| [English speech and sound method](docs/audio-synthesis-method.md) | Natural English voices, accents, delivery, dialogue and text-to-SFX |
+| [English speech and sound results](docs/audio-synthesis-results.md) | Automatic quality, intelligibility, speed, memory and licensing verdicts |
+| [Listen to the generated audio](https://marianvid.github.io/ai-lab-benchmarks/docs/audio-synthesis-listening.html) | Inputs beside browser-native audio controls; no listening score assigned |
 | [Images and OCR results](docs/images-ocr.md) | Visual Linux–macOS comparisons, prompts, processing times, OCR output and practical recommendations |
 | [Agentic coding probe](docs/agentic-coding.md) | Architect-directed repository edits with tools and hidden tests |
 

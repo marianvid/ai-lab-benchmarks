@@ -1,0 +1,25 @@
+{
+  "schema_version": 2,
+  "language": "en",
+  "purpose": "Natural English dialogue timing, turn-taking, and character contrast",
+  "cases": [
+    {
+      "id": "late-train",
+      "category": "natural-dialogue",
+      "script": "[S1] You made it. I was beginning to think the last train had left without you.\n[S2] It nearly did. The doors were closing when the guard saw me running.\n[S1] Then I owe that guard a very good coffee.",
+      "transcript": "You made it. I was beginning to think the last train had left without you. It nearly did. The doors were closing when the guard saw me running. Then I owe that guard a very good coffee."
+    },
+    {
+      "id": "control-room",
+      "category": "dramatic-dialogue",
+      "script": "[S1] The pressure is still rising. Tell me you have another idea.\n[S2] I do, but you are not going to like it.\n[S1] I stopped liking this plan three alarms ago. Go ahead.",
+      "transcript": "The pressure is still rising. Tell me you have another idea. I do, but you are not going to like it. I stopped liking this plan three alarms ago. Go ahead."
+    },
+    {
+      "id": "animated-heist",
+      "category": "character-dialogue",
+      "script": "[S1] Remind me why the tiny one is carrying the enormous key.\n[S2] Because the enormous one stepped on the alarm.\n[S1] Fair point. Tiny one, lead the way.",
+      "transcript": "Remind me why the tiny one is carrying the enormous key. Because the enormous one stepped on the alarm. Fair point. Tiny one, lead the way."
+    }
+  ]
+}

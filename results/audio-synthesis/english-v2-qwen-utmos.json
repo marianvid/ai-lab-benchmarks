@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "metric": "UTMOS22-strong",
+  "predictor": "tarepan/SpeechMOS:v1.2.0",
+  "models": {
+    "english-v2-qwen-voicedesign": {
+      "mean": 4.344644,
+      "min": 3.924498,
+      "max": 4.555404,
+      "by_mode": {
+        "default": 4.344644
+      },
+      "by_speaker": {
+        "null": 4.344644
+      },
+      "completed": 11,
+      "cases": [
+        {
+          "id": "us-documentary",
+          "language": "English",
+          "mode": "default",
+          "mos": 4.423088,
+          "speaker": null
+        },
+        {
+          "id": "uk-editorial",
+          "language": "English",
+          "mode": "default",
+          "mos": 4.479882,
+          "speaker": null
+        },
+        {
+          "id": "india-explainer",
+          "language": "English",
+          "mode": "default",
+          "mos": 4.534919,
+          "speaker": null
+        },
+        {
+          "id": "us-urban-conversation",
+          "language": "English",
+          "mode": "default",
+          "mos": 4.421305,
+          "speaker": null
+        },
+        {
+          "id": "close-whisper",
+          "language": "English",
+          "mode": "default",
+          "mos": 4.129041,
+          "speaker": null
+        },
+        {
+          "id": "restrained-grief",
+          "language": "English",
+          "mode": "default",
+          "mos": 4.271515,
+          "speaker": null
+        },
+        {
+          "id": "controlled-warning",
+          "language": "English",
+          "mode": "default",
+          "mos": 4.413579,
+          "speaker": null
+        },
+        {
+          "id": "quiet-wonder",
+          "language": "English",
+          "mode": "default",
+          "mos": 4.257188,
+          "speaker": null
+        },
+        {
+          "id": "animated-sidekick",
+          "language": "English",
+          "mode": "default",
+          "mos": 3.924498,
+          "speaker": null
+        },
+        {
+          "id": "old-storyteller",
+          "language": "English",
+          "mode": "default",
+          "mos": 4.380669,
+          "speaker": null
+        },
+        {
+          "id": "precision",
+          "language": "English",
+          "mode": "default",
+          "mos": 4.555404,
+          "speaker": null
+        }
+      ]
+    },
+    "english-v2-qwen-customvoice": {
+      "mean": 4.266801,
+      "min": 3.51912,
+      "max": 4.505369,
+      "by_mode": {
+        "default": 4.266801
+      },
+      "by_speaker": {
+        "Aiden": 4.217308,
+        "Ryan": 4.332792
+      },
+      "completed": 7,
+      "cases": [
+        {
+          "id": "us-documentary--aiden",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.482591,
+          "speaker": "Aiden"
+        },
+        {
+          "id": "us-urban-conversation--ryan",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.116639,
+          "speaker": "Ryan"
+        },
+        {
+          "id": "close-whisper--aiden",
+          "language": "en",
+          "mode": "default",
+          "mos": 3.51912,
+          "speaker": "Aiden"
+        },
+        {
+          "id": "controlled-warning--ryan",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.397625,
+          "speaker": "Ryan"
+        },
+        {
+          "id": "quiet-wonder--aiden",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.362151,
+          "speaker": "Aiden"
+        },
+        {
+          "id": "precision--aiden",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.505369,
+          "speaker": "Aiden"
+        },
+        {
+          "id": "precision--ryan",
+          "language": "en",
+          "mode": "default",
+          "mos": 4.484111,
+          "speaker": "Ryan"
+        }
+      ]
+    }
+  }
+}

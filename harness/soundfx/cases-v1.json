@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "language": "en",
+  "purpose": "Text-to-sound-effects prompt adherence, cleanliness, layering, and practical editability",
+  "cases": [
+    {
+      "id": "quiet-server-room",
+      "category": "ambience",
+      "duration_s": 10,
+      "prompt": "Quiet modern server room ambience at night: steady low ventilation hum, faint cooling fans, one subtle relay click in the distance. Clean stereo field, no music, no speech, no alarm."
+    },
+    {
+      "id": "wet-footsteps",
+      "category": "foley",
+      "duration_s": 8,
+      "prompt": "A person in leather boots takes six measured steps across wet concrete, then stops. Close Foley recording, realistic shoe impacts and small water splashes, no voices, no music."
+    },
+    {
+      "id": "glass-table",
+      "category": "foley",
+      "duration_s": 7,
+      "prompt": "A heavy drinking glass is placed gently on a wooden table, slides a few centimetres, then a fingertip taps the rim once. Dry studio Foley, precise sequence, no music, no speech."
+    },
+    {
+      "id": "spaceship-console",
+      "category": "interface",
+      "duration_s": 9,
+      "prompt": "Futuristic spacecraft console sequence: three soft confirmation beeps, a short holographic shimmer, then a deep power-up pulse. Polished cinematic sound design, no melody, no speech."
+    },
+    {
+      "id": "mechanical-lock",
+      "category": "mechanical",
+      "duration_s": 8,
+      "prompt": "Large mechanical vault lock opening: motor engages, gears rotate, four metal bolts retract in sequence, final heavy clunk. Detailed close perspective, no music, no speech."
+    },
+    {
+      "id": "storm-window",
+      "category": "nature",
+      "duration_s": 12,
+      "prompt": "A summer thunderstorm heard from inside a quiet room: rain against a closed window, one distant thunder roll, subtle room resonance. No voices, no music, no breaking glass."
+    },
+    {
+      "id": "small-creature",
+      "category": "creature",
+      "duration_s": 7,
+      "prompt": "A small friendly fantasy creature wakes up, stretches with a soft chirrup, sniffs twice, then makes one pleased purring trill. Expressive but nonverbal, no human words, no music."
+    },
+    {
+      "id": "cinematic-transition",
+      "category": "transition",
+      "duration_s": 6,
+      "prompt": "Short cinematic scene transition: airy reverse swell into a tight low-frequency impact with a brief metallic tail. Production-ready, strong but not clipped, no music, no speech."
+    }
+  ]
+}

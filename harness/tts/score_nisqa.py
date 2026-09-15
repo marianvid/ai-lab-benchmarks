@@ -7,8 +7,8 @@ import argparse
 import json
 from pathlib import Path
 
+import soundfile as sf
 import torch
-import torchaudio
 from torchmetrics.functional.audio.nisqa import non_intrusive_speech_quality_assessment
 
 
@@ -29,8 +29,8 @@ def main() -> int:
             if not case.get("ok"):
                 continue
             path = root / "audio" / f"{case['id']}.wav"
-            audio, rate = torchaudio.load(str(path))
-            audio = audio.mean(dim=0)
+            samples, rate = sf.read(path, dtype="float32", always_2d=True)
+            audio = torch.from_numpy(samples.mean(axis=1))
             try:
                 with torch.inference_mode():
                     values = non_intrusive_speech_quality_assessment(audio, rate).cpu().tolist()

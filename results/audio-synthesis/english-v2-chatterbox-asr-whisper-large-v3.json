@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "evaluator": "whisper-large-v3",
+  "language": "en",
+  "load": {
+    "instance_id": "whisper-large-v3",
+    "kind": "load",
+    "ok": true,
+    "total_ms": 28974,
+    "steps": [
+      {
+        "phase": "starting",
+        "elapsed_ms": 53
+      },
+      {
+        "phase": "process_up",
+        "elapsed_ms": 174
+      },
+      {
+        "phase": "ready",
+        "elapsed_ms": 28909
+      }
+    ],
+    "error": ""
+  },
+  "models": {
+    "english-v2-chatterbox-turbo": {
+      "wer": 0.0,
+      "cer": 0.0,
+      "wer_without_diacritics": 0.0,
+      "completed": 5,
+      "by_mode": {
+        "default": {
+          "wer": 0.0,
+          "cer": 0.0,
+          "wer_without_diacritics": 0.0
+        }
+      },
+      "cases": [
+        {
+          "id": "natural-conversation",
+          "reference": "I checked the last render before breakfast. The pacing finally feels natural, and the quiet ending works much better now.",
+          "hypothesis": " I checked the last render before breakfast. The pacing finally feels natural, and the quiet ending works much better now.",
+          "seconds": 0.382815,
+          "mode": "default",
+          "word_errors": 0,
+          "reference_words": 20,
+          "character_errors": 0,
+          "reference_characters": 118
+        },
+        {
+          "id": "dry-chuckle",
+          "reference": "I was absolutely certain the cable was plugged in, right up until I looked behind the desk.",
+          "hypothesis": " I was absolutely certain the cable was plugged in, right up until I looked behind the desk.",
+          "seconds": 0.122319,
+          "mode": "default",
+          "word_errors": 0,
+          "reference_words": 17,
+          "character_errors": 0,
+          "reference_characters": 89
+        },
+        {
+          "id": "relieved-laugh",
+          "reference": "The backup is intact. I think that is the best news we have had all week.",
+          "hypothesis": " The backup is intact. I think that is the best news we have had all week.",
+          "seconds": 0.116663,
+          "mode": "default",
+          "word_errors": 0,
+          "reference_words": 16,
+          "character_errors": 0,
+          "reference_characters": 71
+        },
+        {
+          "id": "recovering-cough",
+          "reference": "Give me one moment. All right, I am ready to continue with the briefing.",
+          "hypothesis": " Give me one moment. All right. I am ready to continue with the briefing.",
+          "seconds": 0.112036,
+          "mode": "default",
+          "word_errors": 0,
+          "reference_words": 14,
+          "character_errors": 0,
+          "reference_characters": 69
+        },
+        {
+          "id": "animated-sidekick",
+          "reference": "Wait, that lever? You mean the enormous red lever marked do not pull? This should be interesting.",
+          "hypothesis": " Wait, that lever? You mean the enormous red lever marked Do Not Pull? This should be interesting.",
+          "seconds": 0.131124,
+          "mode": "default",
+          "word_errors": 0,
+          "reference_words": 17,
+          "character_errors": 0,
+          "reference_characters": 93
+        }
+      ]
+    }
+  },
+  "unload": {
+    "instance_id": "whisper-large-v3",
+    "kind": "unload",
+    "ok": true,
+    "total_ms": 1999,
+    "steps": [
+      {
+        "phase": "stopping",
+        "elapsed_ms": 9
+      },
+      {
+        "phase": "process_gone",
+        "elapsed_ms": 832
+      },
+      {
+        "phase": "memory_released",
+        "elapsed_ms": 1964
+      }
+    ],
+    "error": ""
+  }
+}

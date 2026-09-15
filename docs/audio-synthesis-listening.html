@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>English speech and sound generation — listening material</title>
+  <style>
+    :root { color-scheme: dark; font-family: ui-sans-serif, system-ui, sans-serif; }
+    body { margin: 0; background: #0d1117; color: #e6edf3; }
+    main { width: min(1050px, calc(100% - 32px)); margin: 40px auto 80px; }
+    h1 { font-size: clamp(2rem, 5vw, 3.3rem); margin-bottom: .35em; }
+    h2 { margin-top: 2.4em; border-bottom: 1px solid #30363d; padding-bottom: .4em; }
+    h3 { margin: 0 0 .5em; }
+    p, .input { color: #b1bac4; line-height: 1.55; }
+    a { color: #58a6ff; }
+    .notice, article { border: 1px solid #30363d; border-radius: 10px; background: #161b22; }
+    .notice { padding: 16px 18px; }
+    .grid { display: grid; gap: 14px; }
+    article { padding: 18px; }
+    .meta { color: #8c959f; font-size: .9rem; margin-bottom: .6em; }
+    .input { white-space: pre-wrap; margin: .5em 0 1em; }
+    audio { width: 100%; min-height: 42px; }
+    .error { color: #ff7b72; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>English speech and sound generation</h1>
+  <p class="notice">This page deliberately assigns no listening verdict. Read the
+    input, play the generated file, and decide for yourself whether the voice,
+    accent, delivery, character or sound follows it. Automatic measurements are
+    reported separately in <a href="https://github.com/marianvid/ai-lab-benchmarks/blob/main/docs/audio-synthesis-results.md">the results</a>.</p>
+  <div id="content"></div>
+</main>
+<script>
+const sets = [
+  {title: "Qwen3-TTS 1.7B VoiceDesign — accents, emotion and characters", kind: "tts", slug: "qwen-voicedesign", result: "qwen-voicedesign/raw.json"},
+  {title: "Qwen3-TTS 1.7B CustomVoice — Aiden and Ryan", kind: "tts", slug: "qwen-customvoice", result: "qwen-customvoice/raw.json"},
+  {title: "Chatterbox Turbo — natural English and paralinguistic events", kind: "tts", slug: "chatterbox-turbo", result: "chatterbox-turbo/raw.json"},
+  {title: "Dia2 2B — experimental two-speaker dialogue", kind: "tts", slug: "dia2-2b", result: "dia2-2b/raw.json"},
+  {title: "TangoFlux — experimental sound effects (research/non-commercial licence)", kind: "sfx", slug: "tangoflux", result: "tangoflux/raw.json"}
+];
+
+function element(name, text, className) {
+  const node = document.createElement(name);
+  if (text !== undefined) node.textContent = text;
+  if (className) node.className = className;
+  return node;
+}
+
+async function renderSet(spec) {
+  const content = document.querySelector("#content");
+  const section = document.createElement("section");
+  section.append(element("h2", spec.title));
+  const grid = element("div", undefined, "grid");
+  section.append(grid);
+  content.append(section);
+  try {
+    const root = spec.kind === "tts" ? "../results/audio-synthesis/" : "../results/sound-effects/";
+    const response = await fetch(root + spec.result);
+    if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+    const data = await response.json();
+    for (const row of data.cases.filter(item => item.ok)) {
+      const card = document.createElement("article");
+      card.append(element("h3", row.id));
+      const details = [row.category, row.speaker, row.audio_duration_s && `${row.audio_duration_s}s`].filter(Boolean).join(" · ");
+      card.append(element("div", details, "meta"));
+      const input = row.prompt || row.script || row.text;
+      card.append(element("div", input, "input"));
+      if (row.instruction) card.append(element("div", `Voice instruction: ${row.instruction}`, "input"));
+      const audio = document.createElement("audio");
+      audio.controls = true;
+      audio.preload = "none";
+      audio.src = spec.kind === "tts"
+        ? `../samples/audio-synthesis/${spec.slug}/${row.id}.wav`
+        : `../samples/sound-effects/${spec.slug}/${row.id}.wav`;
+      card.append(audio);
+      grid.append(card);
+    }
+  } catch (error) {
+    grid.append(element("p", `Could not load this set: ${error.message}`, "error"));
+  }
+}
+
+sets.reduce((chain, spec) => chain.then(() => renderSet(spec)), Promise.resolve());
+</script>
+</body>
+</html>

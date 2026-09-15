@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "evaluator": "whisper-large-v3",
+  "language": "en",
+  "load": {
+    "instance_id": "whisper-large-v3",
+    "kind": "load",
+    "ok": true,
+    "total_ms": 29194,
+    "steps": [
+      {
+        "phase": "starting",
+        "elapsed_ms": 50
+      },
+      {
+        "phase": "process_up",
+        "elapsed_ms": 171
+      },
+      {
+        "phase": "ready",
+        "elapsed_ms": 29129
+      }
+    ],
+    "error": ""
+  },
+  "models": {
+    "english-v2-dia2-2b": {
+      "wer": 0.0,
+      "cer": 0.0,
+      "wer_without_diacritics": 0.0,
+      "completed": 3,
+      "by_mode": {
+        "default": {
+          "wer": 0.0,
+          "cer": 0.0,
+          "wer_without_diacritics": 0.0
+        }
+      },
+      "cases": [
+        {
+          "id": "late-train",
+          "reference": "You made it. I was beginning to think the last train had left without you. It nearly did. The doors were closing when the guard saw me running. Then I owe that guard a very good coffee.",
+          "hypothesis": " You made it. I was beginning to think the last train had left without you. It nearly did. The doors were closing when the guard saw me running. Then I owe that guard a very good coffee.",
+          "seconds": 0.456331,
+          "mode": "default",
+          "word_errors": 0,
+          "reference_words": 37,
+          "character_errors": 0,
+          "reference_characters": 180
+        },
+        {
+          "id": "control-room",
+          "reference": "The pressure is still rising. Tell me you have another idea. I do, but you are not going to like it. I stopped liking this plan three alarms ago. Go ahead.",
+          "hypothesis": " The pressure is still rising. Tell me you have another idea. I do, but you are not going to like it. I stopped liking this plan three alarms ago. Go ahead.",
+          "seconds": 0.184977,
+          "mode": "default",
+          "word_errors": 0,
+          "reference_words": 31,
+          "character_errors": 0,
+          "reference_characters": 149
+        },
+        {
+          "id": "animated-heist",
+          "reference": "Remind me why the tiny one is carrying the enormous key. Because the enormous one stepped on the alarm. Fair point. Tiny one, lead the way.",
+          "hypothesis": " Remind me why the tiny one is carrying the enormous key. Because the enormous one stepped on the alarm. Fair point. Tiny one, lead the way.",
+          "seconds": 0.166441,
+          "mode": "default",
+          "word_errors": 0,
+          "reference_words": 26,
+          "character_errors": 0,
+          "reference_characters": 134
+        }
+      ]
+    }
+  },
+  "unload": {
+    "instance_id": "whisper-large-v3",
+    "kind": "unload",
+    "ok": true,
+    "total_ms": 1954,
+    "steps": [
+      {
+        "phase": "stopping",
+        "elapsed_ms": 8
+      },
+      {
+        "phase": "process_gone",
+        "elapsed_ms": 786
+      },
+      {
+        "phase": "memory_released",
+        "elapsed_ms": 1916
+      }
+    ],
+    "error": ""
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "metric": "CLAP text-audio cosine similarity",
+  "evaluator": "laion/clap-htsat-unfused",
+  "note": "Higher means closer in this embedding space; this is not a calibrated quality score.",
+  "mean": 0.27516,
+  "min": 0.105878,
+  "max": 0.474468,
+  "completed": 8,
+  "cases": [
+    {
+      "id": "quiet-server-room",
+      "category": "ambience",
+      "cosine_similarity": 0.105878
+    },
+    {
+      "id": "wet-footsteps",
+      "category": "foley",
+      "cosine_similarity": 0.21591
+    },
+    {
+      "id": "glass-table",
+      "category": "foley",
+      "cosine_similarity": 0.280143
+    },
+    {
+      "id": "spaceship-console",
+      "category": "interface",
+      "cosine_similarity": 0.319332
+    },
+    {
+      "id": "mechanical-lock",
+      "category": "mechanical",
+      "cosine_similarity": 0.23186
+    },
+    {
+      "id": "storm-window",
+      "category": "nature",
+      "cosine_similarity": 0.387832
+    },
+    {
+      "id": "small-creature",
+      "category": "creature",
+      "cosine_similarity": 0.185855
+    },
+    {
+      "id": "cinematic-transition",
+      "category": "transition",
+      "cosine_similarity": 0.474468
+    }
+  ]
+}

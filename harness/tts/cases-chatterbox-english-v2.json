@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "language": "en",
+  "purpose": "Natural English speech with explicit paralinguistic events",
+  "cases": [
+    {
+      "id": "natural-conversation",
+      "category": "conversation",
+      "text": "I checked the last render before breakfast. The pacing finally feels natural, and the quiet ending works much better now.",
+      "expected_text": "I checked the last render before breakfast. The pacing finally feels natural, and the quiet ending works much better now."
+    },
+    {
+      "id": "dry-chuckle",
+      "category": "paralinguistic",
+      "text": "I was absolutely certain the cable was plugged in [chuckle], right up until I looked behind the desk.",
+      "expected_text": "I was absolutely certain the cable was plugged in, right up until I looked behind the desk."
+    },
+    {
+      "id": "relieved-laugh",
+      "category": "paralinguistic",
+      "text": "The backup is intact. [laugh] I think that is the best news we have had all week.",
+      "expected_text": "The backup is intact. I think that is the best news we have had all week."
+    },
+    {
+      "id": "recovering-cough",
+      "category": "paralinguistic",
+      "text": "Give me one moment [cough]. All right, I am ready to continue with the briefing.",
+      "expected_text": "Give me one moment. All right, I am ready to continue with the briefing."
+    },
+    {
+      "id": "animated-sidekick",
+      "category": "character",
+      "text": "Wait, that lever? [gasp] You mean the enormous red lever marked do not pull? [chuckle] This should be interesting.",
+      "expected_text": "Wait, that lever? You mean the enormous red lever marked do not pull? This should be interesting."
+    }
+  ]
+}
