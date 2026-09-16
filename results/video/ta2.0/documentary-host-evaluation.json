@@ -3,18 +3,18 @@
   "video": "/test_models/video/results/ta2.0/documentary-host.mp4",
   "reference": "/test_models/video/fixtures-v1/imgs/documentary-host-short.png",
   "fps": 25.0,
-  "total_frames": 75,
-  "sample_every_frames": 1,
-  "sampled_frames": 75,
+  "total_frames": 224,
+  "sample_every_frames": 5,
+  "sampled_frames": 45,
   "face_detection_rate": 1.0,
-  "identity_cosine_mean": 0.730412077109019,
-  "identity_cosine_min": 0.6586665511131287,
+  "identity_cosine_mean": 0.8138872981071472,
+  "identity_cosine_min": 0.6893720626831055,
   "face_center_std": [
-    0.0039149728010000875,
-    0.002533488722823564
+    0.006741830864791194,
+    0.015166225039030916
   ],
-  "face_area_mean": 0.18357659912109375,
-  "face_area_relative_std": 0.017095445133905436,
-  "sharpness_laplacian_mean": 52.639559258989905,
-  "sampled_frame_delta_mean": 0.0029374739381632766
+  "face_area_mean": 0.1787481573450635,
+  "face_area_relative_std": 0.017119058080270536,
+  "sharpness_laplacian_mean": 45.20346122654051,
+  "sampled_frame_delta_mean": 0.01276820836924782
 }

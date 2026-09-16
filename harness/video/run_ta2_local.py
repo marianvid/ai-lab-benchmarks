@@ -22,6 +22,8 @@ def main() -> None:
     parser.add_argument("--audio", type=path, required=True)
     parser.add_argument("--output", type=path, required=True)
     parser.add_argument("--prompt", required=True)
+    parser.add_argument("--width", type=int, default=480)
+    parser.add_argument("--height", type=int, default=832)
     parser.add_argument("--frames", type=int, default=77)
     parser.add_argument("--steps", type=int, default=30)
     parser.add_argument("--seed", type=int, default=42)
@@ -31,7 +33,13 @@ def main() -> None:
     from talking_avatar.config import GenerationConfig
     from talking_avatar.pipeline import TalkingAvatarPipeline
 
-    config = GenerationConfig(frames=args.frames, steps=args.steps, seed=args.seed)
+    config = GenerationConfig(
+        width=args.width,
+        height=args.height,
+        frames=args.frames,
+        steps=args.steps,
+        seed=args.seed,
+    )
     pipeline = TalkingAvatarPipeline.from_pretrained(
         args.model_dir,
         video_model_name_or_path=args.video_model_dir,

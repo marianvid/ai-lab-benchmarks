@@ -4,15 +4,19 @@
   "case": "animated-storyteller",
   "status": "succeeded",
   "returncode": 0,
-  "wall_s": 389.722,
-  "peak_gpu_memory_bytes": 29985079296,
+  "wall_s": 349.006,
+  "peak_gpu_memory_bytes": 30022828032,
   "peak_gpu_utilisation_percent": 100,
-  "peak_rss_bytes": 20564709376,
+  "peak_rss_bytes": 27917365248,
   "artifact": "/test_models/video/results/ta2.0/animated-storyteller.mp4",
   "log": "/test_models/video/results/ta2.0/animated-storyteller.log",
   "command": [
+    "env",
+    "PYTHONPATH=/opt/ai/video/ta2",
     ".venv/bin/python",
     "/opt/ai/video/benchmark/run_ta2_local.py",
+    "--runtime-dir",
+    "/opt/ai/video/ta2",
     "--model-dir",
     "/test_models/video/models/ta2.0",
     "--video-model-dir",
@@ -27,6 +31,10 @@
     "/test_models/video/results/ta2.0/animated-storyteller.mp4",
     "--prompt",
     "A polished fictional older fox storyteller speaks directly to the camera in a warm storybook study. Restrained head movement, expressive eyes, natural mouth motion, stable character identity and background.",
+    "--width",
+    "640",
+    "--height",
+    "608",
     "--frames",
     "153",
     "--steps",
@@ -34,5 +42,5 @@
     "--seed",
     "42"
   ],
-  "sample_count": 719
+  "sample_count": 648
 }

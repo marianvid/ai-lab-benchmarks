@@ -9,9 +9,9 @@ definitions.
 > file, strong identity score or SyncNet result does not decide whether a
 > performance looks natural. The [video output page](video-listening.html)
 > places source portraits beside the publishable generated clips and assigns
-> no viewing score. The audio tracks test synchronization, not whether a voice
-> is appropriately cast for the visible character. Licence-restricted media is
-> not published.
+> no viewing score. The audio tracks are separately produced inputs; their
+> casting is not included in the automatic video verdict. Licence-restricted
+> media is not published.
 
 ## Feasibility and resource cost
 
@@ -29,9 +29,9 @@ definitions.
 | LongCat-Video-Avatar 1.5 INT8 · documentary host | Success | 3.00 s, 640×608, 25 fps | 4 min 29 s | 24.2 GiB observed | 21.9 GiB observed | **Viable but offset:** best new-candidate identity score and strong mouth/audio correspondence, with an 80 ms detected offset |
 | LongCat-Video-Avatar 1.5 INT8 · roundtable guest | Success | 6.00 s, 640×608, 25 fps | 7 min 17 s | 28.6 GiB observed | 22.0 GiB observed | **Viable with reservations:** expressive six-second output, but lower identity minimum and an 80 ms offset |
 | LongCat-Video-Avatar 1.5 INT8 · animated storyteller | Success | 6.00 s, 640×608, 25 fps | 7 min 30 s | 28.6 GiB observed | 22.0 GiB observed | **Useful character route:** accepted the non-human portrait and produced all requested media; human-face metrics do not apply |
-| TA2.0 · documentary host | Success | 3.00 s, 480×832, 25 fps | 3 min 10 s | 27.9 GiB observed | 26.3 GiB observed | **Viable with reservations:** zero detected AV offset, but weaker identity retention than LongCat |
-| TA2.0 · roundtable guest | Success | 6.00 s, 480×832, 25 fps | 5 min 54 s | 27.9 GiB observed | 26.6 GiB observed | **Sync winner, identity trade-off:** zero offset and strong confidence, with the lowest new-candidate identity minimum |
-| TA2.0 · animated storyteller | Success | 6.00 s, 480×832, 25 fps | 6 min 30 s | 27.9 GiB observed | 19.2 GiB observed | **Useful character route:** completed the non-human case; human-face and SyncNet metrics do not apply |
+| TA2.0 · documentary host | Success | 8.96 s, 640×608, 25 fps | 7 min 55 s | 28.0 GiB observed | 26.5 GiB observed | **Strong final presenter result:** zero detected AV offset, stable identity and complete output |
+| TA2.0 · roundtable guest | Success | 14.08 s, 640×608, 25 fps | 12 min 52 s | 28.0 GiB observed | 26.1 GiB observed | **Strong final guest result:** zero offset, strong confidence and the best identity retention in the new guest set |
+| TA2.0 · animated storyteller | Success | 6.00 s, 640×608, 25 fps | 5 min 49 s | 28.0 GiB observed | 26.0 GiB observed | **Useful character route:** completed the non-human case; human-face and SyncNet metrics do not apply |
 | SkyReels V3 Talking Avatar 19B FP8 · documentary host | Failed during model construction | — | 2 min 43 s in the 64 GiB boundary attempt | 5.4 GiB observed before termination | 62.9 GiB observed | **Not viable in this configuration:** official low-VRAM/offload mode exhausted 64 GiB RAM plus 8 GiB swap before generation |
 
 The successful human-portrait runs fit inside 32 GB of VRAM, but LongCat and
@@ -44,7 +44,8 @@ The native Wan2.2 run needed about 102 seconds per output second. Its corrective
 run was started directly through ComfyUI rather than through the polling
 wrapper, so resident post-run values are retained as lower bounds and are not
 mislabelled as peak measurements.
-LongCat needed about 73–90 seconds per output second; TA2.0 needed about 59–65.
+LongCat needed about 73–90 seconds per output second; the final TA2.0 runs
+needed about 53–58 seconds per output second.
 SkyReels did not reach inference even after the system-memory boundary was
 raised from 48 to 64 GiB.
 
@@ -62,17 +63,19 @@ frames; lower is more stable but can also mean a less expressive result.
 | InfiniteTalk 14B FP8 · documentary host | 100% | 0.809 | 0.698 | 1.83% | 0.01748 | Most visible generated facial motion, with substantial identity and geometry variation |
 | MuseTalk 1.5 · documentary host | 100% | 0.732 | 0.706 | 0.38% | 0.00130 | Geometry remains locked, but the face embedding changes substantially around the generated mouth |
 | LongCat-Video-Avatar 1.5 INT8 · documentary host | 100% | **0.818** | **0.674** | 2.87% | 0.00600 | Best identity retention among the two new candidates; visibly broader expression increases geometry change |
-| TA2.0 · documentary host | 100% | 0.730 | 0.659 | **1.71%** | **0.00294** | More spatially restrained than LongCat, but the source-face embedding changes more |
+| TA2.0 · documentary host | 100% | 0.814 | **0.689** | **1.71%** | 0.01277 | Similar mean identity to LongCat, with a stronger minimum and more temporal change across the longer performance |
 | LongCat-Video-Avatar 1.5 INT8 · roundtable guest | 100% | **0.750** | **0.533** | 3.48% | 0.01126 | More expression and temporal change, with a weak minimum identity frame |
-| TA2.0 · roundtable guest | 100% | 0.686 | 0.496 | **2.25%** | **0.00594** | More restrained motion, but the weakest identity retention in the new set |
+| TA2.0 · roundtable guest | 100% | **0.830** | **0.720** | **1.27%** | 0.01010 | Best identity retention and geometric stability in the new guest set |
 
 The automatic comparison favours LatentSync when a composited meeting tile
 must remain visually consistent. EchoMimic is the more animated route, but its
 extra motion comes with a measurable cost in identity stability. This is a
-trade-off, not a universal ranking. Among the new generators, LongCat retains
-identity better while TA2.0 produces less frame-to-frame change. Neither
-matches LatentSync's source-identity score because both synthesize the full
-performance rather than editing only the mouth region.
+trade-off, not a universal ranking. In the final 640×608 set, TA2.0 improves
+substantially over its preliminary portrait-shaped runs and leads the guest
+comparison; the host result is close to LongCat in mean identity and stronger
+at its weakest sampled frame. Neither matches LatentSync's source-identity
+score because both synthesize the full performance rather than editing only
+the mouth region.
 
 ## Audio-video synchronization
 
@@ -90,14 +93,14 @@ measured in 25 fps video frames, so four frames are 160 ms.
 | MuseTalk 1.5 · documentary host | **7.85** | -3 frames | **Needs attention:** strong confidence, but a 120 ms timing correction is required |
 | LongCat-Video-Avatar 1.5 INT8 · documentary host | **9.65** | -2 frames | **Needs attention:** very strong correspondence, but an 80 ms timing correction is required |
 | LongCat-Video-Avatar 1.5 INT8 · roundtable guest | 5.05 | -2 frames | **Needs attention:** usable confidence, but the same 80 ms correction is required |
-| TA2.0 · documentary host | **6.93** | **0 frames** | **Pass:** strong confidence and no detected timing offset |
+| TA2.0 · documentary host | **7.80** | **0 frames** | **Pass:** strong confidence and no detected timing offset |
 | TA2.0 · roundtable guest | **7.95** | **0 frames** | **Pass:** strongest zero-offset result in the new candidate set |
 
-LatentSync remains the automatic winner for direct use because it combines no
-detected offset with the strongest identity retention. TA2.0 also has zero
-offset in both new cases, but retains identity less accurately. InfiniteTalk and
-MuseTalk produce strong correspondence between mouth motion and audio, but the
-measured offsets still require correction. EchoMimic's clips remain useful
+LatentSync remains the automatic identity winner for a constrained lip-sync
+edit. TA2.0 has zero offset in both final cases and combines this with stronger
+full-frame generated performances. InfiniteTalk and MuseTalk produce strong
+correspondence between mouth motion and audio, but the measured offsets still
+require correction. EchoMimic's clips remain useful
 evidence about generative movement, but should not be treated as ready speaker
 tiles without correcting timing and checking the resulting mouth motion.
 These synchronization results say nothing about whether the voice's perceived
@@ -135,9 +138,10 @@ selection and processing remain a separate production stage.
 - LongCat is the stronger new choice when facial identity and expressive motion
   matter most. It also accepted the animated fox, but both human clips need an
   80 ms timing correction and the two-segment runs approach 29 GiB VRAM.
-- TA2.0 is the stronger new choice when zero-offset synchronization matters.
-  It is faster than LongCat on the six-second cases, but its automatic identity
-  scores are weaker and it requires sequential UMT5/video offload to fit.
+- TA2.0 is the stronger new choice when zero-offset synchronization and a
+  complete generated performance matter. The final 640×608 host and guest
+  clips also improve its identity results substantially. It requires sequential
+  UMT5/video offload to fit.
 - SkyReels V3 Talking Avatar 19B is outside this machine's practical memory
   envelope in the official low-VRAM path. Failure before generation at the
   64 GiB RAM boundary is the result; no quality claim is made.
