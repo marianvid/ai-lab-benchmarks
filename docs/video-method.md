@@ -47,7 +47,6 @@ not included in the synchronization comparison.
 | MuseTalk 1.5 | Lightweight lip-sync comparison | Prepared separately; a result is reported only if the official preprocessing path runs on this machine |
 | JoyVASA animal | Audio-driven animation for non-human characters | 512×512, 25 fps, CFG 2.0, animal checkpoints and English six-second speech fixture |
 | LivePortrait Animals | Controlled motion transfer for non-human characters | 512×512, 25 fps, official 78-frame `d0.mp4` driving fixture, auto-cropped driver, stitching disabled as recommended for animals |
-| HunyuanVideo-Avatar FP8 | Excluded before testing because its licence does not cover the European Union | Not run |
 | Wan2.2-S2V 14B FP8 scaled | Native sound-to-video quality-at-the-limit comparison | 640×640, 77 frames at 16 fps, 20 steps, CFG 6.0, UniPC/simple, shift 8.0, ComfyUI dynamic offload |
 
 EchoMimicV3 uses upstream commit
@@ -121,10 +120,3 @@ licences; ComfyUI carries GPL-3.0, and the Wan2.2 repository carries
 Apache-2.0. Their base models and dependencies may add separate terms;
 production use must follow the model cards and every redistributed component,
 not only the repository licence.
-
-HunyuanVideo-Avatar uses the Tencent Hunyuan Community License Agreement. Its
-territory explicitly excludes the European Union, United Kingdom and South
-Korea. Because the benchmark machine is located in the European Union, the
-model was excluded before testing. This public repository contains no run,
-generated media, derived measurements or compatibility patch for it and does
-not treat it as an available production option in that territory.

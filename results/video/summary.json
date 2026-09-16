@@ -111,15 +111,6 @@
       "verdict": "fast_controlled_motion_transfer"
     },
     {
-      "model": "HunyuanVideo-Avatar FP8",
-      "case": null,
-      "status": "not_tested_license_exclusion",
-      "license": "Tencent Hunyuan Community License Agreement",
-      "reason": "The licensed territory excludes the European Union, where the benchmark machine is located.",
-      "automatic_metric_scope": "none",
-      "verdict": "excluded_before_testing"
-    },
-    {
       "model": "Wan2.2-S2V 14B FP8 scaled",
       "case": "animated-storyteller",
       "status": "succeeded",
