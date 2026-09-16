@@ -25,6 +25,18 @@ The exact portrait prompts, intended motion descriptions and fixed seeds are
 in [`harness/video`](../harness/video/). The spoken texts remain in the English
 TTS manifest so the audio and video studies use the same material.
 
+### Audio scope
+
+The speech files are fixed control inputs for animation and synchronization.
+They were not selected or scored for casting against the visible character:
+perceived gender, age, pitch, accent, timbre and persona fit are outside this
+video study. This separation prevents a voice-character mismatch from being
+misreported as a video-model failure. In a production workflow, voice casting,
+synthesis or conversion and audio processing happen separately; the resulting
+final speech track is then supplied to the audio-driven animation or lip-sync
+stage. LivePortrait Animals is motion-driven rather than audio-driven and is
+not included in the synchronization comparison.
+
 ## Models and settings
 
 | Model | Role in the test | Settings |
@@ -99,7 +111,8 @@ mean insufficient expression.
 
 The official SyncNet evaluator reports audio-video offset and confidence where
 its detector accepts the clip. This is an automatic lip-sync signal, not a
-claim about natural expression or production quality.
+claim about natural expression, voice-character suitability or overall
+production quality.
 
 ## Automatic verdicts
 

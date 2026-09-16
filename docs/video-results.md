@@ -9,7 +9,9 @@ definitions.
 > file, strong identity score or SyncNet result does not decide whether a
 > performance looks natural. The [video output page](video-listening.html)
 > places source portraits beside the publishable generated clips and assigns
-> no viewing score. Licence-restricted media is not published.
+> no viewing score. The audio tracks test synchronization, not whether a voice
+> is appropriately cast for the visible character. Licence-restricted media is
+> not published.
 
 ## Feasibility and resource cost
 
@@ -76,6 +78,9 @@ MuseTalk produce strong correspondence between mouth motion and audio, but the
 measured offsets still require correction. EchoMimic's clips remain useful
 evidence about generative movement, but should not be treated as ready speaker
 tiles without correcting timing and checking the resulting mouth motion.
+These synchronization results say nothing about whether the voice's perceived
+gender, age, pitch, accent or persona matches the source portrait. Voice
+selection and processing remain a separate production stage.
 
 ## Production implications
 
