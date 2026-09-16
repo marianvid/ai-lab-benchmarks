@@ -25,7 +25,7 @@ definitions.
 | InfiniteTalk 14B FP8 · documentary host | Success with duration mismatch | 3.24 s, 640×640, 25 fps | 2 h 6 min | 15.3 GiB observed | 33.6 GiB observed | **Not production-efficient here:** expressive output and strong SyncNet confidence, but an 80 ms offset and only 3.24 s were saved from the requested 81-frame run |
 | JoyVASA animal · animated storyteller | Success | 6.12 s, 512×512, 25 fps | 40 s | 18.7 GiB observed | 4.0 GiB observed | **Compatible non-human path:** the dedicated animal pipeline completed the fox animation; human face and SyncNet scores do not apply |
 | LivePortrait Animals · animated storyteller | Success | 3.12 s, 512×512, 25 fps | 18 s | 3.8 GiB observed | 4.2 GiB observed | **Fast controlled motion transfer:** the fox followed a 78-frame driving video; human face and speech-sync metrics do not apply |
-| HunyuanVideo-Avatar FP8 · animated storyteller | Success | 5.16 s, 704×704, 25 fps | 30 min 15 s | 30.9 GiB observed | 42.2 GiB observed | **Measured only:** completed at the hardware limit, but the licence excludes the EU and the media is not published |
+| HunyuanVideo-Avatar FP8 | Not tested — licence exclusion | — | — | — | — | **Excluded before testing:** the Tencent Hunyuan Community License Agreement does not license use in the European Union, where the benchmark machine is located |
 | Wan2.2-S2V 14B FP8 scaled · animated storyteller | Success | 4.81 s, 640×640, 16 fps | 8 min 9 s | Peak not captured; 14.8 GiB remained resident after completion | Peak not captured; 25.8 GiB RSS remained after completion | **Feasible with native offload:** all 77 requested frames and audio were saved; human-face and SyncNet metrics do not apply |
 
 The successful human-portrait runs fit comfortably inside 32 GB of VRAM. At
@@ -105,18 +105,11 @@ selection and processing remain a separate production stage.
   loading. The driver provides the performance rather than asking the model to
   invent motion from audio. The contact sheet also exposes the trade-off:
   transferred mouth shapes can introduce human-like teeth on a stylised animal.
-- HunyuanVideo-Avatar produced the highest-resolution animated-character result
-  in this pass and retained a coherent fox across all 129 frames. Its resource
-  profile leaves almost no VRAM margin on this 32 GB card, and the 5.16-second
-  clip took about 30 minutes. The Tencent licence excludes the European Union,
-  so the media is not published and the model is not treated here as an
-  available production option in that territory.
 - Wan2.2-S2V completed all 77 requested frames in 8 minutes 9 seconds through
-  the checkpoint's native ComfyUI loader. It is much faster than
-  HunyuanVideo-Avatar in this pass but still an offline renderer. A preliminary
-  DiffSynth adapter produced corrupted frames; only the native result is
-  included on the viewing page and the failed adapter is documented in the
-  method rather than treated as model failure.
+  the checkpoint's native ComfyUI loader. It remains an offline renderer. A
+  preliminary DiffSynth adapter produced corrupted frames; only the native
+  result is included on the viewing page and the failed adapter is documented
+  in the method rather than treated as model failure.
 - Rendering remains offline production: these runs are tens of times slower
   than real time, but short reusable shots and speaker tiles are practical.
 
@@ -125,5 +118,6 @@ selection and processing remain a separate production stage.
 Machine-readable run records, publishable generated clips and automatic face
 measurements are under [`results/video`](../results/video/). The reproducible
 runners, fixtures and redistributable compatibility patches are under
-[`harness/video`](../harness/video/). Licence-restricted Hunyuan media and code
-changes are not included.
+[`harness/video`](../harness/video/). HunyuanVideo-Avatar was excluded before
+testing and has no public run record, media, measurements or compatibility
+patch in this repository.

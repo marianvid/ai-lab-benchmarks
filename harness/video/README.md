@@ -36,11 +36,6 @@ Patches under `patches/` are part of the method, not changes to AI-Lab:
 - JoyVASA and LivePortrait Animals use the reference PyTorch implementation of
   XPose deformable attention. The custom CUDA extension cannot be built against
   the CUDA 12.8 PyTorch wheel on the CUDA 13 Blackwell host.
-- HunyuanVideo-Avatar used a variable-length wrapper around native PyTorch SDPA
-  when FlashAttention was unavailable. Transformers 4.45.2 preserved the LLaVA
-  image-token expansion expected by the upstream inference code. The source
-  patch is not redistributed because the model licence excludes the European
-  Union, where the test machine is located.
 - Wan2.2-S2V uses the native ComfyUI scaled-FP8 loader. An attempted DiffSynth
   compatibility path generated corrupted frames and is not part of the
   reported viewing set.

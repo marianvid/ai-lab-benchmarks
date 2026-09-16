@@ -47,7 +47,7 @@ not included in the synchronization comparison.
 | MuseTalk 1.5 | Lightweight lip-sync comparison | Prepared separately; a result is reported only if the official preprocessing path runs on this machine |
 | JoyVASA animal | Audio-driven animation for non-human characters | 512×512, 25 fps, CFG 2.0, animal checkpoints and English six-second speech fixture |
 | LivePortrait Animals | Controlled motion transfer for non-human characters | 512×512, 25 fps, official 78-frame `d0.mp4` driving fixture, auto-cropped driver, stitching disabled as recommended for animals |
-| HunyuanVideo-Avatar FP8 | Quality-at-the-limit audio-driven character generation | 704×704, 129 frames at 25 fps, 30 steps, CFG 7.5, DeepCache, FP8 transformer and CPU offload |
+| HunyuanVideo-Avatar FP8 | Excluded before testing because its licence does not cover the European Union | Not run |
 | Wan2.2-S2V 14B FP8 scaled | Native sound-to-video quality-at-the-limit comparison | 640×640, 77 frames at 16 fps, 20 steps, CFG 6.0, UniPC/simple, shift 8.0, ComfyUI dynamic offload |
 
 EchoMimicV3 uses upstream commit
@@ -56,8 +56,7 @@ EchoMimicV3 uses upstream commit
 `50aa0a94184315407a991ae804d9b58d6d311ba8`; MuseTalk uses
 `8ca7d1884cf5c1c766dcd0365b069c96d75707cf`; JoyVASA uses
 `916a90f8de490e8648fee460c1200bd5d9a795af`; LivePortrait uses
-`9b294b3d0536135442ea73cb01e6cb3ca7029dd3`; HunyuanVideo-Avatar uses
-`8c31d0d489df8418fa36a2a709ebdf0b47c7bf06`; the native Wan2.2-S2V run uses
+`9b294b3d0536135442ea73cb01e6cb3ca7029dd3`; the native Wan2.2-S2V run uses
 ComfyUI commit `77739723a36ea503f875c121b03e9c4288aa4914` (ComfyUI 0.34.0).
 
 InfiniteTalk needs two compatibility changes on this Blackwell runtime. The
@@ -73,14 +72,6 @@ because the published custom extension cannot be built against this CUDA
 13 host and the CUDA 12.8 PyTorch wheel. LivePortrait reuses the complete
 checkpoint tree already present under benchmark storage; it does not create a
 second or partial model copy.
-
-HunyuanVideo-Avatar runs with PyTorch scaled dot-product attention because the
-published FlashAttention dependency is not available for this Blackwell
-runtime. Transformers is pinned to 4.45.2: newer releases reject the upstream
-single-image-token LLaVA preparation with the repository's known 576-feature
-mismatch. The public report records the measured configuration but does not
-redistribute the generated file or the source patch; the model licence excludes
-the European Union, where this test machine is located.
 
 Wan2.2-S2V is loaded by ComfyUI directly from the complete FP8-scaled model
 tree in benchmark storage. The published checkpoint carries ComfyUI
@@ -133,7 +124,7 @@ not only the repository licence.
 
 HunyuanVideo-Avatar uses the Tencent Hunyuan Community License Agreement. Its
 territory explicitly excludes the European Union, United Kingdom and South
-Korea. The run remains a factual local compatibility and resource observation,
-but its generated media and source patch are intentionally absent from this
-public repository. This benchmark does not treat that model as an available
-production option in the European Union.
+Korea. Because the benchmark machine is located in the European Union, the
+model was excluded before testing. This public repository contains no run,
+generated media, derived measurements or compatibility patch for it and does
+not treat it as an available production option in that territory.

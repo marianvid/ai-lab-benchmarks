@@ -112,16 +112,12 @@
     },
     {
       "model": "HunyuanVideo-Avatar FP8",
-      "case": "animated-storyteller",
-      "status": "succeeded",
-      "output_duration_s": 5.16,
-      "wall_s": 1815.225,
-      "peak_gpu_memory_bytes": 33164361728,
-      "peak_rss_bytes": 45268717568,
-      "automatic_metric_scope": "resource_and_file_integrity_only",
-      "syncnet_confidence": null,
-      "av_offset_frames": null,
-      "verdict": "compatible_at_hardware_limit"
+      "case": null,
+      "status": "not_tested_license_exclusion",
+      "license": "Tencent Hunyuan Community License Agreement",
+      "reason": "The licensed territory excludes the European Union, where the benchmark machine is located.",
+      "automatic_metric_scope": "none",
+      "verdict": "excluded_before_testing"
     },
     {
       "model": "Wan2.2-S2V 14B FP8 scaled",
