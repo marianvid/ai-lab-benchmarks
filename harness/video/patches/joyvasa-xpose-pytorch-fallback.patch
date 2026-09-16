@@ -1,0 +1,51 @@
+--- a/src/utils/dependencies/XPose/models/UniPose/ops/functions/ms_deform_attn_func.py
++++ b/src/utils/dependencies/XPose/models/UniPose/ops/functions/ms_deform_attn_func.py
+@@ -15,7 +15,10 @@
+ from torch.autograd import Function
+ from torch.autograd.function import once_differentiable
+
+-import MultiScaleDeformableAttention as MSDA
++try:
++    import MultiScaleDeformableAttention as MSDA
++except ImportError:
++    MSDA = None
+
+
+ class MSDeformAttnFunction(Function):
+--- a/src/utils/dependencies/XPose/models/UniPose/ops/modules/ms_deform_attn.py
++++ b/src/utils/dependencies/XPose/models/UniPose/ops/modules/ms_deform_attn.py
+@@ -20,7 +20,9 @@
+ import torch.nn.functional as F
+ from torch.nn.init import xavier_uniform_, constant_
+
+-from src.utils.dependencies.XPose.models.UniPose.ops.functions.ms_deform_attn_func import MSDeformAttnFunction
++from src.utils.dependencies.XPose.models.UniPose.ops.functions.ms_deform_attn_func import (
++    ms_deform_attn_core_pytorch,
++)
+
+
+ def _is_power_of_2(n):
+@@ -127,16 +129,12 @@
+         # if os.environ.get('IPDB_DEBUG_SHILONG', False) == 'INFO':
+         #     import ipdb; ipdb.set_trace()
+
+-        # for amp
+-        if value.dtype == torch.float16:
+-            # for mixed precision
+-            output = MSDeformAttnFunction.apply(
+-            value.to(torch.float32), input_spatial_shapes, input_level_start_index, sampling_locations.to(torch.float32), attention_weights, self.im2col_step)
+-            output = output.to(torch.float16)
+-            output = self.output_proj(output)
+-            return output
+-
+-        output = MSDeformAttnFunction.apply(
+-            value, input_spatial_shapes, input_level_start_index, sampling_locations, attention_weights, self.im2col_step)
++        # The custom CUDA op cannot be built against the CUDA 12.8 PyTorch
++        # wheel on a CUDA 13-only Blackwell host. The reference PyTorch
++        # implementation is slower but deterministic and sufficient here.
++        original_dtype = value.dtype
++        output = ms_deform_attn_core_pytorch(
++            value.float(), input_spatial_shapes, sampling_locations.float(), attention_weights.float()
++        ).to(original_dtype)
+         output = self.output_proj(output)
+         return output

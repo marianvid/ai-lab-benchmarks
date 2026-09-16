@@ -1,0 +1,116 @@
+WARNING 09-15 20:38:50 [envs.py:82] Flash Attention library "flash_attn" not found, using pytorch attention implementation
+[2026-09-15 20:38:51,475] INFO: Generation job args: Namespace(task='infinitetalk-14B', size='infinitetalk-480', frame_num=81, max_frame_num=81, ckpt_dir='/test_models/video/models/infinitetalk/Wan2.1-I2V-14B-480P', infinitetalk_dir='/test_models/video/models/infinitetalk/InfiniteTalk/single/infinitetalk.safetensors', quant_dir='/test_models/video/models/infinitetalk/InfiniteTalk/quant_models/infinitetalk_single_fp8.safetensors', wav2vec_dir='/test_models/video/models/infinitetalk/chinese-wav2vec2-base', dit_path=None, lora_dir=None, lora_scale=[1.2], offload_model=True, ulysses_size=1, ring_size=1, t5_fsdp=False, t5_cpu=False, dit_fsdp=False, save_file='/test_models/video/results/infinitetalk-fp8/documentary-host', audio_save_dir='save_audio', base_seed=1247, input_json='/test_models/video/fixtures-v1/infinitetalk-documentary.json', motion_frame=9, mode='clip', sample_steps=40, sample_shift=7, sample_text_guide_scale=5.0, sample_audio_guide_scale=4.0, num_persistent_param_in_dit=0, audio_mode='localfile', use_teacache=False, teacache_thresh=0.2, use_apg=False, apg_momentum=-0.75, apg_norm_threshold=55, color_correction_strength=1.0, scene_seg=False, quant='fp8')
+[2026-09-15 20:38:51,475] INFO: Generation model config: {'__name__': 'Config: Wan MultiTalk AI2V 14B', 't5_model': 'umt5_xxl', 't5_dtype': torch.bfloat16, 'text_len': 512, 'param_dtype': torch.bfloat16, 'num_train_timesteps': 1000, 'sample_fps': 16, 'sample_neg_prompt': 'bright tones, overexposed, static, blurred details, subtitles, style, works, paintings, images, static, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, misshapen limbs, fused fingers, still picture, messy background, three legs, many people in the background, walking backwards', 't5_checkpoint': 'models_t5_umt5-xxl-enc-bf16.pth', 't5_tokenizer': 'google/umt5-xxl', 'clip_model': 'clip_xlm_roberta_vit_h_14', 'clip_dtype': torch.float16, 'clip_checkpoint': 'models_clip_open-clip-xlm-roberta-large-vit-huge-14.pth', 'clip_tokenizer': 'xlm-roberta-large', 'vae_checkpoint': 'Wan2.1_VAE.pth', 'vae_stride': (4, 8, 8), 'patch_size': (1, 2, 2), 'dim': 5120, 'ffn_dim': 13824, 'freq_dim': 256, 'num_heads': 40, 'num_layers': 40, 'window_size': (-1, -1), 'qk_norm': True, 'cross_attn_norm': True, 'eps': 1e-06}
+[2026-09-15 20:38:51,475] INFO: Creating infinitetalk pipeline.
+[2026-09-15 20:38:51,475] INFO: loading /test_models/video/models/infinitetalk/Wan2.1-I2V-14B-480P/models_t5_umt5-xxl-enc-bf16.pth
+[2026-09-15 20:38:51,546] INFO: Loading quantized T5 from /test_models/video/models/infinitetalk/InfiniteTalk/quant_models/t5_fp8.safetensors
+[2026-09-15 20:38:52,394] INFO: loading /test_models/video/models/infinitetalk/Wan2.1-I2V-14B-480P/Wan2.1_VAE.pth
+[2026-09-15 20:38:52,829] INFO: loading /test_models/video/models/infinitetalk/Wan2.1-I2V-14B-480P/models_clip_open-clip-xlm-roberta-large-vit-huge-14.pth
+[2026-09-15 20:38:56,996] INFO: Creating WanModel from /test_models/video/models/infinitetalk/Wan2.1-I2V-14B-480P
+[2026-09-15 20:38:56,996] INFO: Loading Quantized MultiTalk from /test_models/video/models/infinitetalk/InfiniteTalk/quant_models/infinitetalk_single_fp8.safetensors
+[2026-09-15 20:38:58,825] INFO: Generating video ...
+('/test_models/video/fixtures-v1/imgs/documentary-host.png', '/test_models/video/fixtures-v1/audios/documentary-host.wav')
+No conversion needed.
+  0%|          | 0/40 [00:00<?, ?it/s]  2%|▎         | 1/40 [03:16<2:07:55, 196.80s/it]  5%|▌         | 2/40 [06:24<2:01:06, 191.24s/it]  8%|▊         | 3/40 [09:36<1:58:06, 191.53s/it] 10%|█         | 4/40 [12:46<1:54:35, 190.98s/it] 12%|█▎        | 5/40 [15:53<1:50:42, 189.78s/it] 15%|█▌        | 6/40 [19:04<1:47:44, 190.14s/it] 18%|█▊        | 7/40 [22:13<1:44:24, 189.83s/it] 20%|██        | 8/40 [25:21<1:40:50, 189.08s/it] 22%|██▎       | 9/40 [28:28<1:37:25, 188.56s/it] 25%|██▌       | 10/40 [31:36<1:34:08, 188.27s/it] 28%|██▊       | 11/40 [34:43<1:30:52, 188.00s/it] 30%|███       | 12/40 [37:51<1:27:40, 187.89s/it] 32%|███▎      | 13/40 [40:59<1:24:31, 187.83s/it] 35%|███▌      | 14/40 [44:06<1:21:22, 187.77s/it] 38%|███▊      | 15/40 [47:14<1:18:13, 187.74s/it] 40%|████      | 16/40 [50:22<1:15:05, 187.72s/it] 42%|████▎     | 17/40 [53:29<1:11:54, 187.60s/it] 45%|████▌     | 18/40 [56:36<1:08:45, 187.52s/it] 48%|████▊     | 19/40 [59:44<1:05:38, 187.54s/it] 50%|█████     | 20/40 [1:02:51<1:02:29, 187.48s/it] 52%|█████▎    | 21/40 [1:05:59<59:21, 187.45s/it]   55%|█████▌    | 22/40 [1:09:06<56:13, 187.42s/it] 57%|█████▊    | 23/40 [1:12:13<53:07, 187.47s/it] 60%|██████    | 24/40 [1:15:21<49:58, 187.43s/it] 62%|██████▎   | 25/40 [1:18:28<46:51, 187.41s/it] 65%|██████▌   | 26/40 [1:21:36<43:44, 187.48s/it] 68%|██████▊   | 27/40 [1:24:43<40:37, 187.51s/it] 70%|███████   | 28/40 [1:27:51<37:29, 187.47s/it] 72%|███████▎  | 29/40 [1:30:58<34:22, 187.51s/it] 75%|███████▌  | 30/40 [1:34:06<31:15, 187.52s/it] 78%|███████▊  | 31/40 [1:37:13<28:07, 187.54s/it] 80%|████████  | 32/40 [1:40:21<24:59, 187.47s/it] 82%|████████▎ | 33/40 [1:43:28<21:52, 187.52s/it] 85%|████████▌ | 34/40 [1:46:36<18:44, 187.43s/it] 88%|████████▊ | 35/40 [1:49:43<15:36, 187.38s/it] 90%|█████████ | 36/40 [1:52:50<12:29, 187.37s/it] 92%|█████████▎| 37/40 [1:55:58<09:22, 187.34s/it] 95%|█████████▌| 38/40 [1:59:05<06:14, 187.26s/it] 98%|█████████▊| 39/40 [2:02:12<03:07, 187.28s/it]100%|██████████| 40/40 [2:05:19<00:00, 187.23s/it]100%|██████████| 40/40 [2:05:19<00:00, 187.99s/it]
+Saving video:   0%|          | 0/81 [00:00<?, ?it/s]Saving video:   1%|          | 1/81 [00:00<00:43,  1.86it/s]Saving video:  44%|████▍     | 36/81 [00:00<00:00, 74.84it/s]Saving video:  93%|█████████▎| 75/81 [00:00<00:00, 146.45it/s]Saving video: 100%|██████████| 81/81 [00:00<00:00, 106.46it/s]
+ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers
+  built with gcc 14 (Debian 14.2.0-19)
+  configuration: --prefix=/usr --extra-version=0+deb13u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --disable-libmfx --disable-omx --enable-gnutls --enable-libaom --enable-libass --enable-libbs2b --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libharfbuzz --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg --enable-openal --enable-opencl --enable-opengl --disable-sndio --enable-libvpl --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-ladspa --enable-libbluray --enable-libcaca --enable-libdvdnav --enable-libdvdread --enable-libjack --enable-libpulse --enable-librabbitmq --enable-librist --enable-libsrt --enable-libssh --enable-libsvtav1 --enable-libx264 --enable-libzmq --enable-libzvbi --enable-lv2 --enable-sdl2 --enable-libplacebo --enable-librav1e --enable-pocketsphinx --enable-librsvg --enable-libjxl --enable-shared
+  libavutil      59. 39.100 / 59. 39.100
+  libavcodec     61. 19.101 / 61. 19.101
+  libavformat    61.  7.103 / 61.  7.103
+  libavdevice    61.  3.100 / 61.  3.100
+  libavfilter    10.  5.100 / 10.  5.100
+  libswscale      8.  3.100 /  8.  3.100
+  libswresample   5.  3.100 /  5.  3.100
+  libpostproc    58.  3.100 / 58.  3.100
+[aist#0:0/pcm_s16le @ 0x566812cd1380] Guessed Channel Layout: mono
+Input #0, wav, from 'save_audio/documentary-host/sum_all.wav':
+  Duration: 00:00:06.00, bitrate: 256 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 16000 Hz, mono, s16, 256 kb/s
+Stream mapping:
+  Stream #0:0 -> #0:0 (pcm_s16le (native) -> pcm_s16le (native))
+Press [q] to stop, [?] for help
+Output #0, wav, to '/test_models/video/results/infinitetalk-fp8/documentary-host-cropaudio.wav':
+  Metadata:
+    ISFT            : Lavf61.7.103
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 16000 Hz, mono, s16, 256 kb/s
+      Metadata:
+        encoder         : Lavc61.19.101 pcm_s16le
+[out#0/wav @ 0x566812cd1540] video:0KiB audio:101KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.075231%
+size=     101KiB time=00:00:03.24 bitrate= 256.2kbits/s speed=2.62e+03x
+ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers
+  built with gcc 14 (Debian 14.2.0-19)
+  configuration: --prefix=/usr --extra-version=0+deb13u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --disable-libmfx --disable-omx --enable-gnutls --enable-libaom --enable-libass --enable-libbs2b --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libharfbuzz --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg --enable-openal --enable-opencl --enable-opengl --disable-sndio --enable-libvpl --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-ladspa --enable-libbluray --enable-libcaca --enable-libdvdnav --enable-libdvdread --enable-libjack --enable-libpulse --enable-librabbitmq --enable-librist --enable-libsrt --enable-libssh --enable-libsvtav1 --enable-libx264 --enable-libzmq --enable-libzvbi --enable-lv2 --enable-sdl2 --enable-libplacebo --enable-librav1e --enable-pocketsphinx --enable-librsvg --enable-libjxl --enable-shared
+  libavutil      59. 39.100 / 59. 39.100
+  libavcodec     61. 19.101 / 61. 19.101
+  libavformat    61.  7.103 / 61.  7.103
+  libavdevice    61.  3.100 / 61.  3.100
+  libavfilter    10.  5.100 / 10.  5.100
+  libswscale      8.  3.100 /  8.  3.100
+  libswresample   5.  3.100 /  5.  3.100
+  libpostproc    58.  3.100 / 58.  3.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/test_models/video/results/infinitetalk-fp8/documentary-host-temp.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf61.1.100
+  Duration: 00:00:03.24, start: 0.000000, bitrate: 291 kb/s
+  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 640x640, 287 kb/s, 25 fps, 25 tbr, 12800 tbn (default)
+      Metadata:
+        handler_name    : VideoHandler
+        vendor_id       : [0][0][0][0]
+        encoder         : Lavc61.3.100 libx264
+[aist#1:0/pcm_s16le @ 0x5f86f5e1cd40] Guessed Channel Layout: mono
+Input #1, wav, from '/test_models/video/results/infinitetalk-fp8/documentary-host-cropaudio.wav':
+  Metadata:
+    encoder         : Lavf61.7.103
+  Duration: 00:00:03.24, bitrate: 256 kb/s
+  Stream #1:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 16000 Hz, mono, s16, 256 kb/s
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> h264 (libx264))
+  Stream #1:0 -> #0:1 (pcm_s16le (native) -> aac (native))
+Press [q] to stop, [?] for help
+[libx264 @ 0x5f86f5d65f80] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2 AVX512
+[libx264 @ 0x5f86f5d65f80] profile High, level 3.0, 4:2:0, 8-bit
+[libx264 @ 0x5f86f5d65f80] 264 - core 164 r3108 31e19f9 - H.264/MPEG-4 AVC codec - Copyleft 2003-2023 - http://www.videolan.org/x264.html - options: cabac=1 ref=3 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=7 psy=1 psy_rd=1.00:0.00 mixed_ref=1 me_range=16 chroma_me=1 trellis=1 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=-2 threads=18 lookahead_threads=3 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=2 keyint=250 keyint_min=25 scenecut=40 intra_refresh=0 rc_lookahead=40 rc=crf mbtree=1 crf=23.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to '/test_models/video/results/infinitetalk-fp8/documentary-host.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf61.7.103
+  Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p(tv, progressive), 640x640, q=2-31, 25 fps, 12800 tbn (default)
+      Metadata:
+        handler_name    : VideoHandler
+        vendor_id       : [0][0][0][0]
+        encoder         : Lavc61.19.101 libx264
+      Side data:
+        cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+  Stream #0:1: Audio: aac (LC) (mp4a / 0x6134706D), 16000 Hz, mono, fltp, 69 kb/s
+      Metadata:
+        encoder         : Lavc61.19.101 aac
+[out#0/mp4 @ 0x5f86f5e1cf80] video:127KiB audio:27KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 2.235081%
+frame=   81 fps=0.0 q=-1.0 Lsize=     157KiB time=00:00:03.16 bitrate= 406.6kbits/s speed=16.9x
+[libx264 @ 0x5f86f5d65f80] frame I:1     Avg QP:18.17  size:  8648
+[libx264 @ 0x5f86f5d65f80] frame P:20    Avg QP:20.15  size:  3510
+[libx264 @ 0x5f86f5d65f80] frame B:60    Avg QP:22.52  size:   835
+[libx264 @ 0x5f86f5d65f80] consecutive B-frames:  1.2%  0.0%  0.0% 98.8%
+[libx264 @ 0x5f86f5d65f80] mb I  I16..4: 27.4% 68.4%  4.2%
+[libx264 @ 0x5f86f5d65f80] mb P  I16..4:  0.7%  2.7%  0.1%  P16..4: 35.9%  8.4%  3.2%  0.0%  0.0%    skip:48.9%
+[libx264 @ 0x5f86f5d65f80] mb B  I16..4:  0.0%  0.0%  0.0%  B16..8: 32.6%  1.2%  0.1%  direct: 0.1%  skip:65.9%  L0:39.6% L1:58.9% BI: 1.4%
+[libx264 @ 0x5f86f5d65f80] 8x8 transform intra:71.5% inter:91.3%
+[libx264 @ 0x5f86f5d65f80] coded y,uvDC,uvAC intra: 36.4% 30.1% 9.5% inter: 4.1% 2.4% 0.0%
+[libx264 @ 0x5f86f5d65f80] i16 v,h,dc,p: 51% 14% 14% 22%
+[libx264 @ 0x5f86f5d65f80] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 28% 13% 30%  4%  4%  5%  4%  5%  5%
+[libx264 @ 0x5f86f5d65f80] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 31% 16% 11%  3% 11% 10%  9%  6%  3%
+[libx264 @ 0x5f86f5d65f80] i8c dc,h,v,p: 74% 10% 12%  4%
+[libx264 @ 0x5f86f5d65f80] Weighted P-Frames: Y:0.0% UV:0.0%
+[libx264 @ 0x5f86f5d65f80] ref P L0: 61.1% 11.2% 17.4% 10.3%
+[libx264 @ 0x5f86f5d65f80] ref B L0: 87.5% 10.1%  2.5%
+[libx264 @ 0x5f86f5d65f80] ref B L1: 97.0%  3.0%
+[libx264 @ 0x5f86f5d65f80] kb/s:318.44
+[aac @ 0x5f86f68f4500] Qavg: 31700.033
+[2026-09-15 22:44:48,839] INFO: Saving generated video to /test_models/video/results/infinitetalk-fp8/documentary-host.mp4
+[2026-09-15 22:44:48,840] INFO: Finished.

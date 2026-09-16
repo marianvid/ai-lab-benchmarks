@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "video": "/test_models/video/results/infinitetalk-fp8/documentary-host.mp4",
+  "reference": "/test_models/video/fixtures-v1/imgs/documentary-host.png",
+  "fps": 25.0,
+  "total_frames": 81,
+  "sample_every_frames": 5,
+  "sampled_frames": 17,
+  "face_detection_rate": 1.0,
+  "identity_cosine_mean": 0.8089380579836228,
+  "identity_cosine_min": 0.6984499096870422,
+  "face_center_std": [
+    0.006898942441545226,
+    0.012725886022576367
+  ],
+  "face_area_mean": 0.18488480175242702,
+  "face_area_relative_std": 0.018311978923067875,
+  "sharpness_laplacian_mean": 15.145793333108637,
+  "sampled_frame_delta_mean": 0.017481350169462315
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "video": "/test_models/video/results/musetalk-1.5/v15/documentary-host.mp4",
+  "reference": "/test_models/video/fixtures-v1/imgs/documentary-host.png",
+  "fps": 25.0,
+  "total_frames": 150,
+  "sample_every_frames": 5,
+  "sampled_frames": 30,
+  "face_detection_rate": 1.0,
+  "identity_cosine_mean": 0.7320192058881124,
+  "identity_cosine_min": 0.7060943841934204,
+  "face_center_std": [
+    0.0002220873869889305,
+    0.001624501174091047
+  ],
+  "face_area_mean": 0.18195061992715902,
+  "face_area_relative_std": 0.0037539167443811964,
+  "sharpness_laplacian_mean": 64.1720198278738,
+  "sampled_frame_delta_mean": 0.001302749809177443
+}

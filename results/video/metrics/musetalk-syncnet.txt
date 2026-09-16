@@ -1,0 +1,7 @@
+VideoManager is deprecated and will be removed.
+`base_timecode` argument is deprecated and has no effect.
+[S3FD] loading with cpu
+[S3FD] finished loading (0.1430 sec)
+Input video: /test_models/video/results/musetalk-1.5/v15/documentary-host.mp4
+SyncNet confidence: 7.85
+AV offset: -3

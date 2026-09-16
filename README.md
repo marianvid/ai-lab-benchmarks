@@ -39,6 +39,10 @@ of it, answering questions about it — writing code, and Romanian speech.
 | [English speech and sound results](docs/audio-synthesis-results.md) | Automatic quality, intelligibility, speed, memory and licensing verdicts |
 | [Listen to the generated audio](https://marianvid.github.io/ai-lab-benchmarks/docs/audio-synthesis-listening.html) | Inputs beside browser-native audio controls; no listening score assigned |
 | [Images and OCR results](docs/images-ocr.md) | Visual Linux–macOS comparisons, prompts, processing times, OCR output and practical recommendations |
+| [Presenter video method](docs/video-method.md) | Still portraits, English speech tracks, model settings and automatic measurements |
+| [Presenter video results](docs/video-results.md) | Feasibility, speed, memory, identity stability and automatic verdicts |
+| [View the generated video](https://marianvid.github.io/ai-lab-benchmarks/docs/video-listening.html) | Source portraits beside browser-native video controls; no viewing score assigned |
+| [Hybrid media workflow](docs/hybrid-media-workflow.md) | Local RTX generation, optional commercial driving clips, and manual Final Cut Pro / Logic Pro finishing |
 | [Agentic coding probe](docs/agentic-coding.md) | Architect-directed repository edits with tools and hidden tests |
 
 Also kept: [an earlier four-engine study](docs/engines-2026-08.md),

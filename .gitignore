@@ -6,3 +6,8 @@ __pycache__/
 .venv/
 .DS_Store
 ._*
+
+# HunyuanVideo-Avatar's licence excludes the EU, where this benchmark runs.
+# Keep the local measurement, but do not redistribute its media or source patch.
+results/video/hunyuanvideo-avatar-fp8/
+harness/video/patches/hunyuan-avatar-sdpa-blackwell.patch

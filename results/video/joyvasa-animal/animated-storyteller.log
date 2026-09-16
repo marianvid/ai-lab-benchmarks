@@ -1,0 +1,68 @@
+[00:43:31] Load appearance_feature_extractor    live_portrait_wmg_wrapper.py:474
+           from
+           /test_models/video/models/joyvasa/li
+           veportrait-hf/liveportrait_animals/b
+           ase_models/appearance_feature_extrac
+           tor.pth done.
+[00:43:32] Load motion_extractor from           live_portrait_wmg_wrapper.py:477
+           /test_models/video/models/joyvasa/li
+           veportrait-hf/liveportrait_animals/b
+           ase_models/motion_extractor.pth
+           done.
+           Load warping_module from             live_portrait_wmg_wrapper.py:480
+           /test_models/video/models/joyvasa/li
+           veportrait-hf/liveportrait_animals/b
+           ase_models/warping_module.pth done.
+           Load spade_generator from            live_portrait_wmg_wrapper.py:483
+           /test_models/video/models/joyvasa/li
+           veportrait-hf/liveportrait_animals/b
+           ase_models/spade_generator.pth done.
+           Load stitching_retargeting_module    live_portrait_wmg_wrapper.py:487
+           from
+           /test_models/video/models/joyvasa/li
+           veportrait-hf/liveportrait/retargeti
+           ng_models/stitching_retargeting_modu
+           le.pth done.
+Some weights of the model checkpoint at /opt/ai/video/joyvasa/pretrained_weights/TencentGameMate:chinese-hubert-base were not used when initializing HubertModel: ['encoder.pos_conv_embed.conv.weight_g', 'encoder.pos_conv_embed.conv.weight_v']
+- This IS expected if you are initializing HubertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing HubertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of HubertModel were not initialized from the model checkpoint at /opt/ai/video/joyvasa/pretrained_weights/TencentGameMate:chinese-hubert-base and are newly initialized: ['encoder.pos_conv_embed.conv.parametrizations.weight.original0', 'encoder.pos_conv_embed.conv.parametrizations.weight.original1']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+using hubert chinese ori
+[00:43:35] Load motion_generator from           live_portrait_wmg_wrapper.py:501
+           /test_models/video/models/joyvasa/pr
+           etrained_weights/JoyVASA/motion_gene
+           rator/motion_generator_hubert_chines
+           e.pt done.
+[1;31m2026-09-16 00:43:35.341124335 [E:onnxruntime:Default, env.cc:298 ThreadMain] pthread_setaffinity_np failed for thread: 536616, index: 1, mask: {1, }, error code: 22 error msg: Invalid argument. Specify the number of threads explicitly so the affinity is not set.[m
+[1;31m2026-09-16 00:43:35.341220675 [E:onnxruntime:Default, env.cc:298 ThreadMain] pthread_setaffinity_np failed for thread: 536620, index: 5, mask: {10, }, error code: 22 error msg: Invalid argument. Specify the number of threads explicitly so the affinity is not set.[m
+[1;31m2026-09-16 00:43:35.682054297 [E:onnxruntime:Default, env.cc:298 ThreadMain] pthread_setaffinity_np failed for thread: 536625, index: 1, mask: {1, }, error code: 22 error msg: Invalid argument. Specify the number of threads explicitly so the affinity is not set.[m
+[1;31m2026-09-16 00:43:35.682194708 [E:onnxruntime:Default, env.cc:298 ThreadMain] pthread_setaffinity_np failed for thread: 536629, index: 5, mask: {10, }, error code: 22 error msg: Invalid argument. Specify the number of threads explicitly so the affinity is not set.[m
+[00:43:36] FaceAnalysisDIY warmup time: 0.463s           face_analysis_diy.py:79
+[1;31m2026-09-16 00:43:36.169030201 [E:onnxruntime:Default, env.cc:298 ThreadMain] pthread_setaffinity_np failed for thread: 536634, index: 1, mask: {1, }, error code: 22 error msg: Invalid argument. Specify the number of threads explicitly so the affinity is not set.[m
+[1;31m2026-09-16 00:43:36.169245452 [E:onnxruntime:Default, env.cc:298 ThreadMain] pthread_setaffinity_np failed for thread: 536638, index: 5, mask: {10, }, error code: 22 error msg: Invalid argument. Specify the number of threads explicitly so the affinity is not set.[m
+           LandmarkRunner warmup time: 0.104s        human_landmark_runner.py:95
+/opt/ai/video/joyvasa/.venv/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py:1181: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. Starting in PyTorch 2.9, calling checkpoint without use_reentrant will raise an exception. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+/opt/ai/video/joyvasa/src/utils/dependencies/XPose/models/UniPose/deformable_transformer.py:1052: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+Loaded cached embeddings from file.
+[00:43:39] XPoseRunner warmup time: 1.280s         animal_landmark_runner.py:138
+           Load reference image from     live_portrait_wmg_pipeline_animal.py:52
+           /test_models/video/fixtures-v
+           1/imgs/animated-storyteller.p
+           ng
+           start loading audio from             live_portrait_wmg_wrapper.py:361
+           /test_models/video/fixtures-v1/audio
+           s/animated-storyteller.wav
+[00:43:51] audio loaded! (96000,)               live_portrait_wmg_wrapper.py:363
+           loading audio from:                  live_portrait_wmg_wrapper.py:367
+           /test_models/video/fixtures-v1/audio
+           s/animated-storyteller.wav
+🚀Generating Motion Sequence... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+🚀Animating Image with Generated Motions... ━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:07
+
+audio:  /test_models/video/fixtures-v1/audios/animated-storyteller.wav
+[00:44:08] Video with audio generated successfully:                 video.py:218
+           /test_models/video/results/joyvasa-animal/animated-story
+           teller_animated-storyteller.mp4

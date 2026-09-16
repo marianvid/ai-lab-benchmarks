@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "model": "LivePortrait Animals",
+  "case": "animated-storyteller-driving",
+  "status": "succeeded",
+  "returncode": 0,
+  "wall_s": 17.536,
+  "peak_gpu_memory_bytes": 4066377728,
+  "peak_gpu_utilisation_percent": 99,
+  "peak_rss_bytes": 4549074944,
+  "artifact": "/test_models/video/results/liveportrait-animals-driving/animated-storyteller--d0.mp4",
+  "log": "/test_models/video/results/liveportrait-animals-driving/animated-storyteller.log",
+  "command": [
+    "/opt/ai/video/joyvasa/.venv/bin/python",
+    "inference_animals.py",
+    "--source",
+    "/test_models/video/fixtures-v1/imgs/animated-storyteller.png",
+    "--driving",
+    "assets/examples/driving/d0.mp4",
+    "--output-dir",
+    "/test_models/video/results/liveportrait-animals-driving",
+    "--flag-crop-driving-video",
+    "--no-flag-stitching"
+  ],
+  "sample_count": 32
+  ,"source_commit": "9b294b3d0536135442ea73cb01e6cb3ca7029dd3"
+  ,"driving_fixture": "upstream assets/examples/driving/d0.mp4"
+  ,"output_duration_s": 3.12
+  ,"output_width": 512
+  ,"output_height": 512
+  ,"output_fps": 25
+  ,"output_frames": 78
+  ,"sha256": "63efff666f565ce398b958ee891cb74fe94592d3f0e9508295a86852a7b811fb"
+}

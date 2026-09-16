@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "video": "/test_models/video/results/echomimic-v3-preview-offload/20260915_195203_gs4.0_ags2.9/documentary-host-short_audio.mp4",
+  "reference": "/test_models/video/fixtures-v1/imgs/documentary-host.png",
+  "fps": 25.0,
+  "total_frames": 73,
+  "sample_every_frames": 5,
+  "sampled_frames": 15,
+  "face_detection_rate": 1.0,
+  "identity_cosine_mean": 0.8895855267842611,
+  "identity_cosine_min": 0.7691970467567444,
+  "face_center_std": [
+    0.0006936379409394537,
+    0.003458288762638722
+  ],
+  "face_area_mean": 0.18074458142121633,
+  "face_area_relative_std": 0.006957868810361369,
+  "sharpness_laplacian_mean": 43.48431209062595,
+  "sampled_frame_delta_mean": 0.006048819063758316
+}

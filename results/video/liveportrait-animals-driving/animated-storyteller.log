@@ -1,0 +1,71 @@
+[01:09:40] Load appearance_feature_extractor from   live_portrait_wrapper.py:361
+           /test_models/video/models/joyvasa/livepo
+           rtrait-hf/liveportrait_animals/base_mode
+           ls_v1.1/appearance_feature_extractor.pth
+            done.
+           Load motion_extractor from               live_portrait_wrapper.py:364
+           /test_models/video/models/joyvasa/livepo
+           rtrait-hf/liveportrait_animals/base_mode
+           ls_v1.1/motion_extractor.pth done.
+           Load warping_module from                 live_portrait_wrapper.py:367
+           /test_models/video/models/joyvasa/livepo
+           rtrait-hf/liveportrait_animals/base_mode
+           ls_v1.1/warping_module.pth done.
+[01:09:41] Load spade_generator from                live_portrait_wrapper.py:370
+           /test_models/video/models/joyvasa/livepo
+           rtrait-hf/liveportrait_animals/base_mode
+           ls_v1.1/spade_generator.pth done.
+           Load stitching_retargeting_module from   live_portrait_wrapper.py:374
+           /test_models/video/models/joyvasa/livepo
+           rtrait-hf/liveportrait/retargeting_model
+           s/stitching_retargeting_module.pth done.
+[1;31m2026-09-16 01:09:41.273579475 [E:onnxruntime:Default, env.cc:298 ThreadMain] pthread_setaffinity_np failed for thread: 537307, index: 1, mask: {1, }, error code: 22 error msg: Invalid argument. Specify the number of threads explicitly so the affinity is not set.[m
+[1;31m2026-09-16 01:09:41.275796582 [E:onnxruntime:Default, env.cc:298 ThreadMain] pthread_setaffinity_np failed for thread: 537311, index: 5, mask: {10, }, error code: 22 error msg: Invalid argument. Specify the number of threads explicitly so the affinity is not set.[m
+[1;31m2026-09-16 01:09:41.396215469 [E:onnxruntime:Default, env.cc:298 ThreadMain] pthread_setaffinity_np failed for thread: 537316, index: 1, mask: {1, }, error code: 22 error msg: Invalid argument. Specify the number of threads explicitly so the affinity is not set.[m
+[1;31m2026-09-16 01:09:41.396345280 [E:onnxruntime:Default, env.cc:298 ThreadMain] pthread_setaffinity_np failed for thread: 537320, index: 5, mask: {10, }, error code: 22 error msg: Invalid argument. Specify the number of threads explicitly so the affinity is not set.[m
+           FaceAnalysisDIY warmup time: 0.466s           face_analysis_diy.py:79
+[1;31m2026-09-16 01:09:41.891303514 [E:onnxruntime:Default, env.cc:298 ThreadMain] pthread_setaffinity_np failed for thread: 537327, index: 5, mask: {10, }, error code: 22 error msg: Invalid argument. Specify the number of threads explicitly so the affinity is not set.[m
+[1;31m2026-09-16 01:09:41.894463547 [E:onnxruntime:Default, env.cc:298 ThreadMain] pthread_setaffinity_np failed for thread: 537323, index: 1, mask: {1, }, error code: 22 error msg: Invalid argument. Specify the number of threads explicitly so the affinity is not set.[m
+[01:09:42] LandmarkRunner warmup time: 0.082s        human_landmark_runner.py:95
+/opt/ai/video/joyvasa/.venv/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py:1181: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. Starting in PyTorch 2.9, calling checkpoint without use_reentrant will raise an exception. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+/opt/ai/video/liveportrait/src/utils/dependencies/XPose/models/UniPose/deformable_transformer.py:1052: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+Loaded cached embeddings from file.
+[01:09:44] XPoseRunner warmup time: 0.844s         animal_landmark_runner.py:138
+           Load source image from            live_portrait_pipeline_animal.py:79
+           /test_models/video/fixtures-v1/im
+           gs/animated-storyteller.png
+           Load driving video from:         live_portrait_pipeline_animal.py:104
+           assets/examples/driving/d0.mp4,
+           FPS is 25
+[01:09:45] Start making driving motion      live_portrait_pipeline_animal.py:110
+           template...
+           Driving video is cropped, 78     live_portrait_pipeline_animal.py:113
+           frames are processed.
+Making driving motion templates... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+[01:09:46] Dump motion template to          live_portrait_pipeline_animal.py:128
+           assets/examples/driving/d0.pkl
+🚀Animating... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:02
+Concatenating result... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+
+
+[01:09:53] Animated template:               live_portrait_pipeline_animal.py:228
+           assets/examples/driving/d0.pkl,
+           you can specify `-d` argument
+           with this template path next
+           time to avoid cropping video,
+           motion making and protecting
+           privacy.
+           Animated video:                  live_portrait_pipeline_animal.py:229
+           /test_models/video/results/livep
+           ortrait-animals-driving/animated
+           -storyteller--d0.mp4
+           Animated video with concat:      live_portrait_pipeline_animal.py:230
+           /test_models/video/results/livep
+           ortrait-animals-driving/animated
+           -storyteller--d0_concat.mp4
+[01:09:55] Animated gif:                    live_portrait_pipeline_animal.py:234
+           /test_models/video/results/livep
+           ortrait-animals-driving/animated
+           -storyteller--d0.gif

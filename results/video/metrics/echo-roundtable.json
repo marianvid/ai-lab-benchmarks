@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "video": "/test_models/video/results/echomimic-v3-preview-offload/20260915_201634_gs4.0_ags2.9/roundtable-guest_audio.mp4",
+  "reference": "/test_models/video/fixtures-v1/imgs/roundtable-guest.png",
+  "fps": 25.0,
+  "total_frames": 146,
+  "sample_every_frames": 5,
+  "sampled_frames": 30,
+  "face_detection_rate": 1.0,
+  "identity_cosine_mean": 0.8555545250574748,
+  "identity_cosine_min": 0.6686558723449707,
+  "face_center_std": [
+    0.0008415237507312288,
+    0.0029193068636988668
+  ],
+  "face_area_mean": 0.1251358427107334,
+  "face_area_relative_std": 0.011211423939326809,
+  "sharpness_laplacian_mean": 43.87648056888283,
+  "sampled_frame_delta_mean": 0.005425303203177822
+}

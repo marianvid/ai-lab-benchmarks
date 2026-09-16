@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "model": "EchoMimicV3 preview 1.3B",
+  "case": "animated-storyteller",
+  "status": "failed",
+  "error": "TypeError: cannot unpack non-iterable NoneType object",
+  "wall_s": 93.416,
+  "peak_cuda_allocated_bytes": 377486848,
+  "peak_cuda_reserved_bytes": 398458880,
+  "settings": {
+    "steps": 5,
+    "size": [
+      512,
+      512
+    ],
+    "fps": 25,
+    "seed": 45,
+    "weight_dtype": "bfloat16",
+    "offload_profile": "LowRAM_HighVRAM",
+    "max_vram_fraction": 0.78
+  },
+  "artifact": null
+}

@@ -1,0 +1,44 @@
+--- a/musetalk/utils/preprocessing.py
++++ b/musetalk/utils/preprocessing.py
+@@ -7,16 +7,8 @@
+ import pickle
+ import os
+ import json
+-from mmpose.apis import inference_topdown, init_model
+-from mmpose.structures import merge_data_samples
+ import torch
+ from tqdm import tqdm
+
+-# initialize the mmpose model
+-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+-config_file = './musetalk/utils/dwpose/rtmpose-l_8xb32-270e_coco-ubody-wholebody-384x288.py'
+-checkpoint_file = './models/dwpose/dw-ll_ucoco_384.pth'
+-model = init_model(config_file, checkpoint_file, device=device)
+-
+ # initialize the face detection model
+ device = "cuda" if torch.cuda.is_available() else "cpu"
+@@ -93,6 +86,24 @@
+         print('get key_landmark and face bounding boxes with the default value')
+     average_range_minus = []
+     average_range_plus = []
++    for fb in tqdm(batches):
++        bbox = fa.get_detections_for_batch(np.asarray(fb))
++        for f in bbox:
++            if f is None:
++                coords_list += [coord_placeholder]
++                continue
++            x1, y1, x2, y2 = [int(value) for value in f]
++            height = y2 - y1
++            y1 = max(0, y1 + upperbondrange)
++            y2 = min(fb[0].shape[0], y2 + int(height * 0.12))
++            coords_list += [(x1, y1, x2, y2)]
++    print("********************************************bbox_shift parameter adjustment**********************************************************")
++    print(f"Total frame:「{len(frames)}」 face-detector-only fallback, bbox shift: {upperbondrange}")
++    print("*************************************************************************************************************************************")
++    return coords_list,frames
++
++    # The original DWPose route below is intentionally unreachable when this
++    # Blackwell compatibility patch is applied.
+     for fb in tqdm(batches):
+         results = inference_topdown(model, np.asarray(fb)[0])
+         results = merge_data_samples(results)

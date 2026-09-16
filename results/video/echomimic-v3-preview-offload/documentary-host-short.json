@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "model": "EchoMimicV3 preview 1.3B",
+  "case": "documentary-host-short",
+  "status": "succeeded",
+  "error": null,
+  "wall_s": 135.9,
+  "peak_cuda_allocated_bytes": 12033611264,
+  "peak_cuda_reserved_bytes": 12106858496,
+  "settings": {
+    "steps": 5,
+    "size": [
+      512,
+      512
+    ],
+    "fps": 25,
+    "seed": 43,
+    "weight_dtype": "bfloat16",
+    "offload_profile": "LowRAM_HighVRAM",
+    "max_vram_fraction": 0.78
+  },
+  "artifact": "/test_models/video/results/echomimic-v3-preview-offload/20260915_195203_gs4.0_ags2.9/documentary-host-short_audio.mp4"
+}

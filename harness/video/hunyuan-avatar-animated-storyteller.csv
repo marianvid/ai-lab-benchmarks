@@ -1,0 +1,2 @@
+videoid,image,audio,prompt,fps
+animated-storyteller,/test_models/video/fixtures-v1/imgs/animated-storyteller.png,/test_models/video/fixtures-v1/audios/animated-storyteller.wav,"A polished anthropomorphic fox storyteller speaks directly to the camera in a warm library. Restrained head movement, expressive eyes, natural mouth motion, stable framing, cinematic soft light.",25

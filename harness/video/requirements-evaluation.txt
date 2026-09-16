@@ -1,0 +1,4 @@
+insightface==0.7.3
+numpy>=1.26,<2
+onnxruntime>=1.22,<2
+opencv-python>=4.9,<5

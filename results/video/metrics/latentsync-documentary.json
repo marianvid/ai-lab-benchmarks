@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "video": "/test_models/video/results/latentsync-1.6/documentary-host.mp4",
+  "reference": "/test_models/video/fixtures-v1/imgs/documentary-host.png",
+  "fps": 25.0,
+  "total_frames": 152,
+  "sample_every_frames": 5,
+  "sampled_frames": 31,
+  "face_detection_rate": 1.0,
+  "identity_cosine_mean": 0.9537144610958714,
+  "identity_cosine_min": 0.9393724203109741,
+  "face_center_std": [
+    0.00014231552304615894,
+    0.0007591689882673617
+  ],
+  "face_area_mean": 0.1801238713725921,
+  "face_area_relative_std": 0.002158606595371635,
+  "sharpness_laplacian_mean": 58.429130799395374,
+  "sampled_frame_delta_mean": 0.001229225884508896
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "generation": [
+    {
+      "id": "documentary-host",
+      "prompt": "Photorealistic head-and-shoulders studio portrait of a fictional male documentary host in his early forties, calm intelligent expression, looking directly into the camera, lips gently closed, short dark hair, subtle natural skin texture, charcoal jacket over a plain black shirt, soft cinematic key light, restrained dark neutral background, centered and symmetrical composition, no microphone, no headset, no text",
+      "rubric": [
+        "single fictional adult",
+        "front-facing head and shoulders",
+        "closed relaxed mouth",
+        "unobstructed face",
+        "stable neutral background",
+        "no text"
+      ]
+    },
+    {
+      "id": "roundtable-guest",
+      "prompt": "Photorealistic head-and-shoulders studio portrait of a fictional Black woman technology researcher in her late thirties, attentive composed expression, looking directly into the camera, lips gently closed, natural textured hair, simple deep blue blouse, soft balanced studio lighting, restrained warm gray background, centered composition, no microphone, no headset, no jewelry covering the face, no text",
+      "rubric": [
+        "single fictional adult",
+        "front-facing head and shoulders",
+        "closed relaxed mouth",
+        "unobstructed face",
+        "stable neutral background",
+        "no text"
+      ]
+    },
+    {
+      "id": "animated-storyteller",
+      "prompt": "A polished animated-film character portrait of a fictional older fox storyteller, head and shoulders, expressive amber eyes, russet fur with a cream muzzle, dark green waistcoat, warm gentle expression, mouth closed, looking directly at the viewer, softly lit storybook study background, centered composition, clean high-end 3D animation style, no text",
+      "rubric": [
+        "single animated character",
+        "front-facing head and shoulders",
+        "closed mouth",
+        "clear eyes and muzzle",
+        "stable readable silhouette",
+        "no text"
+      ]
+    }
+  ],
+  "edits": []
+}

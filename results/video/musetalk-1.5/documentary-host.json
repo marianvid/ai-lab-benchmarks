@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "model": "MuseTalk 1.5",
+  "case": "documentary-host",
+  "status": "succeeded",
+  "returncode": 0,
+  "wall_s": 60.28,
+  "peak_gpu_memory_bytes": 7753170944,
+  "peak_gpu_utilisation_percent": 95,
+  "peak_rss_bytes": 4877070336,
+  "artifact": "/test_models/video/results/musetalk-1.5/v15/documentary-host.mp4",
+  "log": "/test_models/video/results/musetalk-1.5/documentary-host.log",
+  "command": [
+    ".venv/bin/python",
+    "scripts/inference.py",
+    "--unet_config",
+    "./models/musetalkV15/musetalk.json",
+    "--unet_model_path",
+    "./models/musetalkV15/unet.pth",
+    "--whisper_dir",
+    "./models/whisper",
+    "--inference_config",
+    "/opt/ai/video/benchmark/musetalk-documentary.yaml",
+    "--result_dir",
+    "/test_models/video/results/musetalk-1.5",
+    "--use_float16",
+    "--version",
+    "v15",
+    "--batch_size",
+    "8"
+  ],
+  "sample_count": 112
+}

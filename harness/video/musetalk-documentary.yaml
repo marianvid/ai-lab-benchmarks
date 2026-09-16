@@ -1,0 +1,4 @@
+documentary_host:
+  video_path: "/test_models/video/fixtures-v1/documentary-host-static.mp4"
+  audio_path: "/test_models/video/fixtures-v1/audios/documentary-host.wav"
+  result_name: "documentary-host.mp4"

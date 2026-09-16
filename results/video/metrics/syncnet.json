@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "evaluator": "LatentSync SyncNetEval",
+  "weights": "ByteDance/LatentSync-1.5 auxiliary/syncnet_v2.model",
+  "device": "cpu",
+  "results": [
+    {
+      "model": "LatentSync 1.6",
+      "case": "documentary-host",
+      "confidence": 5.19,
+      "av_offset_frames": 0
+    },
+    {
+      "model": "EchoMimicV3 preview 1.3B",
+      "case": "documentary-host-short",
+      "confidence": 3.05,
+      "av_offset_frames": -4
+    },
+    {
+      "model": "EchoMimicV3 preview 1.3B",
+      "case": "roundtable-guest",
+      "confidence": 1.4,
+      "av_offset_frames": -3
+    },
+    {
+      "model": "InfiniteTalk 14B FP8",
+      "case": "documentary-host",
+      "confidence": 8.84,
+      "av_offset_frames": -2
+    },
+    {
+      "model": "MuseTalk 1.5",
+      "case": "documentary-host",
+      "confidence": 7.85,
+      "av_offset_frames": -3
+    }
+  ]
+}

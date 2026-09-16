@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "model": "JoyVASA animal",
+  "case": "animated-storyteller",
+  "status": "succeeded",
+  "returncode": 0,
+  "wall_s": 39.948,
+  "peak_gpu_memory_bytes": 20094910464,
+  "peak_gpu_utilisation_percent": 100,
+  "peak_rss_bytes": 4271448064,
+  "artifact": "/test_models/video/results/joyvasa-animal/animated-storyteller_animated-storyteller.mp4",
+  "log": "/test_models/video/results/joyvasa-animal/animated-storyteller.log",
+  "command": [
+    ".venv/bin/python",
+    "inference.py",
+    "--animation-mode",
+    "animal",
+    "--reference",
+    "/test_models/video/fixtures-v1/imgs/animated-storyteller.png",
+    "--audio",
+    "/test_models/video/fixtures-v1/audios/animated-storyteller.wav",
+    "--output-dir",
+    "/test_models/video/results/joyvasa-animal",
+    "--cfg-scale",
+    "2.0"
+  ],
+  "sample_count": 74
+}

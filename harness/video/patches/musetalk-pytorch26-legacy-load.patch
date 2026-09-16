@@ -1,0 +1,15 @@
+diff --git a/musetalk/utils/face_parsing/resnet.py b/musetalk/utils/face_parsing/resnet.py
+index 67fc93a..326468d 100755
+--- a/musetalk/utils/face_parsing/resnet.py
++++ b/musetalk/utils/face_parsing/resnet.py
+@@ -80,7 +80,9 @@ class Resnet18(nn.Module):
+         return feat8, feat16, feat32
+
+     def init_weight(self, model_path):
+-        state_dict = torch.load(model_path) #modelzoo.load_url(resnet18_url)
++        # The official ResNet checkpoint uses PyTorch's legacy tar format.
++        # PyTorch 2.6+ defaults to weights_only=True, which rejects that format.
++        state_dict = torch.load(model_path, weights_only=False) #modelzoo.load_url(resnet18_url)
+         self_state_dict = self.state_dict()
+         for k, v in state_dict.items():
+             if 'fc' in k: continue

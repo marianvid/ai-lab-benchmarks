@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "manager": "http://ai-lab.local:8090",
+  "profiles": {
+    "flux2-dev-q8-benchmark": {
+      "instance": "image-flux2-dev-q8-0",
+      "task": "generation",
+      "cases": [
+        {
+          "case": "documentary-host",
+          "prompt": "Photorealistic head-and-shoulders studio portrait of a fictional male documentary host in his early forties, calm intelligent expression, looking directly into the camera, lips gently closed, short dark hair, subtle natural skin texture, charcoal jacket over a plain black shirt, soft cinematic key light, restrained dark neutral background, centered and symmetrical composition, no microphone, no headset, no text",
+          "rubric": [
+            "single fictional adult",
+            "front-facing head and shoulders",
+            "closed relaxed mouth",
+            "unobstructed face",
+            "stable neutral background",
+            "no text"
+          ],
+          "ok": true,
+          "job_id": "176c5247defe4a30808412230ea604d6",
+          "status": "succeeded",
+          "duration_ms": 119010,
+          "effective_settings": {},
+          "artifact": "library/flux2-dev-q8-benchmark/documentary-host.png",
+          "deterministic": {
+            "bytes": 1407794,
+            "sha256": "649ce04a70c4afe060a318faf721f4f98b0713db6279e5782afd2cd52dcf017e",
+            "png": true,
+            "width": 1024,
+            "height": 1024
+          },
+          "semantic_review": {
+            "status": "pending",
+            "scores": {},
+            "notes": ""
+          }
+        },
+        {
+          "case": "roundtable-guest",
+          "prompt": "Photorealistic head-and-shoulders studio portrait of a fictional Black woman technology researcher in her late thirties, attentive composed expression, looking directly into the camera, lips gently closed, natural textured hair, simple deep blue blouse, soft balanced studio lighting, restrained warm gray background, centered composition, no microphone, no headset, no jewelry covering the face, no text",
+          "rubric": [
+            "single fictional adult",
+            "front-facing head and shoulders",
+            "closed relaxed mouth",
+            "unobstructed face",
+            "stable neutral background",
+            "no text"
+          ],
+          "ok": true,
+          "job_id": "81f33a5332d740b884deabebc5df947e",
+          "status": "succeeded",
+          "duration_ms": 138098,
+          "effective_settings": {},
+          "artifact": "library/flux2-dev-q8-benchmark/roundtable-guest.png",
+          "deterministic": {
+            "bytes": 1484933,
+            "sha256": "cd15fdf0e26457dc64c8b18fac53a20067e9882ae4bba5666d763a9e691b59dd",
+            "png": true,
+            "width": 1024,
+            "height": 1024
+          },
+          "semantic_review": {
+            "status": "pending",
+            "scores": {},
+            "notes": ""
+          }
+        },
+        {
+          "case": "animated-storyteller",
+          "prompt": "A polished animated-film character portrait of a fictional older fox storyteller, head and shoulders, expressive amber eyes, russet fur with a cream muzzle, dark green waistcoat, warm gentle expression, mouth closed, looking directly at the viewer, softly lit storybook study background, centered composition, clean high-end 3D animation style, no text",
+          "rubric": [
+            "single animated character",
+            "front-facing head and shoulders",
+            "closed mouth",
+            "clear eyes and muzzle",
+            "stable readable silhouette",
+            "no text"
+          ],
+          "ok": true,
+          "job_id": "a9309c3b663248a69fd73d851888b61e",
+          "status": "succeeded",
+          "duration_ms": 110751,
+          "effective_settings": {},
+          "artifact": "library/flux2-dev-q8-benchmark/animated-storyteller.png",
+          "deterministic": {
+            "bytes": 1410835,
+            "sha256": "4ab425a5decdfd8d4be33972974d2a6a2ab02c11420db547bf5869bc7644cae7",
+            "png": true,
+            "width": 1024,
+            "height": 1024
+          },
+          "semantic_review": {
+            "status": "pending",
+            "scores": {},
+            "notes": ""
+          }
+        }
+      ],
+      "preload_unloads": [],
+      "load": {
+        "ok": true,
+        "wall_s": 7.316,
+        "manager": {
+          "instance_id": "image-flux2-dev-q8-0",
+          "kind": "load",
+          "ok": true,
+          "total_ms": 7279,
+          "steps": [
+            {
+              "phase": "starting",
+              "elapsed_ms": 12
+            },
+            {
+              "phase": "process_up",
+              "elapsed_ms": 179
+            },
+            {
+              "phase": "ready",
+              "elapsed_ms": 7210
+            }
+          ],
+          "error": ""
+        }
+      },
+      "unload": {
+        "instance_id": "image-flux2-dev-q8-0",
+        "kind": "unload",
+        "ok": true,
+        "total_ms": 2534,
+        "steps": [
+          {
+            "phase": "stopping",
+            "elapsed_ms": 11
+          },
+          {
+            "phase": "process_gone",
+            "elapsed_ms": 1359
+          },
+          {
+            "phase": "memory_released",
+            "elapsed_ms": 2498
+          }
+        ],
+        "error": ""
+      }
+    }
+  }
+}
