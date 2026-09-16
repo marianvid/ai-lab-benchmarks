@@ -1,0 +1,7 @@
+{
+  "prompt": "A polished fictional older fox storyteller speaks directly to the camera in a warm storybook study. Restrained head movement, expressive eyes, natural mouth motion, stable character identity and background.",
+  "cond_image": "/test_models/video/fixtures-v1/imgs/animated-storyteller.png",
+  "cond_audio": {
+    "person1": "/test_models/video/fixtures-v1/audios/animated-storyteller.wav"
+  }
+}

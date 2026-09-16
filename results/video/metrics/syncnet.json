@@ -33,6 +33,30 @@
       "case": "documentary-host",
       "confidence": 7.85,
       "av_offset_frames": -3
+    },
+    {
+      "model": "LongCat-Video-Avatar 1.5 INT8",
+      "case": "documentary-host",
+      "confidence": 9.65,
+      "av_offset_frames": -2
+    },
+    {
+      "model": "LongCat-Video-Avatar 1.5 INT8",
+      "case": "roundtable-guest",
+      "confidence": 5.05,
+      "av_offset_frames": -2
+    },
+    {
+      "model": "TA2.0",
+      "case": "documentary-host",
+      "confidence": 6.93,
+      "av_offset_frames": 0
+    },
+    {
+      "model": "TA2.0",
+      "case": "roundtable-guest",
+      "confidence": 7.95,
+      "av_offset_frames": 0
     }
   ]
 }

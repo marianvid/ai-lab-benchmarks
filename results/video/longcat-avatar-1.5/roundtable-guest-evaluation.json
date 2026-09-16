@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "video": "/test_models/video/results/longcat-avatar-1.5/roundtable-guest.mp4",
+  "reference": "/test_models/video/fixtures-v1/imgs/roundtable-guest.png",
+  "fps": 25.0,
+  "total_frames": 150,
+  "sample_every_frames": 2,
+  "sampled_frames": 75,
+  "face_detection_rate": 1.0,
+  "identity_cosine_mean": 0.749926795164744,
+  "identity_cosine_min": 0.5328266024589539,
+  "face_center_std": [
+    0.002837691758968981,
+    0.015558371285618341
+  ],
+  "face_area_mean": 0.13287463218287415,
+  "face_area_relative_std": 0.0347810807897122,
+  "sharpness_laplacian_mean": 38.94877280470934,
+  "sampled_frame_delta_mean": 0.01125740382168159
+}

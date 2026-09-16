@@ -1,0 +1,7 @@
+{
+  "prompt": "A composed fictional technology researcher speaks directly to the camera in a locked roundtable guest shot. Restrained natural head movement, attentive expression, stable identity and background.",
+  "cond_image": "/test_models/video/fixtures-v1/imgs/roundtable-guest.png",
+  "cond_audio": {
+    "person1": "/test_models/video/fixtures-v1/audios/roundtable-guest.wav"
+  }
+}

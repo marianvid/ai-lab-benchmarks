@@ -1,0 +1,42 @@
+diff --git a/talking_avatar/pipeline.py b/talking_avatar/pipeline.py
+index 5963877..2e20ff0 100644
+--- a/talking_avatar/pipeline.py
++++ b/talking_avatar/pipeline.py
+@@ -1,5 +1,6 @@
+ from __future__ import annotations
+ 
++import gc
+ import tempfile
+ from pathlib import Path
+ 
+@@ -125,6 +126,14 @@ class TalkingAvatarPipeline:
+         torch.manual_seed(config.seed)
+         torch.cuda.manual_seed_all(config.seed)
+ 
++        # Keep the 5B video stack off the GPU while UMT5-XXL encodes the prompt.
++        # Loading both at once exceeds a 32 GiB card by a small margin.
++        self.components.transformer.to("cpu")
++        self.components.vae.model.to("cpu")
++        self.components.audio_encoder.to("cpu")
++        self.components.audio_projection.to("cpu")
++        gc.collect()
++        torch.cuda.empty_cache()
++
+         text_encoder = TextEncoder(
+             self.video_model_dir, device=self.device, dtype=self.dtype
+         )
+@@ -132,6 +141,13 @@ class TalkingAvatarPipeline:
+         text_encoder.close()
+         negative_embeds = load_embedding(negative_prompt_embeds, self.device).to(
+             dtype=self.dtype
+         )
++
++        self.components.transformer.to(device=self.device, dtype=self.dtype)
++        self.components.vae.model.to(device=self.device, dtype=self.dtype)
++        self.components.audio_encoder.to(device=self.device, dtype=self.dtype)
++        self.components.audio_projection.to(device=self.device, dtype=self.dtype)
++        gc.collect()
++        torch.cuda.empty_cache()
+ 
+         image = load_reference_image(
+             image_path, width=config.width, height=config.height

@@ -1,0 +1,12 @@
+diff --git a/talking_avatar/vendor/wan/modules/model_v2.py b/talking_avatar/vendor/wan/modules/model_v2.py
+index a60f23a..923579a 100644
+--- a/talking_avatar/vendor/wan/modules/model_v2.py
++++ b/talking_avatar/vendor/wan/modules/model_v2.py
+@@ -7,7 +7,7 @@ from diffusers.configuration_utils import ConfigMixin, register_to_config
+ from diffusers.models.modeling_utils import ModelMixin
+ from diffusers.loaders import PeftAdapterMixin
+-from .attention import flash_attention
++from .attention import attention as flash_attention
+ from einops import repeat, rearrange
+ 
+ __all__ = ['WanModel']

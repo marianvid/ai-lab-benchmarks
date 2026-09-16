@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "video": "/test_models/video/results/longcat-avatar-1.5/documentary-host/segment_001.mp4",
+  "reference": "/test_models/video/fixtures-v1/imgs/documentary-host-short.png",
+  "fps": 25.0,
+  "total_frames": 75,
+  "sample_every_frames": 1,
+  "sampled_frames": 75,
+  "face_detection_rate": 1.0,
+  "identity_cosine_mean": 0.8178533379236858,
+  "identity_cosine_min": 0.6742414236068726,
+  "face_center_std": [
+    0.001819568319238974,
+    0.009276309179206545
+  ],
+  "face_area_mean": 0.1879013752184416,
+  "face_area_relative_std": 0.028662906330648424,
+  "sharpness_laplacian_mean": 34.50553618057653,
+  "sampled_frame_delta_mean": 0.0059971029163354535
+}

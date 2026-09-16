@@ -1,0 +1,196 @@
+TMA benchmarks will be running without grid constant TMA descriptor.
+[rank 0] init_device_mesh [dp_size x cp_size]: [1 x 1]
+[rank 0] mesh_2d: DeviceMesh('cuda', [[0]], mesh_dim_names=('dp', 'cp'))
+[rank 0] [dp_rank, cp_rank]: [0, 0],  dp_ranks: [0], cp_ranks: [0]
+[PHASE 1] Loading tokenizer + text encoder...
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards:  20%|██        | 1/5 [00:01<00:06,  1.61s/it]Loading checkpoint shards:  40%|████      | 2/5 [00:03<00:05,  1.78s/it]Loading checkpoint shards:  60%|██████    | 3/5 [00:05<00:03,  1.87s/it]Loading checkpoint shards:  80%|████████  | 4/5 [00:07<00:01,  1.96s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:08<00:00,  1.69s/it]Loading checkpoint shards: 100%|██████████| 5/5 [00:08<00:00,  1.76s/it]
+[PHASE 1] Encoding prompt...
+[PHASE 1] Text encoder freed.
+[PHASE 2] Loading audio models...
+INFO:audio_separator.separator.separator:Separator version 0.30.2 instantiating with output_dir: audio_temp_file/vocals, output_format: WAV
+INFO:audio_separator.separator.separator:Using model directory from model_file_dir parameter: /test_models/video/models/longcat-avatar-1.5/vocal_separator
+INFO:audio_separator.separator.separator:Operating System: Linux #1 SMP PREEMPT_DYNAMIC PMX 7.0.14-12 (2026-08-11T11:05Z)
+INFO:audio_separator.separator.separator:System: Linux Node: ai-lab Release: 7.0.14-12-pve Machine: x86_64 Proc: 
+INFO:audio_separator.separator.separator:Python Version: 3.11.16
+INFO:audio_separator.separator.separator:PyTorch Version: 2.8.0+cu128
+INFO:audio_separator.separator.separator:FFmpeg installed: ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers
+INFO:audio_separator.separator.separator:ONNX Runtime CPU package installed with version: 1.23.2
+INFO:audio_separator.separator.separator:CUDA is available in Torch, setting Torch device to CUDA
+WARNING:audio_separator.separator.separator:CUDAExecutionProvider not available in ONNXruntime, so acceleration will NOT be enabled
+INFO:audio_separator.separator.separator:Loading model Kim_Vocal_2.onnx...
+INFO:audio_separator.separator.separator:Hash of model file /test_models/video/models/longcat-avatar-1.5/vocal_separator/Kim_Vocal_2.onnx is 970b3f9492014d18fefeedfe4773cb42
+[1;31m2026-09-16 10:34:01.655968335 [E:onnxruntime:Default, env.cc:226 ThreadMain] pthread_setaffinity_np failed for thread: 554622, index: 1, mask: {1, }, error code: 22 error msg: Invalid argument. Specify the number of threads explicitly so the affinity is not set.[m
+[1;31m2026-09-16 10:34:01.656095241 [E:onnxruntime:Default, env.cc:226 ThreadMain] pthread_setaffinity_np failed for thread: 554626, index: 5, mask: {10, }, error code: 22 error msg: Invalid argument. Specify the number of threads explicitly so the affinity is not set.[m
+INFO:audio_separator.separator.separator:Load model duration: 00:00:00
+INFO:audio_separator.separator.separator:Starting separation process for audio_file_path: /test_models/video/fixtures-v1/audios/documentary-host-short.wav
+  0%|          | 0/2 [00:00<?, ?it/s] 50%|█████     | 1/2 [00:02<00:02,  2.78s/it]100%|██████████| 2/2 [00:05<00:00,  2.77s/it]100%|██████████| 2/2 [00:05<00:00,  2.77s/it]
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 15.29it/s]100%|██████████| 2/2 [00:00<00:00, 15.27it/s]
+INFO:audio_separator.separator.separator:Saving Vocals stem to documentary-host-short_(Vocals)_Kim_Vocal_2.wav...
+INFO:audio_separator.separator.separator:Audio duration is 0.00 hours (3.00 seconds).
+INFO:audio_separator.separator.separator:Using pydub for writing.
+INFO:audio_separator.separator.separator:Clearing input audio file paths, sources and stems...
+INFO:audio_separator.separator.separator:Separation duration: 00:00:06
+[PHASE 2] Computing audio embeddings...
+[PHASE 2] Audio processed and models freed.
+[PHASE 3] Loading VAE...
+Cannot initialize model with low cpu memory usage because `accelerate` was not found in the environment. Defaulting to `low_cpu_mem_usage=False`. It is strongly recommended to install `accelerate` for faster and less memory-intense model loading. You can do so with: 
+```
+pip install accelerate
+```
+.
+[PHASE 3] Loading INT8 DiT (streaming shards to avoid OOM)...
+  Loading shard: quantized_model-00001-of-00004.safetensors
+  Loading shard: quantized_model-00002-of-00004.safetensors
+  Loading shard: quantized_model-00003-of-00004.safetensors
+  Loading shard: quantized_model-00004-of-00004.safetensors
+create LoRA network. base dim (rank): 128, alpha: 64
+create LoRA for model: 336 modules.
+[PHASE 3] Generating segment 1/1...
+Denoising:   0%|          | 0/8 [00:00<?, ?it/s]Denoising:  12%|█▎        | 1/8 [00:21<02:33, 21.95s/it]Denoising:  25%|██▌       | 2/8 [00:43<02:10, 21.76s/it]Denoising:  38%|███▊      | 3/8 [01:05<01:49, 21.93s/it]Denoising:  50%|█████     | 4/8 [01:27<01:28, 22.03s/it]Denoising:  62%|██████▎   | 5/8 [01:50<01:06, 22.10s/it]Denoising:  75%|███████▌  | 6/8 [02:12<00:44, 22.16s/it]Denoising:  88%|████████▊ | 7/8 [02:34<00:22, 22.20s/it]Denoising: 100%|██████████| 8/8 [02:57<00:00, 22.24s/it]Denoising: 100%|██████████| 8/8 [02:57<00:00, 22.13s/it]
+Saving video:   0%|          | 0/93 [00:00<?, ?it/s]huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+Saving video:   1%|          | 1/93 [00:00<00:21,  4.25it/s]Saving video:  89%|████████▉ | 83/93 [00:00<00:00, 310.90it/s]Saving video: 100%|██████████| 93/93 [00:00<00:00, 262.25it/s]
+ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers
+  built with gcc 14 (Debian 14.2.0-19)
+  configuration: --prefix=/usr --extra-version=0+deb13u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --disable-libmfx --disable-omx --enable-gnutls --enable-libaom --enable-libass --enable-libbs2b --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libharfbuzz --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg --enable-openal --enable-opencl --enable-opengl --disable-sndio --enable-libvpl --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-ladspa --enable-libbluray --enable-libcaca --enable-libdvdnav --enable-libdvdread --enable-libjack --enable-libpulse --enable-librabbitmq --enable-librist --enable-libsrt --enable-libssh --enable-libsvtav1 --enable-libx264 --enable-libzmq --enable-libzvbi --enable-lv2 --enable-sdl2 --enable-libplacebo --enable-librav1e --enable-pocketsphinx --enable-librsvg --enable-libjxl --enable-shared
+  libavutil      59. 39.100 / 59. 39.100
+  libavcodec     61. 19.101 / 61. 19.101
+  libavformat    61.  7.103 / 61.  7.103
+  libavdevice    61.  3.100 / 61.  3.100
+  libavfilter    10.  5.100 / 10.  5.100
+  libswscale      8.  3.100 /  8.  3.100
+  libswresample   5.  3.100 /  5.  3.100
+  libpostproc    58.  3.100 / 58.  3.100
+[aist#0:0/pcm_s16le @ 0x602cde8364c0] Guessed Channel Layout: mono
+Input #0, wav, from '/test_models/video/fixtures-v1/audios/documentary-host-short.wav':
+  Metadata:
+    encoder         : Lavf61.7.103
+  Duration: 00:00:03.00, bitrate: 256 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 16000 Hz, mono, s16, 256 kb/s
+Stream mapping:
+  Stream #0:0 -> #0:0 (pcm_s16le (native) -> pcm_s16le (native))
+Press [q] to stop, [?] for help
+Output #0, wav, to '/test_models/video/results/longcat-avatar-1.5/documentary-host/segment_001-cropaudio.wav':
+  Metadata:
+    ISFT            : Lavf61.7.103
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 16000 Hz, mono, s16, 256 kb/s
+      Metadata:
+        encoder         : Lavc61.19.101 pcm_s16le
+[out#0/wav @ 0x602cde836640] video:0KiB audio:94KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.081250%
+size=      94KiB time=00:00:03.00 bitrate= 256.2kbits/s speed=1.29e+03x    
+ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers
+  built with gcc 14 (Debian 14.2.0-19)
+  configuration: --prefix=/usr --extra-version=0+deb13u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --disable-libmfx --disable-omx --enable-gnutls --enable-libaom --enable-libass --enable-libbs2b --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libharfbuzz --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg --enable-openal --enable-opencl --enable-opengl --disable-sndio --enable-libvpl --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-ladspa --enable-libbluray --enable-libcaca --enable-libdvdnav --enable-libdvdread --enable-libjack --enable-libpulse --enable-librabbitmq --enable-librist --enable-libsrt --enable-libssh --enable-libsvtav1 --enable-libx264 --enable-libzmq --enable-libzvbi --enable-lv2 --enable-sdl2 --enable-libplacebo --enable-librav1e --enable-pocketsphinx --enable-librsvg --enable-libjxl --enable-shared
+  libavutil      59. 39.100 / 59. 39.100
+  libavcodec     61. 19.101 / 61. 19.101
+  libavformat    61.  7.103 / 61.  7.103
+  libavdevice    61.  3.100 / 61.  3.100
+  libavfilter    10.  5.100 / 10.  5.100
+  libswscale      8.  3.100 /  8.  3.100
+  libswresample   5.  3.100 /  5.  3.100
+  libpostproc    58.  3.100 / 58.  3.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/test_models/video/results/longcat-avatar-1.5/documentary-host/segment_001-temp.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf61.1.100
+  Duration: 00:00:03.72, start: 0.000000, bitrate: 324 kb/s
+  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 640x608, 320 kb/s, 25 fps, 25 tbr, 12800 tbn (default)
+      Metadata:
+        handler_name    : VideoHandler
+        vendor_id       : [0][0][0][0]
+        encoder         : Lavc61.3.100 libx264
+Stream mapping:
+  Stream #0:0 -> #0:0 (copy)
+Output #0, mp4, to '/test_models/video/results/longcat-avatar-1.5/documentary-host/segment_001-cropvideo.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf61.7.103
+  Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 640x608, q=2-31, 320 kb/s, 25 fps, 25 tbr, 12800 tbn (default)
+      Metadata:
+        handler_name    : VideoHandler
+        vendor_id       : [0][0][0][0]
+        encoder         : Lavc61.3.100 libx264
+Press [q] to stop, [?] for help
+[out#0/mp4 @ 0x64712d8a3300] video:136KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 1.279719%
+frame=   77 fps=0.0 q=-1.0 Lsize=     138KiB time=00:00:03.08 bitrate= 365.9kbits/s speed=5.55e+03x    
+ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers
+  built with gcc 14 (Debian 14.2.0-19)
+  configuration: --prefix=/usr --extra-version=0+deb13u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --disable-libmfx --disable-omx --enable-gnutls --enable-libaom --enable-libass --enable-libbs2b --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libharfbuzz --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg --enable-openal --enable-opencl --enable-opengl --disable-sndio --enable-libvpl --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-ladspa --enable-libbluray --enable-libcaca --enable-libdvdnav --enable-libdvdread --enable-libjack --enable-libpulse --enable-librabbitmq --enable-librist --enable-libsrt --enable-libssh --enable-libsvtav1 --enable-libx264 --enable-libzmq --enable-libzvbi --enable-lv2 --enable-sdl2 --enable-libplacebo --enable-librav1e --enable-pocketsphinx --enable-librsvg --enable-libjxl --enable-shared
+  libavutil      59. 39.100 / 59. 39.100
+  libavcodec     61. 19.101 / 61. 19.101
+  libavformat    61.  7.103 / 61.  7.103
+  libavdevice    61.  3.100 / 61.  3.100
+  libavfilter    10.  5.100 / 10.  5.100
+  libswscale      8.  3.100 /  8.  3.100
+  libswresample   5.  3.100 /  5.  3.100
+  libpostproc    58.  3.100 / 58.  3.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/test_models/video/results/longcat-avatar-1.5/documentary-host/segment_001-cropvideo.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf61.7.103
+  Duration: 00:00:03.08, start: 0.000000, bitrate: 365 kb/s
+  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 640x608, 361 kb/s, 25 fps, 25 tbr, 12800 tbn (default)
+      Metadata:
+        handler_name    : VideoHandler
+        vendor_id       : [0][0][0][0]
+        encoder         : Lavc61.3.100 libx264
+[aist#1:0/pcm_s16le @ 0x636ddd98cf40] Guessed Channel Layout: mono
+Input #1, wav, from '/test_models/video/results/longcat-avatar-1.5/documentary-host/segment_001-cropaudio.wav':
+  Metadata:
+    encoder         : Lavf61.7.103
+  Duration: 00:00:03.00, bitrate: 256 kb/s
+  Stream #1:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 16000 Hz, mono, s16, 256 kb/s
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> h264 (libx264))
+  Stream #1:0 -> #0:1 (pcm_s16le (native) -> aac (native))
+Press [q] to stop, [?] for help
+[libx264 @ 0x636ddd8e1180] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2 AVX512
+[libx264 @ 0x636ddd8e1180] profile High, level 3.0, 4:2:0, 8-bit
+[libx264 @ 0x636ddd8e1180] 264 - core 164 r3108 31e19f9 - H.264/MPEG-4 AVC codec - Copyleft 2003-2023 - http://www.videolan.org/x264.html - options: cabac=1 ref=3 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=7 psy=1 psy_rd=1.00:0.00 mixed_ref=1 me_range=16 chroma_me=1 trellis=1 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=-2 threads=18 lookahead_threads=3 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=2 keyint=250 keyint_min=25 scenecut=40 intra_refresh=0 rc_lookahead=40 rc=crf mbtree=1 crf=23.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to '/test_models/video/results/longcat-avatar-1.5/documentary-host/segment_001.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf61.7.103
+  Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p(tv, progressive), 640x608, q=2-31, 25 fps, 12800 tbn (default)
+      Metadata:
+        handler_name    : VideoHandler
+        vendor_id       : [0][0][0][0]
+        encoder         : Lavc61.19.101 libx264
+      Side data:
+        cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+  Stream #0:1: Audio: aac (LC) (mp4a / 0x6134706D), 16000 Hz, mono, fltp, 69 kb/s
+      Metadata:
+        encoder         : Lavc61.19.101 aac
+[out#0/mp4 @ 0x636ddd98d0c0] video:140KiB audio:25KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 1.979207%
+frame=   75 fps=0.0 q=-1.0 Lsize=     168KiB time=00:00:02.92 bitrate= 471.9kbits/s speed=18.2x    
+[libx264 @ 0x636ddd8e1180] frame I:1     Avg QP:19.17  size:  9896
+[libx264 @ 0x636ddd8e1180] frame P:19    Avg QP:21.77  size:  4461
+[libx264 @ 0x636ddd8e1180] frame B:55    Avg QP:24.72  size:   864
+[libx264 @ 0x636ddd8e1180] consecutive B-frames:  1.3%  2.7%  0.0% 96.0%
+[libx264 @ 0x636ddd8e1180] mb I  I16..4: 20.1% 75.9%  4.0%
+[libx264 @ 0x636ddd8e1180] mb P  I16..4:  0.4%  3.4%  0.3%  P16..4: 30.3%  9.1%  3.8%  0.0%  0.0%    skip:52.8%
+[libx264 @ 0x636ddd8e1180] mb B  I16..4:  0.0%  0.1%  0.0%  B16..8: 29.8%  1.6%  0.2%  direct: 0.2%  skip:68.1%  L0:34.1% L1:63.8% BI: 2.0%
+[libx264 @ 0x636ddd8e1180] 8x8 transform intra:79.4% inter:87.4%
+[libx264 @ 0x636ddd8e1180] coded y,uvDC,uvAC intra: 49.9% 38.6% 12.9% inter: 4.7% 2.3% 0.0%
+[libx264 @ 0x636ddd8e1180] i16 v,h,dc,p: 51% 11% 16% 22%
+[libx264 @ 0x636ddd8e1180] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 27% 14% 24%  5%  6%  7%  6%  7%  5%
+[libx264 @ 0x636ddd8e1180] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 21% 25% 12%  7%  8%  7%  9%  5%  6%
+[libx264 @ 0x636ddd8e1180] i8c dc,h,v,p: 68% 13% 14%  5%
+[libx264 @ 0x636ddd8e1180] Weighted P-Frames: Y:5.3% UV:0.0%
+[libx264 @ 0x636ddd8e1180] ref P L0: 60.1% 13.6% 18.5%  7.0%  0.9%
+[libx264 @ 0x636ddd8e1180] ref B L0: 88.1%  9.3%  2.6%
+[libx264 @ 0x636ddd8e1180] ref B L1: 94.7%  5.3%
+[libx264 @ 0x636ddd8e1180] kb/s:379.17
+[aac @ 0x636dde46d540] Qavg: 28420.553
+[DONE] Generation complete!
+[rank0]:[W916 10:37:45.540700456 ProcessGroupNCCL.cpp:1538] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())

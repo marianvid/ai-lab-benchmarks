@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "model": "LongCat-Video-Avatar-1.5-INT8",
+  "case": "roundtable-guest",
+  "status": "succeeded",
+  "returncode": 0,
+  "wall_s": 436.708,
+  "peak_gpu_memory_bytes": 30696013824,
+  "peak_gpu_utilisation_percent": 100,
+  "peak_rss_bytes": 23637012480,
+  "artifact": "/test_models/video/results/longcat-avatar-1.5/roundtable-guest",
+  "log": "/test_models/video/results/longcat-avatar-1.5/roundtable-guest.log",
+  "command": [
+    ".venv/bin/torchrun",
+    "--nproc_per_node=1",
+    "run_demo_avatar_single_lowmem.py",
+    "--checkpoint_dir",
+    "/test_models/video/models/longcat-avatar-1.5",
+    "--input_json",
+    "/opt/ai/video/benchmark/candidates/longcat-roundtable-guest.json",
+    "--output_dir",
+    "/test_models/video/results/longcat-avatar-1.5/roundtable-guest",
+    "--resolution",
+    "480p",
+    "--num_segments",
+    "2",
+    "--stage_1",
+    "ai2v"
+  ],
+  "sample_count": 810
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "model": "LongCat-Video-Avatar-1.5-INT8",
+  "case": "documentary-host",
+  "status": "succeeded",
+  "returncode": 0,
+  "wall_s": 268.941,
+  "peak_gpu_memory_bytes": 25975324672,
+  "peak_gpu_utilisation_percent": 100,
+  "peak_rss_bytes": 23492231168,
+  "artifact": "/test_models/video/results/longcat-avatar-1.5/documentary-host/segment_001.mp4",
+  "log": "/test_models/video/results/longcat-avatar-1.5/documentary-host.log",
+  "command": [
+    ".venv/bin/torchrun",
+    "--nproc_per_node=1",
+    "run_demo_avatar_single_lowmem.py",
+    "--checkpoint_dir",
+    "/test_models/video/models/longcat-avatar-1.5",
+    "--input_json",
+    "/opt/ai/video/benchmark/candidates/longcat-documentary-host.json",
+    "--output_dir",
+    "/test_models/video/results/longcat-avatar-1.5/documentary-host",
+    "--resolution",
+    "480p",
+    "--num_segments",
+    "1",
+    "--stage_1",
+    "ai2v"
+  ],
+  "sample_count": 498
+}

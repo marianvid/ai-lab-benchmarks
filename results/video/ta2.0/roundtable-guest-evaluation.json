@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "video": "/test_models/video/results/ta2.0/roundtable-guest.mp4",
+  "reference": "/test_models/video/fixtures-v1/imgs/roundtable-guest.png",
+  "fps": 25.0,
+  "total_frames": 150,
+  "sample_every_frames": 2,
+  "sampled_frames": 75,
+  "face_detection_rate": 1.0,
+  "identity_cosine_mean": 0.6863468376795451,
+  "identity_cosine_min": 0.4957781434059143,
+  "face_center_std": [
+    0.006841425960282676,
+    0.011364694373951609
+  ],
+  "face_area_mean": 0.13375738929683328,
+  "face_area_relative_std": 0.022463635503243796,
+  "sharpness_laplacian_mean": 42.2031116136349,
+  "sampled_frame_delta_mean": 0.005943598390174677
+}

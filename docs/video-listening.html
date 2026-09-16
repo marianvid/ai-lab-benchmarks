@@ -19,7 +19,7 @@
     article { border: 1px solid #30363d; border-radius: 12px; padding: 18px; background: #161b22; }
     img, video { display: block; width: 100%; border-radius: 8px; background: #010409; }
     img { aspect-ratio: 1; object-fit: cover; }
-    video { aspect-ratio: 1; }
+    video { aspect-ratio: auto; }
     code { color: #d2a8ff; }
     a { color: #58a6ff; }
   </style>
@@ -69,6 +69,16 @@
       <p>Generative performance, 640×640 at 25 fps. The 81 generated frames
         produce 3.24 seconds at the saved frame rate.</p>
     </article>
+    <article>
+      <h3>LongCat-Video-Avatar 1.5 INT8</h3>
+      <video controls preload="metadata" src="../results/video/longcat-avatar-1.5/documentary-host.mp4"></video>
+      <p>Three-second generative avatar run, 640×608 at 25 fps.</p>
+    </article>
+    <article>
+      <h3>TA2.0</h3>
+      <video controls preload="metadata" src="../results/video/ta2.0/documentary-host.mp4"></video>
+      <p>Three-second audio-driven avatar run, 480×832 at 25 fps.</p>
+    </article>
   </div>
 
   <h2>Roundtable guest</h2>
@@ -90,6 +100,16 @@
       <h3>EchoMimicV3 preview 1.3B</h3>
       <video controls preload="metadata" src="../results/video/echomimic-v3-preview-offload/20260915_201634_gs4.0_ags2.9/roundtable-guest_audio.mp4"></video>
       <p>Six-second generative talking-head run, 512×512 at 25 fps.</p>
+    </article>
+    <article>
+      <h3>LongCat-Video-Avatar 1.5 INT8</h3>
+      <video controls preload="metadata" src="../results/video/longcat-avatar-1.5/roundtable-guest.mp4"></video>
+      <p>Six-second two-segment generative avatar run, 640×608 at 25 fps.</p>
+    </article>
+    <article>
+      <h3>TA2.0</h3>
+      <video controls preload="metadata" src="../results/video/ta2.0/roundtable-guest.mp4"></video>
+      <p>Six-second audio-driven avatar run, 480×832 at 25 fps.</p>
     </article>
   </div>
 
@@ -131,6 +151,18 @@
       <p>Five-second audio-driven generative performance, 640×640 at 16 fps,
         produced by the native ComfyUI implementation with dynamic offload.
         No viewing or naturalness verdict is assigned.</p>
+    </article>
+    <article>
+      <h3>LongCat-Video-Avatar 1.5 INT8</h3>
+      <video controls preload="metadata" src="../results/video/longcat-avatar-1.5/animated-storyteller.mp4"></video>
+      <p>Six-second two-segment generative character run, 640×608 at 25 fps.
+        Human-face metrics do not apply.</p>
+    </article>
+    <article>
+      <h3>TA2.0</h3>
+      <video controls preload="metadata" src="../results/video/ta2.0/animated-storyteller.mp4"></video>
+      <p>Six-second audio-driven character run, 480×832 at 25 fps. Human-face
+        metrics do not apply.</p>
     </article>
   </div>
 </main>

@@ -16,6 +16,8 @@ six seconds on the benchmark machine.
   utilisation.
 - `evaluate_video.py` samples frames and records face coverage, source-identity
   cosine, face geometry, sharpness and frame delta.
+- `run_ta2_local.py` resolves TA2.0 and both declared base components from
+  complete local benchmark directories, preventing an implicit Hub download.
 - `wan22-s2v-comfyui-api.json` is the native ComfyUI API workflow used for the
   Wan2.2-S2V FP8-scaled run. The model search paths point at complete benchmark
   storage; no model component is copied into core storage.
@@ -39,6 +41,13 @@ Patches under `patches/` are part of the method, not changes to AI-Lab:
 - Wan2.2-S2V uses the native ComfyUI scaled-FP8 loader. An attempted DiffSynth
   compatibility path generated corrupted frames and is not part of the
   reported viewing set.
+- LongCat-Video-Avatar uses PyTorch SDPA in both base and avatar attention
+  modules. Its upstream low-memory runner is forced away from unavailable
+  FlashAttention/xFormers kernels. The reported run keeps the released INT8
+  DiT because converting it to TorchAO FP8 temporarily exceeded 32 GB VRAM.
+- TA2.0 moves the video stack to system memory only while UMT5-XXL encodes the
+  prompt, then restores the components for generation. Its Wan attention call
+  is routed through the runtime's existing PyTorch SDPA fallback.
 
 All model components, including auxiliary face and synchronization models,
 remain together under the benchmark model root. Runtime cache paths contain

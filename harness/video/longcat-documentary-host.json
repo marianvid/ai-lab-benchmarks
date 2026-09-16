@@ -1,0 +1,7 @@
+{
+  "prompt": "A calm fictional male documentary host speaks directly to the camera in a locked studio shot. Restrained natural head movement, attentive eyes, subtle facial expression, stable identity and background.",
+  "cond_image": "/test_models/video/fixtures-v1/imgs/documentary-host-short.png",
+  "cond_audio": {
+    "person1": "/test_models/video/fixtures-v1/audios/documentary-host-short.wav"
+  }
+}
