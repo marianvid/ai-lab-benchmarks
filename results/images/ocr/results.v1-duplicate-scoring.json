@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "started_at": "2026-08-28T13:22:30.458587+00:00",
-  "base_url": "http://192.168.50.222:8090",
+  "base_url": "<ai-lab-manager>",
   "models": [
     "ocr-smoke",
     "ocr-server"

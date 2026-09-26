@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import json
 import pathlib
 import re
@@ -79,7 +80,9 @@ def score(metric: DiarizationErrorRate) -> dict:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--manager", default="http://192.168.50.222:8090")
+    parser.add_argument(
+        "--manager", default=os.environ.get("AI_LAB_MANAGER", "http://localhost:8090"),
+        help="AI-Lab manager address; defaults to $AI_LAB_MANAGER, then localhost")
     parser.add_argument("--data", required=True)
     parser.add_argument("--out", required=True)
     parser.add_argument("--only", help="comma-separated instance ids")

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "manager": "http://192.168.50.222:8090",
+  "manager": "<ai-lab-manager>",
   "profiles": {
     "sd15-smoke": {
       "instance": "image-smoke",

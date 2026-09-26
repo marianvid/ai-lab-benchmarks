@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import hashlib
 import json
 import random
@@ -155,7 +156,9 @@ def distance(left: str, right: str) -> int:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--base-url", default="http://192.168.50.222:8090")
+    parser.add_argument(
+        "--base-url", default=os.environ.get("AI_LAB_MANAGER", "http://localhost:8090"),
+        help="AI-Lab manager address; defaults to $AI_LAB_MANAGER, then localhost")
     parser.add_argument("--output", default="results/images/ocr")
     parser.add_argument("--timeout", type=int, default=300)
     parser.add_argument("--reuse-fixtures", action="store_true",
@@ -192,7 +195,7 @@ def main() -> int:
     report = {
         "schema_version": 1,
         "started_at": datetime.now(timezone.utc).isoformat(),
-        "base_url": args.base_url,
+        "base_url": "AI-Lab manager (address not recorded)",
         "models": list(MODELS),
         "cases": [],
     }

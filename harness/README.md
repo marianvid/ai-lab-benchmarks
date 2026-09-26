@@ -23,6 +23,13 @@ One model at a time: load it through [AI-Lab](https://github.com/marianvid/ai-la
 tests, unload, record what loading and unloading cost. It is built to survive
 its own failures — a model that will not start is a recorded fact, not a stop.
 
+## Where AI-Lab is
+
+The audio and image scripts talk to an AI-Lab manager. They take its address
+from `--manager` (`--base-url` for OCR), otherwise from the environment variable
+`AI_LAB_MANAGER`, otherwise `http://localhost:8090`. The address is not written
+into result files.
+
 ## The tests
 
 | Script | What it measures |

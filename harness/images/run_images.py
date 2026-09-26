@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import base64
 import hashlib
 import json
@@ -117,7 +118,9 @@ def save(path: pathlib.Path, value) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--manager", default="http://192.168.50.222:8090")
+    parser.add_argument(
+        "--manager", default=os.environ.get("AI_LAB_MANAGER", "http://localhost:8090"),
+        help="AI-Lab manager address; defaults to $AI_LAB_MANAGER, then localhost")
     parser.add_argument("--cases", default=str(pathlib.Path(__file__).with_name("cases.json")))
     parser.add_argument("--out", required=True)
     parser.add_argument("--profiles", help="comma-separated profile ids")
@@ -126,7 +129,7 @@ def main() -> int:
     out = pathlib.Path(args.out)
     summary_path = out / "summary.json"
     summary = json.loads(summary_path.read_text()) if summary_path.exists() else {
-        "schema_version": 1, "manager": args.manager, "profiles": {}}
+        "schema_version": 1, "manager": "AI-Lab manager (address not recorded)", "profiles": {}}
     wanted = set(args.profiles.split(",")) if args.profiles else None
 
     for profile, instance, task in PROFILES:

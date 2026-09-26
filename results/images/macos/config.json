@@ -6,7 +6,7 @@
     {
       "id": "benchmark",
       "name": "Benchmark",
-      "path": "/Volumes/Marian_Backup/test_models",
+      "path": "<mac-data-volume>/test_models",
       "enabled": true,
       "writable": false
     }
@@ -104,42 +104,42 @@
   ],
   "engines": {
     "comfyui": {
-      "binary": "/Volumes/Marian_Backup/ai-lab-runtime/comfyui/current/.venv/bin/python",
-      "server": "/Volumes/Marian_Backup/work/ai-lab/benchmark/results/images/macos/diagnostic_comfyui_server.py",
-      "comfyui": "/Volumes/Marian_Backup/ai-lab-runtime/comfyui/current/ComfyUI/main.py",
+      "binary": "<mac-data-volume>/ai-lab-runtime/comfyui/current/.venv/bin/python",
+      "server": "<mac-data-volume>/work/ai-lab/benchmark/results/images/macos/diagnostic_comfyui_server.py",
+      "comfyui": "<mac-data-volume>/ai-lab-runtime/comfyui/current/ComfyUI/main.py",
       "model_paths": [
-        "/Volumes/Marian_Backup/models/images/generation",
-        "/Volumes/Marian_Backup/models/images/edit",
-        "/Volumes/Marian_Backup/test_models/images/generation",
-        "/Volumes/Marian_Backup/test_models/images/edit"
+        "<mac-data-volume>/models/images/generation",
+        "<mac-data-volume>/models/images/edit",
+        "<mac-data-volume>/test_models/images/generation",
+        "<mac-data-volume>/test_models/images/edit"
       ],
       "source": {
         "kind": "git-app",
-        "root": "/Volumes/Marian_Backup/ai-lab-runtime/comfyui",
+        "root": "<mac-data-volume>/ai-lab-runtime/comfyui",
         "repository": "https://github.com/comfyanonymous/ComfyUI.git",
         "application": "ComfyUI",
         "python": "/opt/homebrew/anaconda3/bin/python3",
-        "uv": "/Users/marianvid/.local/bin/uv",
+        "uv": "~/.local/bin/uv",
         "verify_module": "server"
       }
     },
     "paddleocr": {
-      "binary": "/Volumes/Marian_Backup/ai-lab-runtime/paddleocr/current/bin/python",
-      "server": "/Volumes/Marian_Backup/work/ai-lab/ai_lab/images/server.py",
+      "binary": "<mac-data-volume>/ai-lab-runtime/paddleocr/current/bin/python",
+      "server": "<mac-data-volume>/work/ai-lab/ai_lab/images/server.py",
       "source": {
         "package": "paddleocr",
         "modules": [
           "paddleocr"
         ],
-        "root": "/Volumes/Marian_Backup/ai-lab-runtime/paddleocr",
+        "root": "<mac-data-volume>/ai-lab-runtime/paddleocr",
         "python": "/opt/homebrew/anaconda3/bin/python3",
-        "uv": "/Users/marianvid/.local/bin/uv"
+        "uv": "~/.local/bin/uv"
       }
     }
   },
   "images": {
-    "workflow_root": "/Volumes/Marian_Backup/work/ai-lab/benchmark/results/images/macos/workflows",
-    "state_dir": "/Volumes/Marian_Backup/work/ai-lab/benchmark/results/images/macos/state",
+    "workflow_root": "<mac-data-volume>/work/ai-lab/benchmark/results/images/macos/workflows",
+    "state_dir": "<mac-data-volume>/work/ai-lab/benchmark/results/images/macos/state",
     "client_wait_s": 7200,
     "result_ttl_s": 86400,
     "profiles": {
