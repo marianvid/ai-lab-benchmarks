@@ -23,7 +23,7 @@ Both GGUF files are from `bartowski/Qwen3.8-27B-GGUF`, pinned at repository comm
 | Q6_K | 23,860,565,728 | 22,786 MiB | 24,514-24,638 MiB |
 | Q8_0 | 29,116,388,960 | 27,302 MiB | 29,030 MiB |
 
-Both fit completely in the RTX 5090 VRAM. No RAM offload was used. The engine was updated from
+Both fit completely in the 32 GB VRAM of the RTX PRO 4500. No RAM offload was used. The engine was updated from
 llama.cpp b10448 (`0d9ceae1e`) to v0.4.1 / build b10964 (`b29c606e2`) for current Qwen3.8 support.
 
 ## Architect-directed coding agent suite
