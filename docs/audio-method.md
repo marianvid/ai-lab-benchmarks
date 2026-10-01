@@ -3,7 +3,7 @@
 This is a one-pass system study of Romanian speech recognition on the same
 RTX PRO 4500 used by the text measurements. It asks two questions: how closely
 each model reproduces the reference transcript, and how quickly this deployed
-AI-Lab/Data-Lab system processes the audio.
+AI-Lab system, with its separate data-preparation container, processes the audio.
 
 ## Corpus and selection
 
@@ -24,13 +24,13 @@ FLEURS identifiers are recorded with the results.
 
 ## Audio preparation
 
-[Data-Lab](https://github.com/marianvid/data-lab) extracts the embedded files
-and uses FFmpeg to create mono, 16 kHz, signed 16-bit PCM WAV. Its public
-repository exists only to expose this preparation method. The same prepared
+[`harness/audio/prepare_fleurs.py`](../harness/audio/prepare_fleurs.py) extracts
+the embedded files and uses FFmpeg to create mono, 16 kHz, signed 16-bit PCM WAV.
+The same prepared
 files are sent to every model. Download, conversion and storage time are not
 part of inference timing.
 
-The request crosses the private network from Data-Lab to the AI-Lab gateway.
+The request crosses the private network from the data-preparation container to the AI-Lab gateway.
 Each model is loaded explicitly, every file is sent sequentially, and the model
 is unloaded afterwards. Request time includes HTTP transfer and the engine
 adapter because the aim is to measure the system clients actually use.
@@ -82,7 +82,7 @@ revision `b627c5bf437937d90efafc7cf76d5dcfb3195f35`, published by the
 POLITEHNICA Bucharest NLP Group. It contains 120 synthetic Romanian files of
 60 seconds each, with two to five speakers: 60 without overlapped speech and
 60 with overlap. Reference turns are supplied as RTTM. The dataset card does
-not state a licence, so the audio is downloaded to Data-Lab for evaluation and
+not state a licence, so the audio is downloaded to the data-preparation container for evaluation and
 is not redistributed in this repository.
 
 Speaker error is measured with `pyannote.metrics` DER using a 0.25-second

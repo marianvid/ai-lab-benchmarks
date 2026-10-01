@@ -4,7 +4,7 @@
 The converted Hugging Face parquet stores each audio file as bytes. This tool
 selects rows evenly across the official test split, normalises them to mono
 16 kHz PCM WAV with ffmpeg, and records only provenance and references in a
-manifest. The WAV files stay on Data-Lab and must not be committed.
+manifest. The WAV files stay in the data-preparation container and must not be committed.
 """
 
 from __future__ import annotations

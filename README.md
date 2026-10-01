@@ -89,8 +89,8 @@ python3 harness/run_all.py --out ./results
 python3 harness/make_report.py --results ./results --out ./docs
 ```
 
-Romanian audio is prepared and run separately on Data-Lab, which owns the
-downloaded corpus and calls AI-Lab over the private network:
+Romanian audio is prepared and run separately, in a CPU-only data-preparation
+container that holds the downloaded corpus and calls AI-Lab over the private network:
 
 ```sh
 python3 harness/audio/prepare_fleurs.py 0000.parquet --out ./fleurs-ro --limit 100

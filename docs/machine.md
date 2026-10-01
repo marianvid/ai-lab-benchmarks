@@ -56,7 +56,7 @@ number from the last release tag on the branch they were cut from, so
 the stable release would not load one of the models; see
 [the vLLM bug](vllm-gemma4-bug.md).
 
-The audio files and harness run in a separate CPU-only Data-Lab container on
+The audio files and harness run in a separate CPU-only data-preparation container on
 the same private network. It downloads, converts and stores data; AI-Lab alone
 loads inference models. End-to-end request time therefore includes local HTTP
 transport, which is part of the deployed architecture being measured.
