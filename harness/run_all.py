@@ -14,24 +14,35 @@ watching.
 Everything is written as it happens. If this is killed halfway, whatever
 finished is on disk and is usable.
 
-    python3 run_all.py --out /opt/bench/results
+    python3 run_all.py --python <bench venv>/bin/python --data <eval-data> --out <results>
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import os
 import pathlib
 import subprocess
 import sys
 import time
 import urllib.error
 import urllib.request
+from dataclasses import dataclass
 
-MANAGER = "http://127.0.0.1:8090"
-PYTHON = "/opt/bench/.venv/bin/python"
-HARNESS = "/opt/bench/harness"
-DATA = "/opt/bench/eval-data"
+LOOPBACK = "127.0.0.1"
+MANAGER = f"http://{LOOPBACK}:8090"
+# The harness is the folder this file sits in; nothing else is assumed.
+HARNESS = str(pathlib.Path(__file__).resolve().parent)
+
+
+@dataclass(frozen=True)
+class Paths:
+    """Where this machine keeps the benchmark: given on the command line."""
+
+    python: str
+    data: str
+    home: str
 
 # The models the tests run against, and one that is only weighed.
 #
@@ -77,7 +88,7 @@ def wait_ready(port: int, seconds: int = 900) -> bool:
     deadline = time.time() + seconds
     while time.time() < deadline:
         try:
-            with urllib.request.urlopen(f"http://127.0.0.1:{port}/v1/models",
+            with urllib.request.urlopen(f"http://{LOOPBACK}:{port}/v1/models",
                                         timeout=10) as response:
                 json.load(response)
             return True
@@ -125,7 +136,7 @@ def unload(instance: str) -> dict:
 
 
 def bench(script: str, port: int, label: str, concurrency: int,
-          extra: list[str], out: pathlib.Path, log,
+          extra: list[str], out: pathlib.Path, log, paths: Paths,
           positional: bool = True) -> dict | None:
     """One benchmark. Never raises: a failure is a recorded fact, not a stop.
 
@@ -133,20 +144,20 @@ def bench(script: str, port: int, label: str, concurrency: int,
     the output path as a third positional argument with no concurrency at all.
     """
     if positional:
-        command = [PYTHON, f"{HARNESS}/{script}", f"http://127.0.0.1:{port}",
+        command = [paths.python, f"{HARNESS}/{script}", f"http://{LOOPBACK}:{port}",
                    label, str(concurrency), "--out", str(out), *extra]
         if script != "bench_longform.py":
-            command += ["--data", DATA]
+            command += ["--data", paths.data]
     else:
-        command = [PYTHON, f"{HARNESS}/{script}", f"http://127.0.0.1:{port}",
+        command = [paths.python, f"{HARNESS}/{script}", f"http://{LOOPBACK}:{port}",
                    label, str(out)]
     log(f"    {script} c={concurrency} {' '.join(extra)}")
     started = time.perf_counter()
     try:
         completed = subprocess.run(command, capture_output=True, text=True,
                                    timeout=14400, cwd=HARNESS,
-                                   env={"BENCH_PYTHON": PYTHON, "PATH": "/usr/bin:/bin",
-                                        "HOME": "/var/lib/ai-lab"})
+                                   env={"BENCH_PYTHON": paths.python, "PATH": "/usr/bin:/bin",
+                                        "HOME": paths.home})
     except subprocess.TimeoutExpired:
         log(f"      timed out after {round(time.perf_counter()-started)}s")
         return None
@@ -159,7 +170,7 @@ def bench(script: str, port: int, label: str, concurrency: int,
 
 
 def ladder(script: str, instance: str, port: int, extra: list[str],
-           stem: str, out: pathlib.Path, log) -> dict:
+           stem: str, out: pathlib.Path, log, paths: Paths) -> dict:
     """One rung per concurrency, each on an engine that has not seen the work.
 
     The engine is restarted between rungs. Every rung sends the same prompts,
@@ -176,7 +187,7 @@ def ladder(script: str, instance: str, port: int, extra: list[str],
             log(f"    could not restart for c={concurrency}: {again.get('error')}")
             break
         result = bench(script, port, instance, concurrency, extra,
-                       out / f"{instance}-{stem}-c{concurrency}.json", log)
+                       out / f"{instance}-{stem}-c{concurrency}.json", log, paths)
         if result:
             curve[str(concurrency)] = {
                 k: result[k] for k in
@@ -186,7 +197,12 @@ def ladder(script: str, instance: str, port: int, extra: list[str],
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--out", default="/opt/bench/results")
+    parser.add_argument("--out", required=True, help="results folder")
+    parser.add_argument("--python", required=True,
+                        help="the benchmark virtual environment's python")
+    parser.add_argument("--data", required=True, help="the eval-data folder")
+    parser.add_argument("--home", default=os.environ.get("HOME", ""),
+                        help="HOME for the benchmark processes (caches go there)")
     parser.add_argument("--only", help="comma-separated instance ids")
     parser.add_argument("--skip-throughput", action="store_true")
     parser.add_argument("--only-new", action="store_true",
@@ -199,6 +215,7 @@ def main() -> int:
                         help="do not measure the second, warm load")
     arguments = parser.parse_args()
 
+    paths = Paths(arguments.python, arguments.data, arguments.home)
     out = pathlib.Path(arguments.out)
     out.mkdir(parents=True, exist_ok=True)
     logfile = (out / "run.log").open("a", encoding="utf-8")
@@ -256,23 +273,23 @@ def main() -> int:
         if full and not arguments.only_new and not arguments.ladders_only:
             entry["classification"] = bench(
                 "bench_classify.py", port, instance, QUALITY_CONCURRENCY, [],
-                out / f"{instance}-classify.json", log)
+                out / f"{instance}-classify.json", log, paths)
             entry["comprehension"] = bench(
                 "bench_comprehension.py", port, instance, QUALITY_CONCURRENCY,
-                ["--limit", "100"], out / f"{instance}-comprehension.json", log)
+                ["--limit", "100"], out / f"{instance}-comprehension.json", log, paths)
             entry["translation"] = bench(
                 "bench_translate.py", port, instance, QUALITY_CONCURRENCY,
-                ["--limit", "50"], out / f"{instance}-translate.json", log)
+                ["--limit", "50"], out / f"{instance}-translate.json", log, paths)
             entry["coding"] = bench(
                 "bench_coding.py", port, instance, QUALITY_CONCURRENCY, [],
-                out / f"{instance}-coding.json", log)
+                out / f"{instance}-coding.json", log, paths)
 
         if full and not arguments.ladders_only:
             # Prompt reading and generation at three prompt sizes, one request
             # at a time. The only place long prompts are measured.
             entry["latency"] = bench(
                 "bench.py", port, instance, 1, [],
-                out / f"{instance}-latency.json", log, positional=False)
+                out / f"{instance}-latency.json", log, paths, positional=False)
 
         # Throughput with whole articles instead of sentences, on the same
         # concurrency ladder. Prompt length is what fills the cache, so this
@@ -280,11 +297,11 @@ def main() -> int:
         if full and not arguments.skip_throughput:
             entry["throughput_curve"] = ladder(
                 "bench_classify.py", instance, port,
-                ["--languages", THROUGHPUT_LANGUAGES], "throughput", out, log)
+                ["--languages", THROUGHPUT_LANGUAGES], "throughput", out, log, paths)
             entry["longform_curve"] = ladder(
                 "bench_longform.py", instance, port,
-                ["--articles", f"{DATA}/wikipedia_articles.jsonl",
-                 "--limit", "60"], "longform", out, log)
+                ["--articles", f"{paths.data}/wikipedia_articles.jsonl",
+                 "--limit", "60"], "longform", out, log, paths)
 
         entry["unload"] = unload(instance)
         log(f"    unloaded in {entry['unload'].get('unload_s')}s")

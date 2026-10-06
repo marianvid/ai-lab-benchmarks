@@ -28,7 +28,7 @@ import time
 import urllib.error
 import urllib.request
 
-SERVER = "/opt/ai/llama.cpp/build/bin/llama-server"
+LOOPBACK = "127.0.0.1"
 PORT = 8099
 
 PROMPT = ("Read the following function and rewrite it to be clearer, keeping "
@@ -54,7 +54,7 @@ def wait_ready(seconds: int, process: subprocess.Popen) -> float | None:
             return None
         try:
             with urllib.request.urlopen(
-                    f"http://127.0.0.1:{PORT}/v1/models", timeout=5) as response:
+                    f"http://{LOOPBACK}:{PORT}/v1/models", timeout=5) as response:
                 json.load(response)
             return time.perf_counter() - started
         except Exception:
@@ -67,7 +67,7 @@ def ask() -> dict:
     payload = {"model": "x", "messages": [{"role": "user", "content": PROMPT}],
                "max_tokens": 200, "temperature": 0.0}
     request = urllib.request.Request(
-        f"http://127.0.0.1:{PORT}/v1/chat/completions",
+        f"http://{LOOPBACK}:{PORT}/v1/chat/completions",
         data=json.dumps(payload).encode(),
         headers={"Content-Type": "application/json"})
     started = time.perf_counter()
@@ -94,9 +94,9 @@ def vram_used() -> int:
         return -1
 
 
-def one_split(model: str, layers: int, context: int, wait: int) -> dict:
+def one_split(server: str, model: str, layers: int, context: int, wait: int) -> dict:
     """Start the server with `layers` on the card, measure, stop it."""
-    command = [SERVER, "--model", model, "--host", "127.0.0.1", "--port", str(PORT),
+    command = [server, "--model", model, "--host", LOOPBACK, "--port", str(PORT),
                "--ctx-size", str(context), "--flash-attn", "on", "--no-warmup"]
     # layers < 0 means: say nothing, and let llama.cpp decide the split itself.
     # That is what it does well, and forcing a number makes it give up rather
@@ -148,6 +148,7 @@ def one_split(model: str, layers: int, context: int, wait: int) -> dict:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--model", required=True)
+    parser.add_argument("--server", required=True, help="path to llama-server")
     parser.add_argument("--splits", default="-1",
                         help="layer counts to try; -1 lets llama.cpp choose")
     parser.add_argument("--context", type=int, default=8192)
@@ -161,7 +162,7 @@ def main() -> int:
     results = []
     for layers in [int(x) for x in arguments.splits.split(",")]:
         print(f"  --n-gpu-layers {layers}", flush=True)
-        entry = one_split(arguments.model, layers, arguments.context, arguments.wait)
+        entry = one_split(arguments.server, arguments.model, layers, arguments.context, arguments.wait)
         print(f"    {json.dumps(entry)}", flush=True)
         results.append(entry)
 
