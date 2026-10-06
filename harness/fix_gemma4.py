@@ -7,6 +7,10 @@ heads. Older transformers exposed the second set as `global_head_dim` and
 both names and publishes the authoritative values per layer instead, so vLLM's
 lookups silently fall back to the sliding-layer numbers and then fail to load
 the full-attention weights. Prefer the per-layer values when they exist.
+
+Needed only on vLLM 0.27.1; the nightly build fixes it (docs/vllm-gemma4-bug.md).
+Remove this file, with patch_gemma_cfg.py, when that page is retired or no
+machine here can still be pinned to vLLM 0.27.1.
 """
 import os, shutil, sys
 
