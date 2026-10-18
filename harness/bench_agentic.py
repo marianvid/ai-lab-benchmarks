@@ -71,14 +71,32 @@ TASKS = [
 ]
 
 
+# What the model may not change, and the limits of what the harness hands back.
+PROTECTED = ("architect.md", "tests/", "fixtures/")
+READ_LIMIT, SEARCH_HITS, TOOL_LOG_CHARS = 30000, 100, 1000
+TEST_TAIL, VISIBLE_TAIL, HIDDEN_TAIL = 6000, 1500, 2500
+TEST_TIMEOUT_S = 30
+# The account tests run as when the harness runs as root: nobody.
+NOBODY = 65534
+SAMPLING = {"temperature": 1.0, "top_p": 0.95, "max_tokens": 8192,
+            "chat_template_kwargs": {"reasoning_effort": "xhigh", "preserve_thinking": True}}
+
+
 def call(url: str, payload: dict, timeout: int = 900) -> dict:
+    """One chat completion request; the JSON answer."""
     request = urllib.request.Request(url, data=json.dumps(payload).encode(), method="POST",
-        headers={"Content-Type": "application/json"})
+                                     headers={"Content-Type": "application/json"})
     with urllib.request.urlopen(request, timeout=timeout) as response:
         return json.load(response)
 
 
+def protected(relative: str) -> bool:
+    """Whether a repository path belongs to the architect's or the tests' files."""
+    return relative == PROTECTED[0] or relative.startswith(PROTECTED[1:])
+
+
 def safe_path(root: pathlib.Path, relative: str) -> pathlib.Path:
+    """A path inside the repository; ValueError when it would leave it."""
     relative = str(relative or "").strip().lstrip("/")
     path = (root / relative).resolve()
     if root != path and root not in path.parents:
@@ -86,54 +104,82 @@ def safe_path(root: pathlib.Path, relative: str) -> pathlib.Path:
     return path
 
 
-def test_repo(root: pathlib.Path, hidden: bool = False) -> tuple[bool, str]:
-    if hidden:
-        (root / "tests" / "test_hidden.py").write_text(hidden if isinstance(hidden, str) else "")
+def test_repo(root: pathlib.Path) -> tuple[bool, str]:
+    """Run the repository's tests (as nobody when run as root); passed, and the output's tail."""
     command = ["python3", "-m", "unittest", "discover", "-s", "tests", "-v"]
     if os.geteuid() == 0:
-        command = ["setpriv", "--reuid=65534", "--regid=65534", "--clear-groups", *command]
+        command = ["setpriv", f"--reuid={NOBODY}", f"--regid={NOBODY}", "--clear-groups",
+                   *command]
     try:
-        result = subprocess.run(command, cwd=root, text=True, capture_output=True, timeout=30)
-        output = (result.stdout + result.stderr)[-6000:]
-        return result.returncode == 0, output
+        result = subprocess.run(command, cwd=root, text=True, capture_output=True,
+                                timeout=TEST_TIMEOUT_S, check=False)
     except subprocess.TimeoutExpired:
         return False, "tests timed out"
+    return result.returncode == 0, (result.stdout + result.stderr)[-TEST_TAIL:]
 
 
 TOOLS = [
-    {"type":"function","function":{"name":"list_files","description":"List repository files.","parameters":{"type":"object","properties":{}}}},
-    {"type":"function","function":{"name":"read_file","description":"Read a UTF-8 repository file.","parameters":{"type":"object","properties":{"path":{"type":"string"}},"required":["path"]}}},
-    {"type":"function","function":{"name":"search","description":"Search repository text.","parameters":{"type":"object","properties":{"query":{"type":"string"}},"required":["query"]}}},
-    {"type":"function","function":{"name":"write_file","description":"Create or replace a source file. Tests and architect.md are protected.","parameters":{"type":"object","properties":{"path":{"type":"string"},"content":{"type":"string"}},"required":["path","content"]}}},
-    {"type":"function","function":{"name":"run_tests","description":"Run the visible unit tests and return their output.","parameters":{"type":"object","properties":{}}}},
-    {"type":"function","function":{"name":"finish","description":"Finish after implementation and passing tests.","parameters":{"type":"object","properties":{"summary":{"type":"string"}},"required":["summary"]}}},
+    {"type": "function", "function": {"name": "list_files", "description": "List repository files.",
+                                      "parameters": {"type": "object", "properties": {}}}},
+    {"type": "function", "function": {"name": "read_file", "description": "Read a UTF-8 repository file.",
+                                      "parameters": {"type": "object", "properties": {"path": {"type": "string"}},
+                                                     "required": ["path"]}}},
+    {"type": "function", "function": {"name": "search", "description": "Search repository text.",
+                                      "parameters": {"type": "object", "properties": {"query": {"type": "string"}},
+                                                     "required": ["query"]}}},
+    {"type": "function", "function": {"name": "write_file",
+                                      "description": "Create or replace a source file. Tests and architect.md are protected.",
+                                      "parameters": {"type": "object",
+                                                     "properties": {"path": {"type": "string"},
+                                                                    "content": {"type": "string"}},
+                                                     "required": ["path", "content"]}}},
+    {"type": "function", "function": {"name": "run_tests",
+                                      "description": "Run the visible unit tests and return their output.",
+                                      "parameters": {"type": "object", "properties": {}}}},
+    {"type": "function", "function": {"name": "finish",
+                                      "description": "Finish after implementation and passing tests.",
+                                      "parameters": {"type": "object",
+                                                     "properties": {"summary": {"type": "string"}},
+                                                     "required": ["summary"]}}},
 ]
 
 
+def repository_files(root: pathlib.Path) -> list[pathlib.Path]:
+    """Every file of the repository, caches left out."""
+    return [path for path in root.rglob("*") if path.is_file() and "__pycache__" not in path.parts]
+
+
+def search(root: pathlib.Path, query: str) -> str:
+    """Lines containing `query`, as path:line:text, at most `SEARCH_HITS` of them."""
+    hits = []
+    for path in repository_files(root):
+        for number, line in enumerate(path.read_text(errors="replace").splitlines(), 1):
+            if query in line:
+                hits.append(f"{path.relative_to(root)}:{number}:{line}")
+    return "\n".join(hits[:SEARCH_HITS]) or "no matches"
+
+
+def write_file(root: pathlib.Path, relative: str, content: str) -> str:
+    """Write a source file; protected paths are refused."""
+    if protected(relative):
+        return "refused: protected path"
+    path = safe_path(root, relative)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content)
+    return f"wrote {relative}"
+
+
 def execute(root: pathlib.Path, name: str, args: dict) -> tuple[str, bool]:
+    """Run one tool the model called; its output, and whether the model said it is done."""
     if name == "list_files":
-        files = [str(p.relative_to(root)) for p in root.rglob("*") if p.is_file() and "__pycache__" not in p.parts]
+        files = [str(path.relative_to(root)) for path in repository_files(root)]
         return json.dumps(sorted(files)), False
     if name == "read_file":
-        path = safe_path(root, args.get("path", ""))
-        return path.read_text()[:30000], False
+        return safe_path(root, args.get("path", "")).read_text()[:READ_LIMIT], False
     if name == "search":
-        query = str(args.get("query", ""))
-        hits = []
-        for path in root.rglob("*"):
-            if path.is_file() and "__pycache__" not in path.parts:
-                for number, line in enumerate(path.read_text(errors="replace").splitlines(), 1):
-                    if query in line:
-                        hits.append(f"{path.relative_to(root)}:{number}:{line}")
-        return "\n".join(hits[:100]) or "no matches", False
+        return search(root, str(args.get("query", ""))), False
     if name == "write_file":
-        relative = str(args.get("path", ""))
-        if relative == "architect.md" or relative.startswith("tests/") or relative.startswith("fixtures/"):
-            return "refused: protected path", False
-        path = safe_path(root, relative)
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(str(args.get("content", "")))
-        return f"wrote {relative}", False
+        return write_file(root, str(args.get("path", "")), str(args.get("content", ""))), False
     if name == "run_tests":
         ok, output = test_repo(root)
         return ("PASS\n" if ok else "FAIL\n") + output, False
@@ -142,74 +188,118 @@ def execute(root: pathlib.Path, name: str, args: dict) -> tuple[str, bool]:
     return f"unknown tool {name}", False
 
 
-def run_task(base: str, model: str, task: dict, max_turns: int) -> dict:
-    root = pathlib.Path(tempfile.mkdtemp(prefix="agentbench_", dir="/tmp"))
-    started = time.perf_counter()
-    tool_log, usage = [], {"prompt_tokens": 0, "completion_tokens": 0}
-    try:
-        for relative, content in task["files"].items():
-            path = root / relative; path.parent.mkdir(parents=True, exist_ok=True); path.write_text(content)
-        immutable = {p: hashlib.sha256((root/p).read_bytes()).hexdigest() for p in task["files"] if p == "architect.md" or p.startswith("tests/") or p.startswith("fixtures/")}
-        root.chmod(0o777)
-        for path in root.rglob("*"):
-            path.chmod(0o777 if path.is_dir() else 0o666)
-        messages = [{"role":"system","content":SYSTEM},{"role":"user","content":task["request"]}]
-        finished = False
-        error = ""
+def digest(path: pathlib.Path) -> str:
+    """A file's SHA-256."""
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def prepare(root: pathlib.Path, task: dict) -> dict[str, str]:
+    """Write the task's repository, open to the test account; the protected files' digests."""
+    for relative, content in task["files"].items():
+        path = root / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(content)
+    root.chmod(0o777)
+    for path in root.rglob("*"):
+        path.chmod(0o777 if path.is_dir() else 0o666)
+    return {relative: digest(root / relative) for relative in task["files"] if protected(relative)}
+
+
+class Session:
+    """One model working on one repository: the conversation, its tool calls, its usage."""
+
+    def __init__(self, root: pathlib.Path, base: str, model: str, request: str) -> None:
+        self.root = root
+        self.url = base.rstrip("/") + "/v1/chat/completions"
+        self.model = model
+        self.messages: list[dict] = [{"role": "system", "content": SYSTEM},
+                                     {"role": "user", "content": request}]
+        self.tool_log: list[dict] = []
+        self.usage = {"prompt_tokens": 0, "completion_tokens": 0}
+
+    def work(self, max_turns: int) -> tuple[bool, str]:
+        """Let the model take turns until it finishes or stops; finished, and why not."""
         for turn in range(1, max_turns + 1):
-            response = call(base.rstrip("/") + "/v1/chat/completions", {
-                "model": model, "messages": messages, "tools": TOOLS,
-                "tool_choice": "auto", "temperature": 1.0, "top_p": 0.95,
-                "max_tokens": 8192,
-                "chat_template_kwargs": {"reasoning_effort": "xhigh", "preserve_thinking": True},
-            })
-            for key in usage:
-                usage[key] += int((response.get("usage") or {}).get(key) or 0)
+            response = call(self.url, {"model": self.model, "messages": self.messages,
+                                       "tools": TOOLS, "tool_choice": "auto", **SAMPLING})
+            for key in self.usage:
+                self.usage[key] += int((response.get("usage") or {}).get(key) or 0)
             message = response["choices"][0]["message"]
-            messages.append(message)
+            self.messages.append(message)
             calls = message.get("tool_calls") or []
             if not calls:
-                error = "model stopped without a tool call"
-                break
-            for item in calls:
-                function = item.get("function") or {}
-                try:
-                    args = function.get("arguments") or {}
-                    if isinstance(args, str): args = json.loads(args)
-                    output, done = execute(root, function.get("name", ""), args)
-                except Exception as exc:
-                    output, done = f"tool error: {type(exc).__name__}: {exc}", False
-                tool_log.append({"turn": turn, "tool": function.get("name", ""), "result": output[:1000]})
-                messages.append({"role":"tool","tool_call_id":item.get("id","call"),"content":output})
-                finished = finished or done
-            if finished:
-                break
-        protected_ok = all(hashlib.sha256((root/p).read_bytes()).hexdigest() == digest for p,digest in immutable.items())
+                return False, "model stopped without a tool call"
+            if self.run_tools(turn, calls):
+                return True, ""
+        return False, ""
+
+    def run_tools(self, turn: int, calls: list[dict]) -> bool:
+        """Answer every tool call of one turn; whether one of them was `finish`."""
+        finished = False
+        for item in calls:
+            function = item.get("function") or {}
+            try:
+                args = function.get("arguments") or {}
+                if isinstance(args, str):
+                    args = json.loads(args)
+                output, done = execute(self.root, function.get("name", ""), args)
+            except Exception as exc:
+                output, done = f"tool error: {type(exc).__name__}: {exc}", False
+            self.tool_log.append({"turn": turn, "tool": function.get("name", ""),
+                                  "result": output[:TOOL_LOG_CHARS]})
+            self.messages.append({"role": "tool", "tool_call_id": item.get("id", "call"),
+                                  "content": output})
+            finished = finished or done
+        return finished
+
+
+def run_task(base: str, model: str, task: dict, max_turns: int) -> dict:
+    """One task, start to verdict: visible and hidden tests, protected files untouched."""
+    root = pathlib.Path(tempfile.mkdtemp(prefix="agentbench_"))
+    started = time.perf_counter()
+    try:
+        immutable = prepare(root, task)
+        session = Session(root, base, model, task["request"])
+        finished, error = session.work(max_turns)
+        protected_ok = all(digest(root / relative) == value for relative, value in immutable.items())
         visible_ok, visible_output = test_repo(root)
         hidden_path = root / "tests" / "test_hidden.py"
         hidden_path.write_text(task["hidden"])
         hidden_path.chmod(0o666)
         hidden_ok, hidden_output = test_repo(root)
-        return {"task":task["id"],"finished":finished,"visible_pass":visible_ok,"hidden_pass":hidden_ok,
-                "protected_files_unchanged":protected_ok,"passed":finished and visible_ok and hidden_ok and protected_ok,
-                "turns":max((x["turn"] for x in tool_log),default=0),"tools":tool_log,"usage":usage,
-                "wall_s":round(time.perf_counter()-started,3),"error":error,
-                "visible_tail":visible_output[-1500:],"hidden_tail":hidden_output[-2500:]}
+        return {"task": task["id"], "finished": finished, "visible_pass": visible_ok,
+                "hidden_pass": hidden_ok, "protected_files_unchanged": protected_ok,
+                "passed": finished and visible_ok and hidden_ok and protected_ok,
+                "turns": max((x["turn"] for x in session.tool_log), default=0),
+                "tools": session.tool_log, "usage": session.usage,
+                "wall_s": round(time.perf_counter() - started, 3), "error": error,
+                "visible_tail": visible_output[-VISIBLE_TAIL:],
+                "hidden_tail": hidden_output[-HIDDEN_TAIL:]}
     finally:
         shutil.rmtree(root, ignore_errors=True)
 
 
 def main() -> int:
-    parser=argparse.ArgumentParser(); parser.add_argument("--base",required=True); parser.add_argument("--model",required=True)
-    parser.add_argument("--label",required=True); parser.add_argument("--out",required=True); parser.add_argument("--max-turns",type=int,default=14)
-    args=parser.parse_args(); result={"schema_version":1,"label":args.label,"model":args.model,"tasks":[]}
+    """Run every task once with one model; write the results as they come."""
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--base", required=True)
+    parser.add_argument("--model", required=True)
+    parser.add_argument("--label", required=True)
+    parser.add_argument("--out", required=True)
+    parser.add_argument("--max-turns", type=int, default=14)
+    args = parser.parse_args()
+    result: dict = {"schema_version": 1, "label": args.label, "model": args.model, "tasks": []}
     for task in TASKS:
-        row=run_task(args.base,args.model,task,args.max_turns); result["tasks"].append(row)
-        pathlib.Path(args.out).write_text(json.dumps(result,indent=2)+"\n")
-        print(f"{task['id']}: {'PASS' if row['passed'] else 'FAIL'} ({row['wall_s']}s)",flush=True)
-    result["summary"]={"passed":sum(x["passed"] for x in result["tasks"]),"total":len(result["tasks"]),
-                       "wall_s":round(sum(x["wall_s"] for x in result["tasks"]),3)}
-    pathlib.Path(args.out).write_text(json.dumps(result,indent=2)+"\n")
+        row = run_task(args.base, args.model, task, args.max_turns)
+        result["tasks"].append(row)
+        pathlib.Path(args.out).write_text(json.dumps(result, indent=2) + "\n")
+        print(f"{task['id']}: {'PASS' if row['passed'] else 'FAIL'} ({row['wall_s']}s)", flush=True)
+    result["summary"] = {"passed": sum(x["passed"] for x in result["tasks"]),
+                         "total": len(result["tasks"]),
+                         "wall_s": round(sum(x["wall_s"] for x in result["tasks"]), 3)}
+    pathlib.Path(args.out).write_text(json.dumps(result, indent=2) + "\n")
     return 0
 
-if __name__ == "__main__": raise SystemExit(main())
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -1,0 +1,17 @@
+:root { color-scheme: dark; font-family: system-ui, sans-serif; }
+body { margin: 0; background: #0d1117; color: #e6edf3; }
+main { max-width: 1120px; margin: 0 auto; padding: 48px 24px 80px; }
+h1 { font-size: clamp(2rem, 5vw, 3.6rem); margin: 0 0 18px; }
+h2 { margin-top: 54px; border-bottom: 1px solid #30363d; padding-bottom: 12px; }
+h3 { margin: 0 0 12px; }
+p { line-height: 1.6; color: #b1bac4; }
+.note { padding: 18px 20px; border: 1px solid #30363d; border-radius: 12px; background: #161b22; }
+.audio-scope { padding: 16px 18px; border: 1px solid #d29922; border-left: 5px solid #d29922; border-radius: 8px; background: #2d220b; color: #f0d58c; }
+.audio-scope strong { color: #ffd866; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+article { border: 1px solid #30363d; border-radius: 12px; padding: 18px; background: #161b22; }
+img, video { display: block; width: 100%; border-radius: 8px; background: #010409; }
+img { aspect-ratio: 1; object-fit: cover; }
+video { aspect-ratio: auto; }
+code { color: #d2a8ff; }
+a { color: #58a6ff; }

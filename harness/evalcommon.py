@@ -14,8 +14,10 @@ answers half the question.
 
 from __future__ import annotations
 
+import argparse
 import json
 import re
+import sys
 import threading
 import time
 import urllib.error
@@ -30,6 +32,7 @@ THINK_RE = re.compile(r"<think>.*?</think>", re.S)
 
 
 def strip_think(text: str) -> str:
+    """The answer without a reasoning model's `<think>` scratch work."""
     text = THINK_RE.sub("", text or "")
     if "</think>" in text:            # an opening tag that was cut off
         text = text.split("</think>", 1)[1]
@@ -60,6 +63,7 @@ def post_json(url: str, payload: dict) -> dict:
 
 
 def model_name(base: str) -> str:
+    """The id of the model the server at `base` answers with."""
     with urllib.request.urlopen(base + "/v1/models", timeout=60) as response:
         return json.load(response)["data"][0]["id"]
 
@@ -106,6 +110,7 @@ class Run:
                 range(self.concurrency)))
 
     def reset(self) -> None:
+        """Zero the token and request counters."""
         with self._lock:
             self.prompt_tokens = self.completion_tokens = 0
             self.requests = self.failed = 0
@@ -149,7 +154,39 @@ class Run:
         }
 
 
+def arguments_parser(doc: str | None, *, data: bool = True,
+                     languages: bool = True) -> argparse.ArgumentParser:
+    """The arguments every benchmark takes: server, label, concurrency, output."""
+    parser = argparse.ArgumentParser(description=doc)
+    parser.add_argument("base")
+    parser.add_argument("label")
+    parser.add_argument("concurrency", type=int)
+    if data:
+        parser.add_argument("--data", default="./eval-data")
+    if languages:
+        parser.add_argument("--languages")
+    parser.add_argument("--out")
+    return parser
+
+
+def language_list(text: str | None) -> list[str] | None:
+    """The `--languages` value as a list, or None for every language."""
+    return [code.strip() for code in text.split(",")] if text else None
+
+
+def nothing_found(what: str) -> int:
+    """Say the data is missing and return the exit code for it."""
+    print(f"no {what} found — run get_datasets.py first", file=sys.stderr)
+    return 2
+
+
+def banner(label: str, model: str, *parts: str) -> None:
+    """The line that opens every benchmark's output."""
+    print(" | ".join([f"\n=== {label}", model, *parts]) + " ===", flush=True)
+
+
 def report(path: str | None, result: dict) -> None:
+    """Print the result and, when `path` is given, write it there too."""
     print(json.dumps(result, ensure_ascii=False, indent=1), flush=True)
     if path:
         with open(path, "w", encoding="utf-8") as handle:

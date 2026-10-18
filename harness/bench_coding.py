@@ -33,7 +33,6 @@ Options:
 
 from __future__ import annotations
 
-import argparse
 import json
 import os
 import pathlib
@@ -43,7 +42,10 @@ import subprocess
 import sys
 import tempfile
 
-import evalcommon as common
+# The repository root, so the harness's own modules import as `harness.…`.
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
+
+from harness import evalcommon as common
 
 CODE_RE = re.compile(r"```(?:python|py)?\s*\n(.*?)```", re.S)
 
@@ -70,48 +72,55 @@ def extract_code(text: str) -> str:
     return max(blocks, key=len) if blocks else (text or "")
 
 
+def first_rows(path: pathlib.Path, limit: int | None) -> list[dict]:
+    """The first `limit` rows of a JSON-lines file (all of them without a limit)."""
+    rows = []
+    with path.open(encoding="utf-8") as handle:
+        for index, line in enumerate(handle):
+            if limit and index >= limit:
+                break
+            rows.append(json.loads(line))
+    return rows
+
+
+def humaneval_problem(row: dict) -> dict:
+    """HumanEval gives a signature and a docstring; the model completes it.
+    The test file calls check(entry_point)."""
+    return {
+        "set": "humanevalplus", "id": row["task_id"],
+        "instruction":
+            "Complete this Python function. Reply with the whole "
+            "function, including the signature, in one ```python block. "
+            "No explanation.\n\n```python\n" + row["prompt"] + "```",
+        "check": row["test"] + f"\n\ncheck({row['entry_point']})\n",
+    }
+
+
+def mbpp_problem(row: dict) -> dict:
+    """MBPP states the task in words and fixes the function name through its
+    assertions, so the model is shown one of them as the contract."""
+    example = (row.get("test_list") or [""])[0]
+    imports = "\n".join(row.get("test_imports") or [])
+    return {
+        "set": "mbppplus", "id": f"Mbpp/{row['task_id']}",
+        "instruction":
+            f"{row['prompt']}\n\nWrite the Python function. It must "
+            f"satisfy this call exactly:\n\n    {example}\n\nReply with "
+            f"the function in one ```python block. No explanation.",
+        "check": (imports + "\n" + row["test"] + "\n") if imports else row["test"] + "\n",
+    }
+
+
 def load(data: pathlib.Path, which: str, limit: int | None) -> list[dict]:
     """Both sets, normalised to one shape: a prompt, and a program that checks it."""
     problems = []
-
     if which in ("humanevalplus", "both"):
-        path = data / "coding" / "humanevalplus.jsonl"
-        for index, line in enumerate(path.open(encoding="utf-8")):
-            if limit and index >= limit:
-                break
-            row = json.loads(line)
-            if row["task_id"] in EXCLUDED:
-                continue
-            # HumanEval gives a signature and a docstring; the model completes
-            # it. The test file calls check(entry_point).
-            problems.append({
-                "set": "humanevalplus", "id": row["task_id"],
-                "instruction":
-                    "Complete this Python function. Reply with the whole "
-                    "function, including the signature, in one ```python block. "
-                    "No explanation.\n\n```python\n" + row["prompt"] + "```",
-                "check": row["test"] + f"\n\ncheck({row['entry_point']})\n",
-            })
-
+        rows = first_rows(data / "coding" / "humanevalplus.jsonl", limit)
+        problems += [humaneval_problem(row) for row in rows
+                     if row["task_id"] not in EXCLUDED]
     if which in ("mbppplus", "both"):
-        path = data / "coding" / "mbppplus.jsonl"
-        for index, line in enumerate(path.open(encoding="utf-8")):
-            if limit and index >= limit:
-                break
-            row = json.loads(line)
-            # MBPP states the task in words and fixes the function name through
-            # its assertions, so the model is shown one of them as the contract.
-            example = (row.get("test_list") or [""])[0]
-            imports = "\n".join(row.get("test_imports") or [])
-            problems.append({
-                "set": "mbppplus", "id": f"Mbpp/{row['task_id']}",
-                "instruction":
-                    f"{row['prompt']}\n\nWrite the Python function. It must "
-                    f"satisfy this call exactly:\n\n    {example}\n\nReply with "
-                    f"the function in one ```python block. No explanation.",
-                "check": (imports + "\n" + row["test"] + "\n") if imports else row["test"] + "\n",
-            })
-
+        rows = first_rows(data / "coding" / "mbppplus.jsonl", limit)
+        problems += [mbpp_problem(row) for row in rows]
     return problems
 
 
@@ -142,49 +151,52 @@ def run_program(code: str, check: str, timeout: int) -> tuple[bool, str]:
         shutil.rmtree(directory, ignore_errors=True)
 
 
+def solve(run: common.Run, problem: dict, timeout: int) -> dict:
+    """Ask for one solution and run the problem's tests on it."""
+    text = run.ask([{"role": "user", "content": problem["instruction"]}],
+                   max_tokens=4096)
+    if text is None:
+        return {**{k: problem[k] for k in ("set", "id")},
+                "passed": False, "why": "no answer"}
+    passed, why = run_program(extract_code(text), problem["check"], timeout)
+    return {"set": problem["set"], "id": problem["id"],
+            "passed": passed, "why": why}
+
+
+def per_set(results: list[dict]) -> dict:
+    """The pass rate of each set."""
+    by_set: dict[str, list[bool]] = {}
+    for row in results:
+        by_set.setdefault(row["set"], []).append(row["passed"])
+    return {name: {"n": len(marks), "passed": sum(marks),
+                   "pass_rate": round(sum(marks) / len(marks), 4)}
+            for name, marks in sorted(by_set.items())}
+
+
 def main() -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("base"), parser.add_argument("label")
-    parser.add_argument("concurrency", type=int)
-    parser.add_argument("--data", default="./eval-data")
+    """Solve every HumanEval+ and MBPP+ problem and run the tests on each answer."""
+    parser = common.arguments_parser(__doc__, languages=False)
     parser.add_argument("--set", dest="which", default="both",
                         choices=["humanevalplus", "mbppplus", "both"])
     parser.add_argument("--limit", type=int)
     parser.add_argument("--timeout", type=int, default=30)
-    parser.add_argument("--out")
     arguments = parser.parse_args()
 
     problems = load(pathlib.Path(arguments.data), arguments.which, arguments.limit)
     if not problems:
-        print("no problems found — run get_datasets.py first", file=sys.stderr)
-        return 2
+        return common.nothing_found("problems")
     if os.geteuid() != 0:
         print("note: not root, so generated code runs as you and not as nobody",
               file=sys.stderr)
 
     model = common.model_name(arguments.base)
     run = common.Run(arguments.base, model, arguments.concurrency)
-
-    def do(problem: dict) -> dict:
-        text = run.ask([{"role": "user", "content": problem["instruction"]}],
-                       max_tokens=4096)
-        if text is None:
-            return {**{k: problem[k] for k in ("set", "id")},
-                    "passed": False, "why": "no answer"}
-        passed, why = run_program(extract_code(text), problem["check"],
-                                  arguments.timeout)
-        return {"set": problem["set"], "id": problem["id"],
-                "passed": passed, "why": why}
-
-    print(f"\n=== {arguments.label} | {model} | {len(problems)} problems "
-          f"| concurrency={arguments.concurrency} ===", flush=True)
+    common.banner(arguments.label, model, f"{len(problems)} problems",
+                  f"concurrency={arguments.concurrency}")
     # No warm-up: every problem is different, so a discarded pass would throw
     # away real answers rather than repeat one.
-    results = run.go(problems, do, warm=False)
-
-    by_set: dict[str, list[bool]] = {}
-    for row in results:
-        by_set.setdefault(row["set"], []).append(row["passed"])
+    results = run.go(problems, lambda problem: solve(run, problem, arguments.timeout),
+                     warm=False)
     passed = sum(1 for row in results if row["passed"])
 
     common.report(arguments.out, {
@@ -196,9 +208,7 @@ def main() -> int:
         **run.speed(len(problems)),
         "passed": passed,
         "pass_rate": round(passed / len(problems), 4),
-        "by_set": {name: {"n": len(marks), "passed": sum(marks),
-                          "pass_rate": round(sum(marks) / len(marks), 4)}
-                   for name, marks in sorted(by_set.items())},
+        "by_set": per_set(results),
         "failures": [row for row in results if not row["passed"]][:40],
     })
     return 0

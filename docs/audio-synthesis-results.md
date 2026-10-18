@@ -66,6 +66,8 @@ was not authenticated for these tests.
 
 The complete raw JSON, evaluator output and hashes are in
 [`results/audio-synthesis`](../results/audio-synthesis/) and
-[`results/sound-effects`](../results/sound-effects/). The manifests and runners
-are in [`harness/tts`](../harness/tts/) and
-[`harness/soundfx`](../harness/soundfx/).
+[`results/sound-effects`](../results/sound-effects/). The manifests are in
+[`harness/tts`](../harness/tts/), the runners in
+[`harness/tts/runners`](../harness/tts/runners/) and
+[`harness/soundfx`](../harness/soundfx/), the automatic scorers in
+[`harness/tts/scoring`](../harness/tts/scoring/).

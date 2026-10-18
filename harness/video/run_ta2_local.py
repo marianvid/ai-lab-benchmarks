@@ -9,10 +9,12 @@ import sys
 
 
 def path(value: str) -> Path:
+    """A command-line path, expanded and made absolute."""
     return Path(value).expanduser().resolve()
 
 
-def main() -> None:
+def options() -> argparse.Namespace:
+    """The command line: where everything is, and the generation settings."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--runtime-dir", type=path, required=True)
     parser.add_argument("--model-dir", type=path, required=True)
@@ -27,8 +29,12 @@ def main() -> None:
     parser.add_argument("--frames", type=int, default=77)
     parser.add_argument("--steps", type=int, default=30)
     parser.add_argument("--seed", type=int, default=42)
-    args = parser.parse_args()
+    return parser.parse_args()
 
+
+def main() -> None:
+    """Run the talking-avatar pipeline locally on one portrait and one speech track."""
+    args = options()
     sys.path.insert(0, str(args.runtime_dir))
     from talking_avatar.config import GenerationConfig
     from talking_avatar.pipeline import TalkingAvatarPipeline

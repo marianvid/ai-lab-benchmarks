@@ -10,6 +10,7 @@ from pathlib import Path
 
 
 def main() -> int:
+    """Link the human LibriTTS recordings into a run folder, as the baseline row to score."""
     parser = argparse.ArgumentParser()
     parser.add_argument("--data", required=True)
     parser.add_argument("--out", required=True)

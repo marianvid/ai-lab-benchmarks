@@ -30,8 +30,11 @@ import urllib.error
 import urllib.request
 from dataclasses import dataclass
 
-LOOPBACK = "127.0.0.1"
-MANAGER = f"http://{LOOPBACK}:8090"
+# The repository root, so the harness's own modules import as `harness.…`.
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
+
+from harness.shared.lab import LOOPBACK, manager_url
+
 # The harness is the folder this file sits in; nothing else is assumed.
 HARNESS = str(pathlib.Path(__file__).resolve().parent)
 
@@ -78,7 +81,8 @@ THROUGHPUT_LANGUAGES = "en,ru,zh"      # Latin, Cyrillic, Han
 
 
 def api(path: str, method: str = "GET", timeout: int = 900) -> dict:
-    request = urllib.request.Request(MANAGER + path, method=method)
+    """One call to the manager (found as `lab.manager_url` says)."""
+    request = urllib.request.Request(manager_url() + path, method=method)
     with urllib.request.urlopen(request, timeout=timeout) as response:
         return json.load(response)
 
@@ -109,6 +113,7 @@ def model_size(instance: str) -> int | None:
 
 
 def load(instance: str, port: int) -> dict:
+    """Load one model through the manager and wait until its engine answers; timed."""
     started = time.perf_counter()
     try:
         result = api(f"/api/instances/{instance}/load", "POST")
@@ -126,6 +131,7 @@ def load(instance: str, port: int) -> dict:
 
 
 def unload(instance: str) -> dict:
+    """Unload one model through the manager; timed."""
     started = time.perf_counter()
     try:
         result = api(f"/api/instances/{instance}/unload", "POST", timeout=300)
@@ -135,67 +141,8 @@ def unload(instance: str) -> dict:
             "unload_ms_reported": result.get("total_ms")}
 
 
-def bench(script: str, port: int, label: str, concurrency: int,
-          extra: list[str], out: pathlib.Path, log, paths: Paths,
-          positional: bool = True) -> dict | None:
-    """One benchmark. Never raises: a failure is a recorded fact, not a stop.
-
-    `positional=False` is for `bench.py`, which predates the others and takes
-    the output path as a third positional argument with no concurrency at all.
-    """
-    if positional:
-        command = [paths.python, f"{HARNESS}/{script}", f"http://{LOOPBACK}:{port}",
-                   label, str(concurrency), "--out", str(out), *extra]
-        if script != "bench_longform.py":
-            command += ["--data", paths.data]
-    else:
-        command = [paths.python, f"{HARNESS}/{script}", f"http://{LOOPBACK}:{port}",
-                   label, str(out)]
-    log(f"    {script} c={concurrency} {' '.join(extra)}")
-    started = time.perf_counter()
-    try:
-        completed = subprocess.run(command, capture_output=True, text=True,
-                                   timeout=14400, cwd=HARNESS,
-                                   env={"BENCH_PYTHON": paths.python, "PATH": "/usr/bin:/bin",
-                                        "HOME": paths.home})
-    except subprocess.TimeoutExpired:
-        log(f"      timed out after {round(time.perf_counter()-started)}s")
-        return None
-    if completed.returncode != 0 or not out.exists():
-        tail = (completed.stderr or completed.stdout or "").strip().splitlines()
-        log(f"      failed: {tail[-1][:150] if tail else 'no output'}")
-        return None
-    log(f"      done in {round(time.perf_counter()-started)}s")
-    return json.loads(out.read_text())
-
-
-def ladder(script: str, instance: str, port: int, extra: list[str],
-           stem: str, out: pathlib.Path, log, paths: Paths) -> dict:
-    """One rung per concurrency, each on an engine that has not seen the work.
-
-    The engine is restarted between rungs. Every rung sends the same prompts,
-    and vLLM keeps what it has already read: run them back to back and the
-    second rung answers from cache, which reported 60 articles read in a
-    quarter of a second. Restarting throws that cache away, which is the only
-    way each rung measures the same thing.
-    """
-    curve = {}
-    for concurrency in THROUGHPUT_CONCURRENCY:
-        unload(instance)
-        again = load(instance, port)
-        if not again["ok"]:
-            log(f"    could not restart for c={concurrency}: {again.get('error')}")
-            break
-        result = bench(script, port, instance, concurrency, extra,
-                       out / f"{instance}-{stem}-c{concurrency}.json", log, paths)
-        if result:
-            curve[str(concurrency)] = {
-                k: result[k] for k in
-                ("wall_s", "items_per_s", "prefill_tok_s", "decode_tok_s")}
-    return curve
-
-
-def main() -> int:
+def options() -> argparse.Namespace:
+    """The command line."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", required=True, help="results folder")
     parser.add_argument("--python", required=True,
@@ -213,104 +160,213 @@ def main() -> int:
                              "quality and latency results already on disk alone")
     parser.add_argument("--skip-reload", action="store_true",
                         help="do not measure the second, warm load")
-    arguments = parser.parse_args()
+    return parser.parse_args()
 
-    paths = Paths(arguments.python, arguments.data, arguments.home)
-    out = pathlib.Path(arguments.out)
-    out.mkdir(parents=True, exist_ok=True)
-    logfile = (out / "run.log").open("a", encoding="utf-8")
 
-    def log(message: str) -> None:
+@dataclass(frozen=True)
+class Model:
+    """One entry of MODELS: the instance, its port, and what it runs."""
+
+    instance: str
+    port: int
+    name: str
+    engine: str
+    fmt: str
+    full: bool
+
+
+@dataclass(frozen=True)
+class Bench:
+    """One benchmark script and how to call it.
+
+    `positional=False` is for `bench.py`, which predates the others and takes
+    the output path as a third positional argument with no concurrency at all.
+    """
+
+    script: str
+    concurrency: int
+    extra: tuple[str, ...] = ()
+    positional: bool = True
+
+
+class Night:
+    """One unattended pass over the models, logging and saving as it goes."""
+
+    def __init__(self, arguments: argparse.Namespace, logfile) -> None:
+        self.arguments = arguments
+        self.paths = Paths(arguments.python, arguments.data, arguments.home)
+        self.out = pathlib.Path(arguments.out)
+        self.logfile = logfile
+        self.summary_path = self.out / "summary.json"
+        self.summary = (json.loads(self.summary_path.read_text())
+                        if self.summary_path.exists() else {})
+
+    def log(self, message: str) -> None:
+        """Print one stamped line and append it to run.log."""
         stamp = time.strftime("%H:%M:%S")
         print(f"{stamp} {message}", flush=True)
-        logfile.write(f"{stamp} {message}\n")
-        logfile.flush()
+        self.logfile.write(f"{stamp} {message}\n")
+        self.logfile.flush()
 
-    wanted = arguments.only.split(",") if arguments.only else None
-    summary_path = out / "summary.json"
-    summary = json.loads(summary_path.read_text()) if summary_path.exists() else {}
+    def save(self, instance: str, entry: dict) -> None:
+        """Record one model's entry and rewrite the summary."""
+        self.summary[instance] = entry
+        self.summary_path.write_text(json.dumps(self.summary, indent=2, ensure_ascii=False))
 
-    log(f"=== starting: {len(MODELS)} models -> {out} ===")
-    for instance, port, name, engine, fmt, full in MODELS:
-        if wanted and instance not in wanted:
-            continue
-        log(f"--- {instance} ({name}, {engine} {fmt}) ---")
+    def command(self, bench: Bench, model: Model, out: pathlib.Path) -> list[str]:
+        """The command line that runs one benchmark against one model."""
+        paths = self.paths
+        start = [paths.python, f"{HARNESS}/{bench.script}", f"http://{LOOPBACK}:{model.port}",
+                 model.instance]
+        if not bench.positional:
+            return [*start, str(out)]
+        command = [*start, str(bench.concurrency), "--out", str(out), *bench.extra]
+        if bench.script != "bench_longform.py":
+            command += ["--data", paths.data]
+        return command
 
+    def run_bench(self, bench: Bench, model: Model, out: pathlib.Path) -> dict | None:
+        """One benchmark. Never raises: a failure is a recorded fact, not a stop."""
+        self.log(f"    {bench.script} c={bench.concurrency} {' '.join(bench.extra)}")
+        started = time.perf_counter()
+        try:
+            completed = subprocess.run(
+                self.command(bench, model, out), capture_output=True, text=True,
+                timeout=14400, cwd=HARNESS,
+                env={"BENCH_PYTHON": self.paths.python, "PATH": "/usr/bin:/bin",
+                     "HOME": self.paths.home})
+        except subprocess.TimeoutExpired:
+            self.log(f"      timed out after {round(time.perf_counter()-started)}s")
+            return None
+        if completed.returncode != 0 or not out.exists():
+            tail = (completed.stderr or completed.stdout or "").strip().splitlines()
+            self.log(f"      failed: {tail[-1][:150] if tail else 'no output'}")
+            return None
+        self.log(f"      done in {round(time.perf_counter()-started)}s")
+        return json.loads(out.read_text())
+
+    def bench(self, bench: Bench, model: Model, stem: str) -> dict | None:
+        """One benchmark for this model, written to `<instance>-<stem>.json`."""
+        return self.run_bench(bench, model, self.out / f"{model.instance}-{stem}.json")
+
+    def ladder(self, script: str, model: Model, extra: tuple[str, ...], stem: str) -> dict:
+        """One rung per concurrency, each on an engine that has not seen the work.
+
+        The engine is restarted between rungs. Every rung sends the same prompts,
+        and vLLM keeps what it has already read: run them back to back and the
+        second rung answers from cache, which reported 60 articles read in a
+        quarter of a second. Restarting throws that cache away, which is the only
+        way each rung measures the same thing.
+        """
+        curve = {}
+        for concurrency in THROUGHPUT_CONCURRENCY:
+            unload(model.instance)
+            again = load(model.instance, model.port)
+            if not again["ok"]:
+                self.log(f"    could not restart for c={concurrency}: {again.get('error')}")
+                break
+            result = self.bench(Bench(script, concurrency, extra), model,
+                                f"{stem}-c{concurrency}")
+            if result:
+                curve[str(concurrency)] = {
+                    k: result[k] for k in
+                    ("wall_s", "items_per_s", "prefill_tok_s", "decode_tok_s")}
+        return curve
+
+    def started(self, model: Model, entry: dict) -> bool:
+        """Load the model (and, unless skipped, load it again warm); False if it fails."""
+        loaded = load(model.instance, model.port)
+        entry["load"] = loaded
+        if not loaded["ok"]:
+            self.log(f"    will not start: {loaded.get('error')}")
+            return False
+        self.log(f"    first load {loaded['load_s']}s")
+        if self.arguments.skip_reload:
+            return True
+        # Load a second time straight away. The weights are in the page cache
+        # now, so the gap between the two numbers is the cost of reading them
+        # from disk rather than of setting the model up.
+        entry["unload_first"] = unload(model.instance)
+        reloaded = load(model.instance, model.port)
+        entry["reload"] = reloaded
+        if not reloaded["ok"]:
+            self.log(f"    reload failed: {reloaded.get('error')}")
+            return False
+        self.log(f"    reload {reloaded['load_s']}s (page cache warm)")
+        return True
+
+    def quality(self, model: Model, entry: dict) -> None:
+        """The four quality tasks."""
+        entry["classification"] = self.bench(
+            Bench("bench_classify.py", QUALITY_CONCURRENCY), model, "classify")
+        entry["comprehension"] = self.bench(
+            Bench("bench_comprehension.py", QUALITY_CONCURRENCY, ("--limit", "100")),
+            model, "comprehension")
+        entry["translation"] = self.bench(
+            Bench("bench_translate.py", QUALITY_CONCURRENCY, ("--limit", "50")),
+            model, "translate")
+        entry["coding"] = self.bench(
+            Bench("bench_coding.py", QUALITY_CONCURRENCY), model, "coding")
+
+    def ladders(self, model: Model, entry: dict) -> None:
+        """Throughput with whole articles instead of sentences, on the same
+        concurrency ladder. Prompt length is what fills the cache, so this
+        is the curve that describes real bulk work."""
+        entry["throughput_curve"] = self.ladder(
+            "bench_classify.py", model, ("--languages", THROUGHPUT_LANGUAGES), "throughput")
+        entry["longform_curve"] = self.ladder(
+            "bench_longform.py", model,
+            ("--articles", f"{self.paths.data}/wikipedia_articles.jsonl", "--limit", "60"),
+            "longform")
+
+    def model(self, model: Model) -> None:
+        """Everything for one model, saved whether it succeeds or not."""
+        instance = model.instance
+        self.log(f"--- {instance} ({model.name}, {model.engine} {model.fmt}) ---")
         # Merge into whatever is already recorded for this model, so a second
         # pass that adds a measurement does not erase the first pass's results.
-        entry = dict(summary.get(instance) or {})
-        entry.update({"instance": instance, "model": name, "engine": engine,
-                      "format": fmt, "tested": full})
+        entry = dict(self.summary.get(instance) or {})
+        entry.update({"instance": instance, "model": model.name, "engine": model.engine,
+                      "format": model.fmt, "tested": model.full})
         # The size on disk, so the loading page can put a load time next to the
         # number of gigabytes it read. Asked of AI-Lab rather than written down
         # here, because a re-quantised model changes size and nobody would
         # remember to edit a constant.
         entry["size_bytes"] = model_size(instance)
-
-        loaded = load(instance, port)
-        entry["load"] = loaded
-        if not loaded["ok"]:
-            log(f"    will not start: {loaded.get('error')}")
-            summary[instance] = entry
-            summary_path.write_text(json.dumps(summary, indent=2, ensure_ascii=False))
-            continue
-        log(f"    first load {loaded['load_s']}s")
-
-        # Load a second time straight away. The weights are in the page cache
-        # now, so the gap between the two numbers is the cost of reading them
-        # from disk rather than of setting the model up.
-        if not arguments.skip_reload:
-            entry["unload_first"] = unload(instance)
-            reloaded = load(instance, port)
-            entry["reload"] = reloaded
-            if not reloaded["ok"]:
-                log(f"    reload failed: {reloaded.get('error')}")
-                summary[instance] = entry
-                summary_path.write_text(json.dumps(summary, indent=2, ensure_ascii=False))
-                continue
-            log(f"    reload {reloaded['load_s']}s (page cache warm)")
-
-        if full and not arguments.only_new and not arguments.ladders_only:
-            entry["classification"] = bench(
-                "bench_classify.py", port, instance, QUALITY_CONCURRENCY, [],
-                out / f"{instance}-classify.json", log, paths)
-            entry["comprehension"] = bench(
-                "bench_comprehension.py", port, instance, QUALITY_CONCURRENCY,
-                ["--limit", "100"], out / f"{instance}-comprehension.json", log, paths)
-            entry["translation"] = bench(
-                "bench_translate.py", port, instance, QUALITY_CONCURRENCY,
-                ["--limit", "50"], out / f"{instance}-translate.json", log, paths)
-            entry["coding"] = bench(
-                "bench_coding.py", port, instance, QUALITY_CONCURRENCY, [],
-                out / f"{instance}-coding.json", log, paths)
-
-        if full and not arguments.ladders_only:
+        if not self.started(model, entry):
+            self.save(instance, entry)
+            return
+        arguments = self.arguments
+        if model.full and not arguments.only_new and not arguments.ladders_only:
+            self.quality(model, entry)
+        if model.full and not arguments.ladders_only:
             # Prompt reading and generation at three prompt sizes, one request
             # at a time. The only place long prompts are measured.
-            entry["latency"] = bench(
-                "bench.py", port, instance, 1, [],
-                out / f"{instance}-latency.json", log, paths, positional=False)
-
-        # Throughput with whole articles instead of sentences, on the same
-        # concurrency ladder. Prompt length is what fills the cache, so this
-        # is the curve that describes real bulk work.
-        if full and not arguments.skip_throughput:
-            entry["throughput_curve"] = ladder(
-                "bench_classify.py", instance, port,
-                ["--languages", THROUGHPUT_LANGUAGES], "throughput", out, log, paths)
-            entry["longform_curve"] = ladder(
-                "bench_longform.py", instance, port,
-                ["--articles", f"{paths.data}/wikipedia_articles.jsonl",
-                 "--limit", "60"], "longform", out, log, paths)
-
+            entry["latency"] = self.bench(Bench("bench.py", 1, positional=False), model,
+                                          "latency")
+        if model.full and not arguments.skip_throughput:
+            self.ladders(model, entry)
         entry["unload"] = unload(instance)
-        log(f"    unloaded in {entry['unload'].get('unload_s')}s")
+        self.log(f"    unloaded in {entry['unload'].get('unload_s')}s")
+        self.save(instance, entry)
+        self.log(f"    written to {self.summary_path}")
 
-        summary[instance] = entry
-        summary_path.write_text(json.dumps(summary, indent=2, ensure_ascii=False))
-        log(f"    written to {summary_path}")
 
-    log("=== finished ===")
+def main() -> int:
+    """Run every test against every model, one model at a time, recording everything."""
+    arguments = options()
+    out = pathlib.Path(arguments.out)
+    out.mkdir(parents=True, exist_ok=True)
+    wanted = arguments.only.split(",") if arguments.only else None
+    with (out / "run.log").open("a", encoding="utf-8") as logfile:
+        night = Night(arguments, logfile)
+        night.log(f"=== starting: {len(MODELS)} models -> {out} ===")
+        for row in MODELS:
+            model = Model(*row)
+            if wanted and model.instance not in wanted:
+                continue
+            night.model(model)
+        night.log("=== finished ===")
     return 0
 
 

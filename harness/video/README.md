@@ -5,7 +5,7 @@ presenter-video pass. Model weights are intentionally not stored in Git.
 
 `cases-v1.json` defines the three source portraits. The images generated from
 those prompts are kept under `results/video/fixtures-v1`. The English speech
-tracks are selected from `harness/tts/cases-english-v2.json` and are trimmed to
+tracks are selected from `../tts/cases-english-v2.json` and are trimmed to
 six seconds on the benchmark machine.
 
 ## Runners

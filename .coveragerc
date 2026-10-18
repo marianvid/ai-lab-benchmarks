@@ -1,0 +1,4 @@
+# What the coverage figure in pytest.ini measures: the harness, not its tests.
+[run]
+branch = true
+omit = tests/*

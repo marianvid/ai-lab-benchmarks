@@ -27,7 +27,7 @@ GPU vendor's own optimised engine has the worst.
 
 Not a bug. Three independent walls, any one of which is fatal:
 
-1. **No implementation.** `_torch/models/` contains `modeling_gemma3.py`. There
+1. **No implementation.** `<tensorrt_llm>/_torch/models/` contains `<tensorrt_llm>/_torch/models/modeling_gemma3.py`. There
    is no `gemma4`.
 2. **The pinned library predates the model.** The package requires
    `transformers==4.57.3` exactly. That version's config registry knows `gemma`,
@@ -57,7 +57,7 @@ ahead-of-time compilation and pay for it with even fewer runnable models.
 ## The compiled-engine path no longer exists anyway
 
 Release 1.2 removed the TensorRT backend entirely: `trtllm-build`,
-`trtllm-refit`, `trtllm-prune`, the per-model `convert_checkpoint.py` scripts,
+`trtllm-refit`, `trtllm-prune`, the per-model `<model>/convert_checkpoint.py` scripts,
 and the `tensorrt` dependency. The documentation states *"PyTorch is now the sole
 execution backend"* and *"there is no separate checkpoint-conversion or
 engine-build step."*
@@ -118,8 +118,8 @@ have what the documentation promised:
 
 - `tensorrt_llm 1.3.0rc24`, with `transformers 5.5.4`
 - `gemma4` present in the transformers config registry
-- `_torch/models/modeling_gemma4.py`, `modeling_gemma4_unified.py`,
-  `modeling_gemma4_vision.py`, `modeling_gemma4_audio.py`, `modeling_gemma4mm.py`
+- `<tensorrt_llm>/_torch/models/modeling_gemma4.py`, `<…>/modeling_gemma4_unified.py`,
+  `<…>/modeling_gemma4_vision.py`, `<…>/modeling_gemma4_audio.py`, `<…>/modeling_gemma4mm.py`
 
 And then it failed to compile its kernels:
 
@@ -196,7 +196,7 @@ For the record, because the pattern is the finding:
 
 | # | Wall |
 |---|---|
-| 1 | released 1.2.1 has no `modeling_gemma4.py` |
+| 1 | released 1.2.1 has no `<tensorrt_llm>/_torch/models/modeling_gemma4.py` |
 | 2 | it pins `transformers==4.57.3`, which predates Gemma 4, GLM-4.7 and Qwen3.5 |
 | 3 | MPI worker spawn fails in an unprivileged LXC (`MPI_ERR_UNKNOWN`) |
 | 4 | `TLLM_DISABLE_MPI=1` needs Ray, absent |
@@ -310,7 +310,7 @@ Gemma-3 and Gemma-4 are absent entirely.
 (INT4 via AWQ or GPTQ) and INT8/INT4 KV cache. **No FP8. No NVFP4.**
 
 Running those models would mean re-quantising to INT4 AWQ — a pre-Blackwell
-scheme. `MODEL_STORAGE.md` in this repository already described what that costs:
+scheme. AI-Lab's [MODEL_STORAGE.md](https://github.com/marianvid/ai-lab/blob/main/MODEL_STORAGE.md) already described what that costs:
 *"pre-Blackwell 4-bit schemes. Work, but leave performance unused."* You would
 buy the C++ engine with the format the card was chosen for.
 

@@ -27,12 +27,14 @@ Options:
 
 from __future__ import annotations
 
-import argparse
 import json
 import pathlib
 import sys
 
-import evalcommon as common
+# The repository root, so the harness's own modules import as `harness.…`.
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
+
+from harness import evalcommon as common
 
 TOPICS = ["science/technology", "travel", "politics", "sports",
           "health", "entertainment", "geography"]
@@ -45,9 +47,21 @@ Answer ONLY with a JSON array, one object per sentence, no markdown fences and n
 [{{"idx": 0, "match": true}}, {{"idx": 1, "match": false}}]"""
 
 
+# A row is: index, topic, sentence.
+COLUMNS = 3
+
+
+def rows_of(path: pathlib.Path, limit: int | None) -> list[list[str]]:
+    """The complete rows of one language's file, at most `limit` of them."""
+    with path.open(encoding="utf-8") as handle:
+        rows = [line.rstrip("\n").split("\t") for line in handle][1:]
+    complete = [row for row in rows if len(row) >= COLUMNS]
+    return complete[:limit] if limit else complete
+
+
 def load(data: pathlib.Path, languages: list[str] | None, limit: int | None) -> list[dict]:
     """Every labelled sentence, tagged with the language it is written in."""
-    from get_datasets import LANGUAGES
+    from harness.get_datasets import LANGUAGES
     by_code = {code: two for two, (code, _, _) in LANGUAGES.items()}
     items = []
     for path in sorted((data / "sib200").glob("*.tsv")):
@@ -57,31 +71,27 @@ def load(data: pathlib.Path, languages: list[str] | None, limit: int | None) -> 
         two = by_code.get(code, code)
         if languages and two not in languages:
             continue
-        rows = [line.rstrip("\n").split("\t")
-                for line in path.open(encoding="utf-8")][1:]
-        kept = 0
-        for row in rows:
-            if len(row) < 3:
-                continue
-            items.append({"lang": two, "category": row[1], "text": row[2],
-                          "id": f"{code}:{row[0]}"})
-            kept += 1
-            if limit and kept >= limit:
-                break
+        items += [{"lang": two, "category": row[1], "text": row[2],
+                   "id": f"{code}:{row[0]}"} for row in rows_of(path, limit)]
     return items
+
+
+def fenced(body: str) -> str:
+    """The array inside a markdown fence, if the answer has one."""
+    for part in body.split("```"):
+        part = part.strip()
+        if part.startswith("json"):
+            part = part[4:].strip()
+        if part.startswith("["):
+            return part
+    return body
 
 
 def parse_answer(text: str) -> dict[int, bool]:
     """Pull the JSON array out of whatever the model wrapped it in."""
     body = text.strip()
     if "```" in body:
-        for part in body.split("```"):
-            part = part.strip()
-            if part.startswith("json"):
-                part = part[4:].strip()
-            if part.startswith("["):
-                body = part
-                break
+        body = fenced(body)
     start, end = body.find("["), body.rfind("]")
     if start == -1 or end == -1:
         return {}
@@ -90,28 +100,69 @@ def parse_answer(text: str) -> dict[int, bool]:
     except json.JSONDecodeError:
         return {}
     return {int(entry["idx"]): bool(entry["match"])
-            for entry in parsed
-            if isinstance(entry, dict) and "idx" in entry and "match" in entry}
+            for entry in parsed if is_entry(entry)}
+
+
+def is_entry(entry: object) -> bool:
+    """Whether one element of the answer is an `{idx, match}` object."""
+    return isinstance(entry, dict) and "idx" in entry and "match" in entry
+
+
+def classify(run: common.Run, system: str, batch: list[dict],
+             answers: dict[str, bool]) -> None:
+    """Ask about one batch of sentences and record the answers that came back."""
+    lines = [json.dumps({"idx": index, "sentence": item["text"]},
+                        ensure_ascii=False)
+             for index, item in enumerate(batch)]
+    text = run.ask([{"role": "system", "content": system},
+                    {"role": "user", "content": "Classify:\n" + "\n".join(lines)}],
+                   max_tokens=60 * len(batch) + 200)
+    if text is None:
+        return
+    got = parse_answer(text)
+    if not got:
+        run.failed += 1
+        return
+    for index, item in enumerate(batch):
+        if index in got:
+            answers[item["id"]] = got[index]
+
+
+def outcome(gold: bool, predicted: bool) -> str:
+    """Which cell of the confusion count one answer falls in."""
+    if predicted:
+        return "tp" if gold else "fp"
+    return "fn" if gold else "tn"
+
+
+def confusion(items: list[dict], answers: dict[str, bool],
+              topic: str) -> tuple[dict, dict[str, dict]]:
+    """The confusion count overall and per language."""
+    overall = {"tp": 0, "fp": 0, "tn": 0, "fn": 0}
+    per_language: dict[str, dict] = {}
+    for item in items:
+        predicted = answers.get(item["id"])
+        if predicted is None:
+            continue
+        key = outcome(item["category"] == topic, predicted)
+        overall[key] += 1
+        per_language.setdefault(item["lang"],
+                                {"tp": 0, "fp": 0, "tn": 0, "fn": 0})[key] += 1
+    return overall, per_language
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("base"), parser.add_argument("label")
-    parser.add_argument("concurrency", type=int)
-    parser.add_argument("--data", default="./eval-data")
+    """Classify SIB-200 in every language and report quality and speed."""
+    parser = common.arguments_parser(__doc__)
     parser.add_argument("--topic", default="politics", choices=TOPICS)
-    parser.add_argument("--languages")
     parser.add_argument("--batch", type=int, default=5)
     parser.add_argument("--limit", type=int)
-    parser.add_argument("--out")
     arguments = parser.parse_args()
 
-    languages = ([code.strip() for code in arguments.languages.split(",")]
-                 if arguments.languages else None)
-    items = load(pathlib.Path(arguments.data), languages, arguments.limit)
+    items = load(pathlib.Path(arguments.data), common.language_list(arguments.languages),
+                 arguments.limit)
     if not items:
-        print("no sentences found — run get_datasets.py first", file=sys.stderr)
-        return 2
+        return common.nothing_found("sentences")
 
     batches = [items[i:i + arguments.batch]
                for i in range(0, len(items), arguments.batch)]
@@ -120,40 +171,10 @@ def main() -> int:
     system = SYSTEM.format(topic=arguments.topic)
     answers: dict[str, bool] = {}
 
-    def do(batch: list[dict]) -> None:
-        lines = [json.dumps({"idx": index, "sentence": item["text"]},
-                            ensure_ascii=False)
-                 for index, item in enumerate(batch)]
-        text = run.ask([{"role": "system", "content": system},
-                        {"role": "user", "content": "Classify:\n" + "\n".join(lines)}],
-                       max_tokens=60 * len(batch) + 200)
-        if text is None:
-            return
-        got = parse_answer(text)
-        if not got:
-            run.failed += 1
-            return
-        for index, item in enumerate(batch):
-            if index in got:
-                answers[item["id"]] = got[index]
-
-    print(f"\n=== {arguments.label} | {model} | topic={arguments.topic} "
-          f"| {len(items)} sentences | concurrency={arguments.concurrency} ===",
-          flush=True)
-    run.go(batches, do)
-
-    overall = {"tp": 0, "fp": 0, "tn": 0, "fn": 0}
-    per_language: dict[str, dict] = {}
-    for item in items:
-        predicted = answers.get(item["id"])
-        if predicted is None:
-            continue
-        gold = item["category"] == arguments.topic
-        key = ("tp" if gold and predicted else "fp" if predicted
-               else "fn" if gold else "tn")
-        overall[key] += 1
-        per_language.setdefault(item["lang"],
-                                {"tp": 0, "fp": 0, "tn": 0, "fn": 0})[key] += 1
+    common.banner(arguments.label, model, f"topic={arguments.topic}",
+                  f"{len(items)} sentences", f"concurrency={arguments.concurrency}")
+    run.go(batches, lambda batch: classify(run, system, batch, answers))
+    overall, per_language = confusion(items, answers, arguments.topic)
 
     common.report(arguments.out, {
         "test": "classification", "set": "SIB-200",

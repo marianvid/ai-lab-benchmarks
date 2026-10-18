@@ -7,3 +7,6 @@ __pycache__/
 .DS_Store
 ._*
 opts/
+
+# Written by every test run (pytest.ini measures coverage).
+.coverage

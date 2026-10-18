@@ -31,7 +31,9 @@ LibriTTS reference and five separate scripts containing its supported
 paralinguistic syntax. Dia2 uses three two-speaker dialogue scripts and the
 official prefix voices.
 
-The exact manifests and runners are in [`harness/tts`](../harness/tts/). Seeds,
+The exact manifests are in [`harness/tts`](../harness/tts/), the runners in
+[`harness/tts/runners`](../harness/tts/runners/) and the scorers in
+[`harness/tts/scoring`](../harness/tts/scoring/). Seeds,
 durations, hashes, software versions, peak memory and per-case timing are in
 [`results/audio-synthesis`](../results/audio-synthesis/).
 

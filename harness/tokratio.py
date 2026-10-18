@@ -28,10 +28,53 @@ try:
 except ImportError:                                     # pragma: no cover
     print("this script needs transformers:  pip install transformers",
           file=sys.stderr)
-    raise SystemExit(2)
+    raise SystemExit(2) from None
+
+
+def read_flores(data: str, limit: int, languages: dict) -> dict[str, list[str]]:
+    """The first `limit` FLORES sentences of every language that is present."""
+    flores = pathlib.Path(data) / "flores"
+    text: dict[str, list[str]] = {}
+    for two, (code, _name, _script) in languages.items():
+        path = flores / f"{code}.txt"
+        if path.exists():
+            text[two] = path.read_text(encoding="utf-8").splitlines()[:limit]
+    return text
+
+
+def count(tokenizer, text: dict[str, list[str]], languages: dict) -> dict[str, dict]:
+    """Characters, tokens and characters per token for each language, printed as it goes."""
+    print(f"{'lang':<6}{'script':<12}{'chars':>9}{'tokens':>9}{'chars/token':>13}")
+    rows: dict[str, dict] = {}
+    for two in sorted(text, key=lambda k: languages[k][2]):
+        script = languages[two][2]
+        characters = sum(len(line) for line in text[two])
+        tokens = sum(len(tokenizer.encode(line, add_special_tokens=False))
+                     for line in text[two])
+        ratio = characters / tokens if tokens else 0.0
+        rows[two] = {"script": script, "chars": characters,
+                     "tokens": tokens, "chars_per_token": round(ratio, 2)}
+        print(f"{two:<6}{script:<12}{characters:>9}{tokens:>9}{ratio:>13.2f}")
+    return rows
+
+
+def relative(rows: dict[str, dict]) -> None:
+    """Print each language's cost as a multiple of English's.
+
+    English is the reference: everything else is quoted as a multiple of
+    what the same content costs in English, which is the number that
+    decides whether a context window is enough.
+    """
+    english = rows.get("en", {}).get("tokens")
+    if not english:
+        return
+    print("\n  tokens relative to English, for the same sentences:")
+    for two, row in sorted(rows.items(), key=lambda kv: -kv[1]["tokens"]):
+        print(f"    {two:<4}{row['script']:<12}{row['tokens']/english:>6.2f}x")
 
 
 def main() -> int:
+    """Count what the same sentences cost in tokens for each tokenizer."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data", default="./eval-data")
     parser.add_argument("--models", nargs="+", required=True,
@@ -41,15 +84,11 @@ def main() -> int:
     parser.add_argument("--out")
     arguments = parser.parse_args()
 
-    sys.path.insert(0, str(pathlib.Path(__file__).parent))
-    from get_datasets import LANGUAGES
+    # The repository root, so the harness's own modules import as `harness.…`.
+    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
+    from harness.get_datasets import LANGUAGES
 
-    flores = pathlib.Path(arguments.data) / "flores"
-    text: dict[str, list[str]] = {}
-    for two, (code, _name, _script) in LANGUAGES.items():
-        path = flores / f"{code}.txt"
-        if path.exists():
-            text[two] = path.read_text(encoding="utf-8").splitlines()[:arguments.limit]
+    text = read_flores(arguments.data, arguments.limit, LANGUAGES)
     if not text:
         print("no FLORES data — run get_datasets.py first", file=sys.stderr)
         return 2
@@ -62,29 +101,9 @@ def main() -> int:
         except Exception as error:
             print(f"{name}: {repr(error)[:100]}", file=sys.stderr)
             continue
-
         print(f"\n### {name}")
-        print(f"{'lang':<6}{'script':<12}{'chars':>9}{'tokens':>9}{'chars/token':>13}")
-        rows = {}
-        for two in sorted(text, key=lambda k: LANGUAGES[k][2]):
-            script = LANGUAGES[two][2]
-            characters = sum(len(line) for line in text[two])
-            tokens = sum(len(tokenizer.encode(line, add_special_tokens=False))
-                         for line in text[two])
-            ratio = characters / tokens if tokens else 0.0
-            rows[two] = {"script": script, "chars": characters,
-                         "tokens": tokens, "chars_per_token": round(ratio, 2)}
-            print(f"{two:<6}{script:<12}{characters:>9}{tokens:>9}{ratio:>13.2f}")
-
-        # English is the reference: everything else is quoted as a multiple of
-        # what the same content costs in English, which is the number that
-        # decides whether a context window is enough.
-        english = rows.get("en", {}).get("tokens")
-        if english:
-            print(f"\n  tokens relative to English, for the same sentences:")
-            for two, row in sorted(rows.items(), key=lambda kv: -kv[1]["tokens"]):
-                print(f"    {two:<4}{row['script']:<12}{row['tokens']/english:>6.2f}x")
-        report[name] = rows
+        report[name] = count(tokenizer, text, LANGUAGES)
+        relative(report[name])
 
     if arguments.out:
         pathlib.Path(arguments.out).write_text(

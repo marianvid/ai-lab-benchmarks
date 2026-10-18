@@ -238,4 +238,4 @@ on manually labelled material from the intended production domain.
 
 MIT for the harness, the documents and the results. The evaluation sets are not
 ours and are not here; each keeps its own licence, recorded in
-`eval-data/MANIFEST.json` once fetched.
+`<eval-data>/MANIFEST.json` once fetched.

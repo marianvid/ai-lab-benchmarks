@@ -5,7 +5,8 @@
 benchmark on it. The page is kept for the diagnosis, not because anything here
 still needs doing.
 
-Patch in `harness/fix_gemma4.py`, useful only if pinned to 0.27.1. It edits a
+The patch (fix_gemma4.py, kept with the machines' private settings because it edits
+one machine's installed package) is useful only if pinned to 0.27.1. It edits a
 file inside the installed package, so any upgrade silently reverts it.
 
 Symptom resembles a corrupt checkpoint; cause is a config attribute change in
@@ -48,7 +49,8 @@ the model's `config.json`, inside `text_config`:
 "allow_global_per_layer_attribute_access": true
 ```
 
-`benchmark/harness/patch_gemma_cfg.py` does this and keeps a `.orig` backup. This is safe
+patch_gemma_cfg.py, kept beside fix_gemma4.py in the machines' private settings because it
+edits the model folders of one machine, does this and keeps a `.orig` backup. This is safe
 here: vLLM wants the global value in order to size buffers for the largest case,
 which is exactly the use the warning permits.
 
@@ -69,7 +71,7 @@ Gemma-4 mixes two attention shapes:
 | full attention | 5 | **512** | **2** |
 
 Older transformers published the second set under the names `global_head_dim`
-and `num_global_key_value_heads`, and `vllm/model_executor/models/gemma4.py`
+and `num_global_key_value_heads`, and `<vllm>/model_executor/models/gemma4.py`
 reads exactly those names:
 
 ```python
@@ -107,9 +109,9 @@ per_layer_config num_key_value_heads {8: 25, 2: 5}
 
 ## The patch
 
-`benchmark/harness/fix_gemma4.py`. It prefers the per-layer value where transformers
+fix_gemma4.py (in the machines' private settings, not in this repository). It prefers the per-layer value where transformers
 provides one and keeps the old lookup as a fallback, so it is safe on older
-transformers too. Two blocks changed in `gemma4.py`:
+transformers too. Two blocks changed in `<vllm>/model_executor/models/gemma4.py`:
 
 ```python
 _per_layer = getattr(config, "per_layer_config", None)

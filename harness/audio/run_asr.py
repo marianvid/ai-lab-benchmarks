@@ -4,16 +4,15 @@
 from __future__ import annotations
 
 import argparse
-import os
 import json
 import pathlib
-import re
+import sys
 import time
-import unicodedata
-import urllib.error
-import urllib.request
-import uuid
 
+# The repository root, so the harness's own modules import as `harness.…`.
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[2]))
+from harness.shared.lab import MANAGER_HELP, manager_url, multipart, read_error, timed, unload_running
+from harness.shared.textmetrics import ErrorTotals
 
 MODELS = [
     ("whisper-large-v3", "Whisper large-v3", "vLLM", "Safetensors"),
@@ -24,238 +23,162 @@ MODELS = [
     ("canary-1b-v2", "Canary 1B v2", "NeMo", ".nemo"),
     ("nemotron-35-asr-streaming-06b", "Nemotron 3.5 ASR Streaming 0.6B", "NeMo", ".nemo"),
 ]
+TRANSCRIPTIONS = "/v1/audio/transcriptions"
+NOTHING_SCORED = {"real_time_factor": None, "audio_seconds_per_second": None,
+                  "wer": None, "cer": None, "wer_without_diacritics": None,
+                  "cer_without_diacritics": None}
 
 
-def api(base: str, path: str, method: str = "GET", timeout: int = 1200) -> object:
-    request = urllib.request.Request(base + path, method=method)
-    with urllib.request.urlopen(request, timeout=timeout) as response:
-        return json.load(response)
+class Study:
+    """One run of the study: where the data is, where the results go, the manager."""
 
+    def __init__(self, manager: str, data: pathlib.Path, out: pathlib.Path) -> None:
+        self.manager = manager
+        self.data = data
+        self.manifest = json.loads((data / "MANIFEST.json").read_text(encoding="utf-8"))
+        self.details_dir = out / "details"
+        self.details_dir.mkdir(parents=True, exist_ok=True)
+        self.summary_path = out / "summary.json"
+        self.summary = (json.loads(self.summary_path.read_text())
+                        if self.summary_path.exists() else {})
 
-def unload_running(base: str) -> list[dict]:
-    outcomes = []
-    for item in api(base, "/api/instances"):
-        if item.get("running"):
-            try:
-                result = api(base, f"/api/instances/{item['id']}/unload", "POST", 300)
-                outcomes.append({"instance": item["id"], "ok": bool(result.get("ok"))})
-            except Exception as error:
-                outcomes.append({"instance": item["id"], "ok": False, "error": str(error)})
-    return outcomes
+    def transcribe(self, instance: str, audio: pathlib.Path) -> dict:
+        """One recording through the gateway, in Romanian."""
+        return multipart(self.manager + TRANSCRIPTIONS, {"model": instance, "language": "ro"},
+                         ("file", audio.name, audio.read_bytes()))
 
+    def save(self, instance: str, entry: dict) -> None:
+        """Record one model's entry in the summary, at once."""
+        self.summary[instance] = entry
+        self.summary_path.write_text(json.dumps(self.summary, ensure_ascii=False, indent=2) + "\n")
 
-def multipart(url: str, fields: dict[str, str], filename: str,
-              payload: bytes, timeout: int = 1800) -> dict:
-    boundary = "ai-lab-benchmark-" + uuid.uuid4().hex
-    chunks = []
-    for name, value in fields.items():
-        chunks.extend([
-            f"--{boundary}\r\n".encode(),
-            f'Content-Disposition: form-data; name="{name}"\r\n\r\n'.encode(),
-            value.encode(), b"\r\n",
-        ])
-    chunks.extend([
-        f"--{boundary}\r\n".encode(),
-        f'Content-Disposition: form-data; name="file"; filename="{filename}"\r\n'.encode(),
-        b"Content-Type: audio/wav\r\n\r\n", payload, b"\r\n",
-        f"--{boundary}--\r\n".encode(),
-    ])
-    request = urllib.request.Request(
-        url, data=b"".join(chunks), method="POST",
-        headers={"Content-Type": f"multipart/form-data; boundary={boundary}"})
-    with urllib.request.urlopen(request, timeout=timeout) as response:
-        return json.load(response)
+    def details(self, instance: str, items: list[dict], status: str | None = None) -> None:
+        """Every request of one model, written as the run goes."""
+        record: dict = {"schema_version": 1, "instance": instance}
+        if status:
+            record["status"] = status
+        record["items"] = items
+        (self.details_dir / f"{instance}.json").write_text(
+            json.dumps(record, ensure_ascii=False, indent=2) + "\n")
 
-
-def normalized(text: str, strip_diacritics: bool = False) -> str:
-    text = unicodedata.normalize("NFKC", text or "").casefold()
-    if strip_diacritics:
-        text = "".join(char for char in unicodedata.normalize("NFD", text)
-                       if unicodedata.category(char) != "Mn")
-    text = "".join(" " if unicodedata.category(char)[0] in {"P", "S"} else char
-                   for char in text)
-    return re.sub(r"\s+", " ", text).strip()
-
-
-def distance(reference: list[str], hypothesis: list[str]) -> int:
-    previous = list(range(len(hypothesis) + 1))
-    for row, expected in enumerate(reference, 1):
-        current = [row]
-        for column, actual in enumerate(hypothesis, 1):
-            current.append(min(current[-1] + 1, previous[column] + 1,
-                               previous[column - 1] + (expected != actual)))
-        previous = current
-    return previous[-1]
-
-
-def error_counts(reference: str, hypothesis: str, ascii_only: bool = False) -> tuple[int, int, int, int]:
-    ref = normalized(reference, ascii_only)
-    hyp = normalized(hypothesis, ascii_only)
-    ref_words, hyp_words = ref.split(), hyp.split()
-    return (distance(ref_words, hyp_words), len(ref_words),
-            distance(list(ref), list(hyp)), len(ref))
-
-
-def read_error(error: Exception) -> str:
-    if isinstance(error, urllib.error.HTTPError):
-        try:
-            return error.read().decode("utf-8", errors="replace")
-        except Exception:
-            pass
-    return f"{type(error).__name__}: {error}"
-
-
-def main() -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
-        "--manager", default=os.environ.get("AI_LAB_MANAGER", "http://localhost:8090"),
-        help="AI-Lab manager address; defaults to $AI_LAB_MANAGER, then localhost")
-    parser.add_argument("--data", required=True)
-    parser.add_argument("--out", required=True)
-    parser.add_argument("--only", help="comma-separated instance ids")
-    args = parser.parse_args()
-
-    data = pathlib.Path(args.data)
-    manifest = json.loads((data / "MANIFEST.json").read_text(encoding="utf-8"))
-    out = pathlib.Path(args.out)
-    details_dir = out / "details"
-    details_dir.mkdir(parents=True, exist_ok=True)
-    summary_path = out / "summary.json"
-    summary = json.loads(summary_path.read_text()) if summary_path.exists() else {}
-    wanted = set(args.only.split(",")) if args.only else None
-
-    for instance, label, engine, weight_format in MODELS:
-        if wanted and instance not in wanted:
-            continue
+    def run_model(self, instance: str, label: str, engine: str, weight_format: str) -> None:
+        """Load one model, warm it, transcribe every recording, unload; record it all."""
         print(f"--- {instance}: {label} ---", flush=True)
         entry = {
             "instance": instance, "model": label, "engine": engine,
             "format": weight_format, "dataset": "google/fleurs ro_ro test",
-            "selected_rows": len(manifest["items"]),
-            "audio_duration_s": manifest["audio_duration_s"],
+            "selected_rows": len(self.manifest["items"]),
+            "audio_duration_s": self.manifest["audio_duration_s"],
+            "preload_unloads": unload_running(self.manager),
         }
-        entry["preload_unloads"] = unload_running(args.manager)
-        started = time.perf_counter()
-        try:
-            loaded = api(args.manager, f"/api/instances/{instance}/load", "POST")
-            entry["load"] = {"ok": bool(loaded.get("ok")),
-                             "wall_s": round(time.perf_counter() - started, 3),
-                             "manager_total_ms": loaded.get("total_ms")}
-            if not loaded.get("ok"):
-                entry["load"]["error"] = loaded.get("error", "load failed")
-                raise RuntimeError(entry["load"]["error"])
-        except Exception as error:
-            entry.setdefault("load", {"ok": False,
-                                      "wall_s": round(time.perf_counter() - started, 3)})
-            entry["load"]["error"] = read_error(error)
-            summary[instance] = entry
-            summary_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n")
-            continue
-
-        # Exercise decoder setup and kernels once, exactly as the text study
-        # does. The warm-up is recorded but never scored or timed into RTF.
-        warmup_item = manifest["items"][0]
-        warmup_audio = data / warmup_item["path"]
-        warmup_started = time.perf_counter()
-        try:
-            multipart(args.manager + "/v1/audio/transcriptions",
-                      {"model": instance, "language": "ro"}, warmup_audio.name,
-                      warmup_audio.read_bytes())
-            entry["warmup"] = {"ok": True,
-                               "wall_s": round(time.perf_counter() - warmup_started, 6)}
-        except Exception as error:
-            entry["warmup"] = {"ok": False,
-                               "wall_s": round(time.perf_counter() - warmup_started, 6),
-                               "error": read_error(error)}
-
+        entry["load"] = timed(self.manager, instance, "load")
+        if not entry["load"]["ok"]:
+            self.save(instance, entry)
+            return
+        entry["warmup"] = self.warm_up(instance)
         if not entry["warmup"]["ok"]:
-            entry.update({"status": "warmup_failed", "requests": 0,
-                          "successful": 0, "failed": 0, "inference_s": 0.0,
-                          "real_time_factor": None,
-                          "audio_seconds_per_second": None,
-                          "wer": None, "cer": None,
-                          "wer_without_diacritics": None,
-                          "cer_without_diacritics": None})
-            (details_dir / f"{instance}.json").write_text(
-                json.dumps({"schema_version": 1, "instance": instance,
-                            "status": "warmup_failed", "items": []},
-                           ensure_ascii=False, indent=2) + "\n")
-            try:
-                api(args.manager, f"/api/instances/{instance}/unload", "POST", 300)
-            except Exception as error:
-                entry["unload"] = {"ok": False, "error": read_error(error)}
-            summary[instance] = entry
-            summary_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n")
-            print(f"  warm-up FAILED: {entry['warmup']['error']}", flush=True)
-            continue
-
-        results = []
-        total_inference = 0.0
-        totals = {"word_errors": 0, "words": 0, "char_errors": 0, "chars": 0,
-                  "ascii_word_errors": 0, "ascii_words": 0,
-                  "ascii_char_errors": 0, "ascii_chars": 0}
-        for position, item in enumerate(manifest["items"]):
-            audio = data / item["path"]
-            request_started = time.perf_counter()
-            record = {"ordinal": item["ordinal"], "id": item["id"],
-                      "source_row": item["source_row"],
-                      "duration_s": item["duration_s"]}
-            try:
-                response = multipart(
-                    args.manager + "/v1/audio/transcriptions",
-                    {"model": instance, "language": "ro"}, audio.name,
-                    audio.read_bytes())
-                elapsed = time.perf_counter() - request_started
-                hypothesis = str(response.get("text") or "")
-                record.update({"ok": True, "inference_s": round(elapsed, 6)})
-                total_inference += elapsed
-                we, words, ce, chars = error_counts(item["reference"], hypothesis)
-                awe, awords, ace, achars = error_counts(item["reference"], hypothesis, True)
-                for key, value in (("word_errors", we), ("words", words),
-                                   ("char_errors", ce), ("chars", chars),
-                                   ("ascii_word_errors", awe), ("ascii_words", awords),
-                                   ("ascii_char_errors", ace), ("ascii_chars", achars)):
-                    totals[key] += value
-                record.update({"word_errors": we, "reference_words": words,
-                               "char_errors": ce, "reference_chars": chars})
-            except Exception as error:
-                record.update({"ok": False, "error": read_error(error),
-                               "inference_s": round(time.perf_counter() - request_started, 6)})
-            results.append(record)
-            (details_dir / f"{instance}.json").write_text(
-                json.dumps({"schema_version": 1, "instance": instance,
-                            "items": results}, ensure_ascii=False, indent=2) + "\n")
-            print(f"  {position + 1}/{len(manifest['items'])} {'ok' if record['ok'] else 'FAILED'}",
-                  flush=True)
-
-        successful = sum(bool(item["ok"]) for item in results)
-        entry.update({
-            "requests": len(results), "successful": successful,
-            "failed": len(results) - successful,
-            "inference_s": round(total_inference, 3),
-            "real_time_factor": round(total_inference / manifest["audio_duration_s"], 4),
-            "audio_seconds_per_second": round(manifest["audio_duration_s"] / total_inference, 3)
-                if total_inference else None,
-            "wer": round(totals["word_errors"] / totals["words"], 6) if totals["words"] else None,
-            "cer": round(totals["char_errors"] / totals["chars"], 6) if totals["chars"] else None,
-            "wer_without_diacritics": round(totals["ascii_word_errors"] / totals["ascii_words"], 6)
-                if totals["ascii_words"] else None,
-            "cer_without_diacritics": round(totals["ascii_char_errors"] / totals["ascii_chars"], 6)
-                if totals["ascii_chars"] else None,
-            "error_totals": totals,
-        })
-        unload_started = time.perf_counter()
-        try:
-            unloaded = api(args.manager, f"/api/instances/{instance}/unload", "POST", 300)
-            entry["unload"] = {"ok": bool(unloaded.get("ok")),
-                               "wall_s": round(time.perf_counter() - unload_started, 3),
-                               "manager_total_ms": unloaded.get("total_ms")}
-        except Exception as error:
-            entry["unload"] = {"ok": False, "error": read_error(error)}
-        summary[instance] = entry
-        summary_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n")
+            self.warmup_failed(instance, entry)
+            return
+        results, inference_s, totals = self.transcribe_all(instance)
+        entry.update(scores(results, inference_s, totals, self.manifest["audio_duration_s"]))
+        entry["unload"] = timed(self.manager, instance, "unload")
+        self.save(instance, entry)
         print(f"  WER={entry['wer']} RTF={entry['real_time_factor']}", flush=True)
 
+    def warm_up(self, instance: str) -> dict:
+        """Exercise decoder setup and kernels once, exactly as the text study does.
+
+        The warm-up is recorded but never scored or timed into RTF.
+        """
+        audio = self.data / self.manifest["items"][0]["path"]
+        started = time.perf_counter()
+        try:
+            self.transcribe(instance, audio)
+            return {"ok": True, "wall_s": round(time.perf_counter() - started, 6)}
+        except Exception as error:
+            return {"ok": False, "wall_s": round(time.perf_counter() - started, 6),
+                    "error": read_error(error)}
+
+    def warmup_failed(self, instance: str, entry: dict) -> None:
+        """A model that cannot answer once is recorded as such, and unloaded."""
+        entry.update({"status": "warmup_failed", "requests": 0, "successful": 0,
+                      "failed": 0, "inference_s": 0.0, **NOTHING_SCORED})
+        self.details(instance, [], "warmup_failed")
+        unloaded = timed(self.manager, instance, "unload")
+        if not unloaded["ok"]:
+            entry["unload"] = {"ok": False, "error": unloaded.get("error")}
+        self.save(instance, entry)
+        print(f"  warm-up FAILED: {entry['warmup']['error']}", flush=True)
+
+    def transcribe_all(self, instance: str) -> tuple[list[dict], float, ErrorTotals]:
+        """Every recording once: per-item records, total inference time, error totals."""
+        items = self.manifest["items"]
+        results: list[dict] = []
+        inference_s = 0.0
+        totals = ErrorTotals()
+        for position, item in enumerate(items):
+            record, elapsed = self.transcribe_item(instance, item, totals)
+            inference_s += elapsed
+            results.append(record)
+            self.details(instance, results)
+            print(f"  {position + 1}/{len(items)} {'ok' if record['ok'] else 'FAILED'}",
+                  flush=True)
+        return results, inference_s, totals
+
+    def transcribe_item(self, instance: str, item: dict,
+                        totals: ErrorTotals) -> tuple[dict, float]:
+        """One recording: its record, and the inference time it counts for (0 if it failed)."""
+        audio = self.data / item["path"]
+        started = time.perf_counter()
+        record = {"ordinal": item["ordinal"], "id": item["id"],
+                  "source_row": item["source_row"], "duration_s": item["duration_s"]}
+        try:
+            response = self.transcribe(instance, audio)
+        except Exception as error:
+            record.update({"ok": False, "error": read_error(error),
+                           "inference_s": round(time.perf_counter() - started, 6)})
+            return record, 0.0
+        elapsed = time.perf_counter() - started
+        counted = totals.add(item["reference"], str(response.get("text") or ""))
+        record.update({"ok": True, "inference_s": round(elapsed, 6),
+                       "word_errors": counted[0], "reference_words": counted[1],
+                       "char_errors": counted[2], "reference_chars": counted[3]})
+        return record, elapsed
+
+
+def ratio(part: float, whole: float, digits: int) -> float | None:
+    """part / whole rounded, or None when there is nothing to divide by."""
+    return round(part / whole, digits) if whole else None
+
+
+def scores(results: list[dict], inference_s: float, totals: ErrorTotals,
+           audio_s: float) -> dict:
+    """One model's figures: requests, speed and error rates."""
+    successful = sum(bool(item["ok"]) for item in results)
+    return {
+        "requests": len(results), "successful": successful,
+        "failed": len(results) - successful,
+        "inference_s": round(inference_s, 3),
+        "real_time_factor": round(inference_s / audio_s, 4),
+        "audio_seconds_per_second": ratio(audio_s, inference_s, 3),
+        **totals.rates(),
+        "error_totals": totals.counts,
+    }
+
+
+def main() -> int:
+    """Run every model (or those in `--only`) and keep each outcome."""
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--manager", help=MANAGER_HELP)
+    parser.add_argument("--data", required=True)
+    parser.add_argument("--out", required=True)
+    parser.add_argument("--only", help="comma-separated instance ids")
+    args = parser.parse_args()
+    study = Study(manager_url(args.manager), pathlib.Path(args.data), pathlib.Path(args.out))
+    wanted = set(args.only.split(",")) if args.only else None
+    for model in MODELS:
+        if not wanted or model[0] in wanted:
+            study.run_model(*model)
     return 0
 
 

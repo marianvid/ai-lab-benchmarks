@@ -1,0 +1,17 @@
+# The environment the harness's tests and type checks run in: AI-Lab's own
+# manager environment, `ai-lab`, so this repository adds no environment of its own.
+#   conda env create -f environment.yml      (or: conda env update -f environment.yml)
+#   conda activate ai-lab
+#
+# It holds only Python and the test tools. The scripts that drive an engine
+# (TTS, sound effects, scoring, video) run in that engine's own environment;
+# their tests are skipped here and say which library they wait for.
+# Exact versions installed on the Mac: environment.lock.yml.
+name: ai-lab
+channels:
+  - conda-forge
+dependencies:
+  - python=3.13
+  - pytest            # runs the tests
+  - pytest-cov        # measures test coverage (enforced floor in pytest.ini)
+  - pip

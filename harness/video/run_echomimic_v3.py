@@ -11,7 +11,12 @@ import sys
 import time
 
 
-def main() -> int:
+MIB = 1048576
+AUDIO_RATE = 16000      # what wav2vec2 was trained on
+
+
+def options() -> argparse.Namespace:
+    """The command line."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", required=True)
     parser.add_argument("--model-root", required=True)
@@ -22,11 +27,97 @@ def main() -> int:
     parser.add_argument("--size", type=int, default=512)
     parser.add_argument("--seed", type=int, default=43)
     parser.add_argument("--max-vram-fraction", type=float, default=0.80)
-    args = parser.parse_args()
+    return parser.parse_args()
 
-    source = pathlib.Path(args.source).resolve()
+
+def benchmark_config(implementation, args, out: pathlib.Path) -> type:
+    """The upstream settings, with this benchmark's paths and sizes laid over them.
+
+    Built with `type()` because the class only exists once upstream is imported.
+    """
+    upstream_init = implementation.Config.__init__
     model_root = pathlib.Path(args.model_root).resolve()
     fixtures = pathlib.Path(args.fixtures).resolve()
+
+    def benchmark_init(config) -> None:
+        upstream_init(config)
+        config.model_name = str(model_root / "Wan2.1-Fun-V1.1-1.3B-InP")
+        config.transformer_path = str(
+            model_root / "transformer" / "diffusion_pytorch_model.safetensors")
+        config.wav2vec_model_dir = str(model_root / "wav2vec2-base-960h")
+        config.base_dir = str(fixtures)
+        config.test_name_list = [args.case]
+        config.save_path = str(out)
+        config.num_inference_steps = args.steps
+        config.sample_size = [args.size, args.size]
+        config.partial_video_length = 81
+        config.overlap_video_length = 8
+        config.seed = args.seed
+        config.enable_teacache = False
+    return type("BenchmarkConfig", (implementation.Config,), {"__init__": benchmark_init})
+
+
+def profiling_once(torch, offload, profile_type, fraction: float):
+    """A pipeline `.to()` that applies the memory profile the first time instead of moving."""
+    profiled = False
+
+    def profile_pipeline(pipeline, *_args, **_kwargs):
+        nonlocal profiled
+        if not profiled:
+            budget_mb = int(
+                torch.cuda.get_device_properties(0).total_memory / MIB * fraction)
+            offload.profile(
+                pipeline,
+                profile_type.LowRAM_HighVRAM,
+                budgets={"*": budget_mb},
+                compile=False,
+            )
+            profiled = True
+        return pipeline
+    return profile_pipeline
+
+
+def audio_features(librosa):
+    """The upstream feature extractor, loading audio at wav2vec2's rate."""
+    def extract_audio_features(audio_path, processor, model):
+        audio_segment, sample_rate = librosa.load(audio_path, sr=AUDIO_RATE)
+        input_values = processor(
+            audio_segment, sampling_rate=sample_rate, return_tensors="pt"
+        ).input_values.to(model.device)
+        return model(input_values).last_hidden_state.squeeze(0)
+    return extract_audio_features
+
+
+def record_of(args, torch, out: pathlib.Path, outcome: dict) -> dict:
+    """What was run, how it ended (`outcome`: status, error, wall_s) and the memory it took."""
+    artifacts = sorted(out.glob(f"**/{args.case}_audio.mp4"),
+                       key=lambda path: path.stat().st_mtime)
+    return {
+        "schema_version": 1,
+        "model": "EchoMimicV3 preview 1.3B",
+        "case": args.case,
+        "status": outcome["status"],
+        "error": outcome["error"],
+        "wall_s": round(outcome["wall_s"], 3),
+        "peak_cuda_allocated_bytes": torch.cuda.max_memory_allocated(),
+        "peak_cuda_reserved_bytes": torch.cuda.max_memory_reserved(),
+        "settings": {
+            "steps": args.steps,
+            "size": [args.size, args.size],
+            "fps": 25,
+            "seed": args.seed,
+            "weight_dtype": "bfloat16",
+            "offload_profile": "LowRAM_HighVRAM",
+            "max_vram_fraction": args.max_vram_fraction
+        },
+        "artifact": str(artifacts[-1]) if artifacts else None
+    }
+
+
+def main() -> int:
+    """Run EchoMimic v3 on one case with this benchmark's settings, measured."""
+    args = options()
+    source = pathlib.Path(args.source).resolve()
     out = pathlib.Path(args.out).resolve()
     out.mkdir(parents=True, exist_ok=True)
 
@@ -37,57 +128,11 @@ def main() -> int:
     import torch
     from mmgp import offload, profile_type
 
-    original_config = implementation.Config
-
-    class BenchmarkConfig(original_config):
-        def __init__(self):
-            super().__init__()
-            self.model_name = str(model_root / "Wan2.1-Fun-V1.1-1.3B-InP")
-            self.transformer_path = str(
-                model_root / "transformer" / "diffusion_pytorch_model.safetensors"
-            )
-            self.wav2vec_model_dir = str(model_root / "wav2vec2-base-960h")
-            self.base_dir = str(fixtures)
-            self.test_name_list = [args.case]
-            self.save_path = str(out)
-            self.num_inference_steps = args.steps
-            self.sample_size = [args.size, args.size]
-            self.partial_video_length = 81
-            self.overlap_video_length = 8
-            self.seed = args.seed
-            self.enable_teacache = False
-
-    implementation.Config = BenchmarkConfig
+    implementation.Config = benchmark_config(implementation, args, out)
     original_pipeline_to = implementation.WanFunInpaintAudioPipeline.to
-    profiled = False
-
-    def profile_pipeline(pipeline, *unused_args, **unused_kwargs):
-        nonlocal profiled
-        if not profiled:
-            budget_mb = int(
-                torch.cuda.get_device_properties(0).total_memory
-                / 1048576
-                * args.max_vram_fraction
-            )
-            offload.profile(
-                pipeline,
-                profile_type.LowRAM_HighVRAM,
-                budgets={"*": budget_mb},
-                compile=False,
-            )
-            profiled = True
-        return pipeline
-
-    implementation.WanFunInpaintAudioPipeline.to = profile_pipeline
-
-    def extract_audio_features(audio_path, processor, model):
-        audio_segment, sample_rate = librosa.load(audio_path, sr=16000)
-        input_values = processor(
-            audio_segment, sampling_rate=sample_rate, return_tensors="pt"
-        ).input_values.to(model.device)
-        return model(input_values).last_hidden_state.squeeze(0)
-
-    implementation.extract_audio_features = extract_audio_features
+    implementation.WanFunInpaintAudioPipeline.to = profiling_once(
+        torch, offload, profile_type, args.max_vram_fraction)
+    implementation.extract_audio_features = audio_features(librosa)
     torch.cuda.reset_peak_memory_stats()
     started = time.perf_counter()
     status = "succeeded"
@@ -99,29 +144,8 @@ def main() -> int:
         error = f"{type(exc).__name__}: {exc}"
         raise
     finally:
-        wall_s = time.perf_counter() - started
-        artifacts = sorted(out.glob(f"**/{args.case}_audio.mp4"),
-                           key=lambda path: path.stat().st_mtime)
-        record = {
-            "schema_version": 1,
-            "model": "EchoMimicV3 preview 1.3B",
-            "case": args.case,
-            "status": status,
-            "error": error,
-            "wall_s": round(wall_s, 3),
-            "peak_cuda_allocated_bytes": torch.cuda.max_memory_allocated(),
-            "peak_cuda_reserved_bytes": torch.cuda.max_memory_reserved(),
-            "settings": {
-                "steps": args.steps,
-                "size": [args.size, args.size],
-                "fps": 25,
-                "seed": args.seed,
-                "weight_dtype": "bfloat16",
-                "offload_profile": "LowRAM_HighVRAM",
-                "max_vram_fraction": args.max_vram_fraction
-            },
-            "artifact": str(artifacts[-1]) if artifacts else None
-        }
+        record = record_of(args, torch, out, {"status": status, "error": error,
+                                              "wall_s": time.perf_counter() - started})
         (out / f"{args.case}.json").write_text(
             json.dumps(record, indent=2) + "\n", encoding="utf-8"
         )

@@ -4,19 +4,24 @@
 from __future__ import annotations
 
 import argparse
-import os
+import contextlib
 import hashlib
 import json
 import random
 import re
+import sys
 import time
 import urllib.error
 import urllib.request
-import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont
+
+# The repository root, so the harness's own modules import as `harness.…`.
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from harness.shared.lab import MANAGER_HELP, form_body, manager_url
+from harness.shared.textmetrics import distance
 
 
 CASES = (
@@ -27,11 +32,20 @@ CASES = (
 )
 
 MODELS = ("ocr-smoke", "ocr-server")
+# A model executed when the gateway answered with a 2xx status.
+HTTP_OK_FIRST, HTTP_OK_END = 200, 300
 TEXT_KEYS = {"text", "transcription", "recognized_text", "rec_text", "rec_texts"}
 CONFIDENCE_KEYS = {"confidence", "score", "rec_score", "rec_scores"}
 
 
+# The fixture images: their size, where the text starts, the line spacing.
+CANVAS = (1280, 420)
+MARGIN_X, FIRST_LINE_Y, LINE_GAP = 72, 54, 44
+NOISE_SEED, NOISE_PIXELS = 8090, 15000
+
+
 def font(size: int) -> tuple[ImageFont.FreeTypeFont, str]:
+    """The first of the usual Linux and macOS fonts present, and its path."""
     candidates = (
         "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
         "/usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf",
@@ -44,17 +58,18 @@ def font(size: int) -> tuple[ImageFont.FreeTypeFont, str]:
 
 
 def make_fixture(path: Path, lines: tuple[str, ...], size: int, degraded: bool) -> dict:
+    """Draw one test image (noisy, rotated and blurred when `degraded`); its facts."""
     face, font_path = font(size)
-    image = Image.new("RGB", (1280, 420), "white")
+    image = Image.new("RGB", CANVAS, "white")
     draw = ImageDraw.Draw(image)
-    y = 54
+    y = FIRST_LINE_Y
     for line in lines:
-        draw.text((72, y), line, font=face, fill=(12, 18, 24))
-        y += size + 44
+        draw.text((MARGIN_X, y), line, font=face, fill=(12, 18, 24))
+        y += size + LINE_GAP
     if degraded:
-        rng = random.Random(8090)
+        rng = random.Random(NOISE_SEED)
         pixels = image.load()
-        for _ in range(15000):
+        for _ in range(NOISE_PIXELS):
             x, y = rng.randrange(image.width), rng.randrange(image.height)
             shade = rng.randrange(175, 246)
             pixels[x, y] = (shade, shade, shade)
@@ -66,27 +81,13 @@ def make_fixture(path: Path, lines: tuple[str, ...], size: int, degraded: bool) 
     return {"font": font_path, "sha256": hashlib.sha256(data).hexdigest(), "bytes": len(data)}
 
 
-def multipart(model: str, path: Path) -> tuple[bytes, str]:
-    boundary = "----ailab-ocr-" + uuid.uuid4().hex
-    chunks = []
-    for name, value in (("model", model), ("language", "en")):
-        chunks.append(f"--{boundary}\r\nContent-Disposition: form-data; name=\"{name}\"\r\n\r\n{value}\r\n".encode())
-    chunks.append(
-        f"--{boundary}\r\nContent-Disposition: form-data; name=\"file\"; filename=\"{path.name}\"\r\nContent-Type: image/png\r\n\r\n".encode()
-    )
-    chunks.append(path.read_bytes())
-    chunks.append(f"\r\n--{boundary}--\r\n".encode())
-    return b"".join(chunks), boundary
-
-
 def request_ocr(base_url: str, model: str, path: Path, timeout: int) -> tuple[int, dict, float]:
-    body, boundary = multipart(model, path)
+    """One image through the gateway: HTTP status, answer (or error body), seconds."""
+    body, content_type = form_body({"model": model, "language": "en"},
+                                   ("file", path.name, path.read_bytes()))
     request = urllib.request.Request(
-        base_url.rstrip("/") + "/v1/images/ocr",
-        data=body,
-        headers={"Content-Type": f"multipart/form-data; boundary={boundary}"},
-        method="POST",
-    )
+        base_url.rstrip("/") + "/v1/images/ocr", data=body,
+        headers={"Content-Type": content_type}, method="POST")
     started = time.monotonic()
     try:
         with urllib.request.urlopen(request, timeout=timeout) as response:
@@ -102,7 +103,8 @@ def request_ocr(base_url: str, model: str, path: Path, timeout: int) -> tuple[in
 
 
 def collect(payload, keys: set[str]) -> list:
-    values = []
+    """Every value under one of `keys`, anywhere in the answer, lists flattened."""
+    values: list = []
     if isinstance(payload, dict):
         for key, value in payload.items():
             if key.lower() in keys:
@@ -119,141 +121,149 @@ def collect(payload, keys: set[str]) -> list:
 
 
 def normalize(text: str) -> str:
+    """Upper case, runs of white space as one space."""
     return re.sub(r"\s+", " ", text.upper()).strip()
+
+
+def present(value) -> bool:
+    """Whether a value is text with something in it."""
+    return isinstance(value, str) and bool(value.strip())
+
+
+def aggregate_text(payload: dict) -> str:
+    """The answer's whole-image text, under whichever key it uses; "" when none."""
+    return next((payload[key] for key in ("text", "transcription", "recognized_text", "rec_text")
+                 if present(payload.get(key))), "")
+
+
+def line_text(lines) -> str:
+    """The text of every line, joined; "" when there are none."""
+    if not isinstance(lines, list):
+        return ""
+    return " ".join(line["text"] for line in lines
+                    if isinstance(line, dict) and present(line.get("text")))
 
 
 def canonical_text(payload) -> str:
     """Prefer the API's aggregate text and use line text only as fallback."""
     if isinstance(payload, dict):
-        for key in ("text", "transcription", "recognized_text", "rec_text"):
-            value = payload.get(key)
-            if isinstance(value, str) and value.strip():
-                return value
-        lines = payload.get("lines")
-        if isinstance(lines, list):
-            values = []
-            for line in lines:
-                if not isinstance(line, dict):
-                    continue
-                value = line.get("text")
-                if isinstance(value, str) and value.strip():
-                    values.append(value)
-            if values:
-                return " ".join(values)
+        found = aggregate_text(payload) or line_text(payload.get("lines"))
+        if found:
+            return found
     values = [str(value) for value in collect(payload, TEXT_KEYS) if str(value).strip()]
     return " ".join(dict.fromkeys(values))
 
 
-def distance(left: str, right: str) -> int:
-    previous = list(range(len(right) + 1))
-    for i, a in enumerate(left, 1):
-        current = [i]
-        for j, b in enumerate(right, 1):
-            current.append(min(current[-1] + 1, previous[j] + 1, previous[j - 1] + (a != b)))
-        previous = current
-    return previous[-1]
+def fixtures_for(folder: Path, reuse: bool) -> dict:
+    """The fixture manifest: made afresh, or the existing one, checked against the cases."""
+    manifest_path = folder / "manifest.json"
+    if reuse:
+        manifest = json.loads(manifest_path.read_text())
+        for case_id, lines, _, degraded in CASES:
+            check_fixture(folder / f"{case_id}.png", manifest[case_id], lines, degraded)
+        return manifest
+    manifest = {}
+    for case_id, lines, size, degraded in CASES:
+        manifest[case_id] = {"ground_truth": " ".join(lines), "degraded": degraded,
+                             **make_fixture(folder / f"{case_id}.png", lines, size, degraded)}
+    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n")
+    return manifest
+
+
+def check_fixture(path: Path, expected: dict, lines: tuple[str, ...], degraded: bool) -> None:
+    """A reused fixture must be the one the manifest describes."""
+    case_id = path.stem
+    if expected["ground_truth"] != " ".join(lines):
+        raise RuntimeError(f"fixture ground truth drifted: {case_id}")
+    if bool(expected["degraded"]) != degraded:
+        raise RuntimeError(f"fixture degradation flag drifted: {case_id}")
+    if expected["sha256"] != hashlib.sha256(path.read_bytes()).hexdigest():
+        raise RuntimeError(f"fixture checksum mismatch: {case_id}")
+
+
+def mean(values: list[float]) -> float | None:
+    """The average to six places, or None for no values."""
+    return round(sum(values) / len(values), 6) if values else None
+
+
+def run_case(base_url: str, model: str, image: Path, ground_truth: str,
+             timeout: int) -> dict:
+    """One model reading one fixture, scored against its ground truth."""
+    expected = normalize(ground_truth)
+    status, payload, elapsed = request_ocr(base_url, model, image, timeout)
+    actual = normalize(canonical_text(payload))
+    confidences = []
+    for value in collect(payload, CONFIDENCE_KEYS):
+        with contextlib.suppress(TypeError, ValueError):
+            confidences.append(float(value))
+    executed = HTTP_OK_FIRST <= status < HTTP_OK_END
+    return {
+        "model": model, "case": image.stem, "http_status": status,
+        "model_executed": executed, "passed": executed and bool(actual),
+        "duration_seconds": round(elapsed, 3), "expected": expected, "recognized": actual,
+        "exact_match": actual == expected,
+        "cer": round(distance(expected, actual) / max(1, len(expected)), 6),
+        "mean_confidence": mean(confidences), "response": payload,
+    }
+
+
+def model_score(rows: list[dict]) -> dict:
+    """One model's executed cases: how many, exact matches, mean CER and confidence."""
+    return {
+        "executed": len(rows),
+        "exact_matches": sum(row["exact_match"] for row in rows),
+        "mean_cer": round(sum(row["cer"] for row in rows) / max(1, len(rows)), 6),
+        "mean_confidence": mean([row["mean_confidence"] for row in rows
+                                 if row["mean_confidence"] is not None]),
+    }
+
+
+def summary(cases: list[dict]) -> dict:
+    """Counts of failures, and each model's exact matches, CER and confidence."""
+    scores = {model: model_score([row for row in cases
+                                  if row["model"] == model and row["model_executed"]])
+              for model in MODELS}
+    return {
+        "completed": len(cases), "total": len(MODELS) * len(CASES),
+        "model_failures": sum(row["model_executed"] and not row["passed"] for row in cases),
+        "infrastructure_errors": sum(not row["model_executed"] for row in cases),
+        "scores": scores,
+    }
 
 
 def main() -> int:
+    """Read every fixture with every OCR model; 1 if anything failed."""
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--base-url", default=os.environ.get("AI_LAB_MANAGER", "http://localhost:8090"),
-        help="AI-Lab manager address; defaults to $AI_LAB_MANAGER, then localhost")
+    parser.add_argument("--base-url", help=MANAGER_HELP)
     parser.add_argument("--output", default="results/images/ocr")
     parser.add_argument("--timeout", type=int, default=300)
     parser.add_argument("--reuse-fixtures", action="store_true",
                         help="reuse and verify the existing fixture manifest")
     args = parser.parse_args()
-
+    base_url = manager_url(args.base_url)
     output = Path(args.output)
     fixtures = output / "fixtures"
     fixtures.mkdir(parents=True, exist_ok=True)
-    manifest_path = fixtures / "manifest.json"
-    if args.reuse_fixtures:
-        manifest = json.loads(manifest_path.read_text())
-        for case_id, lines, _, degraded in CASES:
-            path = fixtures / f"{case_id}.png"
-            data = path.read_bytes()
-            expected = manifest[case_id]
-            if expected["ground_truth"] != " ".join(lines):
-                raise RuntimeError(f"fixture ground truth drifted: {case_id}")
-            if bool(expected["degraded"]) != degraded:
-                raise RuntimeError(f"fixture degradation flag drifted: {case_id}")
-            if expected["sha256"] != hashlib.sha256(data).hexdigest():
-                raise RuntimeError(f"fixture checksum mismatch: {case_id}")
-    else:
-        manifest = {}
-        for case_id, lines, size, degraded in CASES:
-            path = fixtures / f"{case_id}.png"
-            manifest[case_id] = {
-                "ground_truth": " ".join(lines),
-                "degraded": degraded,
-                **make_fixture(path, lines, size, degraded),
-            }
-        manifest_path.write_text(json.dumps(manifest, indent=2) + "\n")
-
-    report = {
-        "schema_version": 1,
-        "started_at": datetime.now(timezone.utc).isoformat(),
+    manifest = fixtures_for(fixtures, args.reuse_fixtures)
+    report: dict = {
+        "schema_version": 1, "started_at": datetime.now(UTC).isoformat(),
         "base_url": "AI-Lab manager (address not recorded)",
-        "models": list(MODELS),
-        "cases": [],
+        "models": list(MODELS), "cases": [],
     }
     report_path = output / "results.json"
-    model_failures = 0
-    infrastructure_errors = 0
     for model in MODELS:
         for case_id, _, _, _ in CASES:
-            expected = normalize(manifest[case_id]["ground_truth"])
-            status, payload, elapsed = request_ocr(args.base_url, model, fixtures / f"{case_id}.png", args.timeout)
-            actual = normalize(canonical_text(payload))
-            confidences = []
-            for value in collect(payload, CONFIDENCE_KEYS):
-                try:
-                    confidences.append(float(value))
-                except (TypeError, ValueError):
-                    pass
-            executed = 200 <= status < 300
-            passed = executed and bool(actual)
-            model_failures += int(executed and not passed)
-            infrastructure_errors += int(not executed)
-            result = {
-                "model": model,
-                "case": case_id,
-                "http_status": status,
-                "model_executed": executed,
-                "passed": passed,
-                "duration_seconds": round(elapsed, 3),
-                "expected": expected,
-                "recognized": actual,
-                "exact_match": actual == expected,
-                "cer": round(distance(expected, actual) / max(1, len(expected)), 6),
-                "mean_confidence": round(sum(confidences) / len(confidences), 6) if confidences else None,
-                "response": payload,
-            }
+            result = run_case(base_url, model, fixtures / f"{case_id}.png",
+                              manifest[case_id]["ground_truth"], args.timeout)
             report["cases"].append(result)
             report_path.write_text(json.dumps(report, indent=2) + "\n")
-            print(json.dumps({key: result[key] for key in ("model", "case", "passed", "duration_seconds", "exact_match", "cer")}))
-    report["completed_at"] = datetime.now(timezone.utc).isoformat()
-    scores = {}
-    for model in MODELS:
-        rows = [row for row in report["cases"] if row["model"] == model and row["model_executed"]]
-        confidence = [row["mean_confidence"] for row in rows if row["mean_confidence"] is not None]
-        scores[model] = {
-            "executed": len(rows),
-            "exact_matches": sum(row["exact_match"] for row in rows),
-            "mean_cer": round(sum(row["cer"] for row in rows) / max(1, len(rows)), 6),
-            "mean_confidence": round(sum(confidence) / len(confidence), 6) if confidence else None,
-        }
-    report["summary"] = {
-        "completed": len(report["cases"]),
-        "total": len(MODELS) * len(CASES),
-        "model_failures": model_failures,
-        "infrastructure_errors": infrastructure_errors,
-        "scores": scores,
-    }
+            print(json.dumps({key: result[key] for key in
+                              ("model", "case", "passed", "duration_seconds", "exact_match", "cer")}))
+    report["completed_at"] = datetime.now(UTC).isoformat()
+    report["summary"] = summary(report["cases"])
     report_path.write_text(json.dumps(report, indent=2) + "\n")
-    return 1 if model_failures or infrastructure_errors else 0
+    failed = report["summary"]["model_failures"] or report["summary"]["infrastructure_errors"]
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":

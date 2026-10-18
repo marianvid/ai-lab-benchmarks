@@ -8,74 +8,80 @@ a technical throughput and stability measurement, not a VAD quality score.
 from __future__ import annotations
 
 import argparse
-import os
 import json
 import pathlib
+import sys
 import time
 
-from run_asr import api, multipart, read_error, unload_running
+# The repository root, so the harness's own modules import as `harness.…`.
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[2]))
+from harness.shared.lab import (MANAGER_HELP, manager_url, multipart, read_error, timed, unload_running,
+                        unreachable)
+
+INSTANCE = "silero-vad"
+
+
+def segment_one(manager: str, data: pathlib.Path, item: dict) -> dict:
+    """One recording: its speech segments and how long finding them took."""
+    wav = data / item["path"]
+    started = time.perf_counter()
+    record = {"ordinal": item["ordinal"], "id": item["id"], "duration_s": item["duration_s"]}
+    try:
+        response = multipart(manager + "/v1/audio/speech-segments", {"model": INSTANCE},
+                             ("file", wav.name, wav.read_bytes()))
+    except Exception as error:
+        record.update({"ok": False, "error": read_error(error)})
+        return record
+    elapsed = time.perf_counter() - started
+    segments = response.get("segments") or []
+    record.update({"ok": True, "inference_s": round(elapsed, 6), "segments": segments,
+                   "detected_speech_s": round(sum(max(0, segment["end"] - segment["start"])
+                                                  for segment in segments), 6)})
+    return record
+
+
+def summary(items: list[dict], duration_s: float) -> dict:
+    """Requests, successes, and the speed over the successful ones."""
+    total_s = sum(item.get("inference_s", 0.0) for item in items if item["ok"])
+    return {
+        "requests": len(items), "successful": sum(bool(item["ok"]) for item in items),
+        "audio_duration_s": duration_s, "inference_s": round(total_s, 3),
+        "real_time_factor": round(total_s / duration_s, 6),
+        "audio_seconds_per_second": round(duration_s / total_s, 3) if total_s else None,
+    }
 
 
 def main() -> int:
+    """Load Silero, segment every recording, unload; 1 if it would not load."""
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
-        "--manager", default=os.environ.get("AI_LAB_MANAGER", "http://localhost:8090"),
-        help="AI-Lab manager address; defaults to $AI_LAB_MANAGER, then localhost")
+    parser.add_argument("--manager", help=MANAGER_HELP)
     parser.add_argument("--data", required=True)
     parser.add_argument("--out", required=True)
     args = parser.parse_args()
+    manager = manager_url(args.manager)
     data = pathlib.Path(args.data)
     manifest = json.loads((data / "MANIFEST.json").read_text())
     out = pathlib.Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
-    result = {"instance": "silero-vad", "model": "Silero VAD 6.2.1",
-              "dataset": "google/fleurs ro_ro test",
-              "measurement": "technical throughput; no boundary ground truth",
-              "preload_unloads": unload_running(args.manager), "items": []}
-    started = time.perf_counter()
-    try:
-        loaded = api(args.manager, "/api/instances/silero-vad/load", "POST")
-        result["load"] = {"ok": bool(loaded.get("ok")),
-                          "wall_s": round(time.perf_counter() - started, 3),
-                          "manager_total_ms": loaded.get("total_ms")}
-    except Exception as error:
-        result["load"] = {"ok": False, "error": read_error(error)}
+
+    def write() -> None:
         out.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
+    result: dict = {"instance": INSTANCE, "model": "Silero VAD 6.2.1",
+                    "dataset": "google/fleurs ro_ro test",
+                    "measurement": "technical throughput; no boundary ground truth",
+                    "preload_unloads": unload_running(manager), "items": []}
+    result["load"] = timed(manager, INSTANCE, "load")
+    if unreachable(result["load"]):
+        write()
         return 1
-    total_s = 0.0
     for item in manifest["items"]:
-        wav = data / item["path"]
-        request_started = time.perf_counter()
-        record = {"ordinal": item["ordinal"], "id": item["id"],
-                  "duration_s": item["duration_s"]}
-        try:
-            response = multipart(args.manager + "/v1/audio/speech-segments",
-                                 {"model": "silero-vad"}, wav.name, wav.read_bytes())
-            elapsed = time.perf_counter() - request_started
-            segments = response.get("segments") or []
-            total_s += elapsed
-            record.update({"ok": True, "inference_s": round(elapsed, 6),
-                           "segments": segments,
-                           "detected_speech_s": round(sum(max(0, segment["end"] - segment["start"])
-                                                          for segment in segments), 6)})
-        except Exception as error:
-            record.update({"ok": False, "error": read_error(error)})
-        result["items"].append(record)
-        out.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
-    duration_s = manifest["audio_duration_s"]
-    result["summary"] = {
-        "requests": len(result["items"]),
-        "successful": sum(bool(item["ok"]) for item in result["items"]),
-        "audio_duration_s": duration_s,
-        "inference_s": round(total_s, 3),
-        "real_time_factor": round(total_s / duration_s, 6),
-        "audio_seconds_per_second": round(duration_s / total_s, 3) if total_s else None,
-    }
-    try:
-        api(args.manager, "/api/instances/silero-vad/unload", "POST", 300)
-    except Exception as error:
-        result["unload_error"] = read_error(error)
-    out.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
+        result["items"].append(segment_one(manager, data, item))
+        write()
+    result["summary"] = summary(result["items"], manifest["audio_duration_s"])
+    unloaded = timed(manager, INSTANCE, "unload")
+    if unreachable(unloaded):
+        result["unload_error"] = unloaded["error"]
+    write()
     print(json.dumps(result["summary"], indent=2))
     return 0
 

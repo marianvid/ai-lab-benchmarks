@@ -42,5 +42,5 @@ Q8_0 is 13.7% faster than BF16 on the identical Mac suite with the same semantic
 
 ## Sources
 
-- Linux: `results/audio/asr/summary.json`, `results/images/summary.json`, `results/images/semantic-review.json`, `docs/audio-results.md`, `docs/images-ocr.md`
-- macOS: `results/audio/macos/`, `results/images/macos/summary.json`, `results/images/macos/semantic-review.json`, `results/images/macos/ocr/results.json`, `results/images/macos/report.md`
+- Linux: `../audio/asr/summary.json`, `../images/summary.json`, `../images/semantic-review.json`, `../../docs/audio-results.md`, `../../docs/images-ocr.md`
+- macOS: `../audio/macos/`, `../images/macos/summary.json`, `../images/macos/semantic-review.json`, `../images/macos/ocr/results.json`, `../images/macos/report.md`

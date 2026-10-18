@@ -13,6 +13,9 @@ what each costs. Loading time, and then the speed of reading a prompt and
 writing an answer.
 
 It is the only script here that does not go through AI-Lab, and it says so.
+The server listens on the port named by the setting `benchmark.oversize_port`
+and logs to the scratch folder named by `benchmark.scratch_dir`, both in
+AI-Lab's configuration (see `shared/lab.py`).
 
     python3 measure_oversize.py --model /models/gguf/.../model.gguf --out oversize.json
 """
@@ -24,12 +27,21 @@ import json
 import pathlib
 import signal
 import subprocess
+import sys
 import time
 import urllib.error
 import urllib.request
 
-LOOPBACK = "127.0.0.1"
-PORT = 8099
+# The repository root, so the harness's own modules import as `harness.…`.
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
+
+from harness.shared.lab import LOOPBACK, setting
+
+
+def port() -> int:
+    """The port the hand-started llama.cpp server listens on: `benchmark.oversize_port`."""
+    return int(setting("oversize_port"))
+
 
 PROMPT = ("Read the following function and rewrite it to be clearer, keeping "
           "the behaviour identical.\n\n"
@@ -54,7 +66,7 @@ def wait_ready(seconds: int, process: subprocess.Popen) -> float | None:
             return None
         try:
             with urllib.request.urlopen(
-                    f"http://{LOOPBACK}:{PORT}/v1/models", timeout=5) as response:
+                    f"http://{LOOPBACK}:{port()}/v1/models", timeout=5) as response:
                 json.load(response)
             return time.perf_counter() - started
         except Exception:
@@ -67,7 +79,7 @@ def ask() -> dict:
     payload = {"model": "x", "messages": [{"role": "user", "content": PROMPT}],
                "max_tokens": 200, "temperature": 0.0}
     request = urllib.request.Request(
-        f"http://{LOOPBACK}:{PORT}/v1/chat/completions",
+        f"http://{LOOPBACK}:{port()}/v1/chat/completions",
         data=json.dumps(payload).encode(),
         headers={"Content-Type": "application/json"})
     started = time.perf_counter()
@@ -85,6 +97,7 @@ def ask() -> dict:
 
 
 def vram_used() -> int:
+    """Memory in use on the card (MiB), or -1 when nvidia-smi cannot say."""
     result = subprocess.run(
         ["nvidia-smi", "--query-gpu=memory.used", "--format=csv,noheader,nounits"],
         capture_output=True, text=True)
@@ -94,58 +107,72 @@ def vram_used() -> int:
         return -1
 
 
-def one_split(server: str, model: str, layers: int, context: int, wait: int) -> dict:
-    """Start the server with `layers` on the card, measure, stop it."""
-    command = [server, "--model", model, "--host", LOOPBACK, "--port", str(PORT),
+# An idle card reads a few hundred MiB; below this the memory is back.
+IDLE_VRAM_MB = 500
+RELEASE_WAIT_S = 30
+
+
+def server_command(server: str, model: str, layers: int, context: int) -> list[str]:
+    """The llama-server command for one split.
+
+    layers < 0 means: say nothing, and let llama.cpp decide the split itself.
+    That is what it does well, and forcing a number makes it give up rather
+    than fit — "n_gpu_layers already set by user, abort" in its own words.
+    """
+    command = [server, "--model", model, "--host", LOOPBACK, "--port", str(port()),
                "--ctx-size", str(context), "--flash-attn", "on", "--no-warmup"]
-    # layers < 0 means: say nothing, and let llama.cpp decide the split itself.
-    # That is what it does well, and forcing a number makes it give up rather
-    # than fit — "n_gpu_layers already set by user, abort" in its own words.
-    if layers >= 0:
-        command += ["--n-gpu-layers", str(layers)]
-    # Keep the server's own output. Discarding it means that when a split
-    # fails to load there is nothing to say why, which is the moment you most
-    # need to know.
-    logpath = pathlib.Path(f"/tmp/llama-oversize-{layers}.log")
-    logfile = logpath.open("w")
-    started = time.perf_counter()
-    process = subprocess.Popen(command, stdout=logfile, stderr=subprocess.STDOUT,
-                               start_new_session=True)
+    return command + (["--n-gpu-layers", str(layers)] if layers >= 0 else [])
+
+
+def stop(process: subprocess.Popen) -> None:
+    """Stop the server, then wait for the driver to give the memory back."""
+    stopping = time.perf_counter()
+    process.send_signal(signal.SIGTERM)
     try:
-        ready = wait_ready(wait, process)
-        if ready is None:
-            logfile.flush()
-            tail = [line for line in logpath.read_text(errors="replace").splitlines()
-                    if line.strip()][-4:]
-            return {"gpu_layers": layers if layers >= 0 else "chosen by llama.cpp",
-                    "ok": False,
-                    "error": ("the server stopped" if process.poll() is not None
-                              else f"did not answer within {wait}s"),
-                    "server_said": tail}
-        entry = {"gpu_layers": layers if layers >= 0 else "chosen by llama.cpp",
-                 "ok": True,
-                 "load_s": round(ready, 1), "vram_mb": vram_used()}
-        entry["generation"] = ask()
-        return entry
-    finally:
-        stopping = time.perf_counter()
-        process.send_signal(signal.SIGTERM)
+        process.wait(timeout=120)
+    except subprocess.TimeoutExpired:
+        process.kill()
+        process.wait(timeout=60)
+    for _ in range(RELEASE_WAIT_S):
+        if vram_used() < IDLE_VRAM_MB:
+            break
+        time.sleep(1)
+    print(f"    stopped in {round(time.perf_counter()-stopping,1)}s, "
+          f"VRAM now {vram_used()} MB", flush=True)
+
+
+def one_split(server: str, model: str, layers: int, context: int, wait: int) -> dict:
+    """Start the server with `layers` on the card, measure, stop it.
+
+    The server's own output is kept, in the scratch folder of AI-Lab's
+    configuration (`benchmark.scratch_dir`): when a split fails to load, that
+    is the only place that says why.
+    """
+    logpath = pathlib.Path(setting("scratch_dir")) / f"llama-oversize-{layers}.log"
+    logpath.parent.mkdir(parents=True, exist_ok=True)
+    split = layers if layers >= 0 else "chosen by llama.cpp"
+    with logpath.open("w") as logfile:
+        process = subprocess.Popen(server_command(server, model, layers, context),
+                                   stdout=logfile, stderr=subprocess.STDOUT,
+                                   start_new_session=True)
         try:
-            process.wait(timeout=120)
-        except subprocess.TimeoutExpired:
-            process.kill()
-            process.wait(timeout=60)
-        # Give the driver a moment to actually give the memory back.
-        for _ in range(30):
-            if vram_used() < 500:
-                break
-            time.sleep(1)
-        logfile.close()
-        print(f"    stopped in {round(time.perf_counter()-stopping,1)}s, "
-              f"VRAM now {vram_used()} MB", flush=True)
+            ready = wait_ready(wait, process)
+            if ready is None:
+                logfile.flush()
+                tail = [line for line in logpath.read_text(errors="replace").splitlines()
+                        if line.strip()][-4:]
+                return {"gpu_layers": split, "ok": False,
+                        "error": ("the server stopped" if process.poll() is not None
+                                  else f"did not answer within {wait}s"),
+                        "server_said": tail}
+            return {"gpu_layers": split, "ok": True, "load_s": round(ready, 1),
+                    "vram_mb": vram_used(), "generation": ask()}
+        finally:
+            stop(process)
 
 
 def main() -> int:
+    """Measure every split asked for and write the results."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--model", required=True)
     parser.add_argument("--server", required=True, help="path to llama-server")

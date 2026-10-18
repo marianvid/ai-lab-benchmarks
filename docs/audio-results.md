@@ -1,6 +1,6 @@
 # Romanian audio results
 
-> Generated from `results/audio/` by `harness/audio/make_report.py`.
+> Generated from `../results/audio/` by `../harness/audio/make_report.py`.
 
 This report combines a deterministic 100-file FLEURS `ro_ro` pass with the complete 120-file Echo Romanian diarization set. Read the [method](audio-method.md) before comparing close figures.
 

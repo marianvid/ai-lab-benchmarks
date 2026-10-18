@@ -7,6 +7,7 @@
 - Runtime: ComfyUI 0.34.0, Python 3.11.7, torch 2.13.0
 - Device reported by ComfyUI during the final FLUX.2 Dev runs: Apple MPS with unified memory
 - Public manager API: `http://127.0.0.1:8110` using the isolated macOS benchmark configuration
+- ComfyUI bridge: the run used an isolated bridge between AI-Lab and a private ComfyUI process (diagnostic_comfyui_server.py, the `server` named in `config.json`). It was written for this one run and is kept in the private benchmark repository, not here.
 - Generation fixtures: 1024x1024 for the current large-model profiles; identical prompts, seeds and 20-step workflows for FLUX.2 Dev Q8_0 and BF16
 
 ## Executive result

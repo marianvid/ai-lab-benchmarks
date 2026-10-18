@@ -1,6 +1,6 @@
 # The harness
 
-Each script *is* the definition of its test. `../01-method.md` explains the
+Each script *is* the definition of its test. [the method](../docs/method.md) explains the
 intent behind them; this file says what to run.
 
 ## Getting the data
@@ -25,10 +25,24 @@ its own failures — a model that will not start is a recorded fact, not a stop.
 
 ## Where AI-Lab is
 
-The audio and image scripts talk to an AI-Lab manager. They take its address
-from `--manager` (`--base-url` for OCR), otherwise from the environment variable
-`AI_LAB_MANAGER`, otherwise `http://localhost:8090`. The address is not written
-into result files.
+The scripts that talk to an AI-Lab manager take its address from `--manager`
+(`--base-url` for OCR), otherwise from the environment variable
+`AI_LAB_MANAGER`, otherwise from AI-Lab's own configuration file, named by the
+environment variable `AI_LAB_CONFIG`: its `benchmark.manager_url`, or the
+loopback address with its `port`. The address is not written into result files.
+
+Everything else a script needs from the machine is in that file's `benchmark`
+section, and a script that needs a value it does not find stops and names it:
+
+| Setting | Used by |
+|---|---|
+| `benchmark.manager_url` | every script that calls the manager (optional, see above) |
+| `benchmark.fish_tts_url` | `tts/runners/run_fish.py`, `tts/runners/run_libritts.py --engine fish`: Fish Speech's own `/v1/tts` |
+| `benchmark.scratch_dir` | `measure_oversize.py`: where the hand-started llama.cpp writes its log |
+| `benchmark.oversize_port` | `measure_oversize.py`: the port the hand-started llama.cpp listens on |
+
+`shared/lab.py` reads them; `shared/textmetrics.py` and `shared/runs.py` hold what the transcription
+scorers and the local generation runners share.
 
 ## The tests
 
@@ -58,11 +72,16 @@ Every one of them reports correctness and speed from the same run.
 |---|---|
 | `evalcommon.py` | What all four share: talking to the engine, concurrency, timing, the result shape |
 | `make_report.py` | Turns `results/` into `02-results.md`. The tables are generated, never typed |
+| `textreport/` | The pages `make_report.py` writes: the tables in code, the fixed text in `textreport/prose/`, one Markdown file per page |
+| `images/make_report.py` | Writes `../docs/images-ocr.md`: the results tables into the fixed text of `images/report-template.md` |
 | `measure_oversize.py` | What a model larger than the card costs. The only script that does not go through AI-Lab |
 | `run_vllm.sh`, `run_gguf.sh` | Start an engine by hand |
 | `timeload.sh` | Time load and unload for either engine |
 | `tokratio.py` | How many tokens the same text costs in different writing systems |
-| `fix_gemma4.py`, `patch_gemma_cfg.py` | The vLLM patch — see `../05-a-bug-in-vllm.md` |
+
+The vLLM 0.27.1 workaround for Gemma-4 (fix_gemma4.py and patch_gemma_cfg.py) edits one
+machine's installed vLLM and model folders, so both scripts are kept with that machine's
+private settings, not here — see [the bug](../docs/vllm-gemma4-bug.md).
 
 ## Safety
 

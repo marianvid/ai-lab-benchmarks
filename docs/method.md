@@ -8,7 +8,7 @@ the tables are explained in the [glossary](glossary.md).
 
 ## Where the data comes from
 
-Nothing is stored in this repository. `harness/get_datasets.py` downloads the
+Nothing is stored in this repository. `../harness/get_datasets.py` downloads the
 four evaluation sets from their location and writes a manifest
 listing what came from where, under which licence.
 
@@ -131,7 +131,7 @@ has nothing to do with the model.
 
 `bench_agentic.py` gives the model a throwaway repository and six tools:
 list files, read a file, search text, write a source file, run visible tests,
-and finish. A system message makes `architect.md` authoritative, treats other
+and finish. A system message makes the repository's `<repository>/architect.md` authoritative, treats other
 repository contents as untrusted data, protects the architect, tests and
 fixtures from writes, and allows at most fourteen model turns.
 
@@ -183,7 +183,7 @@ fills the [KV cache](glossary.md#kv-cache), and the cache is what limits how
 many requests fit at once. The two ladders turn out to disagree — see
 [throughput](throughput.md).
 
-`harness/fetch_wikipedia.py` collects the articles. The text is CC BY-SA 4.0 and
+`../harness/fetch_wikipedia.py` collects the articles. The text is CC BY-SA 4.0 and
 every row keeps its page id, revision id and URL, so each article stays
 attributable.
 
@@ -220,7 +220,7 @@ fact.
 
 ## How a run is orchestrated
 
-`harness/run_all.py` takes each model in turn: loads it through [AI-Lab](https://github.com/marianvid/ai-lab), waits
+`../harness/run_all.py` takes each model in turn: loads it through [AI-Lab](https://github.com/marianvid/ai-lab), waits
 until it answers, loads it a second time for the warm figure, then runs the four
 quality tasks, the short-prompt concurrency ladder, the latency test and the
 long-form ladder, and unloads.
@@ -229,6 +229,6 @@ long-form ladder, and unloads.
 leaves everything that finished. A model that will not load is recorded and the
 run carries on to the next one.
 
-`harness/make_report.py` turns `results/` into the result pages. The tables
+`../harness/make_report.py` turns `../results/` into the result pages. The tables
 there are generated rather than typed, so every number can be traced back to the
 file it came from.

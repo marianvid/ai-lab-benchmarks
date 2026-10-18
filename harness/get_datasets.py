@@ -53,16 +53,17 @@ import urllib.request
 
 USER_AGENT = "ai-lab-benchmarks/1.0 (https://github.com/marianvid/ai-lab-benchmarks)"
 
-FLORES_TARBALL = "https://dl.fbaipublicfiles.com/nllb/flores200_dataset.tar.gz"
-SIB_FILE = ("https://huggingface.co/datasets/Davlan/sib200/resolve/main/"
-            "data/{code}/test.tsv")
-BELEBELE_FILE = ("https://huggingface.co/datasets/facebook/belebele/resolve/main/"
-                 "data/{code}.jsonl")
-HUMANEVAL_FILE = ("https://huggingface.co/datasets/evalplus/humanevalplus/"
-                  "resolve/main/test.jsonl")
+# Where each set comes from, and its publisher's page: data, not code
+# (`datasets.json` beside this file).
+DATASETS = json.loads((pathlib.Path(__file__).with_name("datasets.json")).read_text())
+DOWNLOADS = DATASETS["downloads"]
+FLORES_TARBALL = DOWNLOADS["flores_tarball"]
+SIB_FILE = DOWNLOADS["sib_file"]
+BELEBELE_FILE = DOWNLOADS["belebele_file"]
+HUMANEVAL_FILE = DOWNLOADS["humaneval_file"]
 # MBPP+ is published only as parquet, which would mean a dependency for one
 # file. The rows service returns the same content as JSON, a page at a time.
-ROWS_SERVICE = "https://datasets-server.huggingface.co/rows"
+ROWS_SERVICE = DOWNLOADS["rows_service"]
 
 # The twenty languages, chosen for reach and for variety of writing system.
 # The script code matters: the same sentence costs very different numbers of
@@ -94,6 +95,7 @@ LANGUAGES = {
 
 
 def fetch(url: str, timeout: int = 120) -> bytes:
+    """One download, as this harness's user agent."""
     request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     with urllib.request.urlopen(request, timeout=timeout) as response:
         return response.read()
@@ -163,7 +165,8 @@ def get_coding(out: pathlib.Path) -> None:
     if path.exists() and path.stat().st_size > 0:
         print("  mbppplus: already here")
         return
-    collected, offset = [], 0
+    collected: list[dict] = []
+    offset = 0
     while True:
         query = urllib.parse.urlencode({"dataset": "evalplus/mbppplus",
                                         "config": "default", "split": "test",
@@ -187,27 +190,27 @@ def write_manifest(out: pathlib.Path, codes: list[str]) -> None:
         "languages": {two: {"flores_code": code, "name": name, "script": script}
                       for two, (code, name, script) in LANGUAGES.items()
                       if code in codes},
-        "sources": [
-            {"name": "FLORES-200", "licence": "CC BY-SA 4.0",
-             "url": FLORES_TARBALL,
-             "home": "https://github.com/facebookresearch/flores",
-             "what": "sentences translated by people; the reference for chrF++"},
-            {"name": "SIB-200", "licence": "CC BY-SA 4.0",
-             "home": "https://huggingface.co/datasets/Davlan/sib200",
-             "what": "the same sentences, labelled by people with one of seven topics"},
-            {"name": "Belebele", "licence": "CC BY-SA 4.0",
-             "home": "https://huggingface.co/datasets/facebook/belebele",
-             "what": "reading-comprehension questions over passages, four options each"},
-            {"name": "HumanEval+ and MBPP+", "licence": "Apache 2.0",
-             "home": "https://github.com/evalplus/evalplus",
-             "what": "542 Python problems with test suites large enough to fail "
-                     "plausible-looking wrong answers"},
-        ],
+        "sources": DATASETS["sources"],
     }
     (out / "MANIFEST.json").write_text(json.dumps(manifest, indent=2) + "\n")
 
 
+def fetch_sets(out: pathlib.Path, codes: list[str], only: str | None) -> None:
+    """Download each set, or only the one asked for."""
+    fetchers = {
+        "flores": lambda: get_flores(out, codes),
+        "sib": lambda: get_per_language(out, codes, "sib200", SIB_FILE, ".tsv"),
+        "belebele": lambda: get_per_language(out, codes, "belebele", BELEBELE_FILE,
+                                             ".jsonl"),
+        "coding": lambda: get_coding(out),
+    }
+    for name, fetcher in fetchers.items():
+        if only in (None, name):
+            fetcher()
+
+
 def main() -> int:
+    """Download every evaluation set not already here and write `MANIFEST.json`."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", default="./eval-data")
     parser.add_argument("--languages", default=",".join(LANGUAGES),
@@ -228,15 +231,7 @@ def main() -> int:
     out.mkdir(parents=True, exist_ok=True)
     print(f"{len(codes)} languages -> {out}")
 
-    if arguments.only in (None, "flores"):
-        get_flores(out, codes)
-    if arguments.only in (None, "sib"):
-        get_per_language(out, codes, "sib200", SIB_FILE, ".tsv")
-    if arguments.only in (None, "belebele"):
-        get_per_language(out, codes, "belebele", BELEBELE_FILE, ".jsonl")
-    if arguments.only in (None, "coding"):
-        get_coding(out)
-
+    fetch_sets(out, codes, arguments.only)
     write_manifest(out, codes)
     print(f"\nDone. See {out}/MANIFEST.json for licences and citations.")
     return 0

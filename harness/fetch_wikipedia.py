@@ -53,9 +53,19 @@ MAX_WIKITEXT = 60000
 
 BATCH = 50              # random pages per request
 PAUSE_S = 0.4           # between requests, to stay a polite client
+RETRY_PAUSE_S = 3       # after a failed request
+
+# A page is prose when at least PROSE_LINES of its lines are longer than
+# PROSE_LINE_CHARS; anything less is a list or a table.
+PROSE_LINE_CHARS = 120
+PROSE_LINES = 3
+
+# Rounds in a row that add nothing before a language is given up on.
+GIVE_UP_ROUNDS = 25
 
 
 def api(lang: str, params: dict) -> dict:
+    """One call to a Wikipedia's API (refused when its servers lag); an API error raises."""
     query = {**params, "format": "json", "formatversion": "2", "maxlag": "5"}
     url = f"https://{lang}.wikipedia.org/w/api.php?" + urllib.parse.urlencode(query)
     request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
@@ -96,58 +106,84 @@ def usable(page: dict) -> str | None:
     # that is mostly one-line entries is a table in disguise. Either would make
     # the prompts shorter and more repetitive than real articles.
     lines = [line for line in text.splitlines() if line.strip()]
-    if len([line for line in lines if len(line) > 120]) < 3:
+    if len([line for line in lines if len(line) > PROSE_LINE_CHARS]) < PROSE_LINES:
         return None
     return text
 
 
-def collect(lang: str, wanted: int, budget: int) -> list[dict]:
-    kept: list[dict] = []
-    seen: set[int] = set()
-    requests_made = 0
-    empty_rounds = 0
+def one_round(lang: str) -> tuple[list[dict] | None, int]:
+    """One candidate batch with its text, and how many requests that took.
 
-    while len(kept) < wanted and requests_made < budget:
-        try:
-            batch = candidates(lang)
-            requests_made += 1
-            time.sleep(PAUSE_S)
-            pages = with_text(lang, batch)
-            requests_made += 1
-            time.sleep(PAUSE_S)
-        except (urllib.error.URLError, RuntimeError, TimeoutError) as error:
-            print(f"  {lang}: {error} — retrying", file=sys.stderr)
-            time.sleep(3)
-            requests_made += 1
-            continue
+    The pages are None when a request failed; the caller tries again.
+    """
+    try:
+        batch = candidates(lang)
+        time.sleep(PAUSE_S)
+        pages = with_text(lang, batch)
+        time.sleep(PAUSE_S)
+    except (urllib.error.URLError, RuntimeError, TimeoutError) as error:
+        print(f"  {lang}: {error} — retrying", file=sys.stderr)
+        time.sleep(RETRY_PAUSE_S)
+        return None, 1
+    return pages, 2
 
-        before = len(kept)
+
+def record(lang: str, page: dict, text: str) -> dict:
+    """One kept article, with what is needed to attribute and recover it."""
+    revisions = page.get("revisions") or [{}]
+    return {"lang": lang, "pageid": page["pageid"],
+            "revid": revisions[0].get("revid"),
+            "title": page["title"],
+            "url": f"https://{lang}.wikipedia.org/?curid={page['pageid']}",
+            "chars": len(text), "text": text}
+
+
+class Collection:
+    """The articles kept so far in one language."""
+
+    def __init__(self, lang: str, wanted: int) -> None:
+        self.lang = lang
+        self.wanted = wanted
+        self.kept: list[dict] = []
+        self.seen: set[int] = set()
+
+    def add(self, pages: list[dict]) -> bool:
+        """Keep the usable pages not seen before; True if any were kept."""
+        before = len(self.kept)
         for page in pages:
-            if len(kept) >= wanted or page["pageid"] in seen:
+            if len(self.kept) >= self.wanted or page["pageid"] in self.seen:
                 continue
             text = usable(page)
             if text is None:
                 continue
-            seen.add(page["pageid"])
-            revisions = page.get("revisions") or [{}]
-            kept.append({"lang": lang, "pageid": page["pageid"],
-                         "revid": revisions[0].get("revid"),
-                         "title": page["title"],
-                         "url": f"https://{lang}.wikipedia.org/?curid={page['pageid']}",
-                         "chars": len(text), "text": text})
+            self.seen.add(page["pageid"])
+            self.kept.append(record(self.lang, page, text))
+        return len(self.kept) > before
 
-        empty_rounds = 0 if len(kept) > before else empty_rounds + 1
-        if empty_rounds >= 25:
-            print(f"  {lang}: giving up at {len(kept)}/{wanted} — this edition has "
-                  f"few articles in the band", file=sys.stderr)
+
+def collect(lang: str, wanted: int, budget: int) -> list[dict]:
+    """Random articles in one language until `wanted` are kept or `budget` calls are spent."""
+    collection = Collection(lang, wanted)
+    requests_made = 0
+    empty_rounds = 0
+    while len(collection.kept) < wanted and requests_made < budget:
+        pages, spent = one_round(lang)
+        requests_made += spent
+        if pages is None:
+            continue
+        empty_rounds = 0 if collection.add(pages) else empty_rounds + 1
+        if empty_rounds >= GIVE_UP_ROUNDS:
+            print(f"  {lang}: giving up at {len(collection.kept)}/{wanted} — this "
+                  f"edition has few articles in the band", file=sys.stderr)
             break
-        print(f"  {lang}: {len(kept)}/{wanted}", end="\r", file=sys.stderr)
-
-    print(f"  {lang}: {len(kept)}/{wanted} in {requests_made} requests", file=sys.stderr)
-    return kept
+        print(f"  {lang}: {len(collection.kept)}/{wanted}", end="\r", file=sys.stderr)
+    print(f"  {lang}: {len(collection.kept)}/{wanted} in {requests_made} requests",
+          file=sys.stderr)
+    return collection.kept
 
 
 def main() -> int:
+    """Collect the articles for every language and write them, with their licence."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--languages", default="ru,uk,lt,pl,ro,en")
     parser.add_argument("--per-language", type=int, default=100)

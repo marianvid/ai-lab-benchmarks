@@ -3,114 +3,59 @@
 
 from __future__ import annotations
 
-import argparse
-import hashlib
-import json
-import platform
-import resource
-import time
+import sys
 from pathlib import Path
 
 import soundfile as sf
 import torch
 from tangoflux import TangoFluxInference
 
+# The repository root, so the harness's own modules import as `harness.…`.
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from harness.shared.runs import SEED, Runner, sha256, torch_facts
 
-def sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
+SAMPLE_RATE = 44100
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--model", default="declare-lab/TangoFlux")
-    parser.add_argument("--manifest", required=True)
-    parser.add_argument("--out", required=True)
-    parser.add_argument("--steps", type=int, default=50)
-    parser.add_argument("--guidance-scale", type=float, default=4.5)
-    args = parser.parse_args()
+class TangoFlux(Runner):
+    """TangoFlux on the card, one seeded clip per prompt."""
 
-    manifest_path = Path(args.manifest).resolve()
-    out = Path(args.out).resolve()
-    audio_out = out / "audio"
-    audio_out.mkdir(parents=True, exist_ok=True)
-    cases = json.loads(manifest_path.read_text(encoding="utf-8"))["cases"]
+    takes_model = False
 
-    torch.cuda.empty_cache()
-    torch.cuda.reset_peak_memory_stats()
-    started = time.perf_counter()
-    model = TangoFluxInference(name=args.model, device="cuda")
-    load_s = time.perf_counter() - started
-    load_vram = torch.cuda.memory_allocated()
+    def options(self, parser) -> None:
+        """--model (default: the published checkpoint), --steps, --guidance-scale."""
+        parser.add_argument("--model", default="declare-lab/TangoFlux")
+        parser.add_argument("--steps", type=int, default=50)
+        parser.add_argument("--guidance-scale", type=float, default=4.5)
 
-    records = []
-    for index, case in enumerate(cases):
-        destination = audio_out / f"{case['id']}.wav"
-        seed = 20260915 + index
-        record = {
-            "id": case["id"],
-            "category": case["category"],
-            "prompt": case["prompt"],
-            "duration_requested_s": case["duration_s"],
-            "seed": seed,
-            "ok": False,
-        }
-        try:
-            torch.manual_seed(seed)
-            torch.cuda.manual_seed_all(seed)
-            torch.cuda.reset_peak_memory_stats()
-            before = time.perf_counter()
-            audio = model.generate(
-                case["prompt"],
-                steps=args.steps,
-                duration=case["duration_s"],
-                guidance_scale=args.guidance_scale,
-            )
-            elapsed = time.perf_counter() - before
-            samples = audio.detach().float().cpu().numpy().T
-            sf.write(destination, samples, 44100, subtype="PCM_24")
-            info = sf.info(destination)
-            record.update(
-                {
-                    "ok": True,
-                    "seconds": round(elapsed, 6),
-                    "audio_duration_s": round(info.duration, 6),
-                    "rtf": round(elapsed / info.duration, 6),
-                    "sample_rate": info.samplerate,
-                    "channels": info.channels,
-                    "sha256": sha256(destination),
-                    "peak_vram_bytes": torch.cuda.max_memory_allocated(),
-                    "max_rss_bytes": resource.getrusage(resource.RUSAGE_SELF).ru_maxrss * 1024,
-                }
-            )
-        except Exception as error:
-            record["error"] = f"{type(error).__name__}: {error}"
-        records.append(record)
-        print(json.dumps(record, ensure_ascii=False), flush=True)
+    def load(self):
+        """The checkpoint, on the card."""
+        return TangoFluxInference(name=self.args.model, device="cuda")
 
-    raw = {
-        "schema_version": 1,
-        "engine": "tangoflux",
-        "model": args.model,
-        "device": "cuda",
-        "steps": args.steps,
-        "guidance_scale": args.guidance_scale,
-        "manifest_sha256": sha256(manifest_path),
-        "load_s": round(load_s, 6),
-        "load_vram_bytes": load_vram,
-        "platform": platform.platform(),
-        "python": platform.python_version(),
-        "torch": torch.__version__,
-        "cuda": torch.version.cuda,
-        "gpu": torch.cuda.get_device_name(0),
-        "cases": records,
-    }
-    (out / "raw.json").write_text(json.dumps(raw, ensure_ascii=False, indent=2) + "\n")
-    return 0 if all(row["ok"] for row in records) else 1
+    def start(self, index: int, case: dict) -> dict:
+        """The prompt, the length asked for, and the seed."""
+        return {"id": case["id"], "category": case["category"], "prompt": case["prompt"],
+                "duration_requested_s": case["duration_s"], "seed": SEED + index}
+
+    def generate(self, index: int, case: dict) -> dict:
+        """One clip, seeded, written as 24-bit WAV."""
+        self.seed(index)
+        audio, elapsed = self.timed(lambda: self.model.generate(
+            case["prompt"], steps=self.args.steps, duration=case["duration_s"],
+            guidance_scale=self.args.guidance_scale))
+        destination = self.destination(case)
+        sf.write(destination, audio.detach().float().cpu().numpy().T, SAMPLE_RATE,
+                 subtype="PCM_24")
+        return self.measured(destination, elapsed, channels=True, process_rss=False)
+
+    def facts(self, records: list[dict]) -> dict:
+        """The checkpoint, settings, timings and platform."""
+        return {"schema_version": 1, "engine": "tangoflux", "model": self.args.model,
+                "device": "cuda", "steps": self.args.steps,
+                "guidance_scale": self.args.guidance_scale,
+                "manifest_sha256": sha256(self.manifest_path), "load_s": round(self.load_s, 6),
+                "load_vram_bytes": self.load_vram, **torch_facts(torch)}
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(TangoFlux().main())

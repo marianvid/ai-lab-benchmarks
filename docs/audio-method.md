@@ -24,7 +24,7 @@ FLEURS identifiers are recorded with the results.
 
 ## Audio preparation
 
-[`harness/audio/prepare_fleurs.py`](../harness/audio/prepare_fleurs.py) extracts
+[`../harness/audio/prepare_fleurs.py`](../harness/audio/prepare_fleurs.py) extracts
 the embedded files and uses FFmpeg to create mono, 16 kHz, signed 16-bit PCM WAV.
 The same prepared
 files are sent to every model. Download, conversion and storage time are not

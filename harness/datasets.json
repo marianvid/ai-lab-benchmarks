@@ -1,0 +1,26 @@
+{
+  "_comment": "Where each evaluation set is downloaded from, and its publisher's page. Read by get_datasets.py and audio/prepare_fleurs.py; nothing here is redistributed.",
+  "downloads": {
+    "flores_tarball": "https://dl.fbaipublicfiles.com/nllb/flores200_dataset.tar.gz",
+    "sib_file": "https://huggingface.co/datasets/Davlan/sib200/resolve/main/data/{code}/test.tsv",
+    "belebele_file": "https://huggingface.co/datasets/facebook/belebele/resolve/main/data/{code}.jsonl",
+    "humaneval_file": "https://huggingface.co/datasets/evalplus/humanevalplus/resolve/main/test.jsonl",
+    "rows_service": "https://datasets-server.huggingface.co/rows",
+    "fleurs_ro_parquet": "https://huggingface.co/datasets/google/fleurs/resolve/refs%2Fconvert%2Fparquet/ro_ro/test/0000.parquet"
+  },
+  "sources": [
+    {"name": "FLORES-200", "licence": "CC BY-SA 4.0",
+     "url": "https://dl.fbaipublicfiles.com/nllb/flores200_dataset.tar.gz",
+     "home": "https://github.com/facebookresearch/flores",
+     "what": "sentences translated by people; the reference for chrF++"},
+    {"name": "SIB-200", "licence": "CC BY-SA 4.0",
+     "home": "https://huggingface.co/datasets/Davlan/sib200",
+     "what": "the same sentences, labelled by people with one of seven topics"},
+    {"name": "Belebele", "licence": "CC BY-SA 4.0",
+     "home": "https://huggingface.co/datasets/facebook/belebele",
+     "what": "reading-comprehension questions over passages, four options each"},
+    {"name": "HumanEval+ and MBPP+", "licence": "Apache 2.0",
+     "home": "https://github.com/evalplus/evalplus",
+     "what": "542 Python problems with test suites large enough to fail plausible-looking wrong answers"}
+  ]
+}
